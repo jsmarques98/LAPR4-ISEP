@@ -1,4 +1,4 @@
-# LEI-ISEP 2020-21 Integrating Project - 4th Semester
+# LEI-ISEP 2021-22 Integrating Project - 4th Semester
 
 # 1. Constitution of the Working Group
 
