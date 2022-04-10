@@ -11,7 +11,7 @@
 
 
 ###1.2 Entities
-###Product
+
 We consider that "Questionnaire" should be an entity because:
 - It has a unique identifier (Id), and it is always unique because we won't have
 two exactly the same questionnaires even if they have the same properties
@@ -28,7 +28,7 @@ two exactly the same questions
 - It will be needed to manage and create questions in our application.
 
 
-We consider that "QuestionNumeric", "QuestionScailingOptions", "QuestionFreeText", "QuestionSortingOptions", "QuestionSingleChoice", "QuestionMultipleChoiceWithInputValue" and "QuestionMultipleCoice" should all be considered entitities because:
+We consider that "QuestionNumeric", "QuestionScailingOptions", "QuestionFreeText", "QuestionSortingOptions", "QuestionSingleChoice", "QuestionMultipleChoiceWithInputValue" and "QuestionMultipleCoice" should all be considered entities because:
 
 - All of them are derived by inheritance of the entity "Question"
 
