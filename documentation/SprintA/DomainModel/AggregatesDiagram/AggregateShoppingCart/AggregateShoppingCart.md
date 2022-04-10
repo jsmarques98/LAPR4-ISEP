@@ -1,4 +1,4 @@
-# AGGREGATE PRODUCT
+# AGGREGATE SHOPPING CART
 
 ## 1. Technical decisions
 

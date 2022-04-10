@@ -1,4 +1,4 @@
-# AGGREGATE PRODUCT
+# AGGREGATE ORDER
 
 ## 1. Technical decisions
 
