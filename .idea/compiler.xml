@@ -25,6 +25,7 @@
       <module name="base.bootstrappers" target="11" />
       <module name="base.core" target="11" />
       <module name="base.persistence.impl" target="11" />
+      <module name="LAPR4" target="11" />
       <module name="lei21_22_s4_2di_02" target="11" />
     </bytecodeTargetLevel>
   </component>
