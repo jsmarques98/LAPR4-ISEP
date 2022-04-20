@@ -24,7 +24,6 @@
 package eapli.base.app.backoffice.console.presentation;
 
 import eapli.base.app.backoffice.console.presentation.product.AddProductUI;
-import eapli.base.app.backoffice.console.presentation.product.ListProductsUI;
 import eapli.base.app.common.console.presentation.authz.MyUserMenu;
 import eapli.base.Application;
 import eapli.base.app.backoffice.console.presentation.authz.AddUserUI;
@@ -162,6 +161,7 @@ public class MainMenu extends AbstractUI {
         final Menu menu = new Menu("Products >");
         menu.addItem(ADD_PRODUCT_OPTION,"Add Product", new AddProductUI()::show);
         menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
+
         return menu;
     }
 

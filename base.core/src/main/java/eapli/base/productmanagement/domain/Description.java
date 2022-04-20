@@ -2,16 +2,14 @@ package eapli.base.productmanagement.domain;
 
 import eapli.framework.domain.model.ValueObject;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class Description implements ValueObject {
     private static final Integer MIN_SIZE = 0;
     private static final Integer MAX_SIZE = 250;
+
     private String description;
-
-
 
     public Description (String description){
         if(isValid(description)){

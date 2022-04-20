@@ -2,8 +2,6 @@ package eapli.base.app.backoffice.console.presentation.product;
 
 import eapli.base.productmanagement.application.AddProductController;
 import eapli.base.productmanagement.dto.ProductDTO;
-import eapli.framework.domain.repositories.ConcurrencyException;
-import eapli.framework.domain.repositories.IntegrityViolationException;
 import eapli.framework.io.util.Console;
 import eapli.framework.presentation.console.AbstractUI;
 import org.slf4j.Logger;
@@ -17,7 +15,7 @@ public class AddProductUI extends AbstractUI {
     @Override
     protected boolean doShow() {
         if(createProduct()) {
-            System.out.println("Successful product creation");
+            saveProduct();
             return true;
         }
         System.out.println("Unsuccessful product creation");
@@ -37,22 +35,37 @@ public class AddProductUI extends AbstractUI {
 
 
         ProductDTO productDTO = new ProductDTO(uniqueInternalCode,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
-        try {
-            controller.createProduct(productDTO);
-            return true;
-        } catch (final IntegrityViolationException e) {
-            System.out.println("Unique Internal Code is already in use.");
-        } catch (final ConcurrencyException e) {
-            LOGGER.error("This should never happen", e);
-            System.out.println(
-                    "Unfortunately there was an unexpected error in the application. Please try again and if the problem persists, contact your system administrator.");
-        }
-        return false;
+
+        return controller.createProduct(productDTO);
     }
 
     @Override
     public String headline() {
         return "ADD PRODUCT";
+    }
+
+    private void saveProduct() {
+        int selected_option;
+        System.out.println("Do you confirm the entered data?");
+        System.out.println(controller.showProduct().toString());
+
+        do {
+            selected_option = Console.readInteger(
+                    "\nDo you want to save product?\n  1) Yes\n  2) No");
+            if(selected_option!=1 && selected_option!=2) {
+                System.out.println("Invalid option, try again!");
+            }
+        } while (selected_option!=1 && selected_option!=2);
+
+        if(selected_option == 1) {
+            if(!controller.persistProduct()) {
+                System.out.println("Product non persisted");
+            }else {
+                System.out.println("Product persisted!");
+            }
+        }else {
+            System.out.println("Canceled.");
+        }
     }
 
 }

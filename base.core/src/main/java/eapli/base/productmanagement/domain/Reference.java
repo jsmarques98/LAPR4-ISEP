@@ -2,11 +2,11 @@ package eapli.base.productmanagement.domain;
 
 import eapli.framework.domain.model.ValueObject;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class Reference implements ValueObject {
+
     private String reference;
 
     public Reference (String reference){

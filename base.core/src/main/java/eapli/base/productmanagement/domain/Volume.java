@@ -33,9 +33,6 @@ public class Volume implements ValueObject {
     }
 
     private boolean isValid(Double volume){
-        if(volume<MAX_VOLUME && volume>MIN_VOLUME) {
-            return true;
-        }
-        return false;
+        return volume < MAX_VOLUME && volume > MIN_VOLUME;
     }
 }

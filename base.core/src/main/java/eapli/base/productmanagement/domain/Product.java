@@ -1,15 +1,11 @@
 package eapli.base.productmanagement.domain;
 
-import eapli.base.clientusermanagement.domain.MecanographicNumber;
 import eapli.base.productmanagement.dto.ProductDTO;
 import eapli.framework.domain.model.AggregateRoot;
 import eapli.framework.domain.model.DomainEntities;
-import eapli.framework.domain.model.DomainEntity;
 import eapli.framework.representations.dto.DTOable;
 import eapli.framework.validations.Preconditions;
-
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<ProductDTO> {

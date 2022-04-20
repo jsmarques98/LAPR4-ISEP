@@ -2,14 +2,11 @@ package eapli.base.productmanagement.domain;
 
 import eapli.framework.domain.model.ValueObject;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
-
 
 @Embeddable
 public class Barcode implements ValueObject {
     private static final Integer SIZE = 13;
-
     private Integer gs1Prefix;
     private Integer itemNumber;
     private Integer manufacturerIdNumber;
@@ -31,7 +28,6 @@ public class Barcode implements ValueObject {
 
     }
 
-
     public static Barcode valueOf(final String value){
         return new Barcode(value);
     }
@@ -39,6 +35,4 @@ public class Barcode implements ValueObject {
     private boolean isValid(String barcode){
         return barcode.matches("[0-9]+") && barcode.length()==SIZE;
     }
-
-
 }

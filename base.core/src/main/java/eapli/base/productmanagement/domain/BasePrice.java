@@ -2,12 +2,12 @@ package eapli.base.productmanagement.domain;
 
 import eapli.framework.domain.model.ValueObject;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class BasePrice implements ValueObject {
     private static final Double MIN_PRICE = 0.0;
+
     private Double baseprice;
 
     public BasePrice (Double baseprice){

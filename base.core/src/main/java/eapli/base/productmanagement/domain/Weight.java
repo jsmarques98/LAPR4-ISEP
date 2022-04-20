@@ -32,9 +32,6 @@ public class Weight implements ValueObject {
     }
 
     private boolean isValid(Double weight){
-        if(weight<MAX_WEIGHT && weight>MIN_WEIGHT) {
-            return true;
-        }
-        return false;
+        return weight < MAX_WEIGHT && weight > MIN_WEIGHT;
     }
 }
