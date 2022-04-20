@@ -86,4 +86,6 @@ public interface RepositoryFactory {
 
     ProductRepository products();
 
+    ProductRepository products(TransactionalContext autoTx);
+
 }

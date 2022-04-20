@@ -12,13 +12,13 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Product implements AggregateRoot<MecanographicNumber>, DTOable<ProductDTO> {
+public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<ProductDTO> {
 
     @Version
     private Long version;
 
-    @Id
-    private MecanographicNumber uniqueInternalCode;
+    @EmbeddedId
+    private UniqueInternalCode uniqueInternalCode;
 
     @Column
     private Barcode barcode;
@@ -48,7 +48,7 @@ public class Product implements AggregateRoot<MecanographicNumber>, DTOable<Prod
         // empty constructor
     }
 
-    public Product(final MecanographicNumber uniqueInternalCode, Barcode barcode, BasePrice basePrice , Brand brand,
+    public Product(final UniqueInternalCode uniqueInternalCode, Barcode barcode, BasePrice basePrice , Brand brand,
     Description description, ProductionCode productionCode, Reference reference, Volume volume, Weight weight)
     {
         Preconditions.noneNull(uniqueInternalCode, barcode, basePrice,brand,description,reference,volume,weight);
@@ -67,7 +67,7 @@ public class Product implements AggregateRoot<MecanographicNumber>, DTOable<Prod
         return version;
     }
 
-    public MecanographicNumber getUniqueInternalCode() {
+    public UniqueInternalCode getUniqueInternalCode() {
         return uniqueInternalCode;
     }
 
@@ -118,10 +118,6 @@ public class Product implements AggregateRoot<MecanographicNumber>, DTOable<Prod
         return DomainEntities.areEqual(this, other);
     }
 
-    @Override
-    public MecanographicNumber identity() {
-        return this.uniqueInternalCode;
-    }
 
     @Override
     public String toString() {
@@ -139,8 +135,13 @@ public class Product implements AggregateRoot<MecanographicNumber>, DTOable<Prod
 
     @Override
     public ProductDTO toDTO() {
-        return new ProductDTO(this.uniqueInternalCode,this.barcode.toString(),this.basePrice.toString(),
+        return new ProductDTO(this.uniqueInternalCode.toString(),this.barcode.toString(),this.basePrice.getBasePrice(),
                 this.brand.toString(), this.description.toString(),this.productionCode.toString(),this.reference.toString()
-        , this.volume.toString(), this.weight.toString());
+        , this.volume.getVolume(), this.weight.getWeight());
+    }
+
+    @Override
+    public UniqueInternalCode identity() {
+        return null;
     }
 }

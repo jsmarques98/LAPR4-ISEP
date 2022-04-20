@@ -1,28 +1,25 @@
 package eapli.base.productmanagement.dto;
 
-import eapli.base.clientusermanagement.domain.MecanographicNumber;
-import eapli.base.productmanagement.domain.*;
+
 import eapli.framework.representations.dto.DTO;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Version;
+
 
 @DTO
 public class ProductDTO {
 
 
-    public MecanographicNumber uniqueInternalCode;
+    public String uniqueInternalCode;
     public String barcode;
-    public String basePrice;
+    public Double basePrice;
     public String brand;
     public String description;
     public String productionCode;
     public String reference;
-    public String volume;
-    public String weight;
+    public Double volume;
+    public Double weight;
 
-    public ProductDTO(MecanographicNumber uniqueInternalCode, String barcode, String basePrice, String brand, String description, String productionCode, String reference, String volume, String weight) {
+    public ProductDTO(String uniqueInternalCode, String barcode, Double basePrice, String brand, String description, String productionCode, String reference, Double volume, Double weight) {
         this.uniqueInternalCode = uniqueInternalCode;
         this.barcode = barcode;
         this.basePrice = basePrice;
@@ -34,4 +31,17 @@ public class ProductDTO {
         this.weight = weight;
     }
 
+    @Override
+    public String toString() {
+        return "Product:" +
+                "Unique Internal Code=" + uniqueInternalCode + "\n" +
+                "Barcode=" + barcode +"\n" +
+                "Base Price=" + basePrice +"\n" +
+                "Brand=" + brand +"\n" +
+                "Description=" + description +"\n" +
+                "Production Code=" + productionCode +"\n" +
+                "Reference=" + reference +"\n" +
+                "Volume=" + volume +"\n" +
+                "Weight=" + weight+ "\n" ;
+    }
 }

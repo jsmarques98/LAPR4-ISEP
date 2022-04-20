@@ -67,9 +67,15 @@ public class JpaRepositoryFactory implements RepositoryFactory {
     }
 
     @Override
-    public ProductRepository products() {
-        return null;
+    public JpaProductRepository products() {
+        return new JpaProductRepository(Application.settings().getPersistenceUnitName());
     }
+
+    @Override
+    public ProductRepository products(TransactionalContext autoTx) {
+        return new JpaProductRepository(autoTx);
+    }
+
 
     @Override
     public TransactionalContext newTransactionalContext() {
