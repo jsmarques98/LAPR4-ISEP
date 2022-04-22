@@ -1,0 +1,48 @@
+	___________
+
+	ANALYSIS 
+	____________
+
+
+	Fórum de dúvidas com o cliente 
+
+	* Sales Clerk uses the backofice application to create new Products
+	* Products are characterized by: Unique Internal Code , Barcode, Reference, Base Price (without tax), Volume (mm^3), Weight (g), Productional Code, Description ,and Category.
+	* A product is always of a Category
+	
+
+
+	______________________
+
+	BUSINESS RULES
+	_____________________
+
+
+	* Unique Internal Code must be unique.
+	* Unique Internal Code and Productional Code must be like xxxx.11111
+	* Base Price is always greater than 0€.
+	* Volume is always greater than 0 mm^3.
+	* Wight is always greater than 0 g.
+	* Sales Clerk can create products without Productional Code (optional).
+
+
+	______________________
+		
+	UNIT TESTS
+	_____________________
+
+
+	PRODUCT
+	* testUniqueInternalCodeMustNotBeNullNorEmpty
+	* testDescriptionMustNotBeNullNorEmpty
+	* testBasePriceMustNotBeNullNorEmpty
+	* testBarcodeMustNotBeNullNorEmpty
+	* testReferenceMustNotBeNullNorEmpty
+	* testVolumeMustNotBeNullNorEmpty
+	* testWeightMustNotBeNullNorEmpty
+	* testVolumeCanNotBeNegative
+	* testWeightCanNotBeNegative
+	* testBasePriceCanNotBeNegative
+	* testMustBelongToACategory
+	* testUniqueInternalCodeMustFollowBasePattern
+	* testProductionalCodeMustFollowBasePattern
