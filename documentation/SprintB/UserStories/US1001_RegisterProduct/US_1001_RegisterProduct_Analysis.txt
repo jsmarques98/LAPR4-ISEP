@@ -32,17 +32,43 @@
 	_____________________
 
 
-	PRODUCT
+	PRODUCT	
+	* testProductMustBelongToACategory
+	* testEnsureProductsEqualsPassesSameUIC
+	* testEnsureProductsEqualsFailsDifferentUIC
+	* testEnsureProductEqualsAreTheSameForTheSameInstance
+	* testEnsureProductEqualsFailsForDifferentObjectTypes
+
+
+	UNIQUEINTERNALCODE
 	* testUniqueInternalCodeMustNotBeNullNorEmpty
-	* testDescriptionMustNotBeNullNorEmpty
-	* testBasePriceMustNotBeNullNorEmpty
-	* testBarcodeMustNotBeNullNorEmpty
-	* testReferenceMustNotBeNullNorEmpty
-	* testVolumeMustNotBeNullNorEmpty
-	* testWeightMustNotBeNullNorEmpty
-	* testVolumeCanNotBeNegative
-	* testWeightCanNotBeNegative
-	* testBasePriceCanNotBeNegative
-	* testMustBelongToACategory
 	* testUniqueInternalCodeMustFollowBasePattern
-	* testProductionalCodeMustFollowBasePattern
+
+	DESCRIPTION
+	* testDescriptionMustNotBeNullNorEmpty
+	
+	BASEPRICE
+	* testBasePriceMustNotBeNull
+	* testBasePriceCanNotBeNegative
+
+	BARCODE
+	* testBarcodeMustNotBeNullNorEmpty
+
+	REFERENCE
+	* testReferenceMustNotBeNullNorEmpty
+
+	VOLUME
+	* testVolumeMustNotBeNull
+	* testVolumeCanNotBeNegative
+
+	WEIGHT
+	* testWeightMustNotBeNull
+	* testWeightCanNotBeNegative
+
+	PRODUCTIONCODE
+	* testProductionCodeMustFollowBasePattern
+
+	BRAND
+	* testBrandMustNotBeNullOrEmpty
+
+
