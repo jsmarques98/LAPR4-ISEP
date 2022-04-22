@@ -3,6 +3,7 @@ package eapli.base.productmanagement.domain;
 import eapli.framework.domain.model.ValueObject;
 
 import javax.persistence.Embeddable;
+import java.util.Objects;
 
 @Embeddable
 public class Brand implements ValueObject {
@@ -12,6 +13,8 @@ public class Brand implements ValueObject {
     private String name;
 
     public Brand (String name){
+        if(name==null)
+            throw new IllegalArgumentException("Brand cannot be null");
         if(isValid(name)){
             this.name = name;
         }else{
@@ -29,5 +32,23 @@ public class Brand implements ValueObject {
 
     private boolean isValid(String name){
         return name.length() > MIN_CHARS && name.length() < MAX_CHARS;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Brand brand = (Brand) o;
+        return Objects.equals(name, brand.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

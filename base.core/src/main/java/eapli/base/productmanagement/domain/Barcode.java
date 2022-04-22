@@ -3,6 +3,7 @@ package eapli.base.productmanagement.domain;
 import eapli.framework.domain.model.ValueObject;
 
 import javax.persistence.Embeddable;
+import java.util.Objects;
 
 @Embeddable
 public class Barcode implements ValueObject {
@@ -14,11 +15,13 @@ public class Barcode implements ValueObject {
 
 
     public Barcode (String barcode){
+        if(barcode==null)
+            throw new IllegalArgumentException("Barcode cannot be null");
         if(isValid(barcode)){
-            this.gs1Prefix = Integer.valueOf ( barcode.substring(0,1));
-            this.manufacturerIdNumber = Integer.valueOf ( barcode.substring(2,6));
-            this.itemNumber = Integer.valueOf ( barcode.substring(7,11));
-            this.checkDigit = (int) barcode.charAt(12);
+            this.gs1Prefix = Integer.valueOf ( barcode.substring(0,2));
+            this.manufacturerIdNumber = Integer.valueOf ( barcode.substring(2,7));
+            this.itemNumber = Integer.valueOf ( barcode.substring(7,12));
+            this.checkDigit = Integer.valueOf(barcode.substring(12));
         }else{
             throw new IllegalArgumentException("Invalid barcode");
         }
@@ -34,5 +37,23 @@ public class Barcode implements ValueObject {
 
     private boolean isValid(String barcode){
         return barcode.matches("[0-9]+") && barcode.length()==SIZE;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Barcode barcode = (Barcode) o;
+        return Objects.equals(gs1Prefix, barcode.gs1Prefix) && Objects.equals(itemNumber, barcode.itemNumber) && Objects.equals(manufacturerIdNumber, barcode.manufacturerIdNumber) && Objects.equals(checkDigit, barcode.checkDigit);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(gs1Prefix, itemNumber, manufacturerIdNumber, checkDigit);
+    }
+
+    @Override
+    public String toString() {
+        return gs1Prefix.toString()+manufacturerIdNumber.toString()+itemNumber.toString()+checkDigit.toString();
     }
 }

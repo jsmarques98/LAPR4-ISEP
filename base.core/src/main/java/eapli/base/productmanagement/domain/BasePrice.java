@@ -3,6 +3,7 @@ package eapli.base.productmanagement.domain;
 import eapli.framework.domain.model.ValueObject;
 
 import javax.persistence.Embeddable;
+import java.util.Objects;
 
 @Embeddable
 public class BasePrice implements ValueObject {
@@ -11,6 +12,8 @@ public class BasePrice implements ValueObject {
     private Double baseprice;
 
     public BasePrice (Double baseprice){
+        if(baseprice==null)
+            throw new IllegalArgumentException("Base price cannot be null");
         if(isValid(baseprice)){
             this.baseprice = baseprice;
         }else{
@@ -34,5 +37,23 @@ public class BasePrice implements ValueObject {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BasePrice basePrice = (BasePrice) o;
+        return Objects.equals(baseprice, basePrice.baseprice);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(baseprice);
+    }
+
+    @Override
+    public String toString() {
+        return baseprice.toString() + " €";
     }
 }

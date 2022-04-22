@@ -138,6 +138,6 @@ public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<Produ
 
     @Override
     public UniqueInternalCode identity() {
-        return null;
+        return this.uniqueInternalCode;
     }
 }

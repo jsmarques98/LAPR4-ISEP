@@ -3,6 +3,7 @@ package eapli.base.productmanagement.dto;
 
 import eapli.framework.representations.dto.DTO;
 
+import java.util.Objects;
 
 
 @DTO
@@ -43,5 +44,18 @@ public class ProductDTO {
                 "Reference=" + reference +"\n" +
                 "Volume=" + volume +"\n" +
                 "Weight=" + weight+ "\n" ;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductDTO that = (ProductDTO) o;
+        return Objects.equals(uniqueInternalCode, that.uniqueInternalCode) && Objects.equals(barcode, that.barcode) && Objects.equals(basePrice, that.basePrice) && Objects.equals(brand, that.brand) && Objects.equals(description, that.description) && Objects.equals(productionCode, that.productionCode) && Objects.equals(reference, that.reference) && Objects.equals(volume, that.volume) && Objects.equals(weight, that.weight);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uniqueInternalCode, barcode, basePrice, brand, description, productionCode, reference, volume, weight);
     }
 }
