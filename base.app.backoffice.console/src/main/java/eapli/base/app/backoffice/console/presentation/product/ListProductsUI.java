@@ -1,4 +1,4 @@
-package eapli.base.app.backoffice.console.presentation.product;
+/*package eapli.base.app.backoffice.console.presentation.product;
 
 import eapli.base.productmanagement.application.ListProductsController;
 import eapli.base.productmanagement.domain.Product;
@@ -38,4 +38,4 @@ public class ListProductsUI extends AbstractListUI<Product> {
     public String headline() {
         return "Products List";
     }
-}
+}*/

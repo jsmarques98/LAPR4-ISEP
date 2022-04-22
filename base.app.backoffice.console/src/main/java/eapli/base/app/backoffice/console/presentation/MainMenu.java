@@ -23,8 +23,9 @@
  */
 package eapli.base.app.backoffice.console.presentation;
 
+import eapli.base.app.backoffice.console.presentation.category.AddCategoryUI;
 import eapli.base.app.backoffice.console.presentation.product.AddProductUI;
-import eapli.base.app.backoffice.console.presentation.product.ListProductsUI;
+//import eapli.base.app.backoffice.console.presentation.product.ListProductsUI;
 import eapli.base.app.common.console.presentation.authz.MyUserMenu;
 import eapli.base.Application;
 import eapli.base.app.backoffice.console.presentation.authz.AddUserUI;
@@ -65,16 +66,15 @@ public class MainMenu extends AbstractUI {
     // PRODUCTS
     private static final int ADD_PRODUCT_OPTION = 1;
 
+    // CATEGORIES
+    private static final int ADD_CATEGORY_OPTION = 1;
+
 
     // MAIN MENU
     private static final int MY_USER_OPTION = 1;
     private static final int USERS_OPTION = 2;
     private static final int PRODUCT_OPTION = 3;
-    private static final int SETTINGS_OPTION = 4;
-    private static final int DISH_OPTION = 5;
-    private static final int TRACEABILITY_OPTION = 6;
-    private static final int MEALS_OPTION = 7;
-    private static final int REPORTING_DISHES_OPTION = 8;
+    private static final int CATEGORY_OPTION = 4;
 
     private static final String SEPARATOR_LABEL = "--------------";
 
@@ -124,6 +124,9 @@ public class MainMenu extends AbstractUI {
 
             final Menu productsMenu = buildProductsMenu();
             mainMenu.addSubMenu(PRODUCT_OPTION, productsMenu);
+
+            final Menu categoryMenu = buildCategoryMenu();
+            mainMenu.addSubMenu(CATEGORY_OPTION, categoryMenu);
         }
 
         if (!Application.settings().isMenuLayoutHorizontal()) {
@@ -162,10 +165,16 @@ public class MainMenu extends AbstractUI {
         final Menu menu = new Menu("Products >");
         menu.addItem(ADD_PRODUCT_OPTION,"Add Product", new AddProductUI()::show);
         menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
-        menu.addItem(LIST_USERS_OPTION, "List all Products", new ListProductsUI()::show);
+        //menu.addItem(LIST_USERS_OPTION, "List all Products", new ListProductsUI()::show);
         return menu;
     }
 
+    private Menu buildCategoryMenu(){
+        final Menu menu = new Menu("Categories >");
+        menu.addItem(ADD_CATEGORY_OPTION,"Add Category", new AddCategoryUI()::show);
+        menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
+        return menu;
+    }
 
 
 
