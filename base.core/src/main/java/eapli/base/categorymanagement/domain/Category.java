@@ -11,6 +11,9 @@ import javax.persistence.*;
 @Entity
 public class Category implements AggregateRoot<MecanographicNumber> {
 
+    @Version
+    private long version;
+
     @EmbeddedId
     private MecanographicNumber categoryID;
 
@@ -56,13 +59,4 @@ public class Category implements AggregateRoot<MecanographicNumber> {
                 "Description =" +description + "\n" ;
     }
 
-
-
-    public void addDescription(Description description) {
-        this.description = Description.valueOf(String.valueOf(description));
-    }
-
-    public void addCategoryID(MecanographicNumber categoryID) {
-        this.categoryID = MecanographicNumber.valueOf(String.valueOf(categoryID));
-    }
 }

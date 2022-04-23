@@ -23,8 +23,8 @@ public class Description implements ValueObject {
     public Description() {
     }
 
-    public static eapli.base.categorymanagement.domain.Description valueOf(final String description){
-        return new eapli.base.categorymanagement.domain.Description(description);
+    public static Description valueOf(final String description){
+        return new Description(description);
     }
 
     private boolean isValid(String description){
