@@ -23,7 +23,7 @@ public class AddCategoryController {
 
     public Category createCategory(Category category){
         return categoryRepository.save(new Category(MecanographicNumber.valueOf(String.valueOf(category.getCategoryID())),
-                Description.valueOf(String.valueOf(category.getCategoryID()))));
+                Description.valueOf(String.valueOf(category.getDescription()))));
     }
 
 }
