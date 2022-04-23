@@ -30,4 +30,9 @@ public class Description implements ValueObject {
     private boolean isValid(String description){
         return description.length()>MIN_SIZE && description.length()<MAX_SIZE;
     }
+
+    @Override
+    public String toString() {
+        return description;
+    }
 }

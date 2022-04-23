@@ -1,6 +1,7 @@
 package eapli.base.productmanagement.dto;
 
 
+import eapli.base.categorymanagement.domain.Category;
 import eapli.framework.representations.dto.DTO;
 
 import java.util.Objects;
@@ -10,6 +11,7 @@ import java.util.Objects;
 public class ProductDTO {
 
 
+    public Category category;
     public String uniqueInternalCode;
     public String barcode;
     public Double basePrice;
@@ -20,7 +22,8 @@ public class ProductDTO {
     public Double volume;
     public Double weight;
 
-    public ProductDTO(String uniqueInternalCode, String barcode, Double basePrice, String brand, String description, String productionCode, String reference, Double volume, Double weight) {
+    public ProductDTO(Category category, String uniqueInternalCode, String barcode, Double basePrice, String brand, String description, String productionCode, String reference, Double volume, Double weight) {
+        this.category  = category;
         this.uniqueInternalCode = uniqueInternalCode;
         this.barcode = barcode;
         this.basePrice = basePrice;
@@ -35,6 +38,7 @@ public class ProductDTO {
     @Override
     public String toString() {
         return "Product:" +
+                "Category="+category.getDescription()+"\n"+
                 "Unique Internal Code=" + uniqueInternalCode + "\n" +
                 "Barcode=" + barcode +"\n" +
                 "Base Price=" + basePrice +"\n" +

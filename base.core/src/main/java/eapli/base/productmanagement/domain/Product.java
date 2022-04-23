@@ -1,5 +1,6 @@
 package eapli.base.productmanagement.domain;
 
+import eapli.base.categorymanagement.domain.Category;
 import eapli.base.productmanagement.dto.ProductDTO;
 import eapli.framework.domain.model.AggregateRoot;
 import eapli.framework.domain.model.DomainEntities;
@@ -15,6 +16,9 @@ public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<Produ
 
     @EmbeddedId
     private UniqueInternalCode uniqueInternalCode;
+
+    @ManyToOne
+    private Category category;
 
     @Column
     private Barcode barcode;
@@ -44,10 +48,11 @@ public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<Produ
         // empty constructor
     }
 
-    public Product(final UniqueInternalCode uniqueInternalCode, Barcode barcode, BasePrice basePrice , Brand brand,
+    public Product(final UniqueInternalCode uniqueInternalCode, Category category, Barcode barcode, BasePrice basePrice , Brand brand,
     Description description, ProductionCode productionCode, Reference reference, Volume volume, Weight weight)
     {
-        Preconditions.noneNull(uniqueInternalCode, barcode, basePrice,brand,description,reference,volume,weight);
+        Preconditions.noneNull(category,uniqueInternalCode, barcode, basePrice,brand,description,reference,volume,weight);
+        this.category=category;
         this.uniqueInternalCode = uniqueInternalCode;
         this.barcode = barcode;
         this.basePrice  =basePrice;
@@ -61,6 +66,10 @@ public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<Produ
 
     public Long getVersion() {
         return version;
+    }
+
+    public Category getCategory() {
+        return category;
     }
 
     public UniqueInternalCode getUniqueInternalCode() {
@@ -118,6 +127,7 @@ public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<Produ
     @Override
     public String toString() {
         return "Product:" +
+                "Category=" + category.getDescription() + "\n" +
                 "Unique Internal Code=" + uniqueInternalCode + "\n" +
                 "Barcode=" + barcode +"\n" +
                 "Base Price=" + basePrice +"\n" +
@@ -131,7 +141,7 @@ public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<Produ
 
     @Override
     public ProductDTO toDTO() {
-        return new ProductDTO(this.uniqueInternalCode.toString(),this.barcode.toString(),this.basePrice.getBasePrice(),
+        return new ProductDTO(this.category,this.uniqueInternalCode.toString(),this.barcode.toString(),this.basePrice.getBasePrice(),
                 this.brand.toString(), this.description.toString(),this.productionCode.toString(),this.reference.toString()
         , this.volume.getVolume(), this.weight.getWeight());
     }

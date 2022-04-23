@@ -1,5 +1,7 @@
 package eapli.base.productmanagement.domain;
 
+import eapli.base.categorymanagement.domain.Category;
+import eapli.base.clientusermanagement.domain.MecanographicNumber;
 import eapli.base.productmanagement.dto.ProductDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,11 +18,13 @@ class ProductTest {
         Brand brand = new Brand("CocaCola");
         Description description = new Description("Drink");
         ProductionCode productionCode = new ProductionCode("abcd.12345");
-        Reference reference = new Reference("abcd12345.1234567891234");
+        Reference reference = new Reference("1234567890");
         UniqueInternalCode uniqueInternalCode = new UniqueInternalCode("xyzw.98765");
         Volume volume = new Volume(300.0);
         Weight weight = new Weight(100.0);
-        product = new Product(uniqueInternalCode,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
+        Category category = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
+
+        product = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
     }
 
 
@@ -37,11 +41,12 @@ class ProductTest {
         Brand brand = new Brand("CocaColaa");
         Description description = new Description("Drinkk");
         ProductionCode productionCode = new ProductionCode("abcd.12346");
-        Reference reference = new Reference("abcd12345.1234567891235");
+        Reference reference = new Reference("1234567890");
         UniqueInternalCode uniqueInternalCode = new UniqueInternalCode("xyzw.98765");
         Volume volume = new Volume(301.0);
         Weight weight = new Weight(101.0);
-        Product product2 = new Product(uniqueInternalCode,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
+        Category category = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
+        Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
 
         assertTrue(product.equals(product2));
     }
@@ -54,11 +59,12 @@ class ProductTest {
         Brand brand = new Brand("CocaCola");
         Description description = new Description("Drink");
         ProductionCode productionCode = new ProductionCode("abcd.12345");
-        Reference reference = new Reference("abcd12345.1234567891234");
+        Reference reference = new Reference("1234567890");
         UniqueInternalCode uniqueInternalCode = new UniqueInternalCode("xyzw.98766");
         Volume volume = new Volume(300.0);
         Weight weight = new Weight(100.0);
-        Product product2 = new Product(uniqueInternalCode,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
+        Category category = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
+        Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
 
         assertFalse(product.equals(product2));
     }
@@ -115,7 +121,7 @@ class ProductTest {
 
     @Test
     void getReference() {
-        assertTrue(new Reference("abcd12345.1234567891234").equals(product.getReference()));
+        assertTrue(new Reference("1234567890").equals(product.getReference()));
     }
 
     @Test
@@ -135,13 +141,14 @@ class ProductTest {
         Brand brand = new Brand("CocaCola");
         Description description = new Description("Drink");
         ProductionCode productionCode = new ProductionCode("abcd.12345");
-        Reference reference = new Reference("abcd12345.1234567891234");
+        Reference reference = new Reference("1234567890");
         UniqueInternalCode uniqueInternalCode = new UniqueInternalCode("xyzw.98765");
         Volume volume = new Volume(300.0);
         Weight weight = new Weight(100.0);
-        Product product2 = new Product(uniqueInternalCode,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
+        Category category = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
+        Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
 
-        Product product3 = new Product(new UniqueInternalCode("hfhd.54321"),barcode,basePrice,brand,description,productionCode,reference,volume,weight);
+        Product product3 = new Product(new UniqueInternalCode("hfhd.54321"),category,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
 
         Integer a = 1;
 
@@ -162,13 +169,14 @@ class ProductTest {
         Brand brand = new Brand("CocaCola");
         Description description = new Description("Drink");
         ProductionCode productionCode = new ProductionCode("abcd.12345");
-        Reference reference = new Reference("abcd12345.1234567891234");
+        Reference reference = new Reference("1234567890");
         UniqueInternalCode uniqueInternalCode = new UniqueInternalCode("xyzw.98765");
         Volume volume = new Volume(300.0);
         Weight weight = new Weight(100.0);
-        Product product2 = new Product(uniqueInternalCode,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
+        Category category = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
+        Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
 
-        Product product3 = new Product(new UniqueInternalCode("hfhd.54321"),barcode,basePrice,brand,description,productionCode,reference,volume,weight);
+        Product product3 = new Product(new UniqueInternalCode("hfhd.54321"),category,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
 
         Integer a = 1;
 
@@ -179,13 +187,14 @@ class ProductTest {
 
     @Test
     void testToString() {
-        String expected="Product:Unique Internal Code=xyz.9876\n" +
-                "Barcode=13456891252\n" +
+        String expected="Product:Category=drink\n" +
+                "Unique Internal Code=xyzw.98765\n" +
+                "Barcode=1234567891234\n" +
                 "Base Price=1.2 €\n" +
                 "Brand=CocaCola\n" +
                 "Description=Drink\n" +
-                "Production Code=abc.1234\n" +
-                "Reference=abcd12345.1234567891234\n" +
+                "Production Code=abcd.12345\n" +
+                "Reference=1234567890\n" +
                 "Volume=300.0 mm^3\n" +
                 "Weight=100.0 g\n";
         assertEquals(expected,product.toString());
@@ -198,11 +207,12 @@ class ProductTest {
         String brand = "CocaCola";
         String description = "Drink";
         String productionCode = "abcd.12345";
-        String reference = "abcd12345.1234567891234";
+        String reference = "1234567890";
         String uniqueInternalCode ="xyzw.98765";
         Double volume =300.0;
         Double weight = 100.0;
-        ProductDTO productDTO = new ProductDTO(uniqueInternalCode,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
+        Category category = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
+        ProductDTO productDTO = new ProductDTO(category,uniqueInternalCode,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
 
 
         Barcode barcode1 = new Barcode("1234567891234");
@@ -210,11 +220,12 @@ class ProductTest {
         Brand brand1 = new Brand("CocaCola");
         Description description1 = new Description("Drink");
         ProductionCode productionCode1 = new ProductionCode("abcd.12345");
-        Reference reference1 = new Reference("abcd12345.1234567891234");
+        Reference reference1 = new Reference("1234567890");
         UniqueInternalCode uniqueInternalCode1 = new UniqueInternalCode("xyzw.98765");
         Volume volume1 = new Volume(300.0);
         Weight weight1 = new Weight(100.0);
-        Product product2 = new Product(uniqueInternalCode1,barcode1,basePrice1,brand1,description1,productionCode1,reference1,volume1,weight1);
+        Category category1 = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
+        Product product2 = new Product(uniqueInternalCode1,category1,barcode1,basePrice1,brand1,description1,productionCode1,reference1,volume1,weight1);
 
 
         assertEquals(product2.toDTO(),productDTO);
