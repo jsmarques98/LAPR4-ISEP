@@ -1,0 +1,16 @@
+	_________
+
+	DESIGN
+	_________
+
+	* Use the standard layer-based application framework
+
+   	Domain Classes:  
+		Product, Category,Barcode, BasePrice,Brand,Description,ProductionCode,Reference,UniqueInternalCode,Volume,Weight. 
+		Product is a Category-independent aggregate
+			- many-to-one unidirectional relationship
+
+		
+
+   	Controlador: AddProductController
+   	Repository: ProductRepository
