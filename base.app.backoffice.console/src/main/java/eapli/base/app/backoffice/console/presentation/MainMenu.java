@@ -118,7 +118,7 @@ public class MainMenu extends AbstractUI {
             mainMenu.addItem(MenuItem.separator(SEPARATOR_LABEL));
         }
 
-        if (authz.isAuthenticatedUserAuthorizedTo(BaseRoles.POWER_USER, BaseRoles.ADMIN)) {
+        if (authz.isAuthenticatedUserAuthorizedTo(BaseRoles.POWER_USER, BaseRoles.ADMIN, BaseRoles.SALES_CLERK)) {
             final Menu usersMenu = buildUsersMenu();
             mainMenu.addSubMenu(USERS_OPTION, usersMenu);
 
@@ -128,6 +128,7 @@ public class MainMenu extends AbstractUI {
             final Menu categoryMenu = buildCategoryMenu();
             mainMenu.addSubMenu(CATEGORY_OPTION, categoryMenu);
         }
+
 
         if (!Application.settings().isMenuLayoutHorizontal()) {
             mainMenu.addItem(MenuItem.separator(SEPARATOR_LABEL));
