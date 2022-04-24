@@ -1,0 +1,14 @@
+	_________
+
+	DESIGN
+	_________
+
+	* Use the standard layer-based application framework
+
+   	Domain Classes:  
+		Customer, Name,PhoneNUmber,VatId,Adress
+
+	
+
+   	Controlador: AddCustomerController
+   	Repository: CustomerRepository

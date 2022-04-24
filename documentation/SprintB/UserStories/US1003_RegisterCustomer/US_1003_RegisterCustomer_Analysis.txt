@@ -1,0 +1,28 @@
+	___________
+
+	ANALYSIS 
+	____________
+
+
+	Fórum de dúvidas com o cliente 
+
+	* Sales Clerk uses the backofice application to create new Customer
+	
+
+
+	______________________
+
+	BUSINESS RULES
+	_____________________
+
+
+
+	______________________
+		
+	UNIT TESTS
+	_____________________
+
+
+	
+
+

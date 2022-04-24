@@ -1,0 +1,21 @@
+	TEST PLAN
+
+	_______________________________
+	CASE #1 Add Customer 
+	_______________________________
+
+	1. Login as salesclerk
+	2. Choose Option Customer > Add Customer 
+	3. Insert name 
+	4. Insert Email
+	5. Insert Street Name
+	6. Insert  Door Number
+	7. Insert  Postal Code
+	8. Insert  City
+	9. Insert  Country
+	10. Insert Phone Number:
+	11. Insert  Vat Id
+	12. Insert  Birth date
+	13. Confirm the customer addiction.
+
+
