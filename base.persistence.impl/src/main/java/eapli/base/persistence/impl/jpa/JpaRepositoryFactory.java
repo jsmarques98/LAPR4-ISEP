@@ -23,6 +23,7 @@ package eapli.base.persistence.impl.jpa;
 import eapli.base.Application;
 import eapli.base.categorymanagement.repositories.CategoryRepository;
 import eapli.base.clientusermanagement.repositories.SignupRequestRepository;
+import eapli.base.customermanagement.repositories.CustomerRepository;
 import eapli.base.infrastructure.persistence.RepositoryFactory;
 import eapli.base.productmanagement.repositories.ProductRepository;
 import eapli.framework.domain.repositories.TransactionalContext;
@@ -75,6 +76,16 @@ public class JpaRepositoryFactory implements RepositoryFactory {
     @Override
     public ProductRepository products(TransactionalContext autoTx) {
         return new JpaProductRepository(autoTx);
+    }
+
+    @Override
+    public CustomerRepository customers() {
+        return new JpaCustomerRepository(Application.settings().getPersistenceUnitName());
+    }
+
+    @Override
+    public CustomerRepository customers(TransactionalContext autoTx) {
+        return new JpaCustomerRepository(autoTx);
     }
 
     @Override
