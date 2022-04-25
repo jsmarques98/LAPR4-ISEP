@@ -15,6 +15,7 @@
     <class>eapli.base.productmanagement.domain.Product</class>
     <class>eapli.base.categorymanagement.domain.Category</class>
     <class>eapli.base.customermanagement.domain.Customer</class>
+    <class>eapli.base.agvmanagement.domain.AGV</class>
 
     <properties>
       <!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/base"/>-->

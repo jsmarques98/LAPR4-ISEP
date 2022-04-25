@@ -13,6 +13,8 @@ public class Description implements ValueObject {
 
 
     public Description (String description){
+        if (description==null)
+            throw new IllegalArgumentException("description cannot be null");
         if(isValid(description)){
             this.description = description;
         }else{
@@ -28,7 +30,9 @@ public class Description implements ValueObject {
     }
 
     private boolean isValid(String description){
+
         return description.length()>MIN_SIZE && description.length()<MAX_SIZE;
+
     }
 
     @Override

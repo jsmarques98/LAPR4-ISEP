@@ -21,6 +21,7 @@
 package eapli.base.persistence.impl.jpa;
 
 import eapli.base.Application;
+import eapli.base.agvmanagement.repository.AGVRepository;
 import eapli.base.categorymanagement.repositories.CategoryRepository;
 import eapli.base.clientusermanagement.repositories.SignupRequestRepository;
 import eapli.base.customermanagement.repositories.CustomerRepository;
@@ -91,6 +92,16 @@ public class JpaRepositoryFactory implements RepositoryFactory {
     @Override
     public JpaCategoryRepository category() {
         return new JpaCategoryRepository(Application.settings().getPersistenceUnitName());
+    }
+
+    @Override
+    public AGVRepository agvs() {
+        return new JpaAGVRepository(Application.settings().getPersistenceUnitName());
+    }
+
+    @Override
+    public AGVRepository agvs(TransactionalContext autoTx) {
+        return new JpaAGVRepository(autoTx);
     }
 
     @Override

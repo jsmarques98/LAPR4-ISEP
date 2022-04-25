@@ -24,6 +24,7 @@
 package eapli.base.app.backoffice.console.presentation;
 
 import eapli.base.app.backoffice.console.presentation.Costumer.AddCustomerUI;
+import eapli.base.app.backoffice.console.presentation.agv.AddAGVUI;
 import eapli.base.app.backoffice.console.presentation.category.AddCategoryUI;
 import eapli.base.app.backoffice.console.presentation.product.AddProductUI;
 //import eapli.base.app.backoffice.console.presentation.product.ListProductsUI;
@@ -73,6 +74,8 @@ public class MainMenu extends AbstractUI {
     // CATEGORIES
     private static final int ADD_CATEGORY_OPTION = 1;
 
+    //AGV
+    private static final int ADD_AGV_OPTION = 1;
 
     // MAIN MENU
     private static final int MY_USER_OPTION = 1;
@@ -80,6 +83,7 @@ public class MainMenu extends AbstractUI {
     private static final int PRODUCT_OPTION = 3;
     private static final int CATEGORY_OPTION = 4;
     private static final int CUSTOMER_OPTION = 5;
+    private static final int AGV_OPTION = 6;
 
     private static final String SEPARATOR_LABEL = "--------------";
 
@@ -135,6 +139,9 @@ public class MainMenu extends AbstractUI {
 
             final Menu customerMenu = buildCustomerMenu();
             mainMenu.addSubMenu(CUSTOMER_OPTION, customerMenu);
+
+            final Menu agvMenu = buildAGVMenu();
+            mainMenu.addSubMenu(AGV_OPTION, agvMenu);
         }
 
 
@@ -188,6 +195,13 @@ public class MainMenu extends AbstractUI {
     private Menu buildCustomerMenu(){
         final Menu menu = new Menu("Customers >");
         menu.addItem(ADD_CUSTOMER_OPTION,"Add Customer",new AddCustomerUI()::show);
+        menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
+        return menu;
+    }
+
+    private Menu buildAGVMenu(){
+        final Menu menu = new Menu("AGVs >");
+        menu.addItem(ADD_AGV_OPTION,"Add AGV",new AddAGVUI()::show);
         menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
         return menu;
     }

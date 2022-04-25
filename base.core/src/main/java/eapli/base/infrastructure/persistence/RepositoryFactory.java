@@ -20,6 +20,7 @@
  */
 package eapli.base.infrastructure.persistence;
 
+import eapli.base.agvmanagement.repository.AGVRepository;
 import eapli.base.categorymanagement.repositories.CategoryRepository;
 import eapli.base.clientusermanagement.repositories.ClientUserRepository;
 import eapli.base.clientusermanagement.repositories.SignupRequestRepository;
@@ -95,6 +96,12 @@ public interface RepositoryFactory {
     CustomerRepository customers(TransactionalContext autoTx);
 
     CategoryRepository category();
+
+    AGVRepository  agvs();
+
+    AGVRepository  agvs(TransactionalContext autoTx);
+
+
 
     CategoryRepository category(TransactionalContext autoTx);
 }
