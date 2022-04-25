@@ -1,0 +1,11 @@
+TEST PLAN
+
+	_______________________________
+	CASE #1 Add Category 
+	_______________________________
+
+	1. Login as salesclerk
+	2. Choose Option Category > Add Category 
+	3. Insert categoryID
+	4. Insert description
+	13. Confirm the category addiction.
