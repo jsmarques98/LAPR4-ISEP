@@ -1,0 +1,14 @@
+	_________
+
+	DESIGN
+	_________
+
+	* Use the standard layer-based application framework
+
+   	Domain Classes:  
+		Category, CategoryID, Description
+
+	
+
+   	Controlador: AddCategoryController
+   	Repository: CategoryRepository
