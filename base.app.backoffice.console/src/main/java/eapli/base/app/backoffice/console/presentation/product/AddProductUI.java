@@ -3,6 +3,7 @@ package eapli.base.app.backoffice.console.presentation.product;
 import eapli.base.categorymanagement.domain.Category;
 import eapli.base.productmanagement.application.AddProductController;
 import eapli.base.productmanagement.dto.ProductDTO;
+import eapli.framework.actions.Actions;
 import eapli.framework.actions.menu.Menu;
 import eapli.framework.actions.menu.MenuItem;
 import eapli.framework.domain.repositories.ConcurrencyException;
@@ -15,6 +16,9 @@ import eapli.framework.presentation.console.menu.VerticalMenuRenderer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -54,9 +58,15 @@ public class AddProductUI extends AbstractUI {
         String reference = Console.readLine("Reference: ");
         Double volume = Console.readDouble("Volume: ");
         Double weight = Console.readDouble("Weight: ");
+        System.out.println("Chose pictures:");
+        List<String> picturesPaths = new ArrayList<>();
+        FileDialog fd = new FileDialog(new JFrame());
+        fd.setVisible(true);
+
+        File[] f = fd.getFiles();
 
 
-        ProductDTO productDTO = new ProductDTO(categories.get(0),uniqueInternalCode,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
+        ProductDTO productDTO = new ProductDTO(categories.get(0),uniqueInternalCode,barcode,basePrice,brand,description,productionCode,reference,volume,weight,fd.getFiles()[0].getAbsolutePath());
         try {
             controller.createProduct(productDTO);
             return true;
@@ -78,7 +88,8 @@ public class AddProductUI extends AbstractUI {
 
     private Menu buildCategoriesMenu(List<Category> categories) {
         final Menu categoriesMenu = new Menu();
-        int counter = 1;
+        int counter = 0;
+        categoriesMenu.addItem(MenuItem.of(counter++, "Cancel", Actions.SUCCESS));
         for (final Category category : controller.getCategories()) {
             categoriesMenu.addItem(MenuItem.of(counter++, category.toString(), () -> categories.add(category)));
         }

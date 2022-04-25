@@ -26,7 +26,7 @@ public class AddProductController {
     public Product createProduct(ProductDTO productDTO){
          return productRepository.save(new Product(UniqueInternalCode.valueOf(productDTO.uniqueInternalCode), productDTO.category,Barcode.valueOf(productDTO.barcode), BasePrice.valueOf(productDTO.basePrice)
                   , Brand.valueOf(productDTO.brand), Description.valueOf(productDTO.description),ProductionCode.valueOf(productDTO.productionCode),Reference.valueOf(productDTO.reference),
-                          Volume.valueOf(productDTO.volume),Weight.valueOf(productDTO.weight)));
+                          Volume.valueOf(productDTO.volume),Weight.valueOf(productDTO.weight), Picture.valueOf(productDTO.picturePath)));
     }
 
     public Iterable<Category> getCategories(){

@@ -4,6 +4,7 @@ package eapli.base.productmanagement.dto;
 import eapli.base.categorymanagement.domain.Category;
 import eapli.framework.representations.dto.DTO;
 
+import java.util.List;
 import java.util.Objects;
 
 
@@ -21,8 +22,9 @@ public class ProductDTO {
     public String reference;
     public Double volume;
     public Double weight;
+    public String picturePath;
 
-    public ProductDTO(Category category, String uniqueInternalCode, String barcode, Double basePrice, String brand, String description, String productionCode, String reference, Double volume, Double weight) {
+    public ProductDTO(Category category, String uniqueInternalCode, String barcode, Double basePrice, String brand, String description, String productionCode, String reference, Double volume, Double weight, String picturePath) {
         this.category  = category;
         this.uniqueInternalCode = uniqueInternalCode;
         this.barcode = barcode;
@@ -33,6 +35,7 @@ public class ProductDTO {
         this.reference = reference;
         this.volume = volume;
         this.weight = weight;
+        this.picturePath = picturePath;
     }
 
     @Override
@@ -55,7 +58,7 @@ public class ProductDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProductDTO that = (ProductDTO) o;
-        return Objects.equals(uniqueInternalCode, that.uniqueInternalCode) && Objects.equals(barcode, that.barcode) && Objects.equals(basePrice, that.basePrice) && Objects.equals(brand, that.brand) && Objects.equals(description, that.description) && Objects.equals(productionCode, that.productionCode) && Objects.equals(reference, that.reference) && Objects.equals(volume, that.volume) && Objects.equals(weight, that.weight);
+        return Objects.equals(uniqueInternalCode, that.uniqueInternalCode) && Objects.equals(barcode, that.barcode) && Objects.equals(basePrice, that.basePrice) && Objects.equals(brand, that.brand) && Objects.equals(description, that.description) && Objects.equals(productionCode, that.productionCode) && Objects.equals(reference, that.reference) && Objects.equals(volume, that.volume) && Objects.equals(weight, that.weight) && Objects.equals(picturePath,that.picturePath);
     }
 
     @Override

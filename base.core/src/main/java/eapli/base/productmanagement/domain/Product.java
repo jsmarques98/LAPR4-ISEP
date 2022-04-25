@@ -44,12 +44,15 @@ public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<Produ
     @Column
     private Weight weight;
 
+    @Column
+    private Picture picture;
+
     public Product(){
         // empty constructor
     }
 
     public Product(final UniqueInternalCode uniqueInternalCode, Category category, Barcode barcode, BasePrice basePrice , Brand brand,
-    Description description, ProductionCode productionCode, Reference reference, Volume volume, Weight weight)
+    Description description, ProductionCode productionCode, Reference reference, Volume volume, Weight weight, Picture picture)
     {
         Preconditions.noneNull(category,uniqueInternalCode, barcode, basePrice,brand,description,reference,volume,weight);
         this.category=category;
@@ -62,6 +65,7 @@ public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<Produ
         this.reference = reference;
         this.volume = volume;
         this.weight=weight;
+        this.picture = picture;
     }
 
     public Long getVersion() {
@@ -108,6 +112,10 @@ public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<Produ
         return weight;
     }
 
+    public Picture getPictures() {
+        return picture;
+    }
+
     @Override
     public boolean equals(Object o) {
        return DomainEntities.areEqual( this,o);
@@ -143,7 +151,7 @@ public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<Produ
     public ProductDTO toDTO() {
         return new ProductDTO(this.category,this.uniqueInternalCode.toString(),this.barcode.toString(),this.basePrice.getBasePrice(),
                 this.brand.toString(), this.description.toString(),this.productionCode.toString(),this.reference.toString()
-        , this.volume.getVolume(), this.weight.getWeight());
+        , this.volume.getVolume(), this.weight.getWeight(),this.picture.getPicturePath());
     }
 
     @Override

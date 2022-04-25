@@ -5,6 +5,10 @@ import eapli.base.clientusermanagement.domain.MecanographicNumber;
 import eapli.base.productmanagement.dto.ProductDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.security.core.parameters.P;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,7 +28,8 @@ class ProductTest {
         Weight weight = new Weight(100.0);
         Category category = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
 
-        product = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
+        Picture picture = new Picture("path1");
+        product = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture);
     }
 
 
@@ -46,7 +51,8 @@ class ProductTest {
         Volume volume = new Volume(301.0);
         Weight weight = new Weight(101.0);
         Category category = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
-        Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
+        Picture picture = new Picture("path");
+        Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture);
 
         assertTrue(product.equals(product2));
     }
@@ -64,7 +70,8 @@ class ProductTest {
         Volume volume = new Volume(300.0);
         Weight weight = new Weight(100.0);
         Category category = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
-        Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
+        Picture pictures = new Picture("path1");
+        Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, pictures);
 
         assertFalse(product.equals(product2));
     }
@@ -145,10 +152,12 @@ class ProductTest {
         UniqueInternalCode uniqueInternalCode = new UniqueInternalCode("xyzw.98765");
         Volume volume = new Volume(300.0);
         Weight weight = new Weight(100.0);
-        Category category = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
-        Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
 
-        Product product3 = new Product(new UniqueInternalCode("hfhd.54321"),category,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
+        Picture picture = new Picture("path1");
+        Category category = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
+        Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture);
+
+        Product product3 = new Product(new UniqueInternalCode("hfhd.54321"),category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture);
 
         Integer a = 1;
 
@@ -174,9 +183,11 @@ class ProductTest {
         Volume volume = new Volume(300.0);
         Weight weight = new Weight(100.0);
         Category category = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
-        Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
 
-        Product product3 = new Product(new UniqueInternalCode("hfhd.54321"),category,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
+        Picture picture = new Picture("path1");
+        Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture);
+
+        Product product3 = new Product(new UniqueInternalCode("hfhd.54321"),category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture);
 
         Integer a = 1;
 
@@ -212,7 +223,8 @@ class ProductTest {
         Double volume =300.0;
         Double weight = 100.0;
         Category category = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
-        ProductDTO productDTO = new ProductDTO(category,uniqueInternalCode,barcode,basePrice,brand,description,productionCode,reference,volume,weight);
+        String picture = "path1";
+        ProductDTO productDTO = new ProductDTO(category,uniqueInternalCode,barcode,basePrice,brand,description,productionCode,reference,volume,weight,picture);
 
 
         Barcode barcode1 = new Barcode("1234567891234");
@@ -225,7 +237,8 @@ class ProductTest {
         Volume volume1 = new Volume(300.0);
         Weight weight1 = new Weight(100.0);
         Category category1 = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
-        Product product2 = new Product(uniqueInternalCode1,category1,barcode1,basePrice1,brand1,description1,productionCode1,reference1,volume1,weight1);
+        Picture picture2 = new Picture("path1");
+        Product product2 = new Product(uniqueInternalCode1,category1,barcode1,basePrice1,brand1,description1,productionCode1,reference1,volume1,weight1, picture2);
 
 
         assertEquals(product2.toDTO(),productDTO);
