@@ -21,9 +21,9 @@ public class AddCategoryController {
         categoryRepository = repositoryFactory.category();
     }
 
-    public Category createCategory(Category category){
-        return categoryRepository.save(new Category(MecanographicNumber.valueOf(String.valueOf(category.getCategoryID())),
-                Description.valueOf(String.valueOf(category.getDescription()))));
+    public Category createCategory(String categoryID, String description){
+        return categoryRepository.save(new Category(MecanographicNumber.valueOf(categoryID),
+                Description.valueOf(description)));
     }
 
 }

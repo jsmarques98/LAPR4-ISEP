@@ -27,12 +27,12 @@ public class AddCategoryUI extends AbstractUI {
     }
 
     private boolean createCategory() {
-        MecanographicNumber categoryID = MecanographicNumber.valueOf(Console.readLine("CategoryID: "));
-        Description description = Description.valueOf(Console.readLine("Description: "));
+        String categoryID = Console.readLine("CategoryID: ");
+        String description = Console.readLine("Description: ");
 
-        Category category = new Category(categoryID,description);
+
         try {
-            controller.createCategory(category);
+            controller.createCategory(categoryID, description);
             return true;
         } catch (final IntegrityViolationException e) {
             System.out.println("Category ID is already in use.");
