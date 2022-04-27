@@ -1,0 +1,27 @@
+___________
+
+ANALYSIS
+____________
+
+
+Fórum de dúvidas com o cliente
+
+* Fields used to filter products: Category, Description, Brand;
+* User should select/specify a data presentation order;
+* At least the product code, short description, brand, category and unit price should be presented;
+* More details can be presented for a given/selected product at user request;
+* Data to be used to filter the products catalog content should be asked ahead;
+* Regarding presentation order, the necessary data can be asked either: ahead and after presenting them.
+
+______________________
+
+BUSINESS RULES
+_____________________
+
+* It must support filtering and sorting operations by one or more product atributes (category, brand, description, status)
+
+______________________
+
+UNIT TESTS
+_____________________
+

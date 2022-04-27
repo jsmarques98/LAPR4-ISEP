@@ -1,0 +1,11 @@
+TEST PLAN
+
+_______________________________
+CASE #1 See product catalog filtered by category
+_______________________________
+
+1. Login as salesclerk
+2. Choose Option Catalog -> View catalog
+3. Choose Option Filter -> Category
+4. Choose one category
+5. Confirm the visualization of the product catalog
