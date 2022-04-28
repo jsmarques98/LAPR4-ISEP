@@ -23,13 +23,19 @@ public class CategoryBootstrapper implements Action {
     @Override
     public boolean execute() {
 
-        Category cat;
+        Category cat, cat1, cat2, cat3;
 
-        cat = controller.createCategory("12345", "description");
+        cat = controller.createCategory("12345", "computers");
+        cat1 = controller.createCategory("123456", "make up");
+        cat2 = controller.createCategory("1234567", "furniture");
+        cat3 = controller.createCategory("12345678", "smartphones");
 
         PersistenceContext.repositories().category().save(cat);
+        PersistenceContext.repositories().category().save(cat1);
+        PersistenceContext.repositories().category().save(cat2);
+        PersistenceContext.repositories().category().save(cat3);
 
-        LOGGER.debug("The category was successfully created.");
+        LOGGER.debug("The categories were successfully created.");
         return true;
     }
 }
