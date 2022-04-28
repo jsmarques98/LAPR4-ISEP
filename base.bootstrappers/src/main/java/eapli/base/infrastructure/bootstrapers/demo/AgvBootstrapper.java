@@ -5,31 +5,31 @@ import eapli.base.clientusermanagement.application.AcceptRefuseSignupRequestCont
 import eapli.base.clientusermanagement.domain.MecanographicNumber;
 import eapli.base.infrastructure.persistence.PersistenceContext;
 import eapli.base.myclientuser.application.SignupController;
-import eapli.base.categorymanagement.application.AddCategoryController;
-import eapli.base.categorymanagement.domain.Category;
-import eapli.base.categorymanagement.domain.Description;
+import eapli.base.agvmanagement.application.AddAGVController;
+import eapli.base.agvmanagement.domain.AGV;
+import eapli.base.agvmanagement.domain.Autonomy;
 import eapli.framework.actions.Action;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
 
-public class CategoryBootstrapper implements Action {
+public class AgvBootstrapper implements Action {
     private static final Logger LOGGER = LoggerFactory.getLogger(
             CategoryBootstrapper.class);
 
-    private final AddCategoryController controller = new AddCategoryController();
+    private final AddAGVController controller = new AddAGVController();
 
     @Override
     public boolean execute() {
 
-        Category cat;
+        AGV agv;
 
-        cat = controller.createCategory("12345", "description");
+        agv = controller.createAGV("1234", 60, 500.0, "model", "description" );
 
-        PersistenceContext.repositories().category().save(cat);
+        PersistenceContext.repositories().agvs().save(agv);
 
-        LOGGER.debug("The category was successfully created.");
+        LOGGER.debug("The AGV was successfully created.");
         return true;
     }
 }
