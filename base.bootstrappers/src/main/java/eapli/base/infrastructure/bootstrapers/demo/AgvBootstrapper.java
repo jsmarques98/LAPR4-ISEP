@@ -28,7 +28,7 @@ public class AgvBootstrapper implements Action {
         agv = controller.createAGV("1234", 60, 500.0, "model1", "only supports 500g" );
         agv1 = controller.createAGV("12345", 70, 1000.0, "model2", "only supports 1000g" );
         agv2 = controller.createAGV("123456", 80, 1500.0, "model3", "only supports 1500g" );
-        agv3 = controller.createAGV("1234567", 90, 2000.0, "model4", "only supports 2000g" );
+        agv3 = controller.createAGV("1234567", 90, 1950.0, "model4", "only supports 2000g" );
 
         PersistenceContext.repositories().agvs().save(agv);
         PersistenceContext.repositories().agvs().save(agv1);
