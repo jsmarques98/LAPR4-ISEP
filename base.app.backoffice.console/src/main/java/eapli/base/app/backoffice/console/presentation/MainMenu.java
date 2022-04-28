@@ -25,6 +25,7 @@ package eapli.base.app.backoffice.console.presentation;
 
 import eapli.base.app.backoffice.console.presentation.Costumer.AddCustomerUI;
 import eapli.base.app.backoffice.console.presentation.agv.AddAGVUI;
+import eapli.base.app.backoffice.console.presentation.catalog.ShowCatalogUI;
 import eapli.base.app.backoffice.console.presentation.category.AddCategoryUI;
 import eapli.base.app.backoffice.console.presentation.product.AddProductUI;
 //import eapli.base.app.backoffice.console.presentation.product.ListProductsUI;
@@ -77,6 +78,9 @@ public class MainMenu extends AbstractUI {
     //AGV
     private static final int ADD_AGV_OPTION = 1;
 
+    //CATALOG
+    private static final int VIEW_CATALOG_OPTION = 1;
+
     // MAIN MENU
     private static final int MY_USER_OPTION = 1;
     private static final int USERS_OPTION = 2;
@@ -84,6 +88,7 @@ public class MainMenu extends AbstractUI {
     private static final int CATEGORY_OPTION = 4;
     private static final int CUSTOMER_OPTION = 5;
     private static final int AGV_OPTION = 6;
+    private static final int CATALOG_OPTION = 7;
 
     private static final String SEPARATOR_LABEL = "--------------";
 
@@ -142,6 +147,9 @@ public class MainMenu extends AbstractUI {
 
             final Menu agvMenu = buildAGVMenu();
             mainMenu.addSubMenu(AGV_OPTION, agvMenu);
+
+            final Menu catalogMenu = buildCatalogMenu();
+            mainMenu.addSubMenu(CATALOG_OPTION, catalogMenu);
         }
 
 
@@ -202,6 +210,13 @@ public class MainMenu extends AbstractUI {
     private Menu buildAGVMenu(){
         final Menu menu = new Menu("AGVs >");
         menu.addItem(ADD_AGV_OPTION,"Add AGV",new AddAGVUI()::show);
+        menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
+        return menu;
+    }
+
+    private Menu buildCatalogMenu(){
+        final Menu menu = new Menu("Catalog >");
+        menu.addItem(VIEW_CATALOG_OPTION,"View Catalog",new ShowCatalogUI()::show);
         menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
         return menu;
     }
