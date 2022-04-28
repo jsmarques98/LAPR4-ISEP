@@ -1,0 +1,14 @@
+TEST PLAN
+
+	_______________________________
+	CASE #1 Add AGV 
+	_______________________________
+
+	1. Login as warehouseemployee
+	2. Choose Option AGV > Add AGV 
+	3. Insert IDAGV
+	4. Insert ShortDescription
+	5. Insert MaxWeight
+	4. Insert BaseLocation
+	5. Insert Model
+	13. Confirm the AGV addiction.

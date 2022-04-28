@@ -1,0 +1,14 @@
+	_________
+
+	DESIGN
+	_________
+
+	* Use the standard layer-based application framework
+
+   	Domain Classes:  
+		AGV, IDAGV, Autonomy, MaxWeight, Model, ShortDescription
+
+	
+
+   	Controlador: AddAGVController
+   	Repository: AGVRepository
