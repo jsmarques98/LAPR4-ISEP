@@ -26,6 +26,7 @@ import eapli.base.clientusermanagement.repositories.ClientUserRepository;
 import eapli.base.clientusermanagement.repositories.SignupRequestRepository;
 import eapli.base.customermanagement.repositories.CustomerRepository;
 import eapli.base.productmanagement.repositories.ProductRepository;
+import eapli.base.warehousemanagement.repository.*;
 import eapli.framework.domain.repositories.TransactionalContext;
 import eapli.framework.infrastructure.authz.domain.repositories.UserRepository;
 
@@ -101,7 +102,20 @@ public interface RepositoryFactory {
 
     AGVRepository  agvs(TransactionalContext autoTx);
 
+    WarehouseRepository warehouse();
+    WarehouseRepository warehouse(TransactionalContext autoTx);
 
+
+
+    RowAisleRepository rowAisle();
+    RowAisleRepository rowAisle(TransactionalContext autoTx);
+
+    AisleRepository aisle();
+    AisleRepository aisle(TransactionalContext autoTx);
 
     CategoryRepository category(TransactionalContext autoTx);
+
+    AGVDockRepository aGVDock();
+
+    AGVDockRepository aGVDock(TransactionalContext autoTx);
 }

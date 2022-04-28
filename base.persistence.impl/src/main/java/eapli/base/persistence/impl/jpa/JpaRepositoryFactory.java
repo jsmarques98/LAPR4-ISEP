@@ -27,6 +27,7 @@ import eapli.base.clientusermanagement.repositories.SignupRequestRepository;
 import eapli.base.customermanagement.repositories.CustomerRepository;
 import eapli.base.infrastructure.persistence.RepositoryFactory;
 import eapli.base.productmanagement.repositories.ProductRepository;
+import eapli.base.warehousemanagement.repository.*;
 import eapli.framework.domain.repositories.TransactionalContext;
 import eapli.framework.infrastructure.authz.domain.repositories.UserRepository;
 import eapli.framework.infrastructure.authz.repositories.impl.JpaAutoTxUserRepository;
@@ -105,8 +106,50 @@ public class JpaRepositoryFactory implements RepositoryFactory {
     }
 
     @Override
+    public WarehouseRepository warehouse() {
+        return new JpaWarehouseRepository(Application.settings().getPersistenceUnitName());
+    }
+
+    @Override
+    public WarehouseRepository warehouse(TransactionalContext autoTx) {
+        return new JpaWarehouseRepository(autoTx);
+    }
+
+    @Override
+    public RowAisleRepository rowAisle() {
+        return new JpaRowAisleRepository(Application.settings().getPersistenceUnitName());
+    }
+
+    @Override
+    public RowAisleRepository rowAisle(TransactionalContext autoTx) {
+        return new JpaRowAisleRepository(autoTx);
+    }
+
+
+
+    @Override
+    public AisleRepository aisle() {
+        return new JpaAisleRepository(Application.settings().getPersistenceUnitName());
+    }
+
+    @Override
+    public AisleRepository aisle(TransactionalContext autoTx) {
+        return new JpaAisleRepository(autoTx);
+    }
+
+    @Override
     public CategoryRepository category(TransactionalContext autoTx) {
         return new JpaCategoryRepository(autoTx);
+    }
+
+    @Override
+    public AGVDockRepository aGVDock() {
+        return new JpaAGVDockRepository(Application.settings().getPersistenceUnitName());
+    }
+
+    @Override
+    public AGVDockRepository aGVDock(TransactionalContext autoTx) {
+        return new JpaAGVDockRepository(autoTx);
     }
 
 

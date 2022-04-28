@@ -16,10 +16,15 @@
     <class>eapli.base.categorymanagement.domain.Category</class>
     <class>eapli.base.customermanagement.domain.Customer</class>
     <class>eapli.base.agvmanagement.domain.AGV</class>
+    <class>eapli.base.warehousemanagement.domain.Warehouse</class>
+    <class>eapli.base.warehousemanagement.domain.Shelve</class>
+    <class>eapli.base.warehousemanagement.domain.Aisle</class>
+    <class>eapli.base.warehousemanagement.domain.AGVDock</class>
+    <class>eapli.base.warehousemanagement.domain.RowAisle</class>
 
     <properties>
-      <!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/base"/>-->
-      <property name="javax.persistence.jdbc.url" value="jdbc:h2:~\base;MV_STORE=FALSE;AUTO_SERVER=true;"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://vsgate-s2.dei.isep.ipp.pt:10635/base"/>
+      <!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:~\base;MV_STORE=FALSE;AUTO_SERVER=true;"/>-->
 
       <property name="javax.persistence.jdbc.user" value="sa"/>
       <property name="javax.persistence.jdbc.password" value="eapli"/>
