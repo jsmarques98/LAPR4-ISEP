@@ -1,0 +1,74 @@
+	___________
+
+	ANALYSIS 
+	____________
+
+
+	Fórum de dúvidas com o cliente 
+
+	* Warehouse Employee is the person o can update the Warehouse layout.
+	* The layout is made by a reading of a file JSON.
+	* The layout must be persisted.
+	
+
+
+	______________________
+
+	BUSINESS RULES
+	_____________________
+
+
+	* Have a JSON file to read, with all of the information necessary.
+	* Must be persisted.
+
+
+	______________________
+
+	UNIT TESTS
+	_____________________
+
+
+	Warehouse
+        * sameAS
+        * identity
+        * equals
+        * hashCode
+
+
+	AGVDock
+    	* sameAS
+    	* identity
+    	* equals
+    	* hashCode
+
+    Aisle
+    	* sameAS
+    	* identity
+    	* equals
+    	* hashCode
+
+    RowAisle
+    	* sameAS
+    	* identity
+    	* equals
+    	* hashCode
+
+    Begin
+        * valueOf
+        * equals
+        * tesBeginCanNotBeNegative
+
+    End
+            * valueOf
+            * equals
+            * tesEndCanNotBeNegative
+
+    Depth
+            * valueOf
+            * equals
+            * tesDepthCanNotBeNegative
+
+    Shelve
+            * valueOf
+            * equals
+            * tesShelveCanNotBeNegative
