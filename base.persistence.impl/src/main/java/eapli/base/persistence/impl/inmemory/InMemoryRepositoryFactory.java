@@ -28,11 +28,10 @@ import eapli.base.customermanagement.repositories.CustomerRepository;
 import eapli.base.infrastructure.bootstrapers.BaseBootstrapper;
 import eapli.base.infrastructure.persistence.RepositoryFactory;
 import eapli.base.productmanagement.repositories.ProductRepository;
+import eapli.base.warehousemanagement.repository.*;
 import eapli.framework.domain.repositories.TransactionalContext;
 import eapli.framework.infrastructure.authz.domain.repositories.UserRepository;
 import eapli.framework.infrastructure.authz.repositories.impl.InMemoryUserRepository;
-
-import javax.swing.plaf.PanelUI;
 
 /**
  *
@@ -102,11 +101,51 @@ public class InMemoryRepositoryFactory implements RepositoryFactory {
     }
 
     @Override
-    public AGVRepository agvs(TransactionalContext autoTX){return new InMemoryAGVRepository();}
+    public AGVDockRepository aGVDock() {
+        return aGVDock(null);
+    }
+
+    @Override
+    public AGVDockRepository aGVDock(TransactionalContext autoTx) {
+        return new InMemoryAGVDockRepository();
+    }
+
+
+    @Override
+    public WarehouseRepository warehouse() {
+        return warehouse(null);
+    }
+
+    @Override
+    public WarehouseRepository warehouse(TransactionalContext autoTx) {
+        return new InMemoryWarehouseRepository();
+    }
+
+    @Override
+    public RowAisleRepository rowAisle() {
+        return rowAisle(null);
+    }
+
+    @Override
+    public RowAisleRepository rowAisle(TransactionalContext autoTx) {
+        return new InMemoryRowAisleRepository();
+    }
+
+    @Override
+    public AisleRepository aisle() {
+        return aisle(null);
+    }
+
+    @Override
+    public AisleRepository aisle(TransactionalContext autoTx) {
+        return new InMemoryAisleRepository();
+    }
 
     @Override
     public AGVRepository agvs(){return  agvs(null);}
 
+    @Override
+    public AGVRepository agvs(TransactionalContext autoTX){return new InMemoryAGVRepository();}
 
     @Override
     public SignupRequestRepository signupRequests(final TransactionalContext tx) {

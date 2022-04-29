@@ -1,14 +1,12 @@
 package eapli.base.app.backoffice.console.presentation.Costumer;
 
 import eapli.base.app.backoffice.console.presentation.product.AddProductUI;
-import eapli.base.categorymanagement.domain.Category;
-import eapli.base.customermanagement.application.AddCostumerController;
+import eapli.base.customermanagement.application.AddCustomerController;
 import eapli.base.customermanagement.dto.CustomerDTO;
 import eapli.framework.actions.menu.Menu;
 import eapli.framework.actions.menu.MenuItem;
 import eapli.framework.domain.repositories.ConcurrencyException;
 import eapli.framework.domain.repositories.IntegrityViolationException;
-import eapli.framework.io.util.Console;
 import eapli.framework.presentation.console.menu.MenuItemRenderer;
 import eapli.framework.presentation.console.menu.MenuRenderer;
 import eapli.framework.presentation.console.menu.VerticalMenuRenderer;
@@ -22,7 +20,7 @@ import java.util.List;
 
 public class AddCustomerUI extends AbstractUI {
     private static final Logger LOGGER = LoggerFactory.getLogger(AddProductUI.class);
-    private final AddCostumerController controller = new AddCostumerController();
+    private final AddCustomerController controller = new AddCustomerController();
 
     @Override
     protected boolean doShow() {
@@ -67,7 +65,7 @@ public class AddCustomerUI extends AbstractUI {
         System.out.println(genders.get(0));
         CustomerDTO customerDTO = new CustomerDTO(name, email, streetName, doorNumber, postalCode, city, country, genders.get(0), birthDate, phoneNumber, vatId);
         try {
-            controller.createCostumer(customerDTO);
+            controller.createCustomer(customerDTO);
             return true;
         } catch (final IntegrityViolationException e) {
             System.out.println("Id is already in use.");

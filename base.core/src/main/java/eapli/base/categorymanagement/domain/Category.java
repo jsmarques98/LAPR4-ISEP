@@ -9,13 +9,13 @@ import eapli.framework.validations.Preconditions;
 import javax.persistence.*;
 
 @Entity
-public class Category implements AggregateRoot<MecanographicNumber> {
+public class Category implements AggregateRoot<CategoryID> {
 
     @Version
     private long version;
 
     @EmbeddedId
-    private MecanographicNumber categoryID;
+    private CategoryID categoryID;
 
     @Column
     private Description description;
@@ -25,14 +25,14 @@ public class Category implements AggregateRoot<MecanographicNumber> {
         //empty constructor
     }
 
-    public Category(final MecanographicNumber categoryID, Description description){
+    public Category(CategoryID categoryID, Description description){
         Preconditions.noneNull(categoryID, description);
         this.categoryID = categoryID;
         this.description = description;
     }
 
 
-    public MecanographicNumber getCategoryID() {
+    public CategoryID getCategoryID() {
         return categoryID;
     }
 
@@ -47,10 +47,6 @@ public class Category implements AggregateRoot<MecanographicNumber> {
         return DomainEntities.areEqual(this, other);
     }
 
-    @Override
-    public MecanographicNumber identity() {
-        return this.categoryID;
-    }
 
     @Override
     public String toString() {
@@ -59,4 +55,8 @@ public class Category implements AggregateRoot<MecanographicNumber> {
                 "Description =" +description + "\n" ;
     }
 
+    @Override
+    public CategoryID identity() {
+        return null;
+    }
 }

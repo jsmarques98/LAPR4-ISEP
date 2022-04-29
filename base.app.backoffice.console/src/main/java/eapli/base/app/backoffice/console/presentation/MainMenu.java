@@ -29,6 +29,7 @@ import eapli.base.app.backoffice.console.presentation.catalog.ShowCatalogUI;
 import eapli.base.app.backoffice.console.presentation.category.AddCategoryUI;
 import eapli.base.app.backoffice.console.presentation.product.AddProductUI;
 //import eapli.base.app.backoffice.console.presentation.product.ListProductsUI;
+import eapli.base.app.backoffice.console.presentation.warehouse.UpdateWarehouseUI;
 import eapli.base.app.common.console.presentation.authz.MyUserMenu;
 import eapli.base.Application;
 import eapli.base.app.backoffice.console.presentation.authz.AddUserUI;
@@ -80,6 +81,12 @@ public class MainMenu extends AbstractUI {
 
     //CATALOG
     private static final int VIEW_CATALOG_OPTION = 1;
+
+    //Warehouse
+    private static final int UPDATE_WAREHOUSE_OPTION = 1;
+
+    //Warehouse Main Menu
+    private static final int WAREHOUSE_OPTION = 2;
 
     // MAIN MENU
     private static final int MY_USER_OPTION = 1;
@@ -152,6 +159,11 @@ public class MainMenu extends AbstractUI {
             mainMenu.addSubMenu(CATALOG_OPTION, catalogMenu);
         }
 
+        if (authz.isAuthenticatedUserAuthorizedTo(BaseRoles.POWER_USER, BaseRoles.ADMIN, BaseRoles.WAREHOUSE_EMPLOYEE)){
+            final Menu warehouseMenu = buildWarehouseMenu();
+            mainMenu.addSubMenu(WAREHOUSE_OPTION, warehouseMenu);
+        }
+
 
         if (!Application.settings().isMenuLayoutHorizontal()) {
             mainMenu.addItem(MenuItem.separator(SEPARATOR_LABEL));
@@ -218,6 +230,15 @@ public class MainMenu extends AbstractUI {
         final Menu menu = new Menu("Catalog >");
         menu.addItem(VIEW_CATALOG_OPTION,"View Catalog",new ShowCatalogUI()::show);
         menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
+        return menu;
+    }
+
+    private Menu buildWarehouseMenu() {
+        final Menu menu = new Menu("Warehouse >");
+
+        menu.addItem(UPDATE_WAREHOUSE_OPTION, "Warehouse Management", new UpdateWarehouseUI()::show);
+        menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
+
         return menu;
     }
 
