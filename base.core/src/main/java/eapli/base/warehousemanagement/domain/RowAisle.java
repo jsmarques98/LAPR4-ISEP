@@ -2,8 +2,10 @@ package eapli.base.warehousemanagement.domain;
 
 
 import eapli.framework.domain.model.AggregateRoot;
+import eapli.framework.domain.model.DomainEntities;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class RowAisle implements AggregateRoot<Integer> {
@@ -45,5 +47,15 @@ public class RowAisle implements AggregateRoot<Integer> {
     @Override
     public Integer identity() {
         return null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return DomainEntities.areEqual(this, o);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(version, id, aisle, begin, end, shelve);
     }
 }

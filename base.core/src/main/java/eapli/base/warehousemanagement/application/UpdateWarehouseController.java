@@ -1,17 +1,12 @@
 package eapli.base.warehousemanagement.application;
 
-import eapli.base.infrastructure.persistence.PersistenceContext;
-import eapli.base.infrastructure.persistence.RepositoryFactory;
+
 import eapli.base.warehousemanagement.domain.*;
-import eapli.base.warehousemanagement.repository.AGVDockRepository;
-import eapli.base.warehousemanagement.repository.AisleRepository;
-import eapli.base.warehousemanagement.repository.WarehouseRepository;
 import eapli.base.warehousemanagement.utlis.JsonReader;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
@@ -30,14 +25,12 @@ public class UpdateWarehouseController {
     }
 
     public boolean updateWarehouse() throws IOException {
-        Query query = manager.createQuery("DELETE FROM RowAisle");
-        Query query1 = manager.createQuery("DELETE FROM Aisle ");
-        Query query2 = manager.createQuery("DELETE FROM AGVDock ");
-        Query query3 = manager.createQuery("DELETE FROM Warehouse ");
-        query.executeUpdate();
-        query1.executeUpdate();
-        query2.executeUpdate();
-        query3.executeUpdate();
+        manager.getTransaction().begin();
+        manager.createQuery("DELETE FROM RowAisle").executeUpdate();
+        manager.createQuery("DELETE FROM Aisle").executeUpdate();
+        manager.createQuery("DELETE FROM AGVDock").executeUpdate();
+        manager.createQuery("DELETE FROM Warehouse").executeUpdate();
+        manager.getTransaction().commit();
         //warehouse
         addWarehouse();
         //agvDock

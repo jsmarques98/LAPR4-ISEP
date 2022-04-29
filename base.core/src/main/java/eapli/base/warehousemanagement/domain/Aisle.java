@@ -4,6 +4,7 @@ import eapli.framework.domain.model.AggregateRoot;
 import eapli.framework.domain.model.DomainEntities;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Aisle implements AggregateRoot<Integer> {
@@ -49,5 +50,15 @@ public class Aisle implements AggregateRoot<Integer> {
     @Override
     public Integer identity() {
         return this.id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return DomainEntities.areEqual(this, o);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(version, id, warehouse, begin, end, depth, accessibilityR);
     }
 }

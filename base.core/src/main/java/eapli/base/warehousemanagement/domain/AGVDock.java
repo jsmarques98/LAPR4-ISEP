@@ -6,6 +6,7 @@ import org.hibernate.mapping.ToOne;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class AGVDock implements AggregateRoot<String> {
@@ -48,5 +49,15 @@ public class AGVDock implements AggregateRoot<String> {
     @Override
     public String identity() {
         return this.id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return DomainEntities.areEqual(this, o);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(version, id, warehouse, begin, end, depth, accessibilityA);
     }
 }

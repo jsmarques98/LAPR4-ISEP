@@ -4,6 +4,7 @@ import eapli.framework.domain.model.AggregateRoot;
 import eapli.framework.domain.model.DomainEntities;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Warehouse implements AggregateRoot<Long> {
@@ -55,5 +56,15 @@ public class Warehouse implements AggregateRoot<Long> {
     @Override
     public Long identity() {
         return this.id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return DomainEntities.areEqual(this, o);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, version, name, length, width, Square, unit);
     }
 }

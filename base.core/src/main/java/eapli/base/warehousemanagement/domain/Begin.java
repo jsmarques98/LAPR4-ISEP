@@ -3,6 +3,7 @@ package eapli.base.warehousemanagement.domain;
 import eapli.framework.domain.model.ValueObject;
 
 import javax.persistence.Embeddable;
+import java.util.Objects;
 
 @Embeddable
 public class Begin implements ValueObject {
@@ -28,5 +29,18 @@ public class Begin implements ValueObject {
 
     private static boolean isValid(Integer a, Integer b){
         return a >= 0 && b >= 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Begin begin = (Begin) o;
+        return Objects.equals(blsquare, begin.blsquare) && Objects.equals(bwsquare, begin.bwsquare);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(blsquare, bwsquare);
     }
 }

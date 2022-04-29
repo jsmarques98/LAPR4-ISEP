@@ -5,6 +5,7 @@ import eapli.framework.domain.model.ValueObject;
 import javax.persistence.Embeddable;
 
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Embeddable
 public class Shelve implements ValueObject {
@@ -28,5 +29,18 @@ public class Shelve implements ValueObject {
 
     private static boolean isValid(Integer s){
         return s >= 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Shelve shelve = (Shelve) o;
+        return Objects.equals(numberShelve, shelve.numberShelve);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numberShelve);
     }
 }
