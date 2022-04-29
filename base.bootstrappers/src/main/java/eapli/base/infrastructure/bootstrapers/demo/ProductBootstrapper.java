@@ -2,6 +2,7 @@
 package eapli.base.infrastructure.bootstrapers.demo;
 
 import eapli.base.categorymanagement.domain.Category;
+import eapli.base.categorymanagement.domain.CategoryID;
 import eapli.base.categorymanagement.domain.Description;
 import eapli.base.clientusermanagement.application.AcceptRefuseSignupFactory;
 import eapli.base.clientusermanagement.application.AcceptRefuseSignupRequestController;
@@ -26,18 +27,18 @@ public class ProductBootstrapper implements Action {
 
     @Override
     public boolean execute() {
-        ProductDTO dto = new ProductDTO( new Category(MecanographicNumber.valueOf("12345"), Description.valueOf("computers")), "abcd.12345", "1234567890123", 750.0, "Asus", "Gaming", "aaaa.11111", "1234567890", 10.0, 1000.0, "~/LAPR4");
+        ProductDTO dto = new ProductDTO( new Category(CategoryID.valueOf("12345"), Description.valueOf("computers")), "abcd.12345", "1234567890123", 750.0, "Asus", "Gaming", "aaaa.11111", "1234567890", 10.0, 1000.0, "~/LAPR4");
         Product p = null;
         p = controller.createProduct(dto);
         PersistenceContext.repositories().products().save(p);
 
 
-        dto = new ProductDTO( new Category(MecanographicNumber.valueOf("123456"), Description.valueOf("make up")), "abcd.12346", "1234567890000", 59.99, "Glossier", "lipstick", "aaaa.11112", "1234567899", 10.0, 50.0, "~/LAPR4");
+        dto = new ProductDTO( new Category(CategoryID.valueOf("123456"), Description.valueOf("make up")), "abcd.12346", "1234567890000", 59.99, "Glossier", "lipstick", "aaaa.11112", "1234567899", 10.0, 50.0, "~/LAPR4");
         p = controller.createProduct(dto);
         PersistenceContext.repositories().products().save(p);
 
         LOGGER.debug("The products were successfuly created.");
         return true;
-       }
     }
+}
 
