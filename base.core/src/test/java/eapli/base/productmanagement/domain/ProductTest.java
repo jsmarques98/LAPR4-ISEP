@@ -1,6 +1,7 @@
 package eapli.base.productmanagement.domain;
 
 import eapli.base.categorymanagement.domain.Category;
+import eapli.base.categorymanagement.domain.CategoryID;
 import eapli.base.clientusermanagement.domain.MecanographicNumber;
 import eapli.base.productmanagement.dto.ProductDTO;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,7 +27,7 @@ class ProductTest {
         UniqueInternalCode uniqueInternalCode = new UniqueInternalCode("xyzw.98765");
         Volume volume = new Volume(300.0);
         Weight weight = new Weight(100.0);
-        Category category = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
+        Category category = new Category(new CategoryID("1"),new eapli.base.categorymanagement.domain.Description("drink"));
 
         Picture picture = new Picture("path1");
         product = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture);
@@ -50,7 +51,7 @@ class ProductTest {
         UniqueInternalCode uniqueInternalCode = new UniqueInternalCode("xyzw.98765");
         Volume volume = new Volume(301.0);
         Weight weight = new Weight(101.0);
-        Category category = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
+        Category category = new Category(new CategoryID("1"),new eapli.base.categorymanagement.domain.Description("drink"));
         Picture picture = new Picture("path");
         Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture);
 
@@ -69,7 +70,7 @@ class ProductTest {
         UniqueInternalCode uniqueInternalCode = new UniqueInternalCode("xyzw.98766");
         Volume volume = new Volume(300.0);
         Weight weight = new Weight(100.0);
-        Category category = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
+        Category category = new Category(new CategoryID("1"),new eapli.base.categorymanagement.domain.Description("drink"));
         Picture pictures = new Picture("path1");
         Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, pictures);
 
@@ -154,7 +155,7 @@ class ProductTest {
         Weight weight = new Weight(100.0);
 
         Picture picture = new Picture("path1");
-        Category category = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
+        Category category = new Category(new CategoryID("1"),new eapli.base.categorymanagement.domain.Description("drink"));
         Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture);
 
         Product product3 = new Product(new UniqueInternalCode("hfhd.54321"),category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture);
@@ -182,7 +183,7 @@ class ProductTest {
         UniqueInternalCode uniqueInternalCode = new UniqueInternalCode("xyzw.98765");
         Volume volume = new Volume(300.0);
         Weight weight = new Weight(100.0);
-        Category category = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
+        Category category = new Category(new CategoryID("1"),new eapli.base.categorymanagement.domain.Description("drink"));
 
         Picture picture = new Picture("path1");
         Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture);
@@ -222,7 +223,7 @@ class ProductTest {
         String uniqueInternalCode ="xyzw.98765";
         Double volume =300.0;
         Double weight = 100.0;
-        Category category = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
+        Category category = new Category(new CategoryID("1"),new eapli.base.categorymanagement.domain.Description("drink"));
         String picture = "path1";
         ProductDTO productDTO = new ProductDTO(category,uniqueInternalCode,barcode,basePrice,brand,description,productionCode,reference,volume,weight,picture);
 
@@ -236,7 +237,7 @@ class ProductTest {
         UniqueInternalCode uniqueInternalCode1 = new UniqueInternalCode("xyzw.98765");
         Volume volume1 = new Volume(300.0);
         Weight weight1 = new Weight(100.0);
-        Category category1 = new Category(new MecanographicNumber("1"),new eapli.base.categorymanagement.domain.Description("drink"));
+        Category category1 = new Category(new CategoryID("1"),new eapli.base.categorymanagement.domain.Description("drink"));
         Picture picture2 = new Picture("path1");
         Product product2 = new Product(uniqueInternalCode1,category1,barcode1,basePrice1,brand1,description1,productionCode1,reference1,volume1,weight1, picture2);
 
