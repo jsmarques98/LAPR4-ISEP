@@ -1,6 +1,7 @@
 package eapli.base.categorymanagement.application;
 
 import eapli.base.categorymanagement.domain.Category;
+import eapli.base.categorymanagement.domain.CategoryID;
 import eapli.base.categorymanagement.domain.Description;
 import eapli.base.categorymanagement.repositories.CategoryRepository;
 import eapli.base.clientusermanagement.domain.MecanographicNumber;
@@ -22,7 +23,7 @@ public class AddCategoryController {
     }
 
     public Category createCategory(String categoryID, String description){
-        return categoryRepository.save(new Category(MecanographicNumber.valueOf(categoryID),
+        return categoryRepository.save(new Category(CategoryID.valueOf(categoryID),
                 Description.valueOf(description)));
     }
 

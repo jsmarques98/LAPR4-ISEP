@@ -2,6 +2,7 @@ package eapli.base.persistence.impl.jpa;
 
 import eapli.base.Application;
 import eapli.base.categorymanagement.domain.Category;
+import eapli.base.categorymanagement.domain.CategoryID;
 import eapli.base.categorymanagement.repositories.CategoryRepository;
 import eapli.base.clientusermanagement.domain.MecanographicNumber;
 import eapli.framework.domain.repositories.TransactionalContext;
@@ -11,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class JpaCategoryRepository extends JpaAutoTxRepository<Category, MecanographicNumber, MecanographicNumber>
+public class JpaCategoryRepository extends JpaAutoTxRepository<Category, CategoryID, CategoryID>
         implements CategoryRepository {
 
 
@@ -26,7 +27,7 @@ public class JpaCategoryRepository extends JpaAutoTxRepository<Category, Mecanog
 
 
         @Override
-        public Optional<Category> findByMecanographicNumber (MecanographicNumber categoryID){
+        public Optional<Category> findByCategoryID (CategoryID categoryID){
         final Map<String, Object> params = new HashMap<>();
         params.put("cid", categoryID);
         return matchOne("e.MecanographicNumber=:cid", params);
