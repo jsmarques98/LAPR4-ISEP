@@ -1,0 +1,15 @@
+	_________
+
+	DESIGN
+	_________
+
+	* Use the standard layer-based application framework
+
+   	Domain Classes:  
+		AGVDock, Aisle, Begin, Depth, End, RowAisle, Shelve, Warehouse
+
+	
+
+   	Controlador: UpdateWarehouseController
+   	Repository: WarehouseRepository, AGVDockRepository, AisleRepository, RowAisleRepository
+   	Utils: JsonReader
