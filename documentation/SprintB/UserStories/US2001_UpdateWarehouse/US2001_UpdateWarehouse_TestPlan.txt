@@ -1,0 +1,9 @@
+TEST PLAN
+
+	_______________________________
+	CASE #1 Update Warehouse
+	_______________________________
+
+	1. Login as warehouseemployee
+	2. Choose Option Warehouse Management -> Update Warehouse
+	3. Confirm the Warehouse update.

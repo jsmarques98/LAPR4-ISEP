@@ -24,7 +24,9 @@ public class JsonReader {
     private List<String> agvDockAtribute;
     private List<List<String>> agvDockList;
 
-    public JsonReader() throws IOException {
+    public JsonReader(String path) throws IOException {
+        reader = Files.newBufferedReader(Paths.get(path));
+        jsonObject = JsonParser.parseReader(reader).getAsJsonObject();
         warehouseAtribute = new ArrayList<>();
         aisleList = new ArrayList<>();
         rowList = new ArrayList<>();
@@ -36,8 +38,8 @@ public class JsonReader {
         rowsReader();
     }
 
-    Reader reader = Files.newBufferedReader(Paths.get("base.core/src/main/resources/warehouse1.json"));
-    JsonObject jsonObject = JsonParser.parseReader(reader).getAsJsonObject();
+    Reader reader;
+    JsonObject jsonObject;
 
     private boolean warehouseReader(){
         warehouseAtribute.add(jsonObject.get("Warehouse").getAsString());

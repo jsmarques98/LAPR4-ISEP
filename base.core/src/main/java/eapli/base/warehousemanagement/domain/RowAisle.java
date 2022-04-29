@@ -41,12 +41,12 @@ public class RowAisle implements AggregateRoot<Integer> {
 
     @Override
     public boolean sameAs(Object other) {
-        return false;
+        return DomainEntities.areEqual(this, other);
     }
 
     @Override
     public Integer identity() {
-        return null;
+        return this.id;
     }
 
     @Override

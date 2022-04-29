@@ -42,7 +42,7 @@ public class UpdateWarehouseController {
 
     @Transactional
     boolean addWarehouse() throws IOException {
-        JsonReader jsonReader = new JsonReader();
+        JsonReader jsonReader = new JsonReader("base.core/src/main/resources/warehouse1.json");
         List<String> warehouseList = jsonReader.getWarehouseAtribute();
         warehouse = new Warehouse(warehouseList.get(0),Integer.parseInt(warehouseList.get(1)),
                 Integer.parseInt(warehouseList.get(2)),Integer.parseInt(warehouseList.get(3)),warehouseList.get(4));
@@ -51,7 +51,7 @@ public class UpdateWarehouseController {
         return true;
     }
     private boolean addAisles(Warehouse warehouse) throws IOException {
-        JsonReader jsonReader = new JsonReader();
+        JsonReader jsonReader = new JsonReader("base.core/src/main/resources/warehouse1.json");
         List<List<String>> aisles = jsonReader.getAisleList();
         Map<String,List<List<String>>> rowMap = jsonReader.getRowsList();
         for(int i =0; i<aisles.size(); i++){
@@ -83,7 +83,7 @@ public class UpdateWarehouseController {
     }
 
     private boolean addAGVDocks(Warehouse warehouse) throws IOException {
-        JsonReader jsonReader = new JsonReader();
+        JsonReader jsonReader = new JsonReader("base.core/src/main/resources/warehouse1.json");
         List<List<String>> agvDocks = jsonReader.getAgvDockList();
 
 
