@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DescriptionTest {
-    private Description description;
+class ShortDescriptionTest {
+    private ShortDescription description;
 
     @BeforeEach
     void setUp(){
-        description = new Description("drink");
+        description = new ShortDescription("drink");
     }
 
     @Test
@@ -18,7 +18,7 @@ class DescriptionTest {
         // DESCRIPTION EMPTY
         Throwable exception = assertThrows(
                 IllegalArgumentException.class, () -> {
-                    Description description = new Description("");
+                    ShortDescription description = new ShortDescription("");
                 }
         );
         assertEquals("Invalid description", exception.getMessage());
@@ -27,7 +27,7 @@ class DescriptionTest {
         // DESCRIPTION NULL
         Throwable exception2 = assertThrows(
                 IllegalArgumentException.class, () -> {
-                    Description description2 = new Description(null);
+                    ShortDescription description2 = new ShortDescription(null);
                 }
         );
         assertEquals("Description cannot be null", exception2.getMessage());
@@ -36,12 +36,12 @@ class DescriptionTest {
 
     @Test
     void valueOf() {
-        assertEquals(description,Description.valueOf("drink"));
+        assertEquals(description, ShortDescription.valueOf("drink"));
     }
 
     @Test
     void testEquals() {
-        Description description2 = new Description("food");
+        ShortDescription description2 = new ShortDescription("food");
         String a = "dummy";
 
         assertTrue(description2.equals(description2));

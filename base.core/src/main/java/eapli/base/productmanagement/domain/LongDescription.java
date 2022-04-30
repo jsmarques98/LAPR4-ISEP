@@ -2,32 +2,30 @@ package eapli.base.productmanagement.domain;
 
 import eapli.framework.domain.model.ValueObject;
 
-import javax.persistence.Embeddable;
 import java.util.Objects;
 
-@Embeddable
-public class Description implements ValueObject {
+public class LongDescription implements ValueObject {
     private static final Integer MIN_SIZE = 0;
     private static final Integer MAX_SIZE = 250;
 
     private String description;
 
-    public Description (String description){
+    public LongDescription (String description){
         if(description==null)
-            throw new IllegalArgumentException("Description cannot be null");
+            throw new IllegalArgumentException("Long Description cannot be null");
         if(isValid(description)){
             this.description = description;
         }else{
-            throw new IllegalArgumentException("Invalid description");
+            throw new IllegalArgumentException("Invalid long description");
         }
     }
 
-    public Description() {
+    public LongDescription() {
 
     }
 
-    public static Description valueOf(final String description){
-        return new Description(description);
+    public static LongDescription valueOf(final String description){
+        return new LongDescription(description);
     }
 
     private boolean isValid(String description){
@@ -38,7 +36,7 @@ public class Description implements ValueObject {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Description that = (Description) o;
+        LongDescription that = (LongDescription) o;
         return Objects.equals(description, that.description);
     }
 

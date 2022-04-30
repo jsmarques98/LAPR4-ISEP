@@ -2,13 +2,9 @@ package eapli.base.persistence.impl.jpa;
 
 import eapli.base.Application;
 import eapli.base.categorymanagement.domain.Category;
-import eapli.base.clientusermanagement.domain.ClientUser;
-import eapli.base.clientusermanagement.domain.MecanographicNumber;
-import eapli.base.clientusermanagement.repositories.ClientUserRepository;
 import eapli.base.productmanagement.domain.*;
 import eapli.base.productmanagement.repositories.ProductRepository;
 import eapli.framework.domain.repositories.TransactionalContext;
-import eapli.framework.infrastructure.authz.domain.model.Username;
 import eapli.framework.infrastructure.repositories.impl.jpa.JpaAutoTxRepository;
 
 import java.util.HashMap;
@@ -44,7 +40,7 @@ public class JpaProductRepository  extends  JpaAutoTxRepository<Product, UniqueI
     }
 
     @Override
-    public List<Product> findByDescription(Description description) {
+    public List<Product> findByDescription(ShortDescription description) {
         final Map<String, Object> descriptions = new HashMap<>();
         descriptions.put("des", description);
         return match("e.description=:des", descriptions);

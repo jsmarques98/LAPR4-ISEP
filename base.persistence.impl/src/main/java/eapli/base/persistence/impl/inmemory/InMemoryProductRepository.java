@@ -1,10 +1,6 @@
 package eapli.base.persistence.impl.inmemory;
 
 import eapli.base.categorymanagement.domain.Category;
-import eapli.base.categorymanagement.repositories.CategoryRepository;
-import eapli.base.clientusermanagement.domain.ClientUser;
-import eapli.base.clientusermanagement.domain.MecanographicNumber;
-import eapli.base.clientusermanagement.repositories.ClientUserRepository;
 import eapli.base.productmanagement.domain.*;
 import eapli.base.productmanagement.repositories.ProductRepository;
 import eapli.framework.infrastructure.repositories.impl.inmemory.InMemoryDomainRepository;
@@ -25,7 +21,7 @@ public class InMemoryProductRepository extends InMemoryDomainRepository<Product,
     }
 
     @Override
-    public List<Product> findByDescription(Description description) {
+    public List<Product> findByDescription(ShortDescription description) {
         return List.of(data().get(description));
     }
 

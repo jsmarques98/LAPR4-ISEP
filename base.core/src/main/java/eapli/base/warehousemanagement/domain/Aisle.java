@@ -4,6 +4,7 @@ import eapli.framework.domain.model.AggregateRoot;
 import eapli.framework.domain.model.DomainEntities;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -40,6 +41,10 @@ public class Aisle implements AggregateRoot<Integer> {
         this.depth = depth;
         this.accessibilityR = accessibility;
         this.warehouse = warehouse;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     @Override

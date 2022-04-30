@@ -5,19 +5,17 @@ import eapli.framework.domain.model.AggregateRoot;
 import eapli.framework.domain.model.DomainEntities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class RowAisle implements AggregateRoot<Integer> {
+public class RowAisle implements AggregateRoot<RowAisleID>, Serializable {
 
     @Version
     private Long version;
-    @Id
-    private Integer id;
 
     @Id
-    @ManyToOne
-    private Aisle aisle;
+    private RowAisleID id;
 
     @Column
     private Begin begin;
@@ -32,8 +30,7 @@ public class RowAisle implements AggregateRoot<Integer> {
     }
 
     public RowAisle(Integer id, Aisle aisle, Begin begin, End end, Shelve shelve) {
-        this.id = id;
-        this.aisle = aisle;
+        this.id = new RowAisleID(id,aisle);
         this.begin = begin;
         this.end = end;
         this.shelve = shelve;
@@ -45,7 +42,7 @@ public class RowAisle implements AggregateRoot<Integer> {
     }
 
     @Override
-    public Integer identity() {
+    public RowAisleID identity() {
         return this.id;
     }
 
@@ -54,8 +51,10 @@ public class RowAisle implements AggregateRoot<Integer> {
         return DomainEntities.areEqual(this, o);
     }
 
+
+
     @Override
     public int hashCode() {
-        return Objects.hash(version, id, aisle, begin, end, shelve);
+        return Objects.hash(version, id, begin, end, shelve);
     }
 }

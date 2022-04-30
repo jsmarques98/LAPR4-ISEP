@@ -1,5 +1,7 @@
 package eapli.base.app.backoffice.console.presentation.product;
 
+import eapli.base.app.backoffice.console.presentation.MainMenu;
+import eapli.base.app.backoffice.console.presentation.category.AddCategoryUI;
 import eapli.base.categorymanagement.domain.Category;
 import eapli.base.productmanagement.application.AddProductController;
 import eapli.base.productmanagement.dto.ProductDTO;
@@ -53,11 +55,17 @@ public class AddProductUI extends AbstractUI {
         String barcode = Console.readLine("Barcode: ");
         Double basePrice = Console.readDouble("Base Price: ");
         String brand = Console.readLine("Brand: ");
-        String description = Console.readLine("Description: ");
+        String shortDescription = Console.readLine("Short Description: ");
+        String longDescription = Console.readLine("Long Description: ");
+        String technicalDescription = Console.readLine("Technical Description: ");
         String productionCode = Console.readLine("Production Code: ");
         String reference = Console.readLine("Reference: ");
         Double volume = Console.readDouble("Volume: ");
         Double weight = Console.readDouble("Weight: ");
+        System.out.println("Product warehouse location");
+        Integer rowID = Console.readInteger("Row ID:");
+        Integer aisleID = Console.readInteger("Aisle ID:");
+        Integer shelve = Console.readInteger("Shelve");
         System.out.println("Chose pictures:");
         List<String> picturesPaths = new ArrayList<>();
         FileDialog fd = new FileDialog(new JFrame());
@@ -66,7 +74,7 @@ public class AddProductUI extends AbstractUI {
         File[] f = fd.getFiles();
 
 
-        ProductDTO productDTO = new ProductDTO(categories.get(0),uniqueInternalCode,barcode,basePrice,brand,description,productionCode,reference,volume,weight,fd.getFiles()[0].getAbsolutePath());
+        ProductDTO productDTO = new ProductDTO(categories.get(0),uniqueInternalCode,barcode,basePrice,brand,shortDescription,productionCode,reference,volume,weight,fd.getFiles()[0].getAbsolutePath(),rowID,aisleID,longDescription,technicalDescription);
         try {
             controller.createProduct(productDTO);
             return true;
@@ -89,9 +97,14 @@ public class AddProductUI extends AbstractUI {
     private Menu buildCategoriesMenu(List<Category> categories) {
         final Menu categoriesMenu = new Menu();
         int counter = 0;
-        categoriesMenu.addItem(MenuItem.of(counter++, "Cancel", Actions.SUCCESS));
-        for (final Category category : controller.getCategories()) {
-            categoriesMenu.addItem(MenuItem.of(counter++, category.toString(), () -> categories.add(category)));
+        categoriesMenu.addItem(MenuItem.of(counter++, "Cancel",() -> new MainMenu().doShow()));
+        List<Category> categoriesList = (List<Category>) controller.getCategories();
+        if (categoriesList.size()!=0) {
+            for (final Category category : categoriesList) {
+                categoriesMenu.addItem(MenuItem.of(counter++, category.toString(), () -> categories.add(category)));
+            }
+        }else{
+            System.out.println("You cant create Products because there is no categories.");
         }
         return categoriesMenu;
     }

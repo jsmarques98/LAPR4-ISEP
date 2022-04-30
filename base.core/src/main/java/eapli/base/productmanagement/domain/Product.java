@@ -2,10 +2,11 @@ package eapli.base.productmanagement.domain;
 
 import eapli.base.categorymanagement.domain.Category;
 import eapli.base.productmanagement.dto.ProductDTO;
+import eapli.base.warehousemanagement.domain.RowAisle;
 import eapli.framework.domain.model.AggregateRoot;
 import eapli.framework.domain.model.DomainEntities;
 import eapli.framework.representations.dto.DTOable;
-import eapli.framework.validations.Preconditions;
+
 import javax.persistence.*;
 
 @Entity
@@ -30,7 +31,13 @@ public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<Produ
     private Brand brand;
 
     @Column
-    private Description description;
+    private ShortDescription shortDescription;
+
+    @Column
+    private TechnicalDescription technicalDescription;
+
+    @Column
+    private LongDescription longDescription;
 
     @Column
     private ProductionCode productionCode;
@@ -47,26 +54,32 @@ public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<Produ
     @Column
     private Picture picture;
 
+    @OneToOne
+    private RowAisle rowAisle;
+
     public Product(){
         // empty constructor
     }
 
-    public Product(final UniqueInternalCode uniqueInternalCode, Category category, Barcode barcode, BasePrice basePrice , Brand brand,
-    Description description, ProductionCode productionCode, Reference reference, Volume volume, Weight weight, Picture picture)
-    {
-        Preconditions.noneNull(category,uniqueInternalCode, barcode, basePrice,brand,description,reference,volume,weight);
-        this.category=category;
+
+    public Product(UniqueInternalCode uniqueInternalCode, Category category, Barcode barcode, BasePrice basePrice, Brand brand, ShortDescription shortDescription, ProductionCode productionCode, Reference reference, Volume volume, Weight weight, Picture picture, RowAisle rowAisle, LongDescription longDescription, TechnicalDescription technicalDescription) {
+
         this.uniqueInternalCode = uniqueInternalCode;
+        this.category = category;
         this.barcode = barcode;
-        this.basePrice  =basePrice;
+        this.basePrice = basePrice;
         this.brand = brand;
-        this.description = description;
+        this.shortDescription = shortDescription;
         this.productionCode = productionCode;
         this.reference = reference;
         this.volume = volume;
-        this.weight=weight;
+        this.weight = weight;
         this.picture = picture;
+        this.rowAisle = rowAisle;
+        this.longDescription = longDescription;
+        this.technicalDescription = technicalDescription;
     }
+
 
     public Long getVersion() {
         return version;
@@ -92,8 +105,16 @@ public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<Produ
         return brand;
     }
 
-    public Description getDescription() {
-        return description;
+    public LongDescription getLongDescription() {
+        return longDescription;
+    }
+
+    public ShortDescription getShortDescription() {
+        return shortDescription;
+    }
+
+    public TechnicalDescription getTechnicalDescription() {
+        return technicalDescription;
     }
 
     public ProductionCode getProductionCode() {
@@ -140,7 +161,9 @@ public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<Produ
                 "Barcode=" + barcode +"\n" +
                 "Base Price=" + basePrice +"\n" +
                 "Brand=" + brand +"\n" +
-                "Description=" + description +"\n" +
+                "Short Description=" + shortDescription +"\n" +
+                "Long Description=" + longDescription +"\n" +
+                "Technical Description=" + technicalDescription +"\n" +
                 "Production Code=" + productionCode +"\n" +
                 "Reference=" + reference +"\n" +
                 "Volume=" + volume +"\n" +
@@ -150,8 +173,9 @@ public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<Produ
     @Override
     public ProductDTO toDTO() {
         return new ProductDTO(this.category,this.uniqueInternalCode.toString(),this.barcode.toString(),this.basePrice.getBasePrice(),
-                this.brand.toString(), this.description.toString(),this.productionCode.toString(),this.reference.toString()
-        , this.volume.getVolume(), this.weight.getWeight(),this.picture.getPicturePath());
+                this.brand.toString(), this.shortDescription.toString(),this.productionCode.toString(),this.reference.toString()
+        , this.volume.getVolume(), this.weight.getWeight(),this.picture.getPicturePath(),this.rowAisle.identity().getId(),this.rowAisle.identity().getAisle().getId(),
+        this.longDescription.toString(),this.shortDescription.toString());
     }
 
     @Override

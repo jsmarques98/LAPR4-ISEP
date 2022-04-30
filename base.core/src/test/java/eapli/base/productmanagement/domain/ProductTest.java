@@ -2,14 +2,10 @@ package eapli.base.productmanagement.domain;
 
 import eapli.base.categorymanagement.domain.Category;
 import eapli.base.categorymanagement.domain.CategoryID;
-import eapli.base.clientusermanagement.domain.MecanographicNumber;
 import eapli.base.productmanagement.dto.ProductDTO;
+import eapli.base.warehousemanagement.domain.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.security.core.parameters.P;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,7 +17,9 @@ class ProductTest {
         Barcode barcode = new Barcode("1234567891234");
         BasePrice basePrice = new BasePrice(1.2);
         Brand brand = new Brand("CocaCola");
-        Description description = new Description("Drink");
+        ShortDescription description = new ShortDescription("Drink");
+        LongDescription longDescription = new LongDescription("Drink");
+        TechnicalDescription technicalDescription = new TechnicalDescription("Drink");
         ProductionCode productionCode = new ProductionCode("abcd.12345");
         Reference reference = new Reference("1234567890");
         UniqueInternalCode uniqueInternalCode = new UniqueInternalCode("xyzw.98765");
@@ -30,7 +28,7 @@ class ProductTest {
         Category category = new Category(new CategoryID("1"),new eapli.base.categorymanagement.domain.Description("drink"));
 
         Picture picture = new Picture("path1");
-        product = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture);
+        product = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture,new RowAisle(),longDescription,technicalDescription);
     }
 
 
@@ -45,7 +43,9 @@ class ProductTest {
         Barcode barcode = new Barcode("1234567891234");
         BasePrice basePrice = new BasePrice(1.23);
         Brand brand = new Brand("CocaColaa");
-        Description description = new Description("Drinkk");
+        ShortDescription description = new ShortDescription("Drinkk");
+        LongDescription longDescription = new LongDescription("Drink");
+        TechnicalDescription technicalDescription = new TechnicalDescription("Drink");
         ProductionCode productionCode = new ProductionCode("abcd.12346");
         Reference reference = new Reference("1234567890");
         UniqueInternalCode uniqueInternalCode = new UniqueInternalCode("xyzw.98765");
@@ -53,7 +53,7 @@ class ProductTest {
         Weight weight = new Weight(101.0);
         Category category = new Category(new CategoryID("1"),new eapli.base.categorymanagement.domain.Description("drink"));
         Picture picture = new Picture("path");
-        Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture);
+        Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture,new RowAisle(),longDescription,technicalDescription);
 
         assertTrue(product.equals(product2));
     }
@@ -64,7 +64,9 @@ class ProductTest {
         Barcode barcode = new Barcode("1234567891234");
         BasePrice basePrice = new BasePrice(1.2);
         Brand brand = new Brand("CocaCola");
-        Description description = new Description("Drink");
+        ShortDescription description = new ShortDescription("Drink");
+        LongDescription longDescription = new LongDescription("Drink");
+        TechnicalDescription technicalDescription = new TechnicalDescription("Drink");
         ProductionCode productionCode = new ProductionCode("abcd.12345");
         Reference reference = new Reference("1234567890");
         UniqueInternalCode uniqueInternalCode = new UniqueInternalCode("xyzw.98766");
@@ -72,7 +74,7 @@ class ProductTest {
         Weight weight = new Weight(100.0);
         Category category = new Category(new CategoryID("1"),new eapli.base.categorymanagement.domain.Description("drink"));
         Picture pictures = new Picture("path1");
-        Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, pictures);
+        Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, pictures,new RowAisle(),longDescription,technicalDescription);
 
         assertFalse(product.equals(product2));
     }
@@ -118,8 +120,18 @@ class ProductTest {
     }
 
     @Test
-    void getDescription() {
-        assertTrue(new Description("Drink").equals(product.getDescription()));
+    void getShortDescription() {
+        assertTrue(new ShortDescription("Drink").equals(product.getShortDescription()));
+    }
+
+    @Test
+    void getLongDescription() {
+        assertTrue(new ShortDescription("Drink").equals(product.getLongDescription()));
+    }
+
+    @Test
+    void getTechnicalDescription() {
+        assertTrue(new ShortDescription("Drink").equals(product.getTechnicalDescription()));
     }
 
     @Test
@@ -147,7 +159,9 @@ class ProductTest {
         Barcode barcode = new Barcode("1234567891234");
         BasePrice basePrice = new BasePrice(1.2);
         Brand brand = new Brand("CocaCola");
-        Description description = new Description("Drink");
+        ShortDescription description = new ShortDescription("Drink");
+        LongDescription longDescription = new LongDescription("Drink");
+        TechnicalDescription technicalDescription = new TechnicalDescription("Drink");
         ProductionCode productionCode = new ProductionCode("abcd.12345");
         Reference reference = new Reference("1234567890");
         UniqueInternalCode uniqueInternalCode = new UniqueInternalCode("xyzw.98765");
@@ -156,9 +170,9 @@ class ProductTest {
 
         Picture picture = new Picture("path1");
         Category category = new Category(new CategoryID("1"),new eapli.base.categorymanagement.domain.Description("drink"));
-        Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture);
+        Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture,new RowAisle(),longDescription,technicalDescription);
 
-        Product product3 = new Product(new UniqueInternalCode("hfhd.54321"),category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture);
+        Product product3 = new Product(new UniqueInternalCode("hfhd.54321"),category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture,new RowAisle(),longDescription,technicalDescription);
 
         Integer a = 1;
 
@@ -177,7 +191,9 @@ class ProductTest {
         Barcode barcode = new Barcode("1234567891234");
         BasePrice basePrice = new BasePrice(1.2);
         Brand brand = new Brand("CocaCola");
-        Description description = new Description("Drink");
+        ShortDescription description = new ShortDescription("Drink");
+        LongDescription longDescription = new LongDescription("Drink");
+        TechnicalDescription technicalDescription = new TechnicalDescription("Drink");
         ProductionCode productionCode = new ProductionCode("abcd.12345");
         Reference reference = new Reference("1234567890");
         UniqueInternalCode uniqueInternalCode = new UniqueInternalCode("xyzw.98765");
@@ -186,9 +202,9 @@ class ProductTest {
         Category category = new Category(new CategoryID("1"),new eapli.base.categorymanagement.domain.Description("drink"));
 
         Picture picture = new Picture("path1");
-        Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture);
+        Product product2 = new Product(uniqueInternalCode,category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture,new RowAisle(),longDescription,technicalDescription);
 
-        Product product3 = new Product(new UniqueInternalCode("hfhd.54321"),category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture);
+        Product product3 = new Product(new UniqueInternalCode("hfhd.54321"),category,barcode,basePrice,brand,description,productionCode,reference,volume,weight, picture, new RowAisle(),longDescription,technicalDescription);
 
         Integer a = 1;
 
@@ -225,13 +241,15 @@ class ProductTest {
         Double weight = 100.0;
         Category category = new Category(new CategoryID("1"),new eapli.base.categorymanagement.domain.Description("drink"));
         String picture = "path1";
-        ProductDTO productDTO = new ProductDTO(category,uniqueInternalCode,barcode,basePrice,brand,description,productionCode,reference,volume,weight,picture);
+        ProductDTO productDTO = new ProductDTO(category,uniqueInternalCode,barcode,basePrice,brand,description,productionCode,reference,volume,weight,picture,1,1,description,description);
 
 
         Barcode barcode1 = new Barcode("1234567891234");
         BasePrice basePrice1 = new BasePrice(1.2);
         Brand brand1 = new Brand("CocaCola");
-        Description description1 = new Description("Drink");
+        ShortDescription description1 = new ShortDescription("Drink");
+        LongDescription longDescription1 = new LongDescription("Drink");
+        TechnicalDescription technicalDescription1 = new TechnicalDescription("Drink");
         ProductionCode productionCode1 = new ProductionCode("abcd.12345");
         Reference reference1 = new Reference("1234567890");
         UniqueInternalCode uniqueInternalCode1 = new UniqueInternalCode("xyzw.98765");
@@ -239,7 +257,14 @@ class ProductTest {
         Weight weight1 = new Weight(100.0);
         Category category1 = new Category(new CategoryID("1"),new eapli.base.categorymanagement.domain.Description("drink"));
         Picture picture2 = new Picture("path1");
-        Product product2 = new Product(uniqueInternalCode1,category1,barcode1,basePrice1,brand1,description1,productionCode1,reference1,volume1,weight1, picture2);
+        Warehouse warehouse = warehouse = new Warehouse("Warehouse",10,12,1,"cm");
+        Begin b = new Begin(1,1);
+        End e = new End(1,2);
+        Depth d = new Depth(1,1);
+        Aisle aisle = new Aisle(1,b,e,d,"w+",warehouse);
+        Shelve s = new Shelve(1);
+        RowAisle rowAisle = new RowAisle(1,aisle,b,e,s);
+        Product product2 = new Product(uniqueInternalCode1,category1,barcode1,basePrice1,brand1,description1,productionCode1,reference1,volume1,weight1, picture2,rowAisle,longDescription1,technicalDescription1);
 
 
         assertEquals(product2.toDTO(),productDTO);
