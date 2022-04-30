@@ -7,6 +7,7 @@ import eapli.framework.actions.menu.Menu;
 import eapli.framework.actions.menu.MenuItem;
 import eapli.framework.domain.repositories.ConcurrencyException;
 import eapli.framework.domain.repositories.IntegrityViolationException;
+import eapli.framework.io.util.Console;
 import eapli.framework.presentation.console.menu.MenuItemRenderer;
 import eapli.framework.presentation.console.menu.MenuRenderer;
 import eapli.framework.presentation.console.menu.VerticalMenuRenderer;
@@ -33,37 +34,42 @@ public class AddCustomerUI extends AbstractUI {
     }
 
     private boolean createCostumer() {
-
-      /*  String name = Console.readLine("Name: ");
+        String name = Console.readLine("Name: ");
         String email = Console.readLine("Email: ");
-        String streetName = Console.readLine("Street Name:");
-        Integer doorNumber = Console.readInteger("Door Number:");
-        String postalCode = Console.readLine("Postal Code");
-        String city = Console.readLine("City");
-        String country = Console.readLine("Country");
+        String answer =Console.readLine("want to add an address?(y/n) ");
+        List<String> addresses = new ArrayList<String>();
+        while(answer.equals("y")||answer.equals("Y")||answer.equals("YES")||answer.equals("yes")){
+            addresses.add(Console.readLine("Street Name:"));
+            addresses.add(Console.readLine("Door Number:"));
+            addresses.add(Console.readLine("Postal Code"));
+            addresses.add(Console.readLine("City"));
+            addresses.add(Console.readLine("Country"));
+            answer =Console.readLine("want to add another address?(y/n) ");
+        }
+
         String phoneNumber = Console.readLine("Phone Number: ");
         String vatId = Console.readLine("Vat Id: ");
-        Date birthDate = Console.readDate("Birth date");*/
-        String name = "luis";
-        String email ="l@gmail.com" ;
-        String streetName ="a" ;
-        Integer doorNumber = 2;
-        String postalCode = "a";
-        String city = "aa";
-        String country ="aa" ;
-        String phoneNumber ="9";
-        String vatId ="9" ;
-        Date birthDate =new Date();
+        Date birthDate = Console.readDate("Birth date");
+//        String name = "luis";
+//        String email ="l@gmail.com" ;
+//        String streetName ="a" ;
+//        Integer doorNumber = 2;
+//        String postalCode = "a";
+//        String city = "aa";
+//        String country ="aa" ;
+//        String phoneNumber ="9";
+//        String vatId ="9" ;
+//        Date birthDate =new Date();
 
         final List<String> genders = new ArrayList<>();
-
+        System.out.println("Gender");
         boolean show;
         do {
             show = showGenders(genders);
         } while (!show);
 
         System.out.println(genders.get(0));
-        CustomerDTO customerDTO = new CustomerDTO(name, email, streetName, doorNumber, postalCode, city, country, genders.get(0), birthDate, phoneNumber, vatId);
+        CustomerDTO customerDTO = new CustomerDTO(name, email, addresses, genders.get(0), birthDate, phoneNumber, vatId);
         try {
             controller.createCustomer(customerDTO);
             return true;
@@ -94,6 +100,4 @@ public class AddCustomerUI extends AbstractUI {
     public String headline() {
         return "ADD COSTUMER";
     }
-
-
 }

@@ -1,7 +1,7 @@
 package eapli.base.customermanagement.domain;
 
 
-import eapli.base.clientusermanagement.domain.MecanographicNumber;
+
 import eapli.base.customermanagement.dto.CustomerDTO;
 import eapli.framework.domain.model.AggregateRoot;
 import eapli.framework.domain.model.DomainEntities;
@@ -9,7 +9,10 @@ import eapli.framework.general.domain.model.EmailAddress;
 import eapli.framework.representations.dto.DTOable;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 
 @Entity
 public class Customer implements AggregateRoot<Integer>, DTOable<CustomerDTO> {
@@ -20,9 +23,6 @@ public class Customer implements AggregateRoot<Integer>, DTOable<CustomerDTO> {
 
     @Version
     private Long version;
-
-    @Column
-    private Address address;
 
     @Column
     private EmailAddress email;
@@ -39,7 +39,20 @@ public class Customer implements AggregateRoot<Integer>, DTOable<CustomerDTO> {
     @Column
     private Date birthDate;
 
-    public Customer() {
+    @ElementCollection
+    @CollectionTable(name = "customer_adress", joinColumns = @JoinColumn(name = "customer_id"))
+    private List<AdressCostumer> address = new ArrayList<>();
+
+    public Customer() {}
+
+
+    public Customer(EmailAddress email, Name name, PhoneNumber phoneNumber, VatId vatId, Date birthDate, List<AdressCostumer> addresss) {
+        this.email = email;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.vatId = vatId;
+        this.birthDate = birthDate;
+        this.address = addresss;
     }
 
     @Override
@@ -52,19 +65,9 @@ public class Customer implements AggregateRoot<Integer>, DTOable<CustomerDTO> {
         return null;
     }
 
-    public Customer(Address address, EmailAddress email, Name name, PhoneNumber phoneNumber, VatId vatId, Date birthDate) {
-        this.address = address;
-        this.email = email;
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.vatId = vatId;
-        this.birthDate = birthDate;
-    }
-
     public Long getVersion() {
         return version;
     }
-
 
     @Override
     public int hashCode() {

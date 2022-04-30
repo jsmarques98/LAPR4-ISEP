@@ -6,6 +6,10 @@ import eapli.base.customermanagement.repositories.CustomerRepository;
 import eapli.base.infrastructure.persistence.PersistenceContext;
 import eapli.base.infrastructure.persistence.RepositoryFactory;
 import eapli.framework.general.domain.model.EmailAddress;
+import eapli.framework.io.util.Console;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddCustomerController {
 
@@ -19,9 +23,20 @@ public class AddCustomerController {
 
     }
 
+
     public Customer createCustomer(CustomerDTO customerDTO) {
-        return costumerRep.save(new Customer(Address.valueOf(customerDTO.streetName,customerDTO.doorNumber,customerDTO.postalCode,customerDTO.city,customerDTO.country),
-                EmailAddress.valueOf(customerDTO.email),Name.valueOf(customerDTO.name),PhoneNumber.valueOf(customerDTO.phoneNumber),VatId.valueOf(customerDTO.vatId),customerDTO.birthDate));
+        List<AdressCostumer> addressList = new ArrayList<>();
+        List<String> address = customerDTO.address;
+        for (int i = 0; i < address.size(); i += 5) {
+            String streetName = address.get(i);
+            Integer doorNumber = Integer.parseInt(address.get(i + 1));
+            String postalCode = address.get(i + 2);
+            String city = address.get(i + 3);
+            String country = address.get(i + 4);
+            addressList.add(new AdressCostumer(streetName, doorNumber, postalCode, city, country));
+        }
+        return costumerRep.save(new Customer(EmailAddress.valueOf(customerDTO.email), Name.valueOf(customerDTO.name),
+                PhoneNumber.valueOf(customerDTO.phoneNumber), VatId.valueOf(customerDTO.vatId), customerDTO.birthDate, addressList));
 
     }
 }

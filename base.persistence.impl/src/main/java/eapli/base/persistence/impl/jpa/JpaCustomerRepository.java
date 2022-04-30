@@ -1,9 +1,14 @@
 package eapli.base.persistence.impl.jpa;
 import eapli.base.Application;
 import eapli.base.customermanagement.domain.Customer;
+import eapli.base.customermanagement.domain.VatId;
 import eapli.base.customermanagement.repositories.CustomerRepository;
 import eapli.framework.domain.repositories.TransactionalContext;
 import eapli.framework.infrastructure.repositories.impl.jpa.JpaAutoTxRepository;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 public class JpaCustomerRepository extends JpaAutoTxRepository<Customer, Integer, Integer>
         implements CustomerRepository {
@@ -18,4 +23,10 @@ public class JpaCustomerRepository extends JpaAutoTxRepository<Customer, Integer
     }
 
 
+    @Override
+    public Optional<Customer> findByVATId(VatId vatId) {
+        final Map<String, Object> params = new HashMap<>();
+        params.put("vatId", vatId);
+        return matchOne("e.vatId=:vatId", params);
+    }
 }
