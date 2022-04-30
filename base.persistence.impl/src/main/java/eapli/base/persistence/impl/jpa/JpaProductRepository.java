@@ -43,7 +43,7 @@ public class JpaProductRepository  extends  JpaAutoTxRepository<Product, UniqueI
     public List<Product> findByDescription(ShortDescription description) {
         final Map<String, Object> descriptions = new HashMap<>();
         descriptions.put("des", description);
-        return match("e.description=:des", descriptions);
+        return match("e.shortDescription=:des", descriptions);
     }
 
     @Override
