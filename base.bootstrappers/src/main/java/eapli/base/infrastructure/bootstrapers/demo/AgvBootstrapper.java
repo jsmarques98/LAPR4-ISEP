@@ -24,10 +24,13 @@ public class AgvBootstrapper implements Action {
     public boolean execute() {
 
         AGV agv, agv1, agv2, agv3;
-
+        controller.validateAGVDock("D1");
         agv = controller.createAGV("1234", 60, 500.0, "model1", "only supports 500g" );
+        controller.validateAGVDock("D2");
         agv1 = controller.createAGV("12345", 70, 1000.0, "model2", "only supports 1000g" );
+        controller.validateAGVDock("D3");
         agv2 = controller.createAGV("123456", 80, 1500.0, "model3", "only supports 1500g" );
+        controller.validateAGVDock("D4");
         agv3 = controller.createAGV("1234567", 90, 1950.0, "model4", "only supports 2000g" );
 
         PersistenceContext.repositories().agvs().save(agv);
