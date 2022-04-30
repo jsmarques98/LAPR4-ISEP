@@ -36,33 +36,42 @@ public class AddAGVUI extends AbstractUI {
 
     private boolean createAGV() {
 
+        if(controller.isPossibleToCreateAGV()) {
+            String idAgv = Console.readLine("AgvId:");
+            String description = Console.readLine("Description:");
+            String model = Console.readLine("Model:");
+            Double weight = Console.readDouble("Weight:");
+            Integer autonomy = Console.readInteger("Autonomy:");
+            String location = Console.readLine("AGV Dock Location:");
 
-        String idAgv = Console.readLine("AgvId:");
-        String description = Console.readLine("description:");
-        String model = Console.readLine("model:");
-        Double weight = Console.readDouble("weight:");
-        Integer autonomy = Console.readInteger("autonomy:");
-        String location = Console.readLine("location:");
-
-
-        try {
-            controller.createAGV(idAgv,autonomy,weight,model,description);
-            return true;
-        } catch (final IntegrityViolationException e) {
-            System.out.println("Unique Internal Code is already in use.");
-        } catch (final ConcurrencyException e) {
-            LOGGER.error("This should never happen", e);
-            System.out.println(
-                    "Unfortunately there was an unexpected error in the application. Please try again and if the problem persists, contact your system administrator.");
+            if (controller.validateAGVDock(location)) {
+                try {
+                    controller.createAGV(idAgv, autonomy, weight, model, description);
+                    return true;
+                } catch (final IntegrityViolationException e) {
+                    System.out.println("Unique Internal Code is already in use.");
+                    return false;
+                } catch (final ConcurrencyException e) {
+                    LOGGER.error("This should never happen", e);
+                    System.out.println(
+                            "Unfortunately there was an unexpected error in the application. Please try again and if the problem persists, contact your system administrator.");
+                }
+                return false;
+            }else{
+                System.out.println("Theres already an AGV using this AGV Dock");
+            }
+            return false;
+        }else{
+            System.out.println("There's no available AGV Docks, so you cannot create another AGV");
+            return false;
         }
-        return false;
     }
 
 
 
     @Override
     public String headline() {
-        return "ADD PRODUCT";
+        return "ADD AGV";
     }
 
 }

@@ -1,13 +1,12 @@
 package eapli.base.agvmanagement.domain;
 
+import eapli.base.warehousemanagement.domain.AGVDock;
 import eapli.framework.domain.model.AggregateRoot;
 import eapli.framework.domain.model.DomainEntities;
 import eapli.framework.validations.Preconditions;
 import org.springframework.data.annotation.Version;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -30,13 +29,21 @@ public class AGV implements AggregateRoot<IDAGV> {
     @Column
     private ShortDescription shortDescription;
 
-    public AGV(IDAGV id, Autonomy autonomy, MaxWeight maxWeight, Model model, ShortDescription shortDescription) {
-        Preconditions.noneNull(id,autonomy,maxWeight,model,shortDescription);
+    @Enumerated
+    private CurrentTask currentTask;
+
+    @OneToOne
+    private AGVDock agvDock;
+
+    public AGV(IDAGV id, Autonomy autonomy, MaxWeight maxWeight, Model model, ShortDescription shortDescription,AGVDock agvDock) {
+        Preconditions.noneNull(id,autonomy,maxWeight,model,shortDescription,agvDock);
         this.id = id;
         this.autonomy = autonomy;
         this.maxWeight = maxWeight;
         this.model = model;
         this.shortDescription = shortDescription;
+        this.currentTask = CurrentTask.FREE;
+        this.agvDock=agvDock;
     }
 
     public AGV(){
@@ -64,7 +71,7 @@ public class AGV implements AggregateRoot<IDAGV> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(version, id, autonomy, maxWeight, model, shortDescription);
+        return Objects.hash(version, id, autonomy, maxWeight, model, shortDescription,agvDock);
     }
 
     @Override
@@ -74,6 +81,7 @@ public class AGV implements AggregateRoot<IDAGV> {
                 "Autonomy=" + autonomy +"\n"+
                 "Max Weight=" + maxWeight +"\n"+
                 "Model=" + model +"\n"+
-                "Short Description=" + shortDescription;
+                "Short Description=" + shortDescription +"\n"+
+                "AGV Dock Location=" + agvDock;
     }
 }
