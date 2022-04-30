@@ -13,6 +13,11 @@ import eapli.base.warehousemanagement.domain.RowAisleID;
 import eapli.base.warehousemanagement.repository.AisleRepository;
 import eapli.base.warehousemanagement.repository.RowAisleRepository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.transaction.Transactional;
+
 public class AddProductController {
 
 
@@ -24,6 +29,7 @@ public class AddProductController {
 
 
 
+
     public AddProductController(){
         repositoryFactory = PersistenceContext.repositories();
         productRepository = repositoryFactory.products();
@@ -32,10 +38,13 @@ public class AddProductController {
         aisleRepository = repositoryFactory.aisle();
     }
 
+    @Transactional
     public Product createProduct(ProductDTO productDTO){
          return productRepository.save(new Product(UniqueInternalCode.valueOf(productDTO.uniqueInternalCode), productDTO.category,Barcode.valueOf(productDTO.barcode), BasePrice.valueOf(productDTO.basePrice)
                   , Brand.valueOf(productDTO.brand), ShortDescription.valueOf(productDTO.shortDescription),ProductionCode.valueOf(productDTO.productionCode),Reference.valueOf(productDTO.reference),
                           Volume.valueOf(productDTO.volume),Weight.valueOf(productDTO.weight), Picture.valueOf(productDTO.picturePath),getRowAisle(productDTO.rowID, productDTO.aisleID), LongDescription.valueOf(productDTO.longDescription), TechnicalDescription.valueOf(productDTO.technicalDescription)));
+
+
     }
 
     public Iterable<Category> getCategories(){

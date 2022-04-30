@@ -1,10 +1,12 @@
 package eapli.base.warehousemanagement.domain;
 
+import eapli.framework.domain.model.DomainEntities;
 import eapli.framework.domain.model.ValueObject;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
+import java.util.Objects;
 
 
 @Embeddable
@@ -30,6 +32,19 @@ public class RowAisleID implements ValueObject, Comparable<RowAisleID> {
 
     public Aisle getAisle() {
         return aisle;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RowAisleID that = (RowAisleID) o;
+        return Objects.equals(id, that.id) && Objects.equals(aisle, that.aisle);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, aisle);
     }
 
     @Override
