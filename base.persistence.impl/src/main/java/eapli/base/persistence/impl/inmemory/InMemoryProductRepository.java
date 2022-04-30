@@ -27,6 +27,7 @@ public class InMemoryProductRepository extends InMemoryDomainRepository<Product,
 
     @Override
     public List<Product> findByBrand(Brand brand) {
+        
         return List.of(data().get(brand));
     }
 }
