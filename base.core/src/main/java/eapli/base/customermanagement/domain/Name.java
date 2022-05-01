@@ -3,6 +3,7 @@ package eapli.base.customermanagement.domain;
 import eapli.framework.domain.model.ValueObject;
 
 import javax.persistence.Embeddable;
+import java.util.Objects;
 
 @Embeddable
 public class Name implements ValueObject {
@@ -28,10 +29,22 @@ public class Name implements ValueObject {
     }
 
     private static boolean isValid(String value) {
-        if (value.length()<MAX_VALUE||value.length()>MIN_VALUE){
-            return true;
+        if (value.length()>MAX_VALUE||value.length()<MIN_VALUE){
+            return false;
         }
+        return  true;
+    }
 
-        return  false;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Name name1 = (Name) o;
+        return Objects.equals(name, name1.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

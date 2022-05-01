@@ -36,7 +36,7 @@ public class AddCustomerController {
             addressList.add(new AdressCostumer(streetName, doorNumber, postalCode, city, country));
         }
         return costumerRep.save(new Customer(EmailAddress.valueOf(customerDTO.email), Name.valueOf(customerDTO.name),
-                PhoneNumber.valueOf(customerDTO.phoneNumber), VatId.valueOf(customerDTO.vatId), customerDTO.birthDate, addressList));
+                PhoneNumber.valueOf(customerDTO.phoneNumber), VatId.valueOf(customerDTO.vatId), customerDTO.birthDate, addressList,customerDTO.gender));
 
     }
 }

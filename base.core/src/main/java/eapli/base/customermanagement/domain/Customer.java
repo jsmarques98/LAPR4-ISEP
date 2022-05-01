@@ -1,7 +1,6 @@
 package eapli.base.customermanagement.domain;
 
 
-
 import eapli.base.customermanagement.dto.CustomerDTO;
 import eapli.framework.domain.model.AggregateRoot;
 import eapli.framework.domain.model.DomainEntities;
@@ -9,10 +8,7 @@ import eapli.framework.general.domain.model.EmailAddress;
 import eapli.framework.representations.dto.DTOable;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class Customer implements AggregateRoot<Integer>, DTOable<CustomerDTO> {
@@ -39,14 +35,18 @@ public class Customer implements AggregateRoot<Integer>, DTOable<CustomerDTO> {
     @Column
     private Date birthDate;
 
+    @Column
+    String gender;
+
     @ElementCollection
     @CollectionTable(name = "customer_adress", joinColumns = @JoinColumn(name = "customer_id"))
     private List<AdressCostumer> address = new ArrayList<>();
 
-    public Customer() {}
+    public Customer() {
+    }
 
 
-    public Customer(EmailAddress email, Name name, PhoneNumber phoneNumber, VatId vatId, Date birthDate, List<AdressCostumer> addresss) {
+    public Customer(EmailAddress email, Name name, PhoneNumber phoneNumber, VatId vatId, Date birthDate, List<AdressCostumer> addresss,String gender) {
         this.email = email;
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -87,5 +87,38 @@ public class Customer implements AggregateRoot<Integer>, DTOable<CustomerDTO> {
     @Override
     public boolean hasIdentity(Integer id) {
         return AggregateRoot.super.hasIdentity(id);
+    }
+
+    public EmailAddress getEmail() {
+        return email;
+    }
+
+    public VatId getVatId() {
+        return vatId;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public List<AdressCostumer> getAddress() {
+        return address;
+    }
+
+    public PhoneNumber getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+
+        return Objects.equals(email, customer.email) && Objects.equals(name, customer.name) && Objects.equals(phoneNumber, customer.phoneNumber) && Objects.equals(vatId, customer.vatId) && Objects.equals(address, customer.address);
     }
 }
