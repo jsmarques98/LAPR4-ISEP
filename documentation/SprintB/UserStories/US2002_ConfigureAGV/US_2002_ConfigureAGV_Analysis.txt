@@ -7,7 +7,7 @@
 	Fórum de dúvidas com o cliente 
 
 	* Sales Clerk uses the backofice application to configure new AGVs
-	* AGVs are characterized by: IDAGV , CurrentTask, Autonomy, ShortDescription,Model , MaxWeight (g), and BaseLocation.
+	* AGVs are characterized by: IDAGV , CurrentTask, Autonomy, ShortDescription,Model , MaxWeight (g),Model, and BaseLocation.
 	* An AGV as an unique BaseLocation
 	
 
@@ -33,7 +33,7 @@
 	_____________________
 
 
-	PRODUCT	
+	AGV	
 	* testAGVMustHaveLocation
 	* testAGVEqualsPassesSameIDAGV
 	* testAGVEqualsFailsDifferentAGV
@@ -49,11 +49,14 @@
 	* testCurrentTaskMustNotBeNullNorEmpty
 	
 	AUTONOMY
-	* testAutonomyMustNotBeNullNorEmpty
+	* testAutonomyMustNotBeNull
 	* testAutonomyCanNotBeNegative
 
 	SHORTDESCRIPTION
 	* testShortDescriptionMustNotBeNullNorEmpty
+
+	MODEL
+	* testModelMustNotBeNullNorEmpty
 
 	MAXWEIGHT
 	* testMaxWeightMustNotBeNullNorEmpty
