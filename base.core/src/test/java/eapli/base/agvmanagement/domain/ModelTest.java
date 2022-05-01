@@ -5,20 +5,22 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ModelTest {
-
     @Test
-    void valueOf() {
-    }
+    void testModelMustNotBeNullNorEmpty() {
+        Throwable exception = assertThrows(
+                IllegalArgumentException.class, () -> {
+                    Model model = new Model(null);
+                }
+        );
 
-    @Test
-    void testEquals() {
-    }
+        assertEquals("Model cannot be null",exception.getMessage());
 
-    @Test
-    void testHashCode() {
-    }
+        Throwable exception2 = assertThrows(
+                IllegalArgumentException.class, () -> {
+                    Model model = new Model("");
+                }
+        );
 
-    @Test
-    void testToString() {
+        assertEquals("Invalid Model",exception2.getMessage());
     }
 }

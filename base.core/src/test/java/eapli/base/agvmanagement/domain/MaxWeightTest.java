@@ -7,18 +7,25 @@ import static org.junit.jupiter.api.Assertions.*;
 class MaxWeightTest {
 
     @Test
-    void valueOf() {
+    void testMaxWeightMustNotBeNull() {
+        Throwable exception = assertThrows(
+                IllegalArgumentException.class, () -> {
+                    MaxWeight idagv = new MaxWeight(null);
+                }
+        );
+
+        assertEquals("Max Weight cannot be null",exception.getMessage());
     }
 
     @Test
-    void testEquals() {
+    void testMaxWeightCannotBeNegative() {
+        Throwable exception = assertThrows(
+                IllegalArgumentException.class, () -> {
+                    MaxWeight idagv = new MaxWeight(-1.0);
+                }
+        );
+
+        assertEquals("Invalid Max Weight",exception.getMessage());
     }
 
-    @Test
-    void testHashCode() {
-    }
-
-    @Test
-    void testToString() {
-    }
 }

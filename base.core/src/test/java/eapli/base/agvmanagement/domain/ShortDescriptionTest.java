@@ -7,18 +7,21 @@ import static org.junit.jupiter.api.Assertions.*;
 class ShortDescriptionTest {
 
     @Test
-    void valueOf() {
-    }
+    void testShortDescriptionMustNotBeNullNorEmpty() {
+        Throwable exception = assertThrows(
+                IllegalArgumentException.class, () -> {
+                    ShortDescription model = new ShortDescription(null);
+                }
+        );
 
-    @Test
-    void testEquals() {
-    }
+        assertEquals("description cannot be null",exception.getMessage());
 
-    @Test
-    void testHashCode() {
-    }
+        Throwable exception2 = assertThrows(
+                IllegalArgumentException.class, () -> {
+                    ShortDescription model = new ShortDescription("");
+                }
+        );
 
-    @Test
-    void testToString() {
+        assertEquals("Invalid description",exception2.getMessage());
     }
 }

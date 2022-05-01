@@ -5,24 +5,21 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class IDAGVTest {
-
     @Test
-    void valueOf() {
-    }
+    void testIDAGVMustNotBeNullNorEmpty() {
+        Throwable exception = assertThrows(
+                IllegalArgumentException.class, () -> {
+                    IDAGV idagv = new IDAGV(null);
+                }
+        );
 
-    @Test
-    void testEquals() {
-    }
+        assertEquals("idAGV not valid",exception.getMessage());
 
-    @Test
-    void testToString() {
-    }
-
-    @Test
-    void testHashCode() {
-    }
-
-    @Test
-    void compareTo() {
+        Throwable exception2 = assertThrows(
+                IllegalArgumentException.class, () -> {
+                    IDAGV idagv = new IDAGV("");
+                }
+        );
+        assertEquals("idAGV not valid",exception2.getMessage());
     }
 }
