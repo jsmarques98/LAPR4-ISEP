@@ -26,6 +26,8 @@ import eapli.base.categorymanagement.repositories.CategoryRepository;
 import eapli.base.clientusermanagement.repositories.SignupRequestRepository;
 import eapli.base.customermanagement.repositories.CustomerRepository;
 import eapli.base.infrastructure.persistence.RepositoryFactory;
+import eapli.base.ordermanagement.repositories.CustomerOrderRepository;
+import eapli.base.ordermanagement.repositories.OrderItemRepository;
 import eapli.base.productmanagement.repositories.ProductRepository;
 import eapli.base.warehousemanagement.repository.*;
 import eapli.framework.domain.repositories.TransactionalContext;
@@ -150,6 +152,26 @@ public class JpaRepositoryFactory implements RepositoryFactory {
     @Override
     public AGVDockRepository aGVDock(TransactionalContext autoTx) {
         return new JpaAGVDockRepository(autoTx);
+    }
+
+    @Override
+    public OrderItemRepository orderItem(TransactionalContext autoTx) {
+        return new JpaOrderItemRepository(autoTx);
+    }
+
+    @Override
+    public OrderItemRepository orderItem() {
+        return new JpaOrderItemRepository(Application.settings().getPersistenceUnitName());
+    }
+
+    @Override
+    public CustomerOrderRepository customerOrder() {
+        return new JpaCustomerOrderRepository(Application.settings().getPersistenceUnitName());
+    }
+
+    @Override
+    public CustomerOrderRepository customerOrder(TransactionalContext autoTx) {
+        return new JpaCustomerOrderRepository(autoTx);
     }
 
 

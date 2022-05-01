@@ -27,6 +27,7 @@ import eapli.base.app.backoffice.console.presentation.Costumer.AddCustomerUI;
 import eapli.base.app.backoffice.console.presentation.agv.AddAGVUI;
 import eapli.base.app.backoffice.console.presentation.catalog.ShowCatalogUI;
 import eapli.base.app.backoffice.console.presentation.category.AddCategoryUI;
+import eapli.base.app.backoffice.console.presentation.order.RegisterOrderForClientUI;
 import eapli.base.app.backoffice.console.presentation.product.AddProductUI;
 //import eapli.base.app.backoffice.console.presentation.product.ListProductsUI;
 import eapli.base.app.backoffice.console.presentation.warehouse.UpdateWarehouseUI;
@@ -81,6 +82,8 @@ public class MainMenu extends AbstractUI {
 
     //CATALOG
     private static final int VIEW_CATALOG_OPTION = 1;
+    //Order
+    private static  final  int CREATE_ORDER_OPTION = 1;
 
     //Warehouse
     private static final int UPDATE_WAREHOUSE_OPTION = 1;
@@ -96,6 +99,7 @@ public class MainMenu extends AbstractUI {
     private static final int CUSTOMER_OPTION = 5;
     private static final int AGV_OPTION = 6;
     private static final int CATALOG_OPTION = 7;
+    private static final int ORDER_OPTION = 8;
 
     private static final String SEPARATOR_LABEL = "--------------";
 
@@ -157,6 +161,9 @@ public class MainMenu extends AbstractUI {
 
             final Menu catalogMenu = buildCatalogMenu();
             mainMenu.addSubMenu(CATALOG_OPTION, catalogMenu);
+
+            final Menu orderMenu = buildOrderMenu();
+            mainMenu.addSubMenu(ORDER_OPTION, orderMenu);
         }
 
         if (authz.isAuthenticatedUserAuthorizedTo(BaseRoles.POWER_USER, BaseRoles.ADMIN, BaseRoles.WAREHOUSE_EMPLOYEE)){
@@ -242,4 +249,12 @@ public class MainMenu extends AbstractUI {
         return menu;
     }
 
+    private Menu buildOrderMenu() {
+        final Menu menu = new Menu("Order >");
+
+        menu.addItem(UPDATE_WAREHOUSE_OPTION, "Order Management", new RegisterOrderForClientUI()::show);
+        menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
+
+        return menu;
+    }
 }

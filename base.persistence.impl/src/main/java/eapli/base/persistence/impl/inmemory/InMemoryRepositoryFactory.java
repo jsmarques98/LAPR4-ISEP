@@ -27,6 +27,8 @@ import eapli.base.clientusermanagement.repositories.SignupRequestRepository;
 import eapli.base.customermanagement.repositories.CustomerRepository;
 import eapli.base.infrastructure.bootstrapers.BaseBootstrapper;
 import eapli.base.infrastructure.persistence.RepositoryFactory;
+import eapli.base.ordermanagement.repositories.CustomerOrderRepository;
+import eapli.base.ordermanagement.repositories.OrderItemRepository;
 import eapli.base.productmanagement.repositories.ProductRepository;
 import eapli.base.warehousemanagement.repository.*;
 import eapli.framework.domain.repositories.TransactionalContext;
@@ -108,6 +110,26 @@ public class InMemoryRepositoryFactory implements RepositoryFactory {
     @Override
     public AGVDockRepository aGVDock(TransactionalContext autoTx) {
         return new InMemoryAGVDockRepository();
+    }
+
+    @Override
+    public OrderItemRepository orderItem(TransactionalContext autoTx) {
+        return new InMemoryOrderItemRepository();
+    }
+
+    @Override
+    public OrderItemRepository orderItem() {
+        return orderItem(null);
+    }
+
+    @Override
+    public CustomerOrderRepository customerOrder() {
+        return customerOrder(null);
+    }
+
+    @Override
+    public CustomerOrderRepository customerOrder(TransactionalContext autoTx) {
+        return new InMemoryCustomerOrderRepository();
     }
 
 

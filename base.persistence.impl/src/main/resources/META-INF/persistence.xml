@@ -21,6 +21,8 @@
     <class>eapli.base.warehousemanagement.domain.Aisle</class>
     <class>eapli.base.warehousemanagement.domain.AGVDock</class>
     <class>eapli.base.warehousemanagement.domain.RowAisle</class>
+    <class>eapli.base.ordermanagement.domain.CustomerOrder</class>
+    <class>eapli.base.ordermanagement.domain.OrderItem</class>
 
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://vsgate-s2.dei.isep.ipp.pt:10635/base"/>

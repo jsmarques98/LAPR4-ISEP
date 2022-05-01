@@ -46,7 +46,7 @@ public class Customer implements AggregateRoot<Integer>, DTOable<CustomerDTO> {
     }
 
 
-    public Customer(EmailAddress email, Name name, PhoneNumber phoneNumber, VatId vatId, Date birthDate, List<AdressCostumer> addresss,String gender) {
+    public Customer(EmailAddress email, Name name, PhoneNumber phoneNumber, VatId vatId, Date birthDate, List<AdressCostumer> addresss, String gender) {
         this.email = email;
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -118,7 +118,6 @@ public class Customer implements AggregateRoot<Integer>, DTOable<CustomerDTO> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-
-        return Objects.equals(email, customer.email) && Objects.equals(name, customer.name) && Objects.equals(phoneNumber, customer.phoneNumber) && Objects.equals(vatId, customer.vatId) && Objects.equals(address, customer.address);
+        return Objects.equals(email, customer.email) && Objects.equals(name, customer.name) && Objects.equals(phoneNumber, customer.phoneNumber) && Objects.equals(vatId, customer.vatId) && Objects.equals(birthDate, customer.birthDate) && Objects.equals(gender, customer.gender) && Objects.equals(address, customer.address);
     }
 }

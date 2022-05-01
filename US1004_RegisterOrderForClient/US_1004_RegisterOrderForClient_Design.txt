@@ -1,0 +1,13 @@
+	_________
+
+	DESIGN
+	_________
+
+	* Use the standard layer-based application framework
+
+   	Domain Classes:  
+		Order, OrderItem, Price
+
+	
+   	Controlador: RegisterOrderForClientController
+   	Repository: OrderRepositoryRepository

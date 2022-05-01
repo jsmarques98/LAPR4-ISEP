@@ -25,6 +25,9 @@ import eapli.base.categorymanagement.repositories.CategoryRepository;
 import eapli.base.clientusermanagement.repositories.ClientUserRepository;
 import eapli.base.clientusermanagement.repositories.SignupRequestRepository;
 import eapli.base.customermanagement.repositories.CustomerRepository;
+import eapli.base.ordermanagement.domain.CustomerOrder;
+import eapli.base.ordermanagement.repositories.CustomerOrderRepository;
+import eapli.base.ordermanagement.repositories.OrderItemRepository;
 import eapli.base.productmanagement.repositories.ProductRepository;
 import eapli.base.warehousemanagement.repository.*;
 import eapli.framework.domain.repositories.TransactionalContext;
@@ -118,4 +121,12 @@ public interface RepositoryFactory {
     AGVDockRepository aGVDock();
 
     AGVDockRepository aGVDock(TransactionalContext autoTx);
+
+    OrderItemRepository orderItem(TransactionalContext autoTx);
+
+    OrderItemRepository orderItem();
+
+    CustomerOrderRepository customerOrder();
+
+    CustomerOrderRepository customerOrder(TransactionalContext autoTx);
 }
