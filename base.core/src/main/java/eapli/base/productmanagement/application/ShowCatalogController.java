@@ -5,8 +5,9 @@ import eapli.base.categorymanagement.repositories.CategoryRepository;
 import eapli.base.infrastructure.persistence.PersistenceContext;
 import eapli.base.infrastructure.persistence.RepositoryFactory;
 import eapli.base.productmanagement.domain.Brand;
-import eapli.base.productmanagement.domain.Description;
+import eapli.base.productmanagement.domain.ShortDescription;
 import eapli.base.productmanagement.domain.Product;
+import eapli.base.productmanagement.domain.ShortDescription;
 import eapli.base.productmanagement.repositories.ProductRepository;
 import org.springframework.orm.jpa.persistenceunit.PersistenceUnitManager;
 
@@ -42,13 +43,13 @@ public class ShowCatalogController {
         return categories;
     }
 
-    public List<Description> getDescriptions() {
-        Query query = entityManager.createQuery("select description from Product");
-        List<Description> descriptions = query.getResultList();
+    public List<ShortDescription> getDescriptions() {
+        Query query = entityManager.createQuery("select shortDescription from Product");
+        List<ShortDescription> descriptions = query.getResultList();
         return descriptions;
     }
 
-    public List<Product> getDescriptionProducts(Description description) {
+    public List<Product> getDescriptionProducts(ShortDescription description) {
         List<Product> descriptions = productRepository.findByDescription(description);
         return descriptions;
     }

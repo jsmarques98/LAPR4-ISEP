@@ -56,4 +56,8 @@ public class BasePrice implements ValueObject {
     public String toString() {
         return baseprice.toString() + " €";
     }
+
+    public int compareTo(BasePrice other) {
+        return this.baseprice.compareTo(other.baseprice);
+    }
 }

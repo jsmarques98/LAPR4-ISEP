@@ -51,4 +51,8 @@ public class ShortDescription implements ValueObject {
     public String toString() {
         return description;
     }
+
+    public int compareTo(ShortDescription description) {
+        return this.description.compareTo(description.description);
+    }
 }

@@ -3,8 +3,9 @@ package eapli.base.app.backoffice.console.presentation.catalog;
 import eapli.base.categorymanagement.domain.Category;
 import eapli.base.productmanagement.application.ShowCatalogController;
 import eapli.base.productmanagement.domain.Brand;
-import eapli.base.productmanagement.domain.Description;
+import eapli.base.productmanagement.domain.ShortDescription;
 import eapli.base.productmanagement.domain.Product;
+import eapli.base.productmanagement.domain.ShortDescription;
 import eapli.framework.actions.Action;
 import eapli.framework.actions.Actions;
 import eapli.framework.actions.menu.Menu;
@@ -17,12 +18,14 @@ import eapli.framework.presentation.console.menu.VerticalMenuRenderer;
 import eapli.framework.visitor.Visitor;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ShowCatalogUI extends AbstractUI {
     private ShowCatalogController controller = new ShowCatalogController();
     private List<Category> categories = new ArrayList<>();
-    private List<Description> descriptions = new ArrayList<>();
+    private List<ShortDescription> descriptions = new ArrayList<>();
     private List<Brand> brands = new ArrayList<>();
 
 
@@ -41,17 +44,16 @@ public class ShowCatalogUI extends AbstractUI {
         int counter = 0;
         initialMenu.addItem(MenuItem.of(counter++, "Cancel", Actions.SUCCESS));
         initialMenu.addSubMenu(1, buildFiltersMenu());
+        initialMenu.addItem(MenuItem.of(2, "No filters", showAllProducts()));
         return initialMenu;
     }
 
     private Menu buildFiltersMenu() {
-        final Menu menu = new Menu("Filters >");
-
+        final Menu menu = new Menu("Filters");
+        menu.addItem(MenuItem.of(0, "Cancel", Actions.SUCCESS));
         menu.addSubMenu(1, buildCategoriesMenu());
         menu.addSubMenu(2, buildDescriptionMenu());
         menu.addSubMenu(3, buildBrandMenu());
-        menu.addItem(MenuItem.of(4, "No filters", showAllProducts()));
-        menu.addItem(MenuItem.of(0, "Cancel", Actions.SUCCESS));
         return menu;
     }
 
@@ -89,12 +91,61 @@ public class ShowCatalogUI extends AbstractUI {
                     for (Product p : products) {
                         new ProductPrinter().visit(p);
                     }
+                buildSortMenu(products);
                 } else
                     System.out.println("There are no products of this category!");
                 return true;
             }
         }
+                ;
+    }
 
+    private boolean buildSortMenu (List<Product> products) {
+        System.out.println("\n\nDo you want to sort?");
+        final Menu sortMenu = new Menu("Sort");
+        final MenuRenderer renderer = new VerticalMenuRenderer(sortMenu, MenuItemRenderer.DEFAULT);
+        int counter = 0;
+        sortMenu.addItem(MenuItem.of(counter++, "No sort", Actions.SUCCESS));
+        sortMenu.addItem(MenuItem.of(1, "By price", sortByPrice(products)));
+        sortMenu.addItem(MenuItem.of(2, "Description Alphabetically", sortByDescription(products)));
+        return renderer.render();
+    }
+
+    private Action sortByPrice(List<Product> products) {
+        return new Action() {
+            @Override
+            public boolean execute() {
+                Collections.sort(products, new Comparator<Product>() {
+                    public int compare(Product p1, Product p2) {
+                        return p1.getBasePrice().compareTo(p2.getBasePrice());
+                    }
+                });
+                System.out.println(String.format("%-20s%-30s%-15s%-15s%s", "#UIC#", "#Description#", "#Brand#", "#Category#", "#Price#"));
+                for (Product p : products) {
+                    new ProductPrinter().visit(p);
+                }
+                return true;
+            }
+        }
+        ;
+    }
+
+    private Action sortByDescription(List<Product> products) {
+        return new Action() {
+            @Override
+            public boolean execute() {
+                Collections.sort(products, new Comparator<Product>() {
+                    public int compare(Product p1, Product p2) {
+                        return p1.getShortDescription().compareTo(p2.getShortDescription());
+                    }
+                });
+                System.out.println(String.format("%-20s%-30s%-15s%-15s%s", "#UIC#", "#Description#", "#Brand#", "#Category#", "#Price#"));
+                for (Product p : products) {
+                    new ProductPrinter().visit(p);
+                }
+                return true;
+            }
+        }
                 ;
     }
 
@@ -102,13 +153,13 @@ public class ShowCatalogUI extends AbstractUI {
         final Menu descriptionMenu = new Menu("Description");
         int counter = 0;
         descriptionMenu.addItem(MenuItem.of(counter++, "Cancel", Actions.SUCCESS));
-        for (final Description description : controller.getDescriptions()) {
+        for (final ShortDescription description : controller.getDescriptions()) {
             descriptionMenu.addItem(MenuItem.of(counter++, description.toString(), showDescriptionProducts(description)));
         }
         return descriptionMenu;
     }
 
-    private Action showDescriptionProducts(Description description) {
+    private Action showDescriptionProducts(ShortDescription description) {
         return new Action() {
             @Override
             public boolean execute() {
@@ -118,6 +169,7 @@ public class ShowCatalogUI extends AbstractUI {
                     for (Product p : products) {
                         new ProductPrinter().visit(p);
                     }
+                    buildSortMenu(products);
                 } else
                     System.out.println("There are no products with this description!");
                 return true;
@@ -145,6 +197,7 @@ public class ShowCatalogUI extends AbstractUI {
                     for (Product p : products) {
                         new ProductPrinter().visit(p);
                     }
+                    buildSortMenu(products);
                 } else
                     System.out.println("There are no products of this brand!");
                 return true;
