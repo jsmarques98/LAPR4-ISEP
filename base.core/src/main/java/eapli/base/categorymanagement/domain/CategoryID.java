@@ -45,4 +45,17 @@ public class CategoryID implements ValueObject, Comparable<CategoryID> {
     public String toString() {
         return categoryID;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CategoryID that = (CategoryID) o;
+        return Objects.equals(categoryID, that.categoryID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(categoryID);
+    }
 }

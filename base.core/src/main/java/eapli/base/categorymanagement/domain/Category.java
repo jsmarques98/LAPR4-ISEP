@@ -7,6 +7,7 @@ import eapli.framework.domain.model.DomainEntities;
 import eapli.framework.validations.Preconditions;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Category implements AggregateRoot<CategoryID> {
@@ -57,6 +58,16 @@ public class Category implements AggregateRoot<CategoryID> {
 
     @Override
     public CategoryID identity() {
-        return null;
+        return this.categoryID;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return DomainEntities.areEqual(this, o);
+    }
+
+    @Override
+    public int hashCode() {
+        return DomainEntities.hashCode(this);
     }
 }

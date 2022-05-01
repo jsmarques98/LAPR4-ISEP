@@ -3,6 +3,7 @@ package eapli.base.categorymanagement.domain;
 import eapli.framework.domain.model.ValueObject;
 
 import javax.persistence.Embeddable;
+import java.util.Objects;
 
 @Embeddable
 public class Description implements ValueObject {
@@ -33,6 +34,19 @@ public class Description implements ValueObject {
 
         return description.length()>MIN_SIZE && description.length()<MAX_SIZE;
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Description that = (Description) o;
+        return Objects.equals(description, that.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(description);
     }
 
     @Override
