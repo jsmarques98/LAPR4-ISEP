@@ -8,4 +8,5 @@ _______________________________
 2. Choose Option Catalog -> View catalog
 3. Choose Option Filter -> Category
 4. Choose one category
-5. Confirm the visualization of the product catalog
+5. Search/See the product catalog and choose to sort by price
+6. Confirm the searching of the product catalog

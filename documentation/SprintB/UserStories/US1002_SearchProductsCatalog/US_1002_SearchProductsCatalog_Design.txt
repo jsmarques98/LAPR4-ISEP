@@ -5,9 +5,8 @@ _________
 
 * Use the standard layer-based application framework
 
-Domain Classes:
-
+Domain Classes: Product, Category, Description, Brand, BasePrice
 
 Controlador: ShowCatalogController
 
-Repository:
+Repository: ProductRepository, CategoryRepository
