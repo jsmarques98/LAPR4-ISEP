@@ -1,0 +1,13 @@
+TEST PLAN
+
+	_______________________________
+	CASE #1 Register order for client 
+	_______________________________
+
+	1. Login as salesclerk
+	2. Choose Option Orders > Register Order For Client 
+	3. Insert Client ID
+	4. If client doesnt exist, creates the client.
+	5. Insert UIC of Products
+	6. If necessary, search UIC on products catalog
+	7. Confirm the order addiction.
