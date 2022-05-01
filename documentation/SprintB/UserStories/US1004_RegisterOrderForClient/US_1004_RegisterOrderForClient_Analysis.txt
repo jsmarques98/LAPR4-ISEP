@@ -1,0 +1,57 @@
+	___________
+
+	ANALYSIS 
+	____________
+
+
+	Fórum de dúvidas com o cliente 
+
+	* Sales Clerk uses the backofice application to configure new AGVs
+	* Orders are characterized by: OrderID, OrderItems,Price and Customer.
+	* Each order as a unique OrderID.
+	
+
+
+	______________________
+
+	BUSINESS RULES
+	_____________________
+
+
+	* OrderID must be Unique.
+	* OrderItemID must be Unique
+	* Price is calculated automatically by the system.
+	* Orders must have a client associated.
+
+
+	______________________
+		
+	UNIT TESTS
+	_____________________
+
+
+	Order	
+	* testOrderMustHaveClient
+	* testOrderEqualsPassesSameOrderID
+	* testOrderEqualsFailsDifferentOrder
+	* testOrderEqualsAreTheSameForTheSameInstance
+	* testOrderEqualsFailsForDifferentObjectTypes
+
+
+	ORDERID
+	* testOrderIDMustNotBeNullNorEmpty
+	
+
+	ORDERITEM
+	* testOrderItemMustNotBeNullNorEmpty
+	
+	CUSTOMER
+	* testCustomerMustNotBeNullNorEmpty
+	
+
+	PRICE
+	* testPriceMustNotBeNullNorEmpty
+	* testPriceCannotBeNegative
+
+	
+
