@@ -83,9 +83,9 @@ public class RegisterOrderForClientUI extends AbstractUI {
 
     public boolean createOrderForCustomer() {
         String customerVATID = Console.readLine("Insert customer VAT ID:");
-        Customer customer = controller.getCustomerByVATID(customerVATID);
 
-        controller.createOrderForCustomer(customer);
+
+        controller.createOrderForCustomer(customerVATID);
 
         getProducts();
 

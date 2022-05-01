@@ -42,7 +42,8 @@ public class RegisterOrderController {
         return customerRepository.findByVATId(VatId.valueOf(vatId)).get();
     }
 
-    public CustomerOrder createOrderForCustomer(Customer customer) {
+    public CustomerOrder createOrderForCustomer(String customerVATID) {
+        Customer customer = getCustomerByVATID(customerVATID);
         customerOrder = orderRepository.save(new CustomerOrder(customer));
 
         return customerOrder;
