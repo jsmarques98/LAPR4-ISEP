@@ -9,6 +9,7 @@ import eapli.base.clientusermanagement.application.AcceptRefuseSignupRequestCont
 import eapli.base.clientusermanagement.domain.MecanographicNumber;
 import eapli.base.infrastructure.persistence.PersistenceContext;
 import eapli.base.myclientuser.application.SignupController;
+import eapli.base.productmanagement.domain.ShortDescription;
 import eapli.base.productmanagement.dto.ProductDTO;
 import eapli.base.productmanagement.application.AddProductController;
 import eapli.base.productmanagement.domain.UniqueInternalCode;
@@ -73,7 +74,6 @@ public class ProductBootstrapper implements Action {
         p = controller.createProduct(dto);
         PersistenceContext.repositories().products().save(p);
 
-        dto = new ProductDTO( new Category(CategoryID.valueOf("12348"), Description.valueOf("smartphones")), "abcd.12335", "1234567890012", 1099.99, "Apple", "Iphone 12 pro max", "aaaa.11105", "1234567885", 55.0, 300.0, "~/LAPR4",3,4,"Iphone 12 pro max black","3 cameras");
         p = controller.createProduct(dto);
         PersistenceContext.repositories().products().save(p);
 
