@@ -53,6 +53,7 @@ public class Customer implements AggregateRoot<Integer>, DTOable<CustomerDTO> {
         this.vatId = vatId;
         this.birthDate = birthDate;
         this.address = addresss;
+        this.gender = gender;
     }
 
     @Override
