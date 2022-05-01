@@ -1,0 +1,41 @@
+	___________
+
+	ANALYSIS 
+	____________
+
+
+	Fórum de dúvidas com o cliente 
+
+	* Sales Clerk uses the backofice application to create a new Category
+	
+
+
+	______________________
+
+	BUSINESS RULES
+	_____________________
+
+
+	* CategoryID must be unique and cannot be null.
+	* Description cannot be null nor empty
+
+	______________________
+		
+	UNIT TESTS
+	_____________________
+
+
+	CATEGORY
+
+	* testEnsureCategoriesEqualsPassesSameCID
+	* testEnsureCategoriesEqualsFailsDifferentCID
+	* testEnsureCategoryEqualsAreTheSameForTheSameInstance
+	* testEnsureCategoryEqualsFailsForDifferentObjectTypes
+
+
+	CATEGORYID
+	* testCategoryIDMustNotBeNullNorEmpty
+	
+
+	DESCRIPTION
+	* testDescriptionMustNotBeNullNorEmpty
