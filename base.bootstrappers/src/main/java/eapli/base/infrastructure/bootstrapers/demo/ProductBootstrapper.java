@@ -74,8 +74,6 @@ public class ProductBootstrapper implements Action {
         p = controller.createProduct(dto);
         PersistenceContext.repositories().products().save(p);
 
-        p = controller.createProduct(dto);
-        PersistenceContext.repositories().products().save(p);
 
         LOGGER.debug("The products were successfuly created.");
         return true;

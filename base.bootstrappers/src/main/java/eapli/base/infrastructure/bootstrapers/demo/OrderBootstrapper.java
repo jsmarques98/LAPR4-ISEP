@@ -39,7 +39,6 @@ public class OrderBootstrapper implements Action {
         controller.createOrderItem(list);
 
 
-        PersistenceContext.repositories().customerOrder().save(order);
 
 
         LOGGER.debug("The categories were successfully created.");
