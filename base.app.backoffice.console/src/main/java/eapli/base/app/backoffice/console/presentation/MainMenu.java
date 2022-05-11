@@ -89,7 +89,7 @@ public class MainMenu extends AbstractUI {
     private static final int UPDATE_WAREHOUSE_OPTION = 1;
 
     //Warehouse Main Menu
-    private static final int WAREHOUSE_OPTION = 2;
+
 
     // MAIN MENU
     private static final int MY_USER_OPTION = 1;
@@ -100,7 +100,7 @@ public class MainMenu extends AbstractUI {
     private static final int AGV_OPTION = 6;
     private static final int CATALOG_OPTION = 7;
     private static final int ORDER_OPTION = 8;
-
+    private static final int WAREHOUSE_OPTION = 9;
     private static final String SEPARATOR_LABEL = "--------------";
 
     private final AuthorizationService authz = AuthzRegistry.authorizationService();
@@ -252,7 +252,7 @@ public class MainMenu extends AbstractUI {
     private Menu buildOrderMenu() {
         final Menu menu = new Menu("Order >");
 
-        menu.addItem(UPDATE_WAREHOUSE_OPTION, "Order Management", new RegisterOrderForClientUI()::show);
+        menu.addItem(CREATE_ORDER_OPTION, "Order Management", new RegisterOrderForClientUI()::show);
         menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
 
         return menu;
