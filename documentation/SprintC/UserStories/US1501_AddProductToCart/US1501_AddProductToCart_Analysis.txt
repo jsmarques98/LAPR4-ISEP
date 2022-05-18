@@ -1,0 +1,26 @@
+	___________
+
+	ANALYSIS
+	____________
+
+
+	Fórum de dúvidas com o cliente
+
+	* At the moment there are no doubts on the client forum !
+
+	______________________
+
+	BUSINESS RULES
+	_____________________
+
+
+	* It is mandatory using the "OrdersServer" component (cf. US1901).
+	* By default, the added product quantity is one unit
+	* The costumer might opt to set more units (no decimals are allowed).
+
+
+	______________________
+
+	UNIT TESTS
+	_____________________
+
