@@ -30,13 +30,44 @@ public class OrderBootstrapper implements Action {
         List<String> list = new ArrayList<>();
 
         list.add("abcd.12345");
+        list.add("abcd.12346");
+        list.add("abcd.12347");
+        list.add("abcd.12340");
+        list.add("abcd.12341");
+        list.add("abcd.12342");
+        list.add("abcd.12330");
 
         CustomerOrder order;
+        CustomerOrder order1;
+        CustomerOrder order2;
+        CustomerOrder order3;
+        CustomerOrder order4;
+        CustomerOrder order5;
+        CustomerOrder order6;
+
         OrderItem orderItem;
 
         order = controller.createOrderForCustomer("123459");
-
         controller.createOrderItem(list);
+
+        order1 = controller.createOrderForCustomer("123456");
+        controller.createOrderItem(list);
+
+        order2 = controller.createOrderForCustomer("123457");
+        controller.createOrderItem(list);
+
+        order3 = controller.createOrderForCustomer("123458");
+        controller.createOrderItem(list);
+
+        order4 = controller.createOrderForCustomer("123450");
+        controller.createOrderItem(list);
+
+        order5 = controller.createOrderForCustomer("123459");
+        controller.createOrderItem(list);
+
+        order6 = controller.createOrderForCustomer("123456");
+        controller.createOrderItem(list);
+
 
 
 
