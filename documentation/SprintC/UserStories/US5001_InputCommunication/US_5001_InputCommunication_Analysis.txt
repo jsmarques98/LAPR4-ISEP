@@ -1,0 +1,26 @@
+	___________
+
+	ANALYSIS 
+	____________
+
+
+	Fórum de dúvidas com o cliente 
+
+	* At the moment there are no doubts on the client forum ! 
+	
+
+
+	______________________
+
+	BUSINESS RULES
+	_____________________
+
+
+	* It must be used the provided application protocol (SPOMS2022).
+	* The communication between the two involved components must be implemented in accordance with the SPOMS2022
+
+	______________________
+		
+	UNIT TESTS
+	_____________________
+
