@@ -8,6 +8,7 @@ import eapli.framework.general.domain.model.EmailAddress;
 import eapli.framework.representations.dto.DTOable;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.*;
 
 @Entity
@@ -33,7 +34,7 @@ public class Customer implements AggregateRoot<Integer>, DTOable<CustomerDTO> {
     private VatId vatId;
 
     @Column
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @Column
     String gender;
@@ -46,7 +47,7 @@ public class Customer implements AggregateRoot<Integer>, DTOable<CustomerDTO> {
     }
 
 
-    public Customer(EmailAddress email, Name name, PhoneNumber phoneNumber, VatId vatId, Date birthDate, List<AdressCostumer> addresss, String gender) {
+    public Customer(EmailAddress email, Name name, PhoneNumber phoneNumber, VatId vatId, LocalDate birthDate, List<AdressCostumer> addresss, String gender) {
         this.email = email;
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -98,7 +99,7 @@ public class Customer implements AggregateRoot<Integer>, DTOable<CustomerDTO> {
         return vatId;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 

@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,7 +35,7 @@ public class CustomerBootstrapper implements Action {
         addresses.add("Nelas");
         addresses.add("Portugal");
 
-        CustomerDTO dto = new CustomerDTO("José Monteiro", "jose@gmail.com", addresses, "M",new Date(2002,9,22), "910505106", "123456");
+        CustomerDTO dto = new CustomerDTO("José Monteiro", "jose@gmail.com", addresses, "M", LocalDate.of(2002,9,22), "910505106", "123456");
         Customer c = null;
         c = controller.createCustomer(dto);
         PersistenceContext.repositories().customers().save(c);
@@ -45,7 +46,7 @@ public class CustomerBootstrapper implements Action {
         addresses.add("4150-448");
         addresses.add("Porto");
         addresses.add("Portugal");
-        dto = new CustomerDTO("João Marques", "joao@gmail.com", addresses, "M",new Date(1998, 12, 18) , "910505106", "123457");
+        dto = new CustomerDTO("João Marques", "joao@gmail.com", addresses, "M", LocalDate.of(1998, 12, 18) , "910505106", "123457");
         c = controller.createCustomer(dto);
         PersistenceContext.repositories().customers().save(c);
         addresses = new ArrayList<String>();
@@ -54,7 +55,7 @@ public class CustomerBootstrapper implements Action {
         addresses.add("4450-575");
         addresses.add("Porto");
         addresses.add("Portugal");
-        dto = new CustomerDTO("Luís Ferreira", "luis@gmail.com", addresses, "M",new Date(2002, 10, 11) , "910505106", "123458");
+        dto = new CustomerDTO("Luís Ferreira", "luis@gmail.com", addresses, "M", LocalDate.of(2002, 10, 11) , "910505106", "123458");
         c = controller.createCustomer(dto);
         PersistenceContext.repositories().customers().save(c);
         addresses = new ArrayList<String>();
@@ -63,7 +64,7 @@ public class CustomerBootstrapper implements Action {
         addresses.add("4450-061");
         addresses.add("Porto");
         addresses.add("Portugal");
-        dto = new CustomerDTO("José Rocha", "joser@gmail.com", addresses, "M",new Date(2002, 10, 13) , "910505109", "123459");
+        dto = new CustomerDTO("José Rocha", "joser@gmail.com", addresses, "M", LocalDate.of(2002, 10, 13) , "910505109", "123459");
         c = controller.createCustomer(dto);
         PersistenceContext.repositories().customers().save(c);
         addresses = new ArrayList<String>();
@@ -72,7 +73,7 @@ public class CustomerBootstrapper implements Action {
         addresses.add("4760-723");
         addresses.add("Famalicão");
         addresses.add("Portugal");
-        dto = new CustomerDTO("Paulo Couto", "paulo@gmail.com", addresses, "M",new Date(1997, 4, 22) , "910505110", "123450");
+        dto = new CustomerDTO("Paulo Couto", "paulo@gmail.com", addresses, "M",LocalDate.of(1997, 4, 22) , "910505110", "123450");
         c = controller.createCustomer(dto);
         PersistenceContext.repositories().customers().save(c);
 

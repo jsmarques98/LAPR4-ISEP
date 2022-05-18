@@ -15,6 +15,8 @@ import org.slf4j.Logger;
 import eapli.framework.presentation.console.AbstractUI;
 import org.slf4j.LoggerFactory;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -49,7 +51,7 @@ public class AddCustomerUI extends AbstractUI {
 
         String phoneNumber = Console.readLine("Phone Number: ");
         String vatId = Console.readLine("Vat Id: ");
-        Date birthDate = Console.readDate("Birth date");
+        LocalDate birthDate = (Console.readDate("Birth date")).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 //        String name = "luis";
 //        String email ="l@gmail.com" ;
 //        String streetName ="a" ;
