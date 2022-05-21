@@ -1,0 +1,19 @@
+	TEST PLAN
+
+	_______________________________
+	CASE #1 Add Product
+	_______________________________
+
+	1. Login as salesclerk1
+	2. Choose Option Products > Add Productt
+	3. Chose category
+	4. Insert barcode
+	5. Insert  Base Price
+	6. Insert  Brand
+	7. Insert  Description
+	8. Insert  Production Code
+	9. Insert  Reference
+	10. Insert  Unique Internal Code
+	11. Insert  Volume
+	12. Insert  Weight
+	13. Confirm the product addiction by listing products ( List Products ).

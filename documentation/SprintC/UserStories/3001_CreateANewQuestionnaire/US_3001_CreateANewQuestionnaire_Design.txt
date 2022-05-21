@@ -1,0 +1,15 @@
+	_________
+
+	DESIGN
+	_________
+
+	* Use the standard layer-based application framework
+
+   	Domain Classes:  
+		Questionnaire,Description,AlphanumericalCode. 
+		Product is a Client-independent aggregate many-to-many unidirectional relationship
+
+		
+
+   	Controlador: CreateQuestionnaireController
+   	Repository: QuestionnaireRepository
