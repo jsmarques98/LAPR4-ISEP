@@ -1,0 +1,49 @@
+	___________
+
+	ANALYSIS 
+	____________
+
+
+	Customer inquiry forum:
+
+	* Sales Manager uses the backofice application to create new Questionnaires
+	* Questionnaires are characterized by: Alphanumerical Code , Descrition and its text.
+	
+	
+
+
+	______________________
+
+	BUSINESS RULES
+	_____________________
+
+
+	* Alphanumerical Code must be unique.
+	* Description has a maximum of 40 characters.
+	* Each questionnaire must have a set of target clients.
+	
+
+	______________________
+		
+	UNIT TESTS
+	_____________________
+
+
+	QUESTIONNAIRE	
+	* testEnsureQuestionnaireEqualsPassesSameAC
+	* testEnsureQuestionnaireEqualsFailsDifferentAC
+	* testEnsureQuestionnaireEqualsAreTheSameForTheSameInstance
+	* testEnsureQuestionnairesEqualsFailsForDifferentObjectTypes
+
+
+	ALPHANUMERICALCODE
+	* testAlphanumericalCodeMustNotBeNullNorEmpty
+	* testAlphanumericalCodeIsValid
+
+	DESCRIPTION
+	* testDescriptionMustNotBeNullNorEmpty
+	* testDescriptionIsValid
+	
+
+
+
