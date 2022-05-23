@@ -50,7 +50,7 @@ public class RegisterOrderForClientUI extends AbstractUI {
             showCustomerOptions();
             return true;
         } catch (final IntegrityViolationException e) {
-            System.out.println("Id is already in use.");
+            System.out.println("UniqueInternalCode is already in use.");
         } catch (final ConcurrencyException e) {
             LOGGER.error("This should never happen", e);
             System.out.println("Unfortunately there was an unexpected error in the application. Please try again and if the problem persists, contact your system administrator.");

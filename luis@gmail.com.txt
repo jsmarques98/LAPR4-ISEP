@@ -1,0 +1,3 @@
+BY: SPOMS 
+SUBJECT: Order Created
+MESSAGE:an invoice was created with the price of 3015,96

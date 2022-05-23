@@ -29,8 +29,8 @@ public class JpaCategoryRepository extends JpaAutoTxRepository<Category, Categor
         @Override
         public Optional<Category> findByCategoryID (CategoryID categoryID){
         final Map<String, Object> params = new HashMap<>();
-        params.put("cid", categoryID);
-        return matchOne("e.MecanographicNumber=:cid", params);
+        params.put("cd", categoryID);
+        return matchOne("e.categoryID=:cd", params);
     }
 
 }

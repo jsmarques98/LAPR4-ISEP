@@ -50,7 +50,7 @@ public class AddCustomerUI extends AbstractUI {
         }
 
         String phoneNumber = Console.readLine("Phone Number: ");
-        String vatId = Console.readLine("Vat Id: ");
+        String vatId = Console.readLine("Vat UniqueInternalCode: ");
         LocalDate birthDate = (Console.readDate("Birth date")).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 //        String name = "luis";
 //        String email ="l@gmail.com" ;
@@ -76,7 +76,7 @@ public class AddCustomerUI extends AbstractUI {
             controller.createCustomer(customerDTO);
             return true;
         } catch (final IntegrityViolationException e) {
-            System.out.println("Id is already in use.");
+            System.out.println("UniqueInternalCode is already in use.");
         } catch (final ConcurrencyException e) {
             LOGGER.error("This should never happen", e);
             System.out.println(

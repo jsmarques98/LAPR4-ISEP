@@ -24,7 +24,10 @@ public class WarehouseBootstrapper implements Action {
     @Override
     public boolean execute() {
         try {
+            System.out.println("adsadadad \n asdadhbadadb \n sadjhhadgsahd \n");
             controller.updateWarehouse();
+            System.out.println("adsadadad \n asdadhbadadb \n sadjhhadgsahd \n");
+
         } catch (IOException e) {
             e.printStackTrace();
             return false;

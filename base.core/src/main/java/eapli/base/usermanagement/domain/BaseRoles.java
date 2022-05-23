@@ -47,6 +47,9 @@ public final class BaseRoles {
      */
     public static final Role SALES_CLERK = Role.valueOf("SALES_CLERK");
 
+
+    public static final Role SALES_MANAGER = Role.valueOf("SALES_MANAGER");
+
     /**
      *
      */

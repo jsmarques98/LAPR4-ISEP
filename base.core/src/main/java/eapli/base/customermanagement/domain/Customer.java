@@ -2,6 +2,7 @@ package eapli.base.customermanagement.domain;
 
 
 import eapli.base.customermanagement.dto.CustomerDTO;
+import eapli.base.questionnairemanagement.domain.Questionnaire;
 import eapli.framework.domain.model.AggregateRoot;
 import eapli.framework.domain.model.DomainEntities;
 import eapli.framework.general.domain.model.EmailAddress;

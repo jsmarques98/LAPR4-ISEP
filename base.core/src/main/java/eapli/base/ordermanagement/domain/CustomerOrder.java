@@ -5,6 +5,8 @@ import eapli.framework.domain.model.AggregateRoot;
 import eapli.framework.domain.model.DomainEntities;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,6 +23,12 @@ public class CustomerOrder implements AggregateRoot<Integer> {
     @Column
     private Double price;
 
+    @Enumerated
+    private OrderStatus status;
+
+    @Column
+    private LocalDateTime orderDate;
+
     @ManyToOne
     private Customer customer;
 
@@ -28,6 +36,8 @@ public class CustomerOrder implements AggregateRoot<Integer> {
 
     public CustomerOrder(Customer customerId) {
         this.customer = customerId;
+        this.status = OrderStatus.paymentPending;
+        this.orderDate=LocalDateTime.now();
     }
 
     @Override

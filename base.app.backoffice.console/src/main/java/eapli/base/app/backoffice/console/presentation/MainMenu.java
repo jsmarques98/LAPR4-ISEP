@@ -24,6 +24,7 @@
 package eapli.base.app.backoffice.console.presentation;
 
 import eapli.base.app.backoffice.console.presentation.Costumer.AddCustomerUI;
+import eapli.base.app.backoffice.console.presentation.Survey.CreateSurveyUI;
 import eapli.base.app.backoffice.console.presentation.agv.AddAGVUI;
 import eapli.base.app.backoffice.console.presentation.catalog.ShowCatalogUI;
 import eapli.base.app.backoffice.console.presentation.category.AddCategoryUI;
@@ -72,7 +73,7 @@ public class MainMenu extends AbstractUI {
     private static final int ADD_PRODUCT_OPTION = 1;
 
     //Customers
-    private static  final  int ADD_CUSTOMER_OPTION =1;
+    private static final int ADD_CUSTOMER_OPTION = 1;
 
     // CATEGORIES
     private static final int ADD_CATEGORY_OPTION = 1;
@@ -83,10 +84,13 @@ public class MainMenu extends AbstractUI {
     //CATALOG
     private static final int VIEW_CATALOG_OPTION = 1;
     //Order
-    private static  final  int CREATE_ORDER_OPTION = 1;
+    private static final int CREATE_ORDER_OPTION = 1;
 
     //Warehouse
     private static final int UPDATE_WAREHOUSE_OPTION = 1;
+
+    //Survey
+    private  static  final int CREATE_SURVEY_OPTION=1;
 
     //Warehouse Main Menu
 
@@ -102,6 +106,8 @@ public class MainMenu extends AbstractUI {
     private static final int ORDER_OPTION = 8;
     private static final int WAREHOUSE_OPTION = 9;
     private static final String SEPARATOR_LABEL = "--------------";
+
+    private static  final int SURVEY_OPTION =2;
 
     private final AuthorizationService authz = AuthzRegistry.authorizationService();
 
@@ -166,11 +172,15 @@ public class MainMenu extends AbstractUI {
             mainMenu.addSubMenu(ORDER_OPTION, orderMenu);
         }
 
-        if (authz.isAuthenticatedUserAuthorizedTo(BaseRoles.POWER_USER, BaseRoles.ADMIN, BaseRoles.WAREHOUSE_EMPLOYEE)){
+        if (authz.isAuthenticatedUserAuthorizedTo(BaseRoles.POWER_USER, BaseRoles.ADMIN, BaseRoles.WAREHOUSE_EMPLOYEE)) {
             final Menu warehouseMenu = buildWarehouseMenu();
             mainMenu.addSubMenu(WAREHOUSE_OPTION, warehouseMenu);
         }
 
+        if (authz.isAuthenticatedUserAuthorizedTo(BaseRoles.POWER_USER, BaseRoles.ADMIN, BaseRoles.SALES_MANAGER)) {
+            final Menu surveyMenu = buildSurveyMenu();
+            mainMenu.addSubMenu(SURVEY_OPTION, surveyMenu);
+        }
 
         if (!Application.settings().isMenuLayoutHorizontal()) {
             mainMenu.addItem(MenuItem.separator(SEPARATOR_LABEL));
@@ -203,39 +213,46 @@ public class MainMenu extends AbstractUI {
 
         return menu;
     }
+    private Menu buildSurveyMenu() {
+        final Menu menu = new Menu("Survey >");
+        menu.addItem(CREATE_SURVEY_OPTION, "Create survey", new CreateSurveyUI()::show);
 
-    private Menu buildProductsMenu(){
+        return menu;
+    }
+
+
+    private Menu buildProductsMenu() {
         final Menu menu = new Menu("Products >");
-        menu.addItem(ADD_PRODUCT_OPTION,"Add Product", new AddProductUI()::show);
+        menu.addItem(ADD_PRODUCT_OPTION, "Add Product", new AddProductUI()::show);
         menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
         //menu.addItem(LIST_USERS_OPTION, "List all Products", new ListProductsUI()::show);
         return menu;
     }
 
-    private Menu buildCategoryMenu(){
+    private Menu buildCategoryMenu() {
         final Menu menu = new Menu("Categories >");
-        menu.addItem(ADD_CATEGORY_OPTION,"Add Category", new AddCategoryUI()::show);
+        menu.addItem(ADD_CATEGORY_OPTION, "Add Category", new AddCategoryUI()::show);
         menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
         return menu;
     }
 
-    private Menu buildCustomerMenu(){
+    private Menu buildCustomerMenu() {
         final Menu menu = new Menu("Customers >");
-        menu.addItem(ADD_CUSTOMER_OPTION,"Add Customer",new AddCustomerUI()::show);
+        menu.addItem(ADD_CUSTOMER_OPTION, "Add Customer", new AddCustomerUI()::show);
         menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
         return menu;
     }
 
-    private Menu buildAGVMenu(){
+    private Menu buildAGVMenu() {
         final Menu menu = new Menu("AGVs >");
-        menu.addItem(ADD_AGV_OPTION,"Add AGV",new AddAGVUI()::show);
+        menu.addItem(ADD_AGV_OPTION, "Add AGV", new AddAGVUI()::show);
         menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
         return menu;
     }
 
-    private Menu buildCatalogMenu(){
+    private Menu buildCatalogMenu() {
         final Menu menu = new Menu("Catalog >");
-        menu.addItem(VIEW_CATALOG_OPTION,"View Catalog",new ShowCatalogUI()::show);
+        menu.addItem(VIEW_CATALOG_OPTION, "View Catalog", new ShowCatalogUI()::show);
         menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
         return menu;
     }

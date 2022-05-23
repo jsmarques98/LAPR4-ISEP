@@ -27,6 +27,6 @@ public class JpaCustomerOrderRepository extends JpaAutoTxRepository<CustomerOrde
     public List<CustomerOrder> findByCustomer(Customer customer) {
         final Map<String, Object> params = new HashMap<>();
         params.put("customerID", customer);
-        return match("e.customer=:customerID", customer);
+        return match("e.customer=:customerID", params);
     }
 }
