@@ -1,0 +1,34 @@
+	___________
+
+	ANALYSIS
+	____________
+
+
+	Fórum de dúvidas com o cliente
+
+	* Q: In US4002 it is required that the AGV Manager should support automatic assignment of orders to AGVs. In US2003 the Warehouse Employee will be able to
+	assign any order to an AGV available. If the orders are being automatically assigned to an AGV (US4002) how can the Warehouse Employee assign a specific order to an AGV?
+
+    R:Usually, and by default, one intends that system automatically assigns orders to AGVs (US 4002).
+
+      However, if such option is not available (e.g.: turned off) or by some reason an order needs to be prepared faster than it would normally be, the warehouse
+      employee has the ability to assign tasks manually (US 2003).
+
+      Notice that, orders that can be prepared by AGVs are being added to a queue following a FIFO algorithm (part of the US 4002). In the scope of US 2003 the
+      FIFO algorithm does not apply... the employee might choose the order (s)he wants.
+	______________________
+
+	BUSINESS RULES
+	_____________________
+
+
+	* It is mandatory using the "OrdersServer" component (cf. US1901).
+	* By default, the added product quantity is one unit
+	* The costumer might opt to set more units (no decimals are allowed).
+
+
+	______________________
+
+	UNIT TESTS
+	_____________________
+
