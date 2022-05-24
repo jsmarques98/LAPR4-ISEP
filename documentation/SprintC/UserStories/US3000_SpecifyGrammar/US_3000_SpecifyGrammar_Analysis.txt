@@ -7,7 +7,7 @@
 	Fórum de dúvidas com o cliente 
 
 	* Teams are free to adopt the format foreseen as best suitable for the project purposes.
-	 
+	* The question type is need and useful for some reason.
 	
 	______________________
 
