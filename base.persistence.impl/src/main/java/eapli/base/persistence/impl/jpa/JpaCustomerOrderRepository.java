@@ -4,6 +4,7 @@ import eapli.base.Application;
 import eapli.base.customermanagement.domain.Customer;
 import eapli.base.customermanagement.repositories.CustomerRepository;
 import eapli.base.ordermanagement.domain.CustomerOrder;
+import eapli.base.ordermanagement.domain.OrderStatus;
 import eapli.base.ordermanagement.repositories.CustomerOrderRepository;
 import eapli.framework.domain.repositories.TransactionalContext;
 import eapli.framework.infrastructure.repositories.impl.jpa.JpaAutoTxRepository;
@@ -28,5 +29,12 @@ public class JpaCustomerOrderRepository extends JpaAutoTxRepository<CustomerOrde
         final Map<String, Object> params = new HashMap<>();
         params.put("customerID", customer);
         return match("e.customer=:customerID", params);
+    }
+
+    @Override
+    public List<CustomerOrder> findByOrderStatus(OrderStatus status) {
+        final Map<String, Object> params = new HashMap<>();
+        params.put("status", status);
+        return match("e.status=:status", params);
     }
 }
