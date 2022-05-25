@@ -44,6 +44,7 @@ public class AppSettings {
     private static final String PERSISTENCE_UNIT_KEY = "persistence.persistenceUnit";
     private static final String SCHEMA_GENERATION_KEY = "javax.persistence.schema-generation.database.action";
     private static final String HIGH_CALORIES_DISH_LIMIT = "HighCaloriesDishLimit";
+    private static final String ORDERS_API = "ORDERS_API";
 
     private final Properties applicationProperties = new Properties();
 
@@ -92,7 +93,9 @@ public class AppSettings {
     public Integer getHighCaloriesDishLimit() {
         return Integer.valueOf(this.applicationProperties.getProperty(HIGH_CALORIES_DISH_LIMIT));
     }
-
+    public String getOrdersAPI(){
+        return this.applicationProperties.getProperty(ORDERS_API);
+    }
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public Map getExtendedPersistenceProperties() {
         final Map ret = new HashMap();

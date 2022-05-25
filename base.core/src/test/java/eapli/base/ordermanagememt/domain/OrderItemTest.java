@@ -11,6 +11,7 @@ import eapli.framework.general.domain.model.EmailAddress;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +26,7 @@ public class OrderItemTest {
     void setUp() {
 
         EmailAddress email = EmailAddress.valueOf("j@gmail.com");
-        Date birthDate = new Date(2002, 9, 22);
+        LocalDate birthDate = LocalDate.of(2002, 9, 22);
         PhoneNumber phoneNumber = PhoneNumber.valueOf("910758577");
         String gender = "Male";
         Name name = Name.valueOf("José Rocha");
@@ -53,7 +54,7 @@ public class OrderItemTest {
     @Test
     void testEnsureOrderItemEquals() {
         EmailAddress email = EmailAddress.valueOf("j@gmail.com");
-        Date birthDate = new Date(2002, 9, 22);
+        LocalDate birthDate = LocalDate.of(2002, 9, 22);
         PhoneNumber phoneNumber = PhoneNumber.valueOf("910758577");
         String gender = "Male";
         Name name = Name.valueOf("José Rocha");
@@ -85,7 +86,7 @@ public class OrderItemTest {
     @Test
     void testEnsureOrderItemFailsDifferentCustomer() {
         EmailAddress email = EmailAddress.valueOf("joao@gmail.com");
-        Date birthDate = new Date(2002, 9, 22);
+        LocalDate birthDate = LocalDate.of(2002, 9, 22);
         PhoneNumber phoneNumber = PhoneNumber.valueOf("910758577");
         String gender = "Male";
         Name name = Name.valueOf("José  Pedro Rocha");
@@ -118,7 +119,7 @@ public class OrderItemTest {
     @Test
     void testEnsureOrderItemFailsDifferentProduct() {
         EmailAddress email = EmailAddress.valueOf("j@gmail.com");
-        Date birthDate = new Date(2002, 9, 22);
+        LocalDate birthDate = LocalDate.of(2002, 9, 22);
         PhoneNumber phoneNumber = PhoneNumber.valueOf("910758577");
         String gender = "Male";
         Name name = Name.valueOf("José Rocha");

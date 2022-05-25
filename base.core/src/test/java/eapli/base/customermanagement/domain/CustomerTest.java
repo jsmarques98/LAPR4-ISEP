@@ -8,6 +8,7 @@ import eapli.framework.general.domain.model.EmailAddress;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +24,7 @@ public class CustomerTest {
     @BeforeEach
     void setUp() {
         EmailAddress email = EmailAddress.valueOf("j@gmail.com");
-        Date birthDate = new Date(2002, 9, 22);
+        LocalDate birthDate = LocalDate.of(2002, 9, 22);
         PhoneNumber phoneNumber = PhoneNumber.valueOf("910758577");
         String gender = "Male";
         Name name = Name.valueOf("José Rocha");
@@ -38,7 +39,7 @@ public class CustomerTest {
     @Test
     void testEnsureCustumerEqualsPassesSame() {
         EmailAddress email = EmailAddress.valueOf("j@gmail.com");
-        Date birthDate = new Date(2002, 9, 22);
+        LocalDate birthDate = LocalDate.of(2002, 9, 22);
         PhoneNumber phoneNumber = PhoneNumber.valueOf("910758577");
         String gender = "Male";
         Name name = Name.valueOf("José Rocha");
@@ -54,7 +55,7 @@ public class CustomerTest {
     @Test
     void testEnsureCustumerEqualsFailsDifferentEmail() {
         EmailAddress email = EmailAddress.valueOf("joao@gmail.com");
-        Date birthDate = new Date(2002, 9, 22);
+        LocalDate birthDate = LocalDate.of(2002, 9, 22);
         PhoneNumber phoneNumber = PhoneNumber.valueOf("910758577");
         String gender = "Male";
         Name name = Name.valueOf("José Rocha");
@@ -70,7 +71,7 @@ public class CustomerTest {
     @Test
     void testEnsureCustumerEqualsFailsDifferentPhoneNumer() {
         EmailAddress email = EmailAddress.valueOf("j@gmail.com");
-        Date birthDate = new Date(2002, 9, 22);
+        LocalDate birthDate = LocalDate.of(2002, 9, 22);
         PhoneNumber phoneNumber = PhoneNumber.valueOf("910758579");
         String gender = "Male";
         Name name = Name.valueOf("José Rocha");
@@ -85,7 +86,7 @@ public class CustomerTest {
     @Test
     void testEnsureCustumerEqualsFailsDifferentGender() {
         EmailAddress email = EmailAddress.valueOf("j@gmail.com");
-        Date birthDate = new Date(2002, 9, 22);
+        LocalDate birthDate =LocalDate.of(2002, 9, 22);
         PhoneNumber phoneNumber = PhoneNumber.valueOf("910758577");
         String gender = "Maleeee";
         Name name = Name.valueOf("José Rocha");
@@ -100,7 +101,7 @@ public class CustomerTest {
     @Test
     void testEnsureCustumerEqualsFailsDifferentName() {
         EmailAddress email = EmailAddress.valueOf("j@gmail.com");
-        Date birthDate = new Date(2002, 9, 22);
+        LocalDate birthDate = LocalDate.of(2002, 9, 22);
         PhoneNumber phoneNumber = PhoneNumber.valueOf("910758577");
         String gender = "Male";
         Name name = Name.valueOf("José Pedro Rocha");
@@ -115,7 +116,7 @@ public class CustomerTest {
     @Test
     void testEnsureCustumerEqualsPassesVatId() {
         EmailAddress email = EmailAddress.valueOf("j@gmail.com");
-        Date birthDate = new Date(2002, 9, 22);
+        LocalDate birthDate = LocalDate.of(2002, 9, 22);
         PhoneNumber phoneNumber = PhoneNumber.valueOf("910758577");
         String gender = "Male";
         Name name = Name.valueOf("José Rocha");
@@ -130,7 +131,7 @@ public class CustomerTest {
     @Test
     void testEnsureCustumerEqualsPassesAddres() {
         EmailAddress email = EmailAddress.valueOf("j@gmail.com");
-        Date birthDate = new Date(2002, 9, 22);
+        LocalDate birthDate = LocalDate.of(2002, 9, 22);
         PhoneNumber phoneNumber = PhoneNumber.valueOf("910758577");
         String gender = "Male";
         Name name = Name.valueOf("José Rocha");

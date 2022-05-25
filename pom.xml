@@ -29,6 +29,9 @@
         <module>base.bootstrappers</module>
         <module>base.core</module>
         <module>base.persistence.impl</module>
+        <module>base.app.communication</module>
+        <module>base.server.orders</module>
+        <module>base.app.customer.console</module>
     </modules>
 
     <dependencies>

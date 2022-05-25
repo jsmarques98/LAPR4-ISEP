@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +23,7 @@ public class CustomerOrderTest {
     void setUp() {
 
         EmailAddress email = EmailAddress.valueOf("j@gmail.com");
-        Date birthDate = new Date(2002, 9, 22);
+        LocalDate birthDate = LocalDate.of(2002, 9, 22);
         PhoneNumber phoneNumber = PhoneNumber.valueOf("910758577");
         String gender = "Male";
         Name name = Name.valueOf("José Rocha");
@@ -36,7 +37,7 @@ public class CustomerOrderTest {
     void testEnsureCustomerOrderEquals() {
 
         EmailAddress email = EmailAddress.valueOf("j@gmail.com");
-        Date birthDate = new Date(2002, 9, 22);
+        LocalDate birthDate = LocalDate.of(2002, 9, 22);
         PhoneNumber phoneNumber = PhoneNumber.valueOf("910758577");
         String gender = "Male";
         Name name = Name.valueOf("José Rocha");
@@ -53,7 +54,7 @@ public class CustomerOrderTest {
     @Test
     void testEnsureCustomerOrderFailsDifferentCustomer() {
         EmailAddress email = EmailAddress.valueOf("jOAO@gmail.com");
-        Date birthDate = new Date(2002, 9, 22);
+        LocalDate birthDate = LocalDate.of(2002, 9, 22);
         PhoneNumber phoneNumber = PhoneNumber.valueOf("9107585997");
         String gender = "Maleee";
         Name name = Name.valueOf("José Pedro Rocha");
@@ -68,7 +69,7 @@ public class CustomerOrderTest {
     @Test
     void testEnsureCustomerOrderFailsDifferentPrice() {
         EmailAddress email = EmailAddress.valueOf("jOAO@gmail.com");
-        Date birthDate = new Date(2002, 9, 22);
+        LocalDate birthDate = LocalDate.of(2002, 9, 22);
         PhoneNumber phoneNumber = PhoneNumber.valueOf("9107585997");
         String gender = "Maleee";
         Name name = Name.valueOf("José Pedro Rocha");

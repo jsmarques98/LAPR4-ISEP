@@ -28,6 +28,7 @@ import eapli.framework.visitor.Visitor;
  *
  */
 @SuppressWarnings("squid:S106")
+public
 class SignupRequestPrinter implements Visitor<SignupRequest> {
 
     @Override
