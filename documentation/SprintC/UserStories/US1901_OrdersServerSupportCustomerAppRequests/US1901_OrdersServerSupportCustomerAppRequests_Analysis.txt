@@ -1,0 +1,32 @@
+	___________
+
+	ANALYSIS 
+	____________
+
+
+	Customer inquiry forum:
+
+	* It must be used the provided application protocol (SPOMS2022).
+	* It is suggested the adoptiong of concurrent mechanisms (e.g. threads) and state sharing between these mechanisms.
+
+	
+	
+	___________
+
+	SERVER DATA
+	___________
+	
+	Host name : vs688.dei.isep.ipp.pt
+	Port : 9999
+
+	_____________________
+
+	MESSAGE EXCHANGE FLOW
+	_____________________
+
+	
+	1. Client send the COMTEST Code to the Server (0).
+	2. Client waits for Server message with ACK Code (2).
+	3. Server replies with the ACK Code to the Client (2).
+	4. Server closes the socket.
+
