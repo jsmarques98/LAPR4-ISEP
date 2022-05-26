@@ -1,0 +1,11 @@
+TEST PLAN
+
+	_______________________________
+	CASE #1 Access the list of prepared orders
+	_______________________________
+
+	1. Login as warehouseemployee
+	2. Choose Option Order > access the list of prepared orders
+	3.see the orders that are already prepared  
+	4.select the orders that you want to change the status for delivery to the customer
+	
