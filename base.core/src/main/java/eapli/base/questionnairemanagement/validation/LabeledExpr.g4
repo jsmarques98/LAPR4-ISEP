@@ -1,7 +1,7 @@
 grammar LabeledExpr;  //grammars name
 
 // Initial rule, the parsing starts here
-prog: start+ ;
+prog: start|start1 ;
 
 //a = ID(mandatory)
 //b = Title(mandatory)
@@ -9,9 +9,11 @@ prog: start+ ;
 //d = Sections(mandatory)
 //e = Final Message
 
-start: a=id NEWLINE b=title NEWLINE c=welcomeMessage NEWLINE (d=section)+ NEWLINE e=finalMessage NEWLINE # questionnarie1 //accepts with all the fields
-    | a=id NEWLINE b=title NEWLINE d=section NEWLINE e=finalMessage NEWLINE # questionnarie2 //without welcome message
+start: a=id NEWLINE b=title NEWLINE c=welcomeMessage NEWLINE d=section NEWLINE e=finalMessage NEWLINE # questionnarie1 //accepts with all the fields
     ;
+
+start1: a=id NEWLINE b=title NEWLINE d=section NEWLINE e=finalMessage NEWLINE # questionnarie2 //without welcome message
+;
 
 id: 'ID: '(ALPHANUMERIC)+ ; // accepts letters and numbers and it's mandatory
 
@@ -21,7 +23,7 @@ welcomeMessage: ('Welcome Message: ' | 'WelcomeMessage: ') (DESCRIPTION | WS | S
 
 finalMessage: ('Final Message: ' | 'FinalMessage: ') (DESCRIPTION | WS | SIGNALS)+ ; // only accepts letters and it's optional
 
-section: start1+ ;
+section: (start2|start3|start4|start5)+ ;
 
 //a = ID(mandatory)
 //b = Title(mandatory)
@@ -30,11 +32,17 @@ section: start1+ ;
 //e = Repeatability(optional)
 //f = Content(mandatory)
 
-start1: (NEWLINE a=sID NEWLINE b=sTitle NEWLINE c=sDescription NEWLINE d=sObligatoriness NEWLINE e=sRepeatability NEWLINE f=question)+ # questionnarie3 // every options
-       | (NEWLINE a=sID NEWLINE b=sTitle NEWLINE c=sDescription NEWLINE d=sObligatoriness NEWLINE (f=question)+) # questionnarie4 //sectionRepeatability optional
-       | (NEWLINE a=sID NEWLINE b=sTitle NEWLINE d=sObligatoriness NEWLINE e=sRepeatability NEWLINE (f=question)+) # questionnarie5 //sectionDescription optional
-       | (NEWLINE a=sID NEWLINE b=sTitle NEWLINE d=sObligatoriness NEWLINE (f=question)+) # questionnarie6 //sectionDescription e sectionRepeatability optional
-       ;
+start2: (NEWLINE a=sID NEWLINE b=sTitle NEWLINE c=sDescription NEWLINE d=sObligatoriness NEWLINE e=sRepeatability NEWLINE f=question NEWLINE) # questionnarie3 // every options
+    ;
+
+start3: (NEWLINE a=sID NEWLINE b=sTitle NEWLINE c=sDescription NEWLINE d=sObligatoriness NEWLINE f=question NEWLINE) # questionnarie4 //sectionRepeatability optional
+    ;
+
+start4: (NEWLINE a=sID NEWLINE b=sTitle NEWLINE d=sObligatoriness NEWLINE e=sRepeatability NEWLINE f=question NEWLINE) # questionnarie5 //sectionDescription optional
+    ;
+
+start5: (NEWLINE a=sID NEWLINE b=sTitle NEWLINE d=sObligatoriness NEWLINE f=question NEWLINE) # questionnarie6 //sectionDescription e sectionRepeatability optional
+    ;
 
 sID: ('Section ID: ' | 'SectionID: ') (NUMBERS)+ ; // only accepts numbers
 sTitle : ('Section Title: ' | 'SectionTitle: ') (DESCRIPTION | WS | SIGNALS)+ ; // only accepts letters
@@ -46,7 +54,7 @@ sCondition: ('Condition Dependent: ' | 'ConditionDependent: ') (DESCRIPTION | WS
 
 sRepeatability : ('Section Repeatability: '| 'SectionRepeatibility: ') (NUMBERS)+ ;
 
-question: start2+ ;
+question: (start6|start7)+ ;
 
 //a = ID(mandatory)
 //b = Question(mandatory)
@@ -55,9 +63,11 @@ question: start2+ ;
 //e = Obligatoriness(mandatory)
 //f = Extra Info(mandatory)
 
-start2: (NEWLINE a=qId NEWLINE b=qText NEWLINE c=instruction NEWLINE d=qType NEWLINE e=qObligatoriness NEWLINE f=extraInfo NEWLINE) # questionnarie11 // obrigatorio ter pelo menos uma secção
-       |(NEWLINE a=qId NEWLINE b=qText NEWLINE d=qType NEWLINE e=qObligatoriness NEWLINE f=extraInfo NEWLINE) # questionnarie12 //instruction optional
-       ;
+start6: (NEWLINE a=qId NEWLINE b=qText NEWLINE c=instruction NEWLINE d=qType NEWLINE e=qObligatoriness NEWLINE f=extraInfo NEWLINE) # questionnarie11 // mandatory to have a section
+    ;
+
+start7: (NEWLINE a=qId NEWLINE b=qText NEWLINE d=qType NEWLINE e=qObligatoriness NEWLINE f=extraInfo NEWLINE) # questionnarie12 //instruction optional
+    ;
 
 qId: ('Question ID: ' | 'QuestionID: ') (NUMBERS)+ ; // only accepts numbers
 qText: ('Question Text: ' | 'QuestionText: ') (DESCRIPTION | WS | SIGNALS)+ ; // only accepts letters
