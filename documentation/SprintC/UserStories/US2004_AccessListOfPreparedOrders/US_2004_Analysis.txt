@@ -1,0 +1,17 @@
+	___________
+
+	ANALYSIS 
+	____________
+
+
+	As Warehouse Employee, I want to access the list of orders that have already
+	been prepared by the AGVs and be able to update any of those orders as having 
+	been dispatched for customer delivery.
+	
+
+
+
+
+
+	
+
