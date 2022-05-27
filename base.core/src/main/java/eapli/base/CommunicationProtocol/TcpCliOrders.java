@@ -5,9 +5,10 @@ import eapli.base.CommunicationProtocol.utils.MessageCodes;
 import eapli.base.CommunicationProtocol.utils.ProductsData;
 import eapli.base.CommunicationProtocol.utils.TCPData;
 import eapli.base.productmanagement.domain.Product;
-import org.springframework.security.core.parameters.P;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -21,7 +22,7 @@ public class TcpCliOrders implements Orders_API {
 
     public TcpCliOrders() {
         try {
-            serverIP = InetAddress.getByName("vs688.dei.isep.ipp.pt");
+            serverIP = InetAddress.getByName("vs113.dei.isep.ipp.pt");
         } catch (UnknownHostException ex) {
             System.out.println("Invalid server specified: ");
             System.exit(1);

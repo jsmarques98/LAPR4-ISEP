@@ -59,7 +59,7 @@ public class MainMenu extends AbstractUI {
 
 
     //CUSTOMER
-    private static final int ADD_PRODUCTS_SHOPPING_CART_OPTION = 1;
+    private static final int ADD_PRODUCTS_SHOPPING_CART_OPTION = 2;
 
     private final AuthorizationService authz = AuthzRegistry.authorizationService();
 

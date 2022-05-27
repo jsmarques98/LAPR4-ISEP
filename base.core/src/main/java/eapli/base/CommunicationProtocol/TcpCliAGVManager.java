@@ -4,7 +4,8 @@ import eapli.base.CommunicationProtocol.utils.DataHandler;
 import eapli.base.CommunicationProtocol.utils.MessageCodes;
 import eapli.base.CommunicationProtocol.utils.TCPData;
 
-import java.io.*;
+
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -18,7 +19,7 @@ public class TcpCliAGVManager implements Requests_API {
 
     public TcpCliAGVManager() {
         try {
-            serverIP = InetAddress.getByName("vs688.dei.isep.ipp.pt");
+            serverIP = InetAddress.getByName("vs113.dei.isep.ipp.pt");
         } catch (UnknownHostException ex) {
             System.out.println("Invalid server specified: ");
             System.exit(1);
@@ -61,4 +62,61 @@ public class TcpCliAGVManager implements Requests_API {
             return false;
         }
     }
+
+    @Override
+    public boolean activateAutoPrepareOrders() {
+        TCPData message;
+        try {
+            dataHandler.sendData(new byte[0], MessageCodes.ACTIVATEAUTOPREPAREORDER);
+            message = dataHandler.readData();
+
+
+            if (message.messageCode()==3){
+                System.out.println("Auto prepare order is activated!\n");
+                return true;
+            }else{
+                System.out.println("Failed to activate auto prepare order!\n");
+                return false;
+            }
+
+        } catch ( IOException e) {
+            e.printStackTrace();
+            try {
+                socket.close();
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deactivateAutoPrepareOrders() {
+        TCPData message;
+        try {
+
+            dataHandler.sendData(new byte[0], MessageCodes.DEACTIVATEAUTOPREPAREORDER);
+
+            message = dataHandler.readData();
+
+
+            if (message.messageCode()==3){
+                System.out.println("Auto prepare order is deactivated!\n");
+                return true;
+            }else{
+                System.out.println("Failed to activate auto prepare order!\n");
+                return false;
+            }
+
+        } catch ( IOException e) {
+            e.printStackTrace();
+            try {
+                socket.close();
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+            return false;
+        }
+    }
+
 }

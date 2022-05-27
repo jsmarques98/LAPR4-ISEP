@@ -13,13 +13,6 @@
     <dependencies>
         <dependency>
             <groupId>eapli</groupId>
-            <artifactId>base.app.communication</artifactId>
-            <version>1.4.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>eapli</groupId>
             <artifactId>base.app.backoffice.console</artifactId>
             <version>1.4.0-SNAPSHOT</version>
             <scope>compile</scope>

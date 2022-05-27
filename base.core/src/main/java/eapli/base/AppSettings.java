@@ -45,6 +45,7 @@ public class AppSettings {
     private static final String SCHEMA_GENERATION_KEY = "javax.persistence.schema-generation.database.action";
     private static final String HIGH_CALORIES_DISH_LIMIT = "HighCaloriesDishLimit";
     private static final String ORDERS_API = "ORDERS_API";
+    private static final String REQUESTS_API = "REQUESTS_API";
 
     private final Properties applicationProperties = new Properties();
 
@@ -95,6 +96,9 @@ public class AppSettings {
     }
     public String getOrdersAPI(){
         return this.applicationProperties.getProperty(ORDERS_API);
+    }
+    public String getAGVManagerAPI(){
+        return this.applicationProperties.getProperty(REQUESTS_API);
     }
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public Map getExtendedPersistenceProperties() {

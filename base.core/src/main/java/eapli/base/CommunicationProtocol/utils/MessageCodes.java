@@ -2,7 +2,7 @@ package eapli.base.CommunicationProtocol.utils;
 
 public enum MessageCodes {
 
-    COMTEST(0),DISCONN(1), ACK(2),SUCCESS(3),GETPRODUCTS(4);
+    COMTEST(0),DISCONN(1), ACK(2),SUCCESS(3),GETPRODUCTS(4),ACTIVATEAUTOPREPAREORDER(5),DEACTIVATEAUTOPREPAREORDER(6);
 
 
     public int code;

@@ -58,12 +58,10 @@ public class PrepareOrderUI extends AbstractUI {
 
     private Menu buildOrdersMenu() {
         final Menu ordersMenu = new Menu();
-        System.out.println("ola");
         int counter = 1;
         for(CustomerOrder order : controller.getCustomerOrdersPayed()) {
             ordersMenu.addItem(MenuItem.of(counter++, order.toString(),() -> costumersOrderList.add(order)));
         }
-        System.out.println("ola1");
         return ordersMenu;
     }
 

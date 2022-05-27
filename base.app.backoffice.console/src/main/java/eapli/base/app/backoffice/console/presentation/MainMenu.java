@@ -28,6 +28,7 @@ import eapli.base.app.backoffice.console.presentation.Survey.CreateSurveyUI;
 import eapli.base.app.backoffice.console.presentation.agv.AddAGVUI;
 import eapli.base.app.backoffice.console.presentation.catalog.ShowCatalogUI;
 import eapli.base.app.backoffice.console.presentation.category.AddCategoryUI;
+import eapli.base.app.backoffice.console.presentation.order.PrepareOrderAutoUI;
 import eapli.base.app.backoffice.console.presentation.order.PrepareOrderUI;
 import eapli.base.app.backoffice.console.presentation.order.RegisterOrderForClientUI;
 import eapli.base.app.backoffice.console.presentation.product.AddProductUI;
@@ -92,6 +93,7 @@ public class MainMenu extends AbstractUI {
     private static final int UPDATE_WAREHOUSE_OPTION = 1;
     private static final int ORDER1_OPTION = 3;
     private static final int PREPARE_ORDER_OPTION = 1;
+    private static final int AUTO_PREPARE_ORDER_OPTION = 2;
 
     //Survey
     private  static  final int CREATE_SURVEY_OPTION=1;
@@ -276,7 +278,8 @@ public class MainMenu extends AbstractUI {
         final Menu menu = new Menu("Order >");
 
         menu.addItem(PREPARE_ORDER_OPTION, "Prepare Order", new PrepareOrderUI()::show);
-        
+        menu.addItem(AUTO_PREPARE_ORDER_OPTION, "Auto Prepare Order", new PrepareOrderAutoUI()::show);
+
         menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
 
         return menu;
