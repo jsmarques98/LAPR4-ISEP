@@ -8,6 +8,7 @@ import eapli.framework.domain.model.DomainEntities;
 import eapli.framework.representations.dto.DTOable;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<ProductDTO> {
@@ -81,61 +82,34 @@ public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<Produ
     }
 
 
-    public Long getVersion() {
+    public Long version() {
         return version;
     }
 
-    public Category getCategory() {
+    public Category category() {
         return category;
     }
 
-    public UniqueInternalCode getUniqueInternalCode() {
+    public UniqueInternalCode uniqueInternalCode() {
         return uniqueInternalCode;
     }
 
-    public Barcode getBarcode() {
-        return barcode;
-    }
-
-    public BasePrice getBasePrice() {
+    public BasePrice basePrice() {
         return basePrice;
     }
 
-    public Brand getBrand() {
+    public Brand brand() {
         return brand;
     }
 
-    public LongDescription getLongDescription() {
-        return longDescription;
-    }
-
-    public ShortDescription getShortDescription() {
+    public ShortDescription shortDescription() {
         return shortDescription;
     }
 
-    public TechnicalDescription getTechnicalDescription() {
-        return technicalDescription;
-    }
-
-    public ProductionCode getProductionCode() {
-        return productionCode;
-    }
-
-    public Reference getReference() {
+    public Reference reference() {
         return reference;
     }
 
-    public Volume getVolume() {
-        return volume;
-    }
-
-    public Weight getWeight() {
-        return weight;
-    }
-
-    public Picture getPictures() {
-        return picture;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -148,8 +122,12 @@ public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<Produ
     }
 
     @Override
-    public boolean sameAs(Object other) {
-        return DomainEntities.areEqual(this, other);
+    public boolean sameAs(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(version, product.version) && Objects.equals(uniqueInternalCode, product.uniqueInternalCode) && Objects.equals(category, product.category) && Objects.equals(barcode, product.barcode) && Objects.equals(basePrice, product.basePrice) && Objects.equals(brand, product.brand) && Objects.equals(shortDescription, product.shortDescription) && Objects.equals(technicalDescription, product.technicalDescription) && Objects.equals(longDescription, product.longDescription) && Objects.equals(productionCode, product.productionCode) && Objects.equals(reference, product.reference) && Objects.equals(volume, product.volume) && Objects.equals(weight, product.weight) && Objects.equals(picture, product.picture) && Objects.equals(rowAisle, product.rowAisle);
+
     }
 
 
@@ -172,9 +150,9 @@ public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<Produ
 
     @Override
     public ProductDTO toDTO() {
-        return new ProductDTO(this.category,this.uniqueInternalCode.toString(),this.barcode.toString(),this.basePrice.getBasePrice(),
+        return new ProductDTO(this.category,this.uniqueInternalCode.toString(),this.barcode.toString(),this.basePrice.basePrice(),
                 this.brand.toString(), this.shortDescription.toString(),this.productionCode.toString(),this.reference.toString()
-        , this.volume.getVolume(), this.weight.getWeight(),this.picture.getPicturePath(),this.rowAisle.identity().getId(),this.rowAisle.identity().getAisle().getId(),
+        , this.volume.volume(), this.weight.weight(),this.picture.picturePath(),this.rowAisle.identity().getId(),this.rowAisle.identity().getAisle().getId(),
         this.longDescription.toString(),this.shortDescription.toString());
     }
 

@@ -53,7 +53,7 @@ public class RegisterOrderController {
         double priceTotal = 0.0;
         for (String id : orderItems) {
             Product p = productRepository.findByUniqueInternalCode(UniqueInternalCode.valueOf(id)).get();
-            priceTotal += p.getBasePrice().getBasePrice();
+            priceTotal += p.basePrice().basePrice();
             orderItemRepository.save(new OrderItem(customerOrder, p));
         }
         customerOrder.setPrice(priceTotal);

@@ -43,7 +43,7 @@ class BasePriceTest {
 
     @Test
     void getBasePrice() {
-        assertEquals(2.9, basePrice.getBasePrice());
+        assertEquals(2.9, basePrice.basePrice());
     }
 
     @Test

@@ -63,9 +63,13 @@ public class AGV implements AggregateRoot<IDAGV> {
     }
 
     @Override
-    public boolean sameAs(Object other) {
-        return DomainEntities.areEqual(this, other);
+    public boolean sameAs(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AGV agv = (AGV) o;
+        return version == agv.version && Objects.equals(id, agv.id) && Objects.equals(autonomy, agv.autonomy) && Objects.equals(maxWeight, agv.maxWeight) && Objects.equals(model, agv.model) && Objects.equals(shortDescription, agv.shortDescription) && currentTask == agv.currentTask && Objects.equals(agvDock, agv.agvDock);
     }
+
 
     @Override
     public IDAGV identity() {

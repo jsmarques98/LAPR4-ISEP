@@ -45,7 +45,7 @@ class WeightTest {
 
     @Test
     void getWeight() {
-        assertEquals(weight.getWeight(),20.0);
+        assertEquals(weight.weight(),20.0);
     }
 
     @Test

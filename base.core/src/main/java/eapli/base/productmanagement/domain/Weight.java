@@ -30,7 +30,7 @@ public class Weight implements ValueObject {
         return new Weight(value);
     }
 
-    public Double getWeight() {
+    public Double weight() {
         return weight;
     }
 
