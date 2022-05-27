@@ -276,6 +276,7 @@ public class MainMenu extends AbstractUI {
         final Menu menu = new Menu("Order >");
 
         menu.addItem(PREPARE_ORDER_OPTION, "Prepare Order", new PrepareOrderUI()::show);
+        
         menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
 
         return menu;

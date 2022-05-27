@@ -67,8 +67,7 @@ public class CustomerOrder implements AggregateRoot<Integer> {
     public String toString() {
         return "CustomerOrder ID =" + idOrder + "\n"+
                 "Price = " + price +"\n"+
-                "Customer=" + customer;
-
+                "Customer= " + customer;
     }
 
     public void setPrice(Double price) {
