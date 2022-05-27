@@ -17,7 +17,7 @@ public class Picture implements ValueObject {
         // empty constructor
     }
 
-    public String getPicturePath() {
+    public String picturePath() {
         return picturePaths;
     }
 

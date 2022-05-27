@@ -28,7 +28,7 @@ public class BasePrice implements ValueObject {
         return new BasePrice(value);
     }
 
-    public Double getBasePrice() {
+    public Double basePrice() {
         return baseprice;
     }
 

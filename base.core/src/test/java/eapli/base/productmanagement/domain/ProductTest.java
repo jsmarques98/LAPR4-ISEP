@@ -94,67 +94,6 @@ class ProductTest {
 
 
     @Test
-    void getVersion() {
-        assertEquals(null,product.getVersion());
-    }
-
-    @Test
-    void getUniqueInternalCode() {
-        assertTrue(new UniqueInternalCode("xyzw.98765").equals(product.getUniqueInternalCode()));
-    }
-
-    @Test
-    void getBarcode() {
-        assertTrue(new Barcode("1234567891234").equals(product.getBarcode()));
-
-    }
-
-    @Test
-    void getBasePrice() {
-        assertTrue(new BasePrice(1.2).equals(product.getBasePrice()));
-    }
-
-    @Test
-    void getBrand() {
-        assertTrue(new Brand("CocaCola").equals(product.getBrand()));
-    }
-
-    @Test
-    void getShortDescription() {
-        assertTrue(new ShortDescription("Drink").equals(product.getShortDescription()));
-    }
-
-    @Test
-    void getLongDescription() {
-        assertTrue(new ShortDescription("Drink").equals(product.getLongDescription()));
-    }
-
-    @Test
-    void getTechnicalDescription() {
-        assertTrue(new ShortDescription("Drink").equals(product.getTechnicalDescription()));
-    }
-
-    @Test
-    void getProductionCode() {
-        assertTrue(new ProductionCode("abcd.12345").equals(product.getProductionCode()));
-    }
-
-    @Test
-    void getReference() {
-        assertTrue(new Reference("1234567890").equals(product.getReference()));
-    }
-
-    @Test
-    void getVolume() {
-        assertTrue(new Volume(300.0).equals(product.getVolume()));
-    }
-
-    @Test
-    void getWeight() {
-        assertTrue(new Weight(100.0).equals(product.getWeight()));
-    }
-
-    @Test
     void testEquals() {
         Barcode barcode = new Barcode("1234567891234");
         BasePrice basePrice = new BasePrice(1.2);

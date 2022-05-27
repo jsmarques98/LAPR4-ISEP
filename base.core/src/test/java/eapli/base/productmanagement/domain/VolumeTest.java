@@ -43,7 +43,7 @@ class VolumeTest {
 
     @Test
     void getVolume() {
-        assertEquals(volume.getVolume(),20.0);
+        assertEquals(volume.volume(),20.0);
     }
 
     @Test

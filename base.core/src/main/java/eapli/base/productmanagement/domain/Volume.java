@@ -31,7 +31,7 @@ public class Volume implements ValueObject {
         return new Volume(value);
     }
 
-    public Double getVolume() {
+    public Double volume() {
         return volume;
     }
 

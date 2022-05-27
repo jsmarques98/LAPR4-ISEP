@@ -117,7 +117,7 @@ public class ShowCatalogUI extends AbstractUI {
             public boolean execute() {
                 Collections.sort(products, new Comparator<Product>() {
                     public int compare(Product p1, Product p2) {
-                        return p1.getBasePrice().compareTo(p2.getBasePrice());
+                        return p1.basePrice().compareTo(p2.basePrice());
                     }
                 });
                 System.out.println(String.format("%-20s%-30s%-15s%-15s%s", "#UIC#", "#Description#", "#Brand#", "#Category#", "#Price#"));
@@ -136,7 +136,7 @@ public class ShowCatalogUI extends AbstractUI {
             public boolean execute() {
                 Collections.sort(products, new Comparator<Product>() {
                     public int compare(Product p1, Product p2) {
-                        return p1.getShortDescription().compareTo(p2.getShortDescription());
+                        return p1.shortDescription().compareTo(p2.shortDescription());
                     }
                 });
                 System.out.println(String.format("%-20s%-30s%-15s%-15s%s", "#UIC#", "#Description#", "#Brand#", "#Category#", "#Price#"));
