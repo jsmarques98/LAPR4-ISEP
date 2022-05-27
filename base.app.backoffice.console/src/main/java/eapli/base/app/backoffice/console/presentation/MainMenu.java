@@ -28,6 +28,7 @@ import eapli.base.app.backoffice.console.presentation.Survey.CreateSurveyUI;
 import eapli.base.app.backoffice.console.presentation.agv.AddAGVUI;
 import eapli.base.app.backoffice.console.presentation.catalog.ShowCatalogUI;
 import eapli.base.app.backoffice.console.presentation.category.AddCategoryUI;
+import eapli.base.app.backoffice.console.presentation.order.PrepareOrderUI;
 import eapli.base.app.backoffice.console.presentation.order.RegisterOrderForClientUI;
 import eapli.base.app.backoffice.console.presentation.product.AddProductUI;
 //import eapli.base.app.backoffice.console.presentation.product.ListProductsUI;
@@ -87,7 +88,10 @@ public class MainMenu extends AbstractUI {
     private static final int CREATE_ORDER_OPTION = 1;
 
     //Warehouse
+    private static final int WAREHOUSE_OPTION = 2;
     private static final int UPDATE_WAREHOUSE_OPTION = 1;
+    private static final int ORDER1_OPTION = 3;
+    private static final int PREPARE_ORDER_OPTION = 1;
 
     //Survey
     private  static  final int CREATE_SURVEY_OPTION=1;
@@ -104,7 +108,7 @@ public class MainMenu extends AbstractUI {
     private static final int AGV_OPTION = 6;
     private static final int CATALOG_OPTION = 7;
     private static final int ORDER_OPTION = 8;
-    private static final int WAREHOUSE_OPTION = 9;
+
     private static final String SEPARATOR_LABEL = "--------------";
 
     private static  final int SURVEY_OPTION =2;
@@ -175,6 +179,8 @@ public class MainMenu extends AbstractUI {
         if (authz.isAuthenticatedUserAuthorizedTo(BaseRoles.POWER_USER, BaseRoles.ADMIN, BaseRoles.WAREHOUSE_EMPLOYEE)) {
             final Menu warehouseMenu = buildWarehouseMenu();
             mainMenu.addSubMenu(WAREHOUSE_OPTION, warehouseMenu);
+            final Menu prepareOrderMenu = buildPrepareOrderMenu();
+            mainMenu.addSubMenu(ORDER1_OPTION, prepareOrderMenu);
         }
 
         if (authz.isAuthenticatedUserAuthorizedTo(BaseRoles.POWER_USER, BaseRoles.ADMIN, BaseRoles.SALES_MANAGER)) {
@@ -261,6 +267,15 @@ public class MainMenu extends AbstractUI {
         final Menu menu = new Menu("Warehouse >");
 
         menu.addItem(UPDATE_WAREHOUSE_OPTION, "Warehouse Management", new UpdateWarehouseUI()::show);
+        menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
+
+        return menu;
+    }
+
+    private Menu buildPrepareOrderMenu() {
+        final Menu menu = new Menu("Order >");
+
+        menu.addItem(PREPARE_ORDER_OPTION, "Prepare Order", new PrepareOrderUI()::show);
         menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
 
         return menu;

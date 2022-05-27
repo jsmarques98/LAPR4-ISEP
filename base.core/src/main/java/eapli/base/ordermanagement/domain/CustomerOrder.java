@@ -36,7 +36,7 @@ public class CustomerOrder implements AggregateRoot<Integer> {
 
     public CustomerOrder(Customer customerId) {
         this.customer = customerId;
-        this.status = OrderStatus.paymentPending;
+        this.status = OrderStatus.paymentSucceeded;
         this.orderDate=LocalDateTime.now();
     }
 
@@ -77,5 +77,9 @@ public class CustomerOrder implements AggregateRoot<Integer> {
 
     public Customer getCustomer() {
         return customer;
+    }
+
+    public void changeStatus(OrderStatus status) {
+        this.status = status;
     }
 }
