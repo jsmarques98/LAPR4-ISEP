@@ -50,6 +50,7 @@
 	* This is a feature that is used by the warehous employee.
 	* Must show the order that need to be prepared.
 	* Must show only the AGV that are avalable in that moment.
+	* The is no need to store the AGV you prepared the Order.
 
 
 	______________________

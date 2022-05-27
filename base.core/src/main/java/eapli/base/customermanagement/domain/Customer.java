@@ -123,4 +123,11 @@ public class Customer implements AggregateRoot<Integer>, DTOable<CustomerDTO> {
         Customer customer = (Customer) o;
         return Objects.equals(email, customer.email) && Objects.equals(name, customer.name) && Objects.equals(phoneNumber, customer.phoneNumber) && Objects.equals(vatId, customer.vatId) && Objects.equals(birthDate, customer.birthDate) && Objects.equals(gender, customer.gender) && Objects.equals(address, customer.address);
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +"name=" + name +
+                ",vatId=" + vatId +
+                '}';
+    }
 }

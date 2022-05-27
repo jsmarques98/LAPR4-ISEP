@@ -1,0 +1,14 @@
+	_________
+
+	DESIGN
+	_________
+
+	* Use the standard layer-based application framework
+
+   	Domain Classes:  
+		OrderStatus, CustomerOrder
+
+	
+
+   	Controlador: FindOrderPreparedController
+   	Repository: CustomerOrderRepository

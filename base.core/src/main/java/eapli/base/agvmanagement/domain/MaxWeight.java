@@ -6,7 +6,7 @@ import javax.persistence.Embeddable;
 import java.util.Objects;
 
 @Embeddable
-public class MaxWeight implements ValueObject {
+public class MaxWeight implements ValueObject, Comparable<MaxWeight>{
     private static final Double MAX_WEIGHT = 2000.0;
     private static final Double MIN_WEIGHT =0.0;
 
@@ -50,5 +50,10 @@ public class MaxWeight implements ValueObject {
     @Override
     public String toString() {
         return weight +"g";
+    }
+
+    @Override
+    public int compareTo(MaxWeight o) {
+        return 0;
     }
 }

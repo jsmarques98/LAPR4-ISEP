@@ -2,6 +2,7 @@ package eapli.base.persistence.impl.jpa;
 
 import eapli.base.Application;
 import eapli.base.agvmanagement.domain.AGV;
+import eapli.base.agvmanagement.domain.CurrentTask;
 import eapli.base.agvmanagement.domain.IDAGV;
 import eapli.base.agvmanagement.repository.AGVRepository;
 import eapli.base.warehousemanagement.domain.AGVDock;
@@ -29,5 +30,12 @@ public class JpaAGVRepository extends JpaAutoTxRepository<AGV, IDAGV, IDAGV>
         final Map<String, Object> params = new HashMap<>();
         params.put("location", agvDock);
         return match("e.agvDock=:location", params);
+    }
+
+    @Override
+    public List<AGV> findByCurrentTask(CurrentTask status) {
+        final Map<String, Object> params = new HashMap<>();
+        params.put("currentTask", status);
+        return match("e.currentTask=:currentTask", params);
     }
 }

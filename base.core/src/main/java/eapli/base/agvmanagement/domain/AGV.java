@@ -54,6 +54,14 @@ public class AGV implements AggregateRoot<IDAGV> {
         return id;
     }
 
+    public MaxWeight maxWeight() {
+        return maxWeight;
+    }
+
+    public void changeCurrentTask(CurrentTask currentTask) {
+        this.currentTask = currentTask;
+    }
+
     @Override
     public boolean sameAs(Object o) {
         if (this == o) return true;

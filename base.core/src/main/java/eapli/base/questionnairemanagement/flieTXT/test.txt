@@ -13,15 +13,13 @@ Question Text: What do you consider as the best spec on the smartphone that you 
 Instruction: Try to answer with short answer
 Type: Freetext
 Question Obligatoriness: Condition Dependent: Test
-Extra Info: Nothing
+Extra Info: What was the colour of the smartphone?
 
 Question ID: 123456
 Question Text: Would you recommend this smartphone to friends?
 Instruction: Try to answer with short answer
 Type: Freetext
 Question Obligatoriness: Condition Dependent: Test
-
-
 
 Section ID: 234
 Section Title: Specifications about the application
@@ -34,7 +32,5 @@ Question Text: How was your experience with our application?
 Instruction: Try to answer the most objectively as you can
 Type: Freetext
 Question Obligatoriness: Condition Dependent: Test
-
-
 
 Final Message: You have successfully completed the questionnaire. Thank you for your help.
