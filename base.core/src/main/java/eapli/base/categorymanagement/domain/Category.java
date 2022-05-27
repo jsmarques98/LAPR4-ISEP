@@ -1,7 +1,6 @@
 package eapli.base.categorymanagement.domain;
 
 
-import eapli.base.clientusermanagement.domain.MecanographicNumber;
 import eapli.framework.domain.model.AggregateRoot;
 import eapli.framework.domain.model.DomainEntities;
 import eapli.framework.validations.Preconditions;
