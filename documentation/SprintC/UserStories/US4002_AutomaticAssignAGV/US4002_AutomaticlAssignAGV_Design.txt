@@ -1,0 +1,32 @@
+	_________
+
+	DESIGN
+	_________
+
+	* Use the standard layer-based application framework
+
+   	Domain Classes:
+		AGV, CustomerOrder
+
+
+   	Controlador: PrepareOrderAutoController
+   	Repository: CustomerOrderRepository, AGVRepository
+
+   	___________
+
+    SERVER DATA
+    ___________
+
+    Host name : vs133.dei.isep.ipp.pt
+    Port : 9999
+
+    _____________________
+
+    MESSAGE EXCHANGE FLOW
+    _____________________
+
+
+    1. Client send the ACTIVATEAUTOPREPAREORDER Code to the Server (5).
+    2. The server does the atribution of the AGV's.
+    3. Server replies with the DEACTIVATEAUTOPREPAREORDER Code to the Client (6).
+    4. Server closes the socket.
