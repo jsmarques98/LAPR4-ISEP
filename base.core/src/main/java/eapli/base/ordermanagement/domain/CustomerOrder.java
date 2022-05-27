@@ -81,4 +81,8 @@ public class CustomerOrder implements AggregateRoot<Integer> {
     public void changeStatus(OrderStatus status) {
         this.status = status;
     }
+
+    public LocalDateTime orderDate() {
+        return orderDate;
+    }
 }
