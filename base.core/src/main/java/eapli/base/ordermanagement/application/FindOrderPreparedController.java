@@ -19,14 +19,14 @@ public class FindOrderPreparedController {
     }
     public List<CustomerOrder> findOrder(){
 
-        List<CustomerOrder> customerOrderList=  customerOrderRepository.findByOrderStatus(OrderStatus.Prepared);
+        List<CustomerOrder> customerOrderList=  customerOrderRepository.findByOrderStatus(OrderStatus.prepared);
 
         return  customerOrderList;
 
     }
     public void setStatusCustomerOrderList( List<CustomerOrder> customerOrderList){
         for (CustomerOrder customerOrder: customerOrderList) {
-            customerOrder.setStatus(OrderStatus.deliveredByCarrier);
+            customerOrder.changeStatus(OrderStatus.deliveredByCarrier);
              customerOrderRepository.save(customerOrder);
         }
 
