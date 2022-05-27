@@ -22,13 +22,7 @@
 	_____________________
 
 
-	* It is mandatory using the "OrdersServer" component (cf. US1901).
-	* By default, the added product quantity is one unit
-	* The costumer might opt to set more units (no decimals are allowed).
+	* It is mandatory using the "AGVServer" component (cf. US4001).
+	* By default, the is implemented a FIFO algorithm to assign an AGV to a payed Order.
 
-
-	______________________
-
-	UNIT TESTS
-	_____________________
 
