@@ -6,7 +6,7 @@ Section ID: 123
 Section Title: Specifications about the smartphone
 Section Description: Smartphone
 Section Obligatoriness: Condition Dependent: Test
-Section Repeatability: 1
+Section Repeatability: 0
 
 Question ID: 12345
 Question Text: What do you consider as the best spec on the smartphone that you bought?
@@ -20,17 +20,21 @@ Question Text: Would you recommend this smartphone to friends?
 Instruction: Try to answer with short answer
 Type: Freetext
 Question Obligatoriness: Condition Dependent: Test
+Extra Info: What was the colour of the smartphone?
+
 
 Section ID: 234
 Section Title: Specifications about the application
 Section Description: SPOMS
 Section Obligatoriness: Condition Dependent: Test
-Section Repeatability: 1
+Section Repeatability: 0
 
 Question ID: 2345
 Question Text: How was your experience with our application?
 Instruction: Try to answer the most objectively as you can
 Type: Freetext
 Question Obligatoriness: Condition Dependent: Test
+Extra Info: What was the colour of the smartphone?
+
 
 Final Message: You have successfully completed the questionnaire. Thank you for your help.

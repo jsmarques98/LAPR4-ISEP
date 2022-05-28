@@ -1,5 +1,6 @@
 package eapli.base.questionnairemanagement.application;
 
+import com.google.gson.stream.JsonToken;
 import eapli.base.categorymanagement.domain.Category;
 import eapli.base.categorymanagement.domain.CategoryID;
 import eapli.base.categorymanagement.repositories.CategoryRepository;
@@ -16,15 +17,24 @@ import eapli.base.questionnairemanagement.domain.Description;
 
 import eapli.base.questionnairemanagement.domain.Questionnaire;
 import eapli.base.questionnairemanagement.repositories.QuestionnaireRepository;
+import eapli.base.questionnairemanagement.validation.LabeledExprLexer;
+import eapli.base.questionnairemanagement.validation.LabeledExprParser;
+import eapli.base.questionnairemanagement.validation.MyVisitor;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.RecognitionException;
+import org.antlr.v4.runtime.tree.ParseTree;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
 
 import java.util.*;
 
+import static org.antlr.v4.runtime.CharStreams.fromFileName;
 public class QuestionnaireController {
 
     private final RepositoryFactory repositoryFactory;
@@ -47,13 +57,87 @@ public class QuestionnaireController {
         customers = new ArrayList<>();
     }
 
-    public boolean createQuestionnaire(String id,String description) {
+    public boolean createQuestionnaire(String id, String description, String title, List<String> section, Map<String, List<String>> question, String welcomeM, String finalM) throws IOException  IOException {
+       if (customers.size() != 0) {
+          createTXTFile(id, title, section, question, welcomeM, finalM);
+            if (validateQuestionnaire(title)) {
+               questionnaireRepository.save(new Questionnaire(AlphanumericalCode.valueOf(id), Description.valueOf(description), customers));
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
 
-        if (customers.size() != 0) {
-            questionnaireRepository.save(new Questionnaire(AlphanumericalCode.valueOf(id), Description.valueOf(description),customers));
-            return true;
-        }else {
-            System.out.println("Theres no customers corresponding to filters");
+
+    public void createTXTFile(String id, String
+            title, List<String> section, Map<String, List<String>> question, String welcomeM, String finalM) throws
+            IOException {
+
+        //eliminar o ficheiro se ja existir
+        Path of = Path.of("base.core/src/main/java/eapli/base/questionnairemanagement/flieTXT/" + title + ".txt");
+        if (Files.exists(of)) {
+            Files.delete(of);
+        }
+
+        PrintWriter writer = new PrintWriter("base.core/src/main/java/eapli/base/questionnairemanagement/flieTXT/" + title + ".txt", "UTF-8");
+
+        writer.println("ID: " + id);
+
+        writer.println("Title: " + title);
+
+        if (welcomeM != null) {
+            writer.println("Welcome Message: " + welcomeM);
+        }
+
+        for (int i = 0; i < section.size(); i = i + 5) {
+            writer.println("\nSection ID: " + section.get(i));
+            writer.println("Section Title: " + section.get(1 + i));
+
+            if (section.get(2 + i) != null) {
+                writer.println("Section Description: " + section.get(2 + i));
+            }
+
+            writer.println("Section Obligatoriness: " + section.get(3 + i));
+
+            if (section.get(4 + i) != null) {
+                writer.println("Section Repeatability: " + section.get(4 + i));
+            }
+            List<String> questionList = question.get(section.get(i));
+
+
+            for (int j = 0; j < questionList.size(); j = j + 6) {
+                writer.println("\nQuestion ID: " + questionList.get(j));
+                writer.println("Question Text: " + questionList.get(1 + j));
+
+                if (questionList.get(j + 2) != null) {
+                    writer.println("Instruction: " + questionList.get(j + 2));
+                }
+
+                writer.println("Type: " + questionList.get(j + 3));
+                writer.println("Question Obligatoriness: " + questionList.get(j + 4));
+                writer.println("Extra Info: " + questionList.get(j + 5));
+            }
+        }
+        if (finalM != null) {
+            writer.println("\nFinal Message: " + finalM);
+        }
+
+        writer.close();
+    }
+
+    public static boolean validateQuestionnaire(String string) throws RecognitionException {
+        try {
+            String source = "base.core/src/main/java/eapli/base/questionnairemanagement/flieTXT/" + string + ".txt";
+            CharStream cs = fromFileName(source);
+            LabeledExprLexer lexer = new LabeledExprLexer(cs);
+            CommonTokenStream token = new CommonTokenStream(lexer);
+            LabeledExprParser parser = new LabeledExprParser(token);
+            ParseTree tree = parser.prog();
+            return parser.Flag();
+        } catch (RecognitionException | IOException e) {
+
             return false;
         }
     }
@@ -89,7 +173,6 @@ public class QuestionnaireController {
     }
 
     public void getCustomerByCategory(String category) {
-
         try {
             Category categoryAux = categoryRepository.findByCategoryID(CategoryID.valueOf(category)).get();
             Query query = entityManager.createQuery("SELECT  customer  from CustomerOrder where idOrder in " +
@@ -104,7 +187,7 @@ public class QuestionnaireController {
     }
 
     public void getCostumersByGender(String gender) {
-        customers =customerRepository.findByGender(gender);
+        customers = customerRepository.findByGender(gender);
 
     }
 

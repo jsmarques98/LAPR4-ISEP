@@ -1,4 +1,4 @@
-// Generated from /Users/joaomarques/Desktop/LAPR4/base.core/src/main/java/eapli/base/questionnairemanagement/validation/LabeledExpr.g4 by ANTLR 4.10.1
+// Generated from C:/Users/joser/OneDrive/Ambiente de Trabalho/Projeto1/lei21_22_s4_2di_02/base.core/src/main/java/eapli/base/questionnairemanagement/validation\LabeledExpr.g4 by ANTLR 4.10.1
 package eapli.base.questionnairemanagement.validation;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -14,54 +14,56 @@ public class LabeledExprParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
-		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
-		T__24=25, T__25=26, T__26=27, T__27=28, T__28=29, T__29=30, FREETEXT=31, 
-		NUMERIC=32, SINGLECHOICE=33, SINGLECHOICE_WITH_INPUT=34, MULTIPLECHOICE=35, 
-		MULTIPLECHOICE_WITH_INPUT=36, SORTING_OPTIONS=37, SCALING_OPTIONS=38, 
-		MANDATORY=39, OPTIONAL=40, CONDITION_DEPENDENT=41, DESCRIPTION=42, SIGNALS=43, 
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9,
+		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17,
+		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24,
+		T__24=25, T__25=26, T__26=27, T__27=28, T__28=29, T__29=30, FREETEXT=31,
+		NUMERIC=32, SINGLECHOICE=33, SINGLECHOICE_WITH_INPUT=34, MULTIPLECHOICE=35,
+		MULTIPLECHOICE_WITH_INPUT=36, SORTING_OPTIONS=37, SCALING_OPTIONS=38,
+		MANDATORY=39, OPTIONAL=40, CONDITION_DEPENDENT=41, DESCRIPTION=42, SIGNALS=43,
 		LOWERCASE=44, CAPSCASE=45, NUMBERS=46, NEWLINE=47, WS=48, ALPHANUMERIC=49;
 	public static final int
-		RULE_prog = 0, RULE_start = 1, RULE_start1 = 2, RULE_id = 3, RULE_title = 4, 
-		RULE_welcomeMessage = 5, RULE_finalMessage = 6, RULE_section = 7, RULE_start2 = 8, 
-		RULE_start3 = 9, RULE_start4 = 10, RULE_start5 = 11, RULE_sID = 12, RULE_sTitle = 13, 
-		RULE_sDescription = 14, RULE_sObligatoriness = 15, RULE_sCondition = 16, 
-		RULE_sRepeatability = 17, RULE_question = 18, RULE_start6 = 19, RULE_start7 = 20, 
-		RULE_qId = 21, RULE_qText = 22, RULE_instruction = 23, RULE_qType = 24, 
+		RULE_prog = 0, RULE_start = 1, RULE_start1 = 2, RULE_id = 3, RULE_title = 4,
+		RULE_welcomeMessage = 5, RULE_finalMessage = 6, RULE_section = 7, RULE_start2 = 8,
+		RULE_start3 = 9, RULE_start4 = 10, RULE_start5 = 11, RULE_sID = 12, RULE_sTitle = 13,
+		RULE_sDescription = 14, RULE_sObligatoriness = 15, RULE_sCondition = 16,
+		RULE_sRepeatability = 17, RULE_question = 18, RULE_start6 = 19, RULE_start7 = 20,
+		RULE_qId = 21, RULE_qText = 22, RULE_instruction = 23, RULE_qType = 24,
 		RULE_qObligatoriness = 25, RULE_qCondition = 26, RULE_extraInfo = 27;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"prog", "start", "start1", "id", "title", "welcomeMessage", "finalMessage", 
-			"section", "start2", "start3", "start4", "start5", "sID", "sTitle", "sDescription", 
-			"sObligatoriness", "sCondition", "sRepeatability", "question", "start6", 
-			"start7", "qId", "qText", "instruction", "qType", "qObligatoriness", 
+			"prog", "start", "start1", "id", "title", "welcomeMessage", "finalMessage",
+			"section", "start2", "start3", "start4", "start5", "sID", "sTitle", "sDescription",
+			"sObligatoriness", "sCondition", "sRepeatability", "question", "start6",
+			"start7", "qId", "qText", "instruction", "qType", "qObligatoriness",
 			"qCondition", "extraInfo"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
+	private  static boolean flag=true;
+
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'ID: '", "'Title: '", "'TITLE: '", "'Welcome Message: '", "'WelcomeMessage: '", 
-			"'Final Message: '", "'FinalMessage: '", "'Section ID: '", "'SectionID: '", 
-			"'Section Title: '", "'SectionTitle: '", "'Section Description: '", "'SectionDescription: '", 
-			"'Section Obligatoriness: '", "'SectionObligatoriness: '", "'Condition Dependent: '", 
-			"'ConditionDependent: '", "'Section Repeatability: '", "'SectionRepeatibility: '", 
-			"'Question ID: '", "'QuestionID: '", "'Question Text: '", "'QuestionText: '", 
-			"'Instruction: '", "'Type: '", "'TYPE: '", "'Question Obligatoriness: '", 
+			null, "'ID: '", "'Title: '", "'TITLE: '", "'Welcome Message: '", "'WelcomeMessage: '",
+			"'Final Message: '", "'FinalMessage: '", "'Section ID: '", "'SectionID: '",
+			"'Section Title: '", "'SectionTitle: '", "'Section Description: '", "'SectionDescription: '",
+			"'Section Obligatoriness: '", "'SectionObligatoriness: '", "'Condition Dependent: '",
+			"'ConditionDependent: '", "'Section Repeatability: '", "'SectionRepeatibility: '",
+			"'Question ID: '", "'QuestionID: '", "'Question Text: '", "'QuestionText: '",
+			"'Instruction: '", "'Type: '", "'TYPE: '", "'Question Obligatoriness: '",
 			"'QuestionObligatoriness: '", "'Extra Info: '", "'ExtraInfo: '"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, null, null, null, "FREETEXT", "NUMERIC", "SINGLECHOICE", 
-			"SINGLECHOICE_WITH_INPUT", "MULTIPLECHOICE", "MULTIPLECHOICE_WITH_INPUT", 
-			"SORTING_OPTIONS", "SCALING_OPTIONS", "MANDATORY", "OPTIONAL", "CONDITION_DEPENDENT", 
-			"DESCRIPTION", "SIGNALS", "LOWERCASE", "CAPSCASE", "NUMBERS", "NEWLINE", 
+			null, null, null, null, null, null, null, null, null, null, null, null,
+			null, null, null, null, null, null, null, null, null, null, null, null,
+			null, null, null, null, null, null, null, "FREETEXT", "NUMERIC", "SINGLECHOICE",
+			"SINGLECHOICE_WITH_INPUT", "MULTIPLECHOICE", "MULTIPLECHOICE_WITH_INPUT",
+			"SORTING_OPTIONS", "SCALING_OPTIONS", "MANDATORY", "OPTIONAL", "CONDITION_DEPENDENT",
+			"DESCRIPTION", "SIGNALS", "LOWERCASE", "CAPSCASE", "NUMBERS", "NEWLINE",
 			"WS", "ALPHANUMERIC"
 		};
 	}
@@ -142,7 +144,7 @@ public class LabeledExprParser extends Parser {
 		}
 	}
 
-	public final ProgContext prog() throws RecognitionException {
+	public final ProgContext prog( ) throws RecognitionException {
 		ProgContext _localctx = new ProgContext(_ctx, getState());
 		enterRule(_localctx, 0, RULE_prog);
 		try {
@@ -166,6 +168,7 @@ public class LabeledExprParser extends Parser {
 			}
 		}
 		catch (RecognitionException re) {
+            flag=false;
 			_localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
@@ -181,7 +184,7 @@ public class LabeledExprParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_start; }
-	 
+
 		public StartContext() { }
 		public void copyFrom(StartContext ctx) {
 			super.copyFrom(ctx);
@@ -258,7 +261,8 @@ public class LabeledExprParser extends Parser {
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -273,7 +277,7 @@ public class LabeledExprParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_start1; }
-	 
+
 		public Start1Context() { }
 		public void copyFrom(Start1Context ctx) {
 			super.copyFrom(ctx);
@@ -342,7 +346,8 @@ public class LabeledExprParser extends Parser {
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+          flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -385,7 +390,7 @@ public class LabeledExprParser extends Parser {
 			{
 			setState(80);
 			match(T__0);
-			setState(82); 
+			setState(82);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
@@ -395,14 +400,16 @@ public class LabeledExprParser extends Parser {
 				match(ALPHANUMERIC);
 				}
 				}
-				setState(84); 
+				setState(84);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==ALPHANUMERIC );
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+			flag=false;
+
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -461,7 +468,7 @@ public class LabeledExprParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(88); 
+			setState(88);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
@@ -479,14 +486,15 @@ public class LabeledExprParser extends Parser {
 				}
 				}
 				}
-				setState(90); 
+				setState(90);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DESCRIPTION) | (1L << SIGNALS) | (1L << WS))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -545,7 +553,7 @@ public class LabeledExprParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(94); 
+			setState(94);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
@@ -563,14 +571,15 @@ public class LabeledExprParser extends Parser {
 				}
 				}
 				}
-				setState(96); 
+				setState(96);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DESCRIPTION) | (1L << SIGNALS) | (1L << WS))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -629,7 +638,7 @@ public class LabeledExprParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(100); 
+			setState(100);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
@@ -647,14 +656,15 @@ public class LabeledExprParser extends Parser {
 				}
 				}
 				}
-				setState(102); 
+				setState(102);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DESCRIPTION) | (1L << SIGNALS) | (1L << WS))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -715,7 +725,7 @@ public class LabeledExprParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(108); 
+			setState(108);
 			_errHandler.sync(this);
 			_alt = 1;
 			do {
@@ -755,14 +765,15 @@ public class LabeledExprParser extends Parser {
 				default:
 					throw new NoViableAltException(this);
 				}
-				setState(110); 
+				setState(110);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
 			} while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER );
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -777,7 +788,7 @@ public class LabeledExprParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_start2; }
-	 
+
 		public Start2Context() { }
 		public void copyFrom(Start2Context ctx) {
 			super.copyFrom(ctx);
@@ -866,7 +877,8 @@ public class LabeledExprParser extends Parser {
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -881,7 +893,7 @@ public class LabeledExprParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_start3; }
-	 
+
 		public Start3Context() { }
 		public void copyFrom(Start3Context ctx) {
 			super.copyFrom(ctx);
@@ -962,7 +974,9 @@ public class LabeledExprParser extends Parser {
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -977,7 +991,7 @@ public class LabeledExprParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_start4; }
-	 
+
 		public Start4Context() { }
 		public void copyFrom(Start4Context ctx) {
 			super.copyFrom(ctx);
@@ -1058,7 +1072,8 @@ public class LabeledExprParser extends Parser {
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -1073,7 +1088,7 @@ public class LabeledExprParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_start5; }
-	 
+
 		public Start5Context() { }
 		public void copyFrom(Start5Context ctx) {
 			super.copyFrom(ctx);
@@ -1146,7 +1161,8 @@ public class LabeledExprParser extends Parser {
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -1197,7 +1213,7 @@ public class LabeledExprParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(162); 
+			setState(162);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
@@ -1207,14 +1223,15 @@ public class LabeledExprParser extends Parser {
 				match(NUMBERS);
 				}
 				}
-				setState(164); 
+				setState(164);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==NUMBERS );
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -1273,7 +1290,7 @@ public class LabeledExprParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(168); 
+			setState(168);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
@@ -1291,14 +1308,15 @@ public class LabeledExprParser extends Parser {
 				}
 				}
 				}
-				setState(170); 
+				setState(170);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DESCRIPTION) | (1L << SIGNALS) | (1L << WS))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -1357,7 +1375,7 @@ public class LabeledExprParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(174); 
+			setState(174);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
@@ -1375,14 +1393,15 @@ public class LabeledExprParser extends Parser {
 				}
 				}
 				}
-				setState(176); 
+				setState(176);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DESCRIPTION) | (1L << SIGNALS) | (1L << WS))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -1443,7 +1462,7 @@ public class LabeledExprParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(182); 
+			setState(182);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
@@ -1474,14 +1493,15 @@ public class LabeledExprParser extends Parser {
 					throw new NoViableAltException(this);
 				}
 				}
-				setState(184); 
+				setState(184);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__15) | (1L << T__16) | (1L << MANDATORY) | (1L << OPTIONAL))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -1540,7 +1560,7 @@ public class LabeledExprParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(188); 
+			setState(188);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
@@ -1558,14 +1578,15 @@ public class LabeledExprParser extends Parser {
 				}
 				}
 				}
-				setState(190); 
+				setState(190);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DESCRIPTION) | (1L << SIGNALS) | (1L << WS))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -1616,7 +1637,7 @@ public class LabeledExprParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(194); 
+			setState(194);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
@@ -1626,14 +1647,15 @@ public class LabeledExprParser extends Parser {
 				match(NUMBERS);
 				}
 				}
-				setState(196); 
+				setState(196);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==NUMBERS );
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -1682,7 +1704,7 @@ public class LabeledExprParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(200); 
+			setState(200);
 			_errHandler.sync(this);
 			_alt = 1;
 			do {
@@ -1710,14 +1732,15 @@ public class LabeledExprParser extends Parser {
 				default:
 					throw new NoViableAltException(this);
 				}
-				setState(202); 
+				setState(202);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,15,_ctx);
 			} while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER );
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -1732,13 +1755,13 @@ public class LabeledExprParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_start6; }
-	 
+
 		public Start6Context() { }
 		public void copyFrom(Start6Context ctx) {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class Questionnarie11Context extends Start6Context {
+	public static class Questionnarie7Context extends Start6Context {
 		public QIdContext a;
 		public QTextContext b;
 		public InstructionContext c;
@@ -1767,18 +1790,18 @@ public class LabeledExprParser extends Parser {
 		public ExtraInfoContext extraInfo() {
 			return getRuleContext(ExtraInfoContext.class,0);
 		}
-		public Questionnarie11Context(Start6Context ctx) { copyFrom(ctx); }
+		public Questionnarie7Context(Start6Context ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof LabeledExprListener ) ((LabeledExprListener)listener).enterQuestionnarie11(this);
+			if ( listener instanceof LabeledExprListener ) ((LabeledExprListener)listener).enterQuestionnarie7(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof LabeledExprListener ) ((LabeledExprListener)listener).exitQuestionnarie11(this);
+			if ( listener instanceof LabeledExprListener ) ((LabeledExprListener)listener).exitQuestionnarie7(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LabeledExprVisitor ) return ((LabeledExprVisitor<? extends T>)visitor).visitQuestionnarie11(this);
+			if ( visitor instanceof LabeledExprVisitor ) return ((LabeledExprVisitor<? extends T>)visitor).visitQuestionnarie7(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1787,41 +1810,42 @@ public class LabeledExprParser extends Parser {
 		Start6Context _localctx = new Start6Context(_ctx, getState());
 		enterRule(_localctx, 38, RULE_start6);
 		try {
-			_localctx = new Questionnarie11Context(_localctx);
+			_localctx = new Questionnarie7Context(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			{
 			setState(204);
 			match(NEWLINE);
 			setState(205);
-			((Questionnarie11Context)_localctx).a = qId();
+			((Questionnarie7Context)_localctx).a = qId();
 			setState(206);
 			match(NEWLINE);
 			setState(207);
-			((Questionnarie11Context)_localctx).b = qText();
+			((Questionnarie7Context)_localctx).b = qText();
 			setState(208);
 			match(NEWLINE);
 			setState(209);
-			((Questionnarie11Context)_localctx).c = instruction();
+			((Questionnarie7Context)_localctx).c = instruction();
 			setState(210);
 			match(NEWLINE);
 			setState(211);
-			((Questionnarie11Context)_localctx).d = qType();
+			((Questionnarie7Context)_localctx).d = qType();
 			setState(212);
 			match(NEWLINE);
 			setState(213);
-			((Questionnarie11Context)_localctx).e = qObligatoriness();
+			((Questionnarie7Context)_localctx).e = qObligatoriness();
 			setState(214);
 			match(NEWLINE);
 			setState(215);
-			((Questionnarie11Context)_localctx).f = extraInfo();
+			((Questionnarie7Context)_localctx).f = extraInfo();
 			setState(216);
 			match(NEWLINE);
 			}
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -1836,13 +1860,13 @@ public class LabeledExprParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_start7; }
-	 
+
 		public Start7Context() { }
 		public void copyFrom(Start7Context ctx) {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class Questionnarie12Context extends Start7Context {
+	public static class Questionnarie8Context extends Start7Context {
 		public QIdContext a;
 		public QTextContext b;
 		public QTypeContext d;
@@ -1867,18 +1891,18 @@ public class LabeledExprParser extends Parser {
 		public ExtraInfoContext extraInfo() {
 			return getRuleContext(ExtraInfoContext.class,0);
 		}
-		public Questionnarie12Context(Start7Context ctx) { copyFrom(ctx); }
+		public Questionnarie8Context(Start7Context ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof LabeledExprListener ) ((LabeledExprListener)listener).enterQuestionnarie12(this);
+			if ( listener instanceof LabeledExprListener ) ((LabeledExprListener)listener).enterQuestionnarie8(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof LabeledExprListener ) ((LabeledExprListener)listener).exitQuestionnarie12(this);
+			if ( listener instanceof LabeledExprListener ) ((LabeledExprListener)listener).exitQuestionnarie8(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LabeledExprVisitor ) return ((LabeledExprVisitor<? extends T>)visitor).visitQuestionnarie12(this);
+			if ( visitor instanceof LabeledExprVisitor ) return ((LabeledExprVisitor<? extends T>)visitor).visitQuestionnarie8(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1887,37 +1911,38 @@ public class LabeledExprParser extends Parser {
 		Start7Context _localctx = new Start7Context(_ctx, getState());
 		enterRule(_localctx, 40, RULE_start7);
 		try {
-			_localctx = new Questionnarie12Context(_localctx);
+			_localctx = new Questionnarie8Context(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			{
 			setState(218);
 			match(NEWLINE);
 			setState(219);
-			((Questionnarie12Context)_localctx).a = qId();
+			((Questionnarie8Context)_localctx).a = qId( );
 			setState(220);
 			match(NEWLINE);
 			setState(221);
-			((Questionnarie12Context)_localctx).b = qText();
+			((Questionnarie8Context)_localctx).b = qText( );
 			setState(222);
 			match(NEWLINE);
 			setState(223);
-			((Questionnarie12Context)_localctx).d = qType();
+			((Questionnarie8Context)_localctx).d = qType( );
 			setState(224);
 			match(NEWLINE);
 			setState(225);
-			((Questionnarie12Context)_localctx).e = qObligatoriness();
+			((Questionnarie8Context)_localctx).e = qObligatoriness( );
 			setState(226);
 			match(NEWLINE);
 			setState(227);
-			((Questionnarie12Context)_localctx).f = extraInfo();
+			((Questionnarie8Context)_localctx).f = extraInfo();
 			setState(228);
 			match(NEWLINE);
 			}
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -1968,7 +1993,7 @@ public class LabeledExprParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(232); 
+			setState(232);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
@@ -1978,14 +2003,15 @@ public class LabeledExprParser extends Parser {
 				match(NUMBERS);
 				}
 				}
-				setState(234); 
+				setState(234);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==NUMBERS );
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -2044,7 +2070,7 @@ public class LabeledExprParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(238); 
+			setState(238);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
@@ -2062,14 +2088,15 @@ public class LabeledExprParser extends Parser {
 				}
 				}
 				}
-				setState(240); 
+				setState(240);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DESCRIPTION) | (1L << SIGNALS) | (1L << WS))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -2120,7 +2147,7 @@ public class LabeledExprParser extends Parser {
 			{
 			setState(242);
 			match(T__23);
-			setState(244); 
+			setState(244);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
@@ -2138,14 +2165,15 @@ public class LabeledExprParser extends Parser {
 				}
 				}
 				}
-				setState(246); 
+				setState(246);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DESCRIPTION) | (1L << SIGNALS) | (1L << WS))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -2208,7 +2236,7 @@ public class LabeledExprParser extends Parser {
 	}
 
 	public final QTypeContext qType() throws RecognitionException {
-		QTypeContext _localctx = new QTypeContext(_ctx, getState());
+        QTypeContext _localctx = new QTypeContext(_ctx, getState());
 		enterRule(_localctx, 48, RULE_qType);
 		int _la;
 		try {
@@ -2224,7 +2252,7 @@ public class LabeledExprParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(250); 
+			setState(250);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
@@ -2242,13 +2270,14 @@ public class LabeledExprParser extends Parser {
 				}
 				}
 				}
-				setState(252); 
+				setState(252);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << FREETEXT) | (1L << NUMERIC) | (1L << SINGLECHOICE) | (1L << SINGLECHOICE_WITH_INPUT) | (1L << MULTIPLECHOICE) | (1L << MULTIPLECHOICE_WITH_INPUT) | (1L << SORTING_OPTIONS) | (1L << SCALING_OPTIONS))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
+            flag=false;
 			_localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
@@ -2310,7 +2339,7 @@ public class LabeledExprParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(258); 
+			setState(258);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
@@ -2341,14 +2370,15 @@ public class LabeledExprParser extends Parser {
 					throw new NoViableAltException(this);
 				}
 				}
-				setState(260); 
+				setState(260);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__15) | (1L << T__16) | (1L << MANDATORY) | (1L << OPTIONAL))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -2407,7 +2437,7 @@ public class LabeledExprParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(264); 
+			setState(264);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
@@ -2425,14 +2455,15 @@ public class LabeledExprParser extends Parser {
 				}
 				}
 				}
-				setState(266); 
+				setState(266);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DESCRIPTION) | (1L << SIGNALS) | (1L << WS))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -2491,7 +2522,7 @@ public class LabeledExprParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(270); 
+			setState(270);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
@@ -2509,14 +2540,15 @@ public class LabeledExprParser extends Parser {
 				}
 				}
 				}
-				setState(272); 
+				setState(272);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DESCRIPTION) | (1L << SIGNALS) | (1L << WS))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
-			_localctx.exception = re;
+            flag=false;
+            _localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
 		}
@@ -2524,6 +2556,9 @@ public class LabeledExprParser extends Parser {
 			exitRule();
 		}
 		return _localctx;
+	}
+	public boolean Flag(){
+		return  flag;
 	}
 
 	public static final String _serializedATN =
@@ -2705,4 +2740,5 @@ public class LabeledExprParser extends Parser {
 			_decisionToDFA[i] = new DFA(_ATN.getDecisionState(i), i);
 		}
 	}
+
 }

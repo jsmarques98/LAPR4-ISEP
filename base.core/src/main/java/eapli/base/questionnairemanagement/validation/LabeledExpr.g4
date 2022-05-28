@@ -63,10 +63,10 @@ question: (start6|start7)+ ;
 //e = Obligatoriness(mandatory)
 //f = Extra Info(mandatory)
 
-start6: (NEWLINE a=qId NEWLINE b=qText NEWLINE c=instruction NEWLINE d=qType NEWLINE e=qObligatoriness NEWLINE f=extraInfo NEWLINE) # questionnarie11 // mandatory to have a section
+start6: (NEWLINE a=qId NEWLINE b=qText NEWLINE c=instruction NEWLINE d=qType NEWLINE e=qObligatoriness NEWLINE f=extraInfo NEWLINE) # questionnarie7 // mandatory to have a section
     ;
 
-start7: (NEWLINE a=qId NEWLINE b=qText NEWLINE d=qType NEWLINE e=qObligatoriness NEWLINE f=extraInfo NEWLINE) # questionnarie12 //instruction optional
+start7: (NEWLINE a=qId NEWLINE b=qText NEWLINE d=qType NEWLINE e=qObligatoriness NEWLINE f=extraInfo NEWLINE) # questionnarie8 //instruction optional
     ;
 
 qId: ('Question ID: ' | 'QuestionID: ') (NUMBERS)+ ; // only accepts numbers
