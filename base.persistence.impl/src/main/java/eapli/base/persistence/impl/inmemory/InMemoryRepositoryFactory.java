@@ -31,6 +31,7 @@ import eapli.base.ordermanagement.repositories.CustomerOrderRepository;
 import eapli.base.ordermanagement.repositories.OrderItemRepository;
 import eapli.base.productmanagement.repositories.ProductRepository;
 import eapli.base.questionnairemanagement.repositories.QuestionnaireRepository;
+import eapli.base.shoppingCartmanagement.repositories.ShoppingCartRepository;
 import eapli.base.warehousemanagement.repository.*;
 import eapli.framework.domain.repositories.TransactionalContext;
 import eapli.framework.infrastructure.authz.domain.repositories.UserRepository;
@@ -137,6 +138,16 @@ public class InMemoryRepositoryFactory implements RepositoryFactory {
     @Override
     public CustomerOrderRepository customerOrder(TransactionalContext autoTx) {
         return new InMemoryCustomerOrderRepository();
+    }
+
+    @Override
+    public ShoppingCartRepository shoppingCart() {
+        return shoppingCart(null);
+    }
+
+    @Override
+    public ShoppingCartRepository shoppingCart(TransactionalContext autoTx) {
+        return new InMemoryShoppingCartRepository();
     }
 
 

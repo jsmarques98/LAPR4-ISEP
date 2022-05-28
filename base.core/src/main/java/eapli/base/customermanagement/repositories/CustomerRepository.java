@@ -6,6 +6,7 @@ import eapli.base.productmanagement.domain.Brand;
 import eapli.base.productmanagement.domain.Product;
 import eapli.base.productmanagement.domain.Reference;
 import eapli.framework.domain.repositories.DomainRepository;
+import eapli.framework.general.domain.model.EmailAddress;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,5 +21,7 @@ public interface CustomerRepository extends DomainRepository<Integer, Customer> 
     default Optional<Customer> findByIdCustomer(Integer id) {
         return ofIdentity(id);
     }
+
+    Optional<Customer> findByEmail(EmailAddress email);
 
 }

@@ -10,6 +10,7 @@ import eapli.base.productmanagement.domain.Product;
 import eapli.base.productmanagement.domain.Reference;
 import eapli.base.productmanagement.domain.UniqueInternalCode;
 import eapli.base.productmanagement.repositories.ProductRepository;
+import eapli.framework.general.domain.model.EmailAddress;
 import eapli.framework.infrastructure.repositories.impl.inmemory.InMemoryDomainRepository;
 
 import java.util.List;
@@ -31,5 +32,10 @@ public class InMemoryCustomerRepository extends InMemoryDomainRepository<Custome
     @Override
     public Optional<Customer> findByIdCustomer(Integer id) {
         return Optional.of(data().get((id)));
+    }
+
+    @Override
+    public Optional<Customer> findByEmail(EmailAddress email) {
+        return Optional.of(data().get((email)));
     }
 }

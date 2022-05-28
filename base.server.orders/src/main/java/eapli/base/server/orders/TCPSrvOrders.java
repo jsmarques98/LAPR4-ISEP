@@ -1,14 +1,14 @@
 package eapli.base.server.orders;
 
-import eapli.base.CommunicationProtocol.utils.MessageCodes;
-import eapli.base.CommunicationProtocol.utils.ProductsData;
-import eapli.base.CommunicationProtocol.utils.TCPData;
-import eapli.base.CommunicationProtocol.utils.DataHandler;
+import eapli.base.CommunicationProtocol.utils.*;
+import eapli.base.productmanagement.domain.Product;
 import eapli.base.server.orders.application.OrdersController;
 
 import java.io.*;
 import java.net.*;
 import java.sql.SQLOutput;
+import java.util.HashMap;
+import java.util.Map;
 
 class TcpSrvOrders {
     static ServerSocket sock;
@@ -41,6 +41,7 @@ class TcpSrvOrdersThread implements Runnable {
     private ProductsData productsData = new ProductsData();
     private OrdersController ordersController;
 
+
     public TcpSrvOrdersThread(Socket cli_s) {
         s=cli_s;
         dataHandler = new DataHandler(cli_s);
@@ -52,8 +53,8 @@ class TcpSrvOrdersThread implements Runnable {
         clientIP = s.getInetAddress();
         System.out.println("New client connection from " + clientIP.getHostAddress() +
                 ", port number " + s.getPort()+"\n");
-
-        while (true) {
+        boolean a = true;
+        while (a) {
             try {
                 sIn = new ObjectInputStream(s.getInputStream());
 
@@ -76,6 +77,7 @@ class TcpSrvOrdersThread implements Runnable {
                         System.out.println("Sending ACK Code (2) to client");
                         System.out.println("Client " + clientIP.getHostAddress() + ", port number: " + s.getPort() +
                                 " disconnected \n");
+                        a=false;
                         s.close();
                         break;
 
@@ -96,6 +98,28 @@ class TcpSrvOrdersThread implements Runnable {
 
                         System.out.println("Sending list of products to client.\n");
                         dataHandler.sendData(productsBytes, MessageCodes.SUCCESS);
+                        break;
+
+                    case 7:
+
+                        System.out.println("Client asking to save shopping cart (7)\n");
+
+                        ShoppingCartItemsData shoppingCartItemsData;
+
+
+                        byte[] receivedData = data.messageData();
+                        System.out.println(receivedData.length);
+
+
+                        ByteArrayInputStream bIn = new ByteArrayInputStream(receivedData);
+                        ObjectInputStream sIn = new ObjectInputStream(bIn);
+
+                        shoppingCartItemsData = (ShoppingCartItemsData) sIn.readObject();
+
+                        ordersController.saveShoppingCart(shoppingCartItemsData.productsAddedList,shoppingCartItemsData.email);
+
+                        System.out.println("Saving shopping cart.\n");
+                        dataHandler.sendData(new byte[0], MessageCodes.SUCCESS);
                         break;
                 }
 

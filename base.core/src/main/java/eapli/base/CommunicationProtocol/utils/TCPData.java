@@ -21,7 +21,9 @@ public class TCPData implements Serializable {
     }
 
     public int dataSize(){
-        return (int)data[2] + 256 * (int)data[3];
+        int high = data[3] >= 0 ? data[3] : 256 + data[3];
+        int low = data[2] >= 0 ? data[2] : 256 + data[2];
+        return (int)(low | (high << 8));
     }
 
 

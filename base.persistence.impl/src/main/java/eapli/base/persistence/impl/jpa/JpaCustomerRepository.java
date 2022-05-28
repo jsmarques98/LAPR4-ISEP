@@ -7,6 +7,7 @@ import eapli.base.customermanagement.repositories.CustomerRepository;
 import eapli.base.ordermanagement.domain.CustomerOrder;
 import eapli.base.productmanagement.domain.Product;
 import eapli.framework.domain.repositories.TransactionalContext;
+import eapli.framework.general.domain.model.EmailAddress;
 import eapli.framework.infrastructure.repositories.impl.jpa.JpaAutoTxRepository;
 
 import java.util.HashMap;
@@ -39,5 +40,12 @@ public class JpaCustomerRepository extends JpaAutoTxRepository<Customer, Integer
             final Map<String, Object> params = new HashMap<>();
             params.put("gend", gender);
             return match("e.gender=:gend", params);
+    }
+
+    @Override
+    public Optional<Customer> findByEmail(EmailAddress email) {
+        final Map<String, Object> params = new HashMap<>();
+        params.put("email", email);
+        return matchOne("e.email=:email", params);
     }
 }

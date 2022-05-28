@@ -30,6 +30,7 @@ import eapli.base.ordermanagement.repositories.CustomerOrderRepository;
 import eapli.base.ordermanagement.repositories.OrderItemRepository;
 import eapli.base.productmanagement.repositories.ProductRepository;
 import eapli.base.questionnairemanagement.repositories.QuestionnaireRepository;
+import eapli.base.shoppingCartmanagement.repositories.ShoppingCartRepository;
 import eapli.base.warehousemanagement.repository.*;
 import eapli.framework.domain.repositories.TransactionalContext;
 import eapli.framework.infrastructure.authz.domain.repositories.UserRepository;
@@ -183,6 +184,16 @@ public class JpaRepositoryFactory implements RepositoryFactory {
     @Override
     public CustomerOrderRepository customerOrder(TransactionalContext autoTx) {
         return new JpaCustomerOrderRepository(autoTx);
+    }
+
+    @Override
+    public ShoppingCartRepository shoppingCart() {
+        return new JpaShoppingCartRepository(Application.settings().getPersistenceUnitName());
+    }
+
+    @Override
+    public ShoppingCartRepository shoppingCart(TransactionalContext autoTx) {
+        return new JpaShoppingCartRepository(autoTx);
     }
 
 
