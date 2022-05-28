@@ -2,6 +2,7 @@ package eapli.base.server.AGVManager.application;
 
 import eapli.base.agvmanagement.domain.AGV;
 import eapli.base.agvmanagement.domain.CurrentTask;
+import eapli.base.agvmanagement.domain.IDAGV;
 import eapli.base.agvmanagement.repository.AGVRepository;
 import eapli.base.infrastructure.persistence.PersistenceContext;
 import eapli.base.ordermanagement.domain.CustomerOrder;
@@ -11,6 +12,7 @@ import eapli.base.ordermanagement.repositories.CustomerOrderRepository;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static java.lang.Thread.sleep;
 
@@ -18,6 +20,7 @@ public class AGVManagerController {
 
     private CustomerOrderRepository customerOrderRepository;
     private AGVRepository agvRepository;
+    private AGV agv;
 
     public AGVManagerController(){
         customerOrderRepository = PersistenceContext.repositories().customerOrder();
@@ -57,5 +60,16 @@ public class AGVManagerController {
         agv.changeCurrentTask(CurrentTask.FREE);
         agvRepository.save(agv);
         return true;
+    }
+
+
+    public boolean existsAGV(IDAGV  idagv){
+        try {
+            agv = agvRepository.findByID(idagv).get();
+            return true;
+        }catch (NoSuchElementException e){
+            System.out.println("This AGV doesn't exist on database!");
+            return false;
+        }
     }
 }

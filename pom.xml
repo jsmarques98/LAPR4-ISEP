@@ -32,6 +32,7 @@
         <module>base.server.orders</module>
         <module>base.server.AGVManager</module>
         <module>base.app.customer.console</module>
+        <module>base.app.agvdigitaltwin</module>
     </modules>
 
     <dependencies>

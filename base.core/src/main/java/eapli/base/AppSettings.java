@@ -46,6 +46,7 @@ public class AppSettings {
     private static final String HIGH_CALORIES_DISH_LIMIT = "HighCaloriesDishLimit";
     private static final String ORDERS_API = "ORDERS_API";
     private static final String REQUESTS_API = "REQUESTS_API";
+    private static final String STATUS_API = "STATUS_API";
 
     private final Properties applicationProperties = new Properties();
 
@@ -110,5 +111,9 @@ public class AppSettings {
 
     public String getProperty(final String prop) {
         return this.applicationProperties.getProperty(prop);
+    }
+
+    public String getStatusAPI(){
+        return this.applicationProperties.getProperty(STATUS_API);
     }
 }
