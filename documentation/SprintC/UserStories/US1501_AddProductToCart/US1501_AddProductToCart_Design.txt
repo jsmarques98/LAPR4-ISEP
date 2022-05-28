@@ -1,0 +1,12 @@
+	_________
+
+	DESIGN
+	_________
+
+	Server Class: TcpSrvOrders and TcpSrvOrdersThread
+
+	Client Class: TcpCliOrders
+	
+	Interface: ORDERS_API
+
+	Utils classes: DataHandler, MessageCodes (enum), ShoppingCartData, TCPData
