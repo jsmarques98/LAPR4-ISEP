@@ -119,4 +119,32 @@ public class TcpCliAGVManager implements Requests_API {
         }
     }
 
+    @Override
+    public boolean testAGVManagerReceivesClientBackOffice() {
+        TCPData message;
+        try {
+
+            dataHandler.sendData(new byte[0], MessageCodes.CONNCLIBO);
+            message = dataHandler.readData();
+
+
+            if (message.messageCode() == 2) {
+                System.out.println("Server connection received Back Office!\n");
+                return true;
+            } else {
+                System.out.println("Server connection failed!\n");
+                return false;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            try {
+                socket.close();
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+            return false;
+        }
+    }
+
 }

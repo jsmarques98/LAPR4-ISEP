@@ -16,12 +16,20 @@ public class PrepareOrderAutoUI extends AbstractUI {
 
     @Override
     protected boolean doShow() {
-        if(showPrepareOrderAuto()) {
-            System.out.println("Prepare auto Order Activated");
-            return true;
+        if (prepareOrderController.testServerConnection()) {
+            if (prepareOrderController.testAGVManagerReceivesClientBackOffice()) {
+                if (showPrepareOrderAuto()) {
+                    System.out.println("Prepare auto Order Activated");
+                    return true;
+                }
+                System.out.println("Unsuccessfully prepared order auto execution");
+                return false;
+            }else {
+                return false;
+            }
+        }else {
+            return false;
         }
-        System.out.println("Unsuccessfully prepared order auto execution");
-        return false;
     }
 
     private boolean showPrepareOrderAuto() {

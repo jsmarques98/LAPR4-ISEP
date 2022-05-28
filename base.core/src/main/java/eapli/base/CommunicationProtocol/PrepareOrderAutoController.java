@@ -1,6 +1,5 @@
 package eapli.base.CommunicationProtocol;
 
-import eapli.base.AppSettings;
 import eapli.base.Application;
 
 import java.lang.reflect.InvocationTargetException;
@@ -25,8 +24,8 @@ public class PrepareOrderAutoController {
         }
     }
 
-    public void testServerConnection(){
-        api.testServerConnection();
+    public boolean testServerConnection(){
+        return api.testServerConnection();
     }
 
     public boolean deactivatePrepareOrderAuto(){
@@ -36,5 +35,7 @@ public class PrepareOrderAutoController {
     public boolean activatePrepareOrderAuto(){
         return api.activateAutoPrepareOrders();
     }
+
+    public boolean testAGVManagerReceivesClientBackOffice(){return api.testAGVManagerReceivesClientBackOffice();}
 
 }
