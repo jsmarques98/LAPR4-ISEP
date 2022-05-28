@@ -34,9 +34,10 @@ public class ShoppingCart implements AggregateRoot<Integer>  {
 
     public ShoppingCart() {}
 
-    public ShoppingCart(Customer customer,List<ShoppingCartItem> shoppingCartItemList) {
+    public ShoppingCart(Customer customer,List<ShoppingCartItem> shoppingCartItemList, Double price) {
         this.customer = customer;
         this.shoppingCartItemList=shoppingCartItemList;
+        this.price = price;
     }
 
     @Override

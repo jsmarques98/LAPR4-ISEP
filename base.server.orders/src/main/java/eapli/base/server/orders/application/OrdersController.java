@@ -38,13 +38,17 @@ public class OrdersController {
 
 
     public void saveShoppingCart(Map<Product, Integer> productQuantityMap, EmailAddress emailAddress){
+        double totalPrice = 0;
       Customer customer = customerRepository.findByEmail(emailAddress).get();
       List <ShoppingCartItem>shoppingCartItemList=new ArrayList<>();
         for (Map.Entry<Product, Integer> entry : productQuantityMap.entrySet()) {
-            shoppingCartItemList.add(new ShoppingCartItem( entry.getKey(), entry.getValue()));
-            System.out.println("Product: " + entry.getKey() + " Quantidade: "+ entry.getValue());
+            if (entry.getValue() > 0) {
+                shoppingCartItemList.add(new ShoppingCartItem(entry.getKey(), entry.getValue()));
+                totalPrice = (entry.getKey().basePrice().basePrice() * entry.getValue()) + totalPrice;
+            }
         }
-        shoppingCartRepository.save(new ShoppingCart(customer, shoppingCartItemList));
+        if (shoppingCartItemList.size() > 0)
+            shoppingCartRepository.save(new ShoppingCart(customer, shoppingCartItemList, totalPrice));
     }
 
     public List<Product> getProducts(){

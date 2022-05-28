@@ -24,6 +24,8 @@
     <class>eapli.base.ordermanagement.domain.CustomerOrder</class>
     <class>eapli.base.ordermanagement.domain.OrderItem</class>
     <class>eapli.base.questionnairemanagement.domain.Questionnaire</class>
+    <class>eapli.base.shoppingCartmanagement.domain.ShoppingCart</class>
+    <class>eapli.base.shoppingCartmanagement.domain.ShoppingCartItem</class>
 
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://vsgate-s2.dei.isep.ipp.pt:10635/base"/>
