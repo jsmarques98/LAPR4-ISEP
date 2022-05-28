@@ -57,7 +57,7 @@ public class QuestionnaireController {
         customers = new ArrayList<>();
     }
 
-    public boolean createQuestionnaire(String id, String description, String title, List<String> section, Map<String, List<String>> question, String welcomeM, String finalM) throws IOException  IOException {
+    public boolean createQuestionnaire(String id, String description, String title, List<String> section, Map<String, List<String>> question, String welcomeM, String finalM) throws IOException {
        if (customers.size() != 0) {
           createTXTFile(id, title, section, question, welcomeM, finalM);
             if (validateQuestionnaire(title)) {

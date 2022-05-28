@@ -12,34 +12,94 @@ import eapli.framework.presentation.console.menu.MenuItemRenderer;
 import eapli.framework.presentation.console.menu.MenuRenderer;
 import eapli.framework.presentation.console.menu.VerticalMenuRenderer;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CreateSurveyUI extends AbstractUI {
 
     private QuestionnaireController controller = new QuestionnaireController();
+
     private List<Category> categories = new ArrayList<>();
 
     @Override
     protected boolean doShow() {
-        if (createSurvey()) {
-            System.out.println("Successful survey created");
-            return true;
+        try {
+            if (createSurvey()) {
+                System.out.println("Successful survey created");
+                return true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         System.out.println("Unsuccessful survey creation");
         return false;
     }
 
-    private boolean createSurvey() {
+    private boolean createSurvey() throws IOException {
         String id = Console.readLine("Alphanumerical Code: ");
         String description = Console.readLine("Description: ");
+        String title = Console.readLine("Title: ");
+
+        String welcomeM = Console.readLine("Welcome Message: ");
+        List<String> answer;
+
+        List<String> section = new ArrayList<>();
+        List<String> questionList;
+        Map<String, List<String>> question = new HashMap<>();
+        do {
+            section.add(Console.readLine("  Section ID: "));
+            String sectionId = section.get(section.size() - 1);
+            section.add(Console.readLine("  Section Title: "));
+            section.add(Console.readLine("  Section Description: "));
+            section.add(Console.readLine("  Section Obligatoriness: "));
+            section.add(Console.readLine("  Section Repeatability: "));
+            questionList = new ArrayList<>();
+            do {
+                questionList.add(Console.readLine("Question ID: "));
+                questionList.add(Console.readLine("Question Text: "));
+                questionList.add(Console.readLine("Instruction: "));
+                questionList.add(Console.readLine("Type: "));
+                questionList.add(Console.readLine(" Question Obligatoriness: "));
+                questionList.add(Console.readLine("Extra Info: "));
+
+                answer = new ArrayList<>();
+                showAnswer(answer, "Do you want to add another question?");
+            } while (answer.get(0).equals("YES"));
+
+            System.out.println("------------------------");
+            System.out.println(questionList.size());
+            System.out.println("------------------------");
+            question.put(sectionId, questionList);
+            answer = new ArrayList<>();
+            showAnswer(answer, "Do you want to add another section?");
+        } while (answer.get(0).equals("YES"));
+
+        String finalM = Console.readLine("Final Message:: ");
+
         findCustomers();
-        return controller.createQuestionnaire(id, description);
+        return controller.createQuestionnaire(id, description,title,section,question,welcomeM,finalM);
     }
 
+    private boolean showAnswer(List<String> showAnswer, String string) {
+        System.out.println(string);
+        final Menu categoriesMenu = buildAnswerMenu(showAnswer);
+        final MenuRenderer renderer = new VerticalMenuRenderer(categoriesMenu, MenuItemRenderer.DEFAULT);
+        return renderer.render();
+    }
+
+    private Menu buildAnswerMenu(List<String> answer) {
+        final Menu answerMenu = new Menu();
+        int counter = 1;
+        answerMenu.addItem(MenuItem.of(counter++, "Yes", () -> answer.add("YES")));
+        answerMenu.addItem(MenuItem.of(counter++, "No", () -> answer.add("NO")));
+        return answerMenu;
+    }
+
+
     private boolean findCustomers() {
-
-
         final Menu optionsMenu = new Menu();
         int counter = 0;
         optionsMenu.addItem(MenuItem.of(counter++, "Cancel", Actions.SUCCESS));
