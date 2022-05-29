@@ -21,6 +21,7 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class OrdersController {
     private final ProductRepository productRepository;
@@ -39,16 +40,21 @@ public class OrdersController {
 
     public void saveShoppingCart(Map<Product, Integer> productQuantityMap, EmailAddress emailAddress){
         double totalPrice = 0;
-      Customer customer = customerRepository.findByEmail(emailAddress).get();
-      List <ShoppingCartItem>shoppingCartItemList=new ArrayList<>();
-        for (Map.Entry<Product, Integer> entry : productQuantityMap.entrySet()) {
-            if (entry.getValue() > 0) {
-                shoppingCartItemList.add(new ShoppingCartItem(entry.getKey(), entry.getValue()));
-                totalPrice = (entry.getKey().basePrice().basePrice() * entry.getValue()) + totalPrice;
+        try {
+
+            Customer customer = customerRepository.findByEmail(emailAddress).get();
+            List<ShoppingCartItem> shoppingCartItemList = new ArrayList<>();
+            for (Map.Entry<Product, Integer> entry : productQuantityMap.entrySet()) {
+                if (entry.getValue() > 0) {
+                    shoppingCartItemList.add(new ShoppingCartItem(entry.getKey(), entry.getValue()));
+                    totalPrice = (entry.getKey().basePrice().basePrice() * entry.getValue()) + totalPrice;
+                }
             }
+            if (shoppingCartItemList.size() > 0)
+                shoppingCartRepository.save(new ShoppingCart(customer, shoppingCartItemList, totalPrice));
+        } catch (NoSuchElementException e){
+            System.out.println("This email is not linked to any client!");
         }
-        if (shoppingCartItemList.size() > 0)
-            shoppingCartRepository.save(new ShoppingCart(customer, shoppingCartItemList, totalPrice));
     }
 
     public List<Product> getProducts(){
