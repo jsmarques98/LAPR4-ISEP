@@ -27,14 +27,20 @@ public class Questionnaire implements AggregateRoot<AlphanumericalCode> {
     private  Description description;
 
 
+    @Column
+    @Lob
+    private  String questionnaire;
+
+
     @ManyToMany
     List<Customer> customers;
 
 
-    public Questionnaire(AlphanumericalCode id, Description description, List<Customer> customers) {
+    public Questionnaire(AlphanumericalCode id, Description description, List<Customer> customers,String questionnaire ) {
         this.alphanumericalCode = id;
         this.description=description;
         this.customers = customers;
+        this.questionnaire=questionnaire;
     }
 
     public Questionnaire() {

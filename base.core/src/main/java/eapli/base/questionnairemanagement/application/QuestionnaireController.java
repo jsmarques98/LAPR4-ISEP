@@ -26,6 +26,8 @@ import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import javax.persistence.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
@@ -61,13 +63,32 @@ public class QuestionnaireController {
        if (customers.size() != 0) {
           createTXTFile(id, title, section, question, welcomeM, finalM);
             if (validateQuestionnaire(title)) {
-               questionnaireRepository.save(new Questionnaire(AlphanumericalCode.valueOf(id), Description.valueOf(description), customers));
+                String aux=createStringToTXTFile(title);
+               questionnaireRepository.save(new Questionnaire(AlphanumericalCode.valueOf(id), Description.valueOf(description), customers,aux));
                 return true;
             } else {
                 return false;
             }
         }
         return false;
+    }
+
+    private String createStringToTXTFile(String title) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("base.core/src/main/java/eapli/base/questionnairemanagement/flieTXT/" + title + ".txt" ));
+        String         line = null;
+        StringBuilder  stringBuilder = new StringBuilder();
+        String         ls = System.getProperty("line.separator");
+
+        try {
+            while((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+                stringBuilder.append(ls);
+            }
+
+            return stringBuilder.toString();
+        } finally {
+            reader.close();
+        }
     }
 
 
@@ -104,11 +125,12 @@ public class QuestionnaireController {
             if (section.get(4 + i) != null) {
                 writer.println("Section Repeatability: " + section.get(4 + i));
             }
+            writer.println();
             List<String> questionList = question.get(section.get(i));
 
 
             for (int j = 0; j < questionList.size(); j = j + 6) {
-                writer.println("\nQuestion ID: " + questionList.get(j));
+                writer.println("Question ID: " + questionList.get(j));
                 writer.println("Question Text: " + questionList.get(1 + j));
 
                 if (questionList.get(j + 2) != null) {
@@ -117,7 +139,7 @@ public class QuestionnaireController {
 
                 writer.println("Type: " + questionList.get(j + 3));
                 writer.println("Question Obligatoriness: " + questionList.get(j + 4));
-                writer.println("Extra Info: " + questionList.get(j + 5));
+                writer.println("Extra Info: " + questionList.get(j + 5)+"\n");
             }
         }
         if (finalM != null) {
