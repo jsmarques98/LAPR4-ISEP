@@ -43,4 +43,10 @@ public class Begin implements ValueObject {
     public int hashCode() {
         return Objects.hash(blsquare, bwsquare);
     }
+
+    @Override
+    public String toString() {
+        return "x=" + blsquare + "\n" + "y=" + bwsquare + "\n";
+
+    }
 }

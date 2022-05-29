@@ -40,6 +40,8 @@ import eapli.base.app.backoffice.console.presentation.authz.AddUserUI;
 import eapli.base.app.backoffice.console.presentation.authz.DeactivateUserAction;
 import eapli.base.app.backoffice.console.presentation.authz.ListUsersAction;
 import eapli.base.app.backoffice.console.presentation.clientuser.AcceptRefuseSignupRequestAction;
+import eapli.base.dashboardmanagement.HttpServerAjaxVoting;
+import eapli.base.dashboardmanagement.application.ShowDashboardController;
 import eapli.base.usermanagement.domain.BaseRoles;
 import eapli.framework.actions.Actions;
 import eapli.framework.actions.menu.Menu;
@@ -179,6 +181,8 @@ public class MainMenu extends AbstractUI {
         }
 
         if (authz.isAuthenticatedUserAuthorizedTo(BaseRoles.POWER_USER, BaseRoles.ADMIN, BaseRoles.WAREHOUSE_EMPLOYEE)) {
+           HttpServerAjaxVoting a= new HttpServerAjaxVoting();
+           a.start();
             final Menu warehouseMenu = buildWarehouseMenu();
             mainMenu.addSubMenu(WAREHOUSE_OPTION, warehouseMenu);
             final Menu prepareOrderMenu = buildPrepareOrderMenu();

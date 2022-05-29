@@ -131,6 +131,25 @@ class TcpSrvAGVManagerThreadBackOffice implements Runnable {
                         dataHandler.sendData(new byte[0], MessageCodes.SUCCESS);
                         System.out.println("Sending Success Code (3) to client");
                         break;
+
+                    case 14:
+                        System.out.println("Client Web Page asking to get AGV list");
+                        List<AGV> agvList1 = agvManagerController.getAGVs();
+
+                        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+
+                        try {
+                            ObjectOutputStream os = new ObjectOutputStream(out);
+                            os.writeObject(agvList1);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        byte[] agvsBytes = out.toByteArray();
+                        System.out.println("Sending list of agvs to client.\n");
+                        dataHandler.sendData(agvsBytes, MessageCodes.SUCCESS);
+                        break;
                 }
 
             } catch (IOException ex) {

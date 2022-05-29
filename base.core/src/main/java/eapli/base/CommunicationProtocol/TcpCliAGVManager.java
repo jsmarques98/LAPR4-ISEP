@@ -3,12 +3,17 @@ package eapli.base.CommunicationProtocol;
 import eapli.base.CommunicationProtocol.utils.DataHandler;
 import eapli.base.CommunicationProtocol.utils.MessageCodes;
 import eapli.base.CommunicationProtocol.utils.TCPData;
+import eapli.base.agvmanagement.domain.AGV;
+import eapli.base.productmanagement.domain.Product;
 
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.List;
 
 
 public class TcpCliAGVManager implements Requests_API {
@@ -18,6 +23,7 @@ public class TcpCliAGVManager implements Requests_API {
     private DataHandler dataHandler;
 
     public TcpCliAGVManager() {
+
         try {
             serverIP = InetAddress.getByName("vs113.dei.isep.ipp.pt");
         } catch (UnknownHostException ex) {
@@ -26,8 +32,11 @@ public class TcpCliAGVManager implements Requests_API {
         }
 
         try {
+
             socket = new Socket(serverIP, SERVER_PORT);
+
             dataHandler = new DataHandler(socket);
+
         } catch (IOException ex) {
             System.out.println("Failed to establish TCP connection");
             System.exit(1);
@@ -145,6 +154,38 @@ public class TcpCliAGVManager implements Requests_API {
             }
             return false;
         }
+    }
+
+    @Override
+    public List<AGV> getAGVs() {
+        TCPData message;
+        try {
+
+            dataHandler.sendData(new byte[0], MessageCodes.GETAGVS);
+
+            message = dataHandler.readData();
+
+
+
+            byte[] receivedData = message.messageData();
+            ByteArrayInputStream bIn = new ByteArrayInputStream(receivedData);
+            ObjectInputStream sIn2 = new ObjectInputStream(bIn);
+            List<AGV> agvList = (List<AGV>) sIn2.readObject();
+
+            return agvList;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            try {
+                socket.close();
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+            return null;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

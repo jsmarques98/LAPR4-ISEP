@@ -43,4 +43,11 @@ public class End implements ValueObject {
     public int hashCode() {
         return Objects.hash(elsquare, ewsquare);
     }
+
+    @Override
+    public String toString() {
+        return "x =" + elsquare + "\n" +
+                "y=" + ewsquare + "\n";
+
+    }
 }

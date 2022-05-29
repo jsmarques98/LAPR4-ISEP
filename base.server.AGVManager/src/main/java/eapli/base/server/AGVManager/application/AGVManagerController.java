@@ -83,4 +83,8 @@ public class AGVManagerController {
         agvRepository.save(agv);
     }
 
+    public List<AGV> getAGVs(){
+        return (List<AGV>) agvRepository.findAll();
+    }
+
 }
