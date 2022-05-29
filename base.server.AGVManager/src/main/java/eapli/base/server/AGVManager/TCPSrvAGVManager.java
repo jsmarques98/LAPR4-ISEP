@@ -208,6 +208,24 @@ class TcpSrvAGVManagerThreadAGVDigitalTwin implements Runnable {
                             dataHandler.sendData(new byte[0], MessageCodes.SUCCESS);
                             System.out.println("Sending Success Code (3) to client");
 
+                            TCPData data2 = dataHandler.readData();
+
+                            if(data2.messageCode()==12){
+                                agvManagerController.setAGVStatusOccupied();
+                            }else{
+                                System.out.println("Error changing status.");
+                                break;
+                            }
+
+                            TCPData data3 = dataHandler.readData();
+
+                            if(data3.messageCode()==13){
+                                agvManagerController.setAGVStatusFree();
+                                dataHandler.sendData(new byte[0], MessageCodes.SUCCESS);
+                            }else{
+                                System.out.println("Error changing status");
+                            }
+
 
                         }
                         dataHandler.sendData(new byte[0], MessageCodes.ERROR);

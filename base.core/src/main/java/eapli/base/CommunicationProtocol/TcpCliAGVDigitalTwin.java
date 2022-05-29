@@ -114,6 +114,13 @@ public class TcpCliAGVDigitalTwin implements Status_API{
 
                 byte a[] = is.readAllBytes();
 
+                ByteArrayInputStream in = new ByteArrayInputStream(a);
+                ObjectInputStream ois = new ObjectInputStream(in);
+
+                dataHandler.sendData(new byte[0],MessageCodes.AGVEXECUTINGTASK);
+                Thread.sleep(10000);
+                dataHandler.sendData(new byte[0],MessageCodes.AGVFINISHTASK);
+
 
 
                 return true;
@@ -122,7 +129,7 @@ public class TcpCliAGVDigitalTwin implements Status_API{
                 return false;
             }
 
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
             try {
                 socket.close();

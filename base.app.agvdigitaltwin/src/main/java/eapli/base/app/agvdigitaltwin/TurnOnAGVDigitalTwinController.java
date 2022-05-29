@@ -11,6 +11,7 @@ public class TurnOnAGVDigitalTwinController {
     private Status_API api;
 
     public TurnOnAGVDigitalTwinController() {
+
         try{
             this.api = (Status_API) Class.forName(Application.settings().getStatusAPI()).getDeclaredConstructor().newInstance();
         } catch (ClassNotFoundException e) {

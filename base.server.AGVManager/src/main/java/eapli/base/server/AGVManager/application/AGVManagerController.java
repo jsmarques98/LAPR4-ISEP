@@ -72,4 +72,15 @@ public class AGVManagerController {
             return false;
         }
     }
+
+    public void setAGVStatusOccupied(){
+        agv.changeCurrentTask(CurrentTask.SERVING_ORDER);
+        agvRepository.save(agv);
+    }
+
+    public void setAGVStatusFree(){
+        agv.changeCurrentTask(CurrentTask.FREE);
+        agvRepository.save(agv);
+    }
+
 }
