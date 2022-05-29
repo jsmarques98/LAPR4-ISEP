@@ -1,0 +1,37 @@
+ID: SP2205
+Title: SmartPhone Questionnaire
+Welcome Message: This questionnaire aims to help us know if you are having a good experience with the smartphone
+
+Section ID: 123
+Section Title: Specifications about the smartphone
+Section Description: Smartphone
+Section Obligatoriness: Condition Dependent: Test
+
+Question ID: 12345
+Question Text: What do you consider as the best spec on the smartphone that you bought?
+Instruction: Try to answer with short answer
+Type: Freetext
+Question Obligatoriness: Condition Dependent: Test
+Extra Info: What was the colour of the smartphone?
+
+Question ID: 123456
+Question Text: Would you recommend this smartphone to friends?
+Instruction: Try to answer with short answer
+Type: Freetext
+Question Obligatoriness: Condition Dependent: Test
+Extra Info: What was the colour of the smartphone?
+
+
+Section ID: 234
+Section Title: Specifications about the application
+Section Obligatoriness: Condition Dependent: Test
+
+Question ID: 2345
+Question Text: How was your experience with our application?
+Instruction: Try to answer the most objectively as you can
+Type: Freetext
+Question Obligatoriness: Condition Dependent: Test
+Extra Info: What was the colour of the smartphone?
+
+
+Final Message: You have successfully completed the questionnaire. Thank you for your help.
