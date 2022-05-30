@@ -1,0 +1,18 @@
+ID: SP2205
+Title: SmartPhone Questionnaire
+
+Section ID: 123
+Section Title: Specifications about the smartphone
+Section Description: Smartphone
+Section Obligatoriness: Condition Dependent: Test
+Section Repeatability: 0
+
+Question ID: 12345
+Question Text: What do you consider as the best spec on the smartphone that you bought?
+Instruction: Try to answer with short answer
+Type: Freetext
+Question Obligatoriness: Condition Dependent: Test
+Extra Info: What was the colour of the smartphone?
+
+
+Final Message: You have successfully completed the questionnaire. Thank you for your help.

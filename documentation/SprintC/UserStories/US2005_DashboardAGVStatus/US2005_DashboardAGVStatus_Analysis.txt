@@ -7,6 +7,11 @@
 	Fórum de dúvidas com o cliente
 
 	* The dashboard should be an approximation to what is depicted on Figure 8 of the specifications document.
+	* As it is being said the "HTTP Server" is part of the "Backoffice Application" in order to provide a local web page only. As so, the "HTTP Server" is a component of the "Backoffice Application".
+	* The "backoffice Application" (or one of its components) must, somehow, get the data from the "AGV Manager" (and/or the system database).
+	* In addition, you should notice that the SPOMS2002 protocol relies on the TCP and not on HTTP.
+
+
 
 	______________________
 

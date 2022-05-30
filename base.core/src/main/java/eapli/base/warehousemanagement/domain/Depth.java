@@ -43,4 +43,6 @@ public class Depth implements ValueObject {
     public int hashCode() {
         return Objects.hash(dlsquare, dwsquare);
     }
+
+
 }

@@ -45,9 +45,7 @@ public class IDAGV implements ValueObject, Comparable<IDAGV> {
 
     @Override
     public String toString() {
-        return "IDAGV{" +
-                "idAGV='" + idAGV + '\'' +
-                '}';
+        return idAGV;
     }
 
     @Override

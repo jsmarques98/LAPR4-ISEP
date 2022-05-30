@@ -42,6 +42,8 @@ public class MasterUsersBootstrapper extends UsersBootstrapperBase implements Ac
                 "dsd.ahsdgd@email.local");
         registerSalesManager("salesmanager", TestDataConstants.PASSWORD1, "Jane", "Doe Admin",
                "dsd.ahsdgd@email.local");
+        registerCustomer("customer", TestDataConstants.PASSWORD1, "Jane", "Doe Admin",
+                "jose@gmail.com");
         return true;
     }
 
@@ -66,7 +68,13 @@ public class MasterUsersBootstrapper extends UsersBootstrapperBase implements Ac
 
         registerUser(username, password, firstName, lastName, email, roles);
     }
+    private void registerCustomer(final String username, final String password, final String firstName,
+                                      final String lastName, final String email) {
+        final Set<Role> roles = new HashSet<>();
+        roles.add(BaseRoles.CUSTOMER);
 
+        registerUser(username, password, firstName, lastName, email, roles);
+    }
 
     /**
      *

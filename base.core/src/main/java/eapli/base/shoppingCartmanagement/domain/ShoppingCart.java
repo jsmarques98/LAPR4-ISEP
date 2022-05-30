@@ -26,11 +26,16 @@ public class ShoppingCart implements AggregateRoot<Integer>  {
     private Double price;
 
 
-    @ManyToOne
+    @OneToOne
     private Customer customer;
 
-    @OneToMany
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+
     private List<ShoppingCartItem> shoppingCartItemList = new ArrayList<>();
+
 
     public ShoppingCart() {}
 

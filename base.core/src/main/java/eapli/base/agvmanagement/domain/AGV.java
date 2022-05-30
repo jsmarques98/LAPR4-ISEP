@@ -50,8 +50,16 @@ public class AGV implements AggregateRoot<IDAGV> {
         //empty constructor
     }
 
-    public IDAGV getId() {
+    public IDAGV id() {
         return id;
+    }
+
+    public AGVDock agvDock() {
+        return agvDock;
+    }
+
+    public CurrentTask currentTask() {
+        return currentTask;
     }
 
     public MaxWeight maxWeight() {
@@ -96,4 +104,6 @@ public class AGV implements AggregateRoot<IDAGV> {
                 "Short Description=" + shortDescription +"\n"+
                 "AGV Dock Location=" + agvDock;
     }
+
+
 }

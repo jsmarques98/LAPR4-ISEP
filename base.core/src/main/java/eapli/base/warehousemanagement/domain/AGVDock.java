@@ -40,6 +40,14 @@ public class AGVDock implements AggregateRoot<String> {
         this.warehouse = warehouse;
     }
 
+    public Begin begin() {
+        return begin;
+    }
+
+    public End end() {
+        return end;
+    }
+
     @Override
     public boolean sameAs(Object other) {
         return DomainEntities.areEqual(this, other);
