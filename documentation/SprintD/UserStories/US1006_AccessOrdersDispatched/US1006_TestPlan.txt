@@ -1,0 +1,10 @@
+TEST PLAN
+
+	_______________________________
+	CASE #1 Access the list of dispatched orders
+	_______________________________
+
+	1. Login as salesclerk
+	2. Choose Option  Orders that had been dispatched for customer delivery > Access the list of orders that have already been delivered for Transport
+	3.see the orders that are already dispatched for customer delivery  
+	4.select the orders that you want to change the status for delivered
