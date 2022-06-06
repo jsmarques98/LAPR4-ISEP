@@ -28,6 +28,7 @@ import eapli.base.app.backoffice.console.presentation.Survey.CreateSurveyUI;
 import eapli.base.app.backoffice.console.presentation.agv.AddAGVUI;
 import eapli.base.app.backoffice.console.presentation.catalog.ShowCatalogUI;
 import eapli.base.app.backoffice.console.presentation.category.AddCategoryUI;
+import eapli.base.app.backoffice.console.presentation.order.AccessOrderUi;
 import eapli.base.app.backoffice.console.presentation.order.PrepareOrderAutoUI;
 import eapli.base.app.backoffice.console.presentation.order.PrepareOrderUI;
 import eapli.base.app.backoffice.console.presentation.order.RegisterOrderForClientUI;
@@ -41,7 +42,7 @@ import eapli.base.app.backoffice.console.presentation.authz.DeactivateUserAction
 import eapli.base.app.backoffice.console.presentation.authz.ListUsersAction;
 import eapli.base.app.backoffice.console.presentation.clientuser.AcceptRefuseSignupRequestAction;
 import eapli.base.dashboardmanagement.HttpServerAjaxVoting;
-import eapli.base.dashboardmanagement.application.ShowDashboardController;
+import eapli.base.ordermanagement.domain.OrderStatus;
 import eapli.base.usermanagement.domain.BaseRoles;
 import eapli.framework.actions.Actions;
 import eapli.framework.actions.menu.Menu;
@@ -50,7 +51,6 @@ import eapli.framework.infrastructure.authz.application.AuthorizationService;
 import eapli.framework.infrastructure.authz.application.AuthzRegistry;
 import eapli.framework.presentation.console.AbstractUI;
 import eapli.framework.presentation.console.ExitWithMessageAction;
-import eapli.framework.presentation.console.ShowMessageAction;
 import eapli.framework.presentation.console.menu.HorizontalMenuRenderer;
 import eapli.framework.presentation.console.menu.MenuItemRenderer;
 import eapli.framework.presentation.console.menu.MenuRenderer;
@@ -87,6 +87,7 @@ public class MainMenu extends AbstractUI {
 
     //CATALOG
     private static final int VIEW_CATALOG_OPTION = 1;
+
     //Order
     private static final int CREATE_ORDER_OPTION = 1;
 
@@ -96,11 +97,12 @@ public class MainMenu extends AbstractUI {
     private static final int ORDER1_OPTION = 3;
     private static final int PREPARE_ORDER_OPTION = 1;
     private static final int AUTO_PREPARE_ORDER_OPTION = 2;
+    private static final int FIND_ORDER = 3;
+
 
     //Survey
     private  static  final int CREATE_SURVEY_OPTION=1;
 
-    //Warehouse Main Menu
 
 
     // MAIN MENU
@@ -112,6 +114,7 @@ public class MainMenu extends AbstractUI {
     private static final int AGV_OPTION = 6;
     private static final int CATALOG_OPTION = 7;
     private static final int ORDER_OPTION = 8;
+    private static final int FIND_ORDER_deliveredByCarrier = 9;
 
     private static final String SEPARATOR_LABEL = "--------------";
 
@@ -178,11 +181,14 @@ public class MainMenu extends AbstractUI {
 
             final Menu orderMenu = buildOrderMenu();
             mainMenu.addSubMenu(ORDER_OPTION, orderMenu);
+
+            final Menu fOrder = buildFindOrderMenu();
+            mainMenu.addSubMenu(FIND_ORDER_deliveredByCarrier, fOrder);
         }
 
         if (authz.isAuthenticatedUserAuthorizedTo(BaseRoles.POWER_USER, BaseRoles.ADMIN, BaseRoles.WAREHOUSE_EMPLOYEE)) {
-           HttpServerAjaxVoting a= new HttpServerAjaxVoting();
-           a.start();
+            HttpServerAjaxVoting a= new HttpServerAjaxVoting();
+            a.start();
             final Menu warehouseMenu = buildWarehouseMenu();
             mainMenu.addSubMenu(WAREHOUSE_OPTION, warehouseMenu);
             final Menu prepareOrderMenu = buildPrepareOrderMenu();
@@ -283,6 +289,7 @@ public class MainMenu extends AbstractUI {
 
         menu.addItem(PREPARE_ORDER_OPTION, "Prepare Order", new PrepareOrderUI()::show);
         menu.addItem(AUTO_PREPARE_ORDER_OPTION, "Auto Prepare Order", new PrepareOrderAutoUI()::show);
+        menu.addItem(FIND_ORDER, "Access the list of orders that have already been prepared by the AGVs", new AccessOrderUi(OrderStatus.prepared,OrderStatus.deliveredByCarrier)::show);
 
         menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
 
@@ -293,6 +300,14 @@ public class MainMenu extends AbstractUI {
         final Menu menu = new Menu("Order >");
 
         menu.addItem(CREATE_ORDER_OPTION, "Order Management", new RegisterOrderForClientUI()::show);
+        menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
+
+        return menu;
+    }
+    private Menu buildFindOrderMenu() {
+        final Menu menu = new Menu("Orders that had been dispatched for customer delivery >");
+
+        menu.addItem(FIND_ORDER, "Access the list of orders that have already been delivered for Transport", new AccessOrderUi(OrderStatus.deliveredByCarrier,OrderStatus.receivedByCustomer)::show);
         menu.addItem(EXIT_OPTION, RETURN_LABEL, Actions.SUCCESS);
 
         return menu;
