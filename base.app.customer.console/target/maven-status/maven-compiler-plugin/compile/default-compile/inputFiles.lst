@@ -1,14 +1,14 @@
-C:\Users\joser\OneDrive\Ambiente de Trabalho\projeto\lei21_22_s4_2di_02\base.app.customer.console\src\main\java\eapli\base\app\customer\console\presentation\clientuser\AcceptRefuseSignupRequestUI.java
-C:\Users\joser\OneDrive\Ambiente de Trabalho\projeto\lei21_22_s4_2di_02\base.app.customer.console\src\main\java\eapli\base\app\customer\console\presentation\authz\AddUserAction.java
-C:\Users\joser\OneDrive\Ambiente de Trabalho\projeto\lei21_22_s4_2di_02\base.app.customer.console\src\main\java\eapli\base\app\customer\console\presentation\clientuser\SignupRequestPrinter.java
-C:\Users\joser\OneDrive\Ambiente de Trabalho\projeto\lei21_22_s4_2di_02\base.app.customer.console\src\main\java\eapli\base\app\customer\console\presentation\clientuser\AcceptRefuseSignupRequestAction.java
-C:\Users\joser\OneDrive\Ambiente de Trabalho\projeto\lei21_22_s4_2di_02\base.app.customer.console\src\main\java\eapli\base\app\customer\console\AddProductShoppingCartController.java
-C:\Users\joser\OneDrive\Ambiente de Trabalho\projeto\lei21_22_s4_2di_02\base.app.customer.console\src\main\java\eapli\base\app\customer\console\BaseCustomer.java
-C:\Users\joser\OneDrive\Ambiente de Trabalho\projeto\lei21_22_s4_2di_02\base.app.customer.console\src\main\java\eapli\base\app\customer\console\AddProductShoppingCartUI.java
-C:\Users\joser\OneDrive\Ambiente de Trabalho\projeto\lei21_22_s4_2di_02\base.app.customer.console\src\main\java\eapli\base\app\customer\console\presentation\MainMenu.java
-C:\Users\joser\OneDrive\Ambiente de Trabalho\projeto\lei21_22_s4_2di_02\base.app.customer.console\src\main\java\eapli\base\app\customer\console\presentation\authz\ListUsersAction.java
-C:\Users\joser\OneDrive\Ambiente de Trabalho\projeto\lei21_22_s4_2di_02\base.app.customer.console\src\main\java\eapli\base\app\customer\console\presentation\authz\DeactivateUserUI.java
-C:\Users\joser\OneDrive\Ambiente de Trabalho\projeto\lei21_22_s4_2di_02\base.app.customer.console\src\main\java\eapli\base\app\customer\console\presentation\authz\DeactivateUserAction.java
-C:\Users\joser\OneDrive\Ambiente de Trabalho\projeto\lei21_22_s4_2di_02\base.app.customer.console\src\main\java\eapli\base\app\customer\console\presentation\authz\ListUsersUI.java
-C:\Users\joser\OneDrive\Ambiente de Trabalho\projeto\lei21_22_s4_2di_02\base.app.customer.console\src\main\java\eapli\base\app\customer\console\presentation\authz\SystemUserPrinter.java
-C:\Users\joser\OneDrive\Ambiente de Trabalho\projeto\lei21_22_s4_2di_02\base.app.customer.console\src\main\java\eapli\base\app\customer\console\presentation\authz\AddUserUI.java
+/Users/joaomarques/Desktop/LAPR4/base.app.customer.console/src/main/java/eapli/base/app/customer/console/presentation/authz/DeactivateUserUI.java
+/Users/joaomarques/Desktop/LAPR4/base.app.customer.console/src/main/java/eapli/base/app/customer/console/presentation/clientuser/AcceptRefuseSignupRequestUI.java
+/Users/joaomarques/Desktop/LAPR4/base.app.customer.console/src/main/java/eapli/base/app/customer/console/presentation/authz/SystemUserPrinter.java
+/Users/joaomarques/Desktop/LAPR4/base.app.customer.console/src/main/java/eapli/base/app/customer/console/presentation/authz/ListUsersAction.java
+/Users/joaomarques/Desktop/LAPR4/base.app.customer.console/src/main/java/eapli/base/app/customer/console/AddProductShoppingCartController.java
+/Users/joaomarques/Desktop/LAPR4/base.app.customer.console/src/main/java/eapli/base/app/customer/console/presentation/MainMenu.java
+/Users/joaomarques/Desktop/LAPR4/base.app.customer.console/src/main/java/eapli/base/app/customer/console/presentation/authz/AddUserUI.java
+/Users/joaomarques/Desktop/LAPR4/base.app.customer.console/src/main/java/eapli/base/app/customer/console/BaseCustomer.java
+/Users/joaomarques/Desktop/LAPR4/base.app.customer.console/src/main/java/eapli/base/app/customer/console/AddProductShoppingCartUI.java
+/Users/joaomarques/Desktop/LAPR4/base.app.customer.console/src/main/java/eapli/base/app/customer/console/presentation/clientuser/AcceptRefuseSignupRequestAction.java
+/Users/joaomarques/Desktop/LAPR4/base.app.customer.console/src/main/java/eapli/base/app/customer/console/presentation/authz/DeactivateUserAction.java
+/Users/joaomarques/Desktop/LAPR4/base.app.customer.console/src/main/java/eapli/base/app/customer/console/presentation/authz/ListUsersUI.java
+/Users/joaomarques/Desktop/LAPR4/base.app.customer.console/src/main/java/eapli/base/app/customer/console/presentation/authz/AddUserAction.java
+/Users/joaomarques/Desktop/LAPR4/base.app.customer.console/src/main/java/eapli/base/app/customer/console/presentation/clientuser/SignupRequestPrinter.java
