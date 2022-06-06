@@ -1,0 +1,15 @@
+	_________
+
+	DESIGN
+	_________
+
+	* Use the standard layer-based application framework
+
+   	Domain Classes:  
+		OrderStatus, CustomerOrder
+
+	
+
+	UI: AccessOrderUI
+   	Controller: AccessOrderController
+   	Repository: CustomerOrderRepository
