@@ -1,0 +1,18 @@
+	_________
+
+	DESIGN
+	_________
+
+	Server Class: TcpSrvOrders and TcpSrvOrdersThread
+
+	Client Class: TcpCliOrders
+	
+	Interface: ORDERS_API
+
+	Utils classes: DataHandler, MessageCodes (enum), TCPData
+
+	Request class: CheckOpenOrdersRequest
+
+	UI class: CheckStatusOpenOrdersUI
+
+	Controller Classes:CheckStatusOpenOrdersController, OrdersController (server controller)
