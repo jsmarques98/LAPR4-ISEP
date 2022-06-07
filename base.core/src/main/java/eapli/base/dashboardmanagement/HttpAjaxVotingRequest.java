@@ -1,6 +1,7 @@
 package eapli.base.dashboardmanagement;
 
 
+import javax.net.ssl.SSLSocket;
 import java.io.*;
 import java.net.Socket;
 
@@ -10,11 +11,11 @@ import java.net.Socket;
  */
 public class HttpAjaxVotingRequest extends Thread {
     String baseFolder;
-    Socket sock;
+    SSLSocket sock;
     DataInputStream inS;
     DataOutputStream outS;
 
-    public HttpAjaxVotingRequest(Socket s, String f) {
+    public HttpAjaxVotingRequest(SSLSocket s, String f) {
         baseFolder=f; sock=s;
     }
 
