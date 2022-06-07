@@ -7,6 +7,9 @@ import eapli.base.productmanagement.domain.Product;
 import eapli.framework.general.domain.model.EmailAddress;
 import org.springframework.security.core.parameters.P;
 
+import javax.net.ssl.SSLServerSocketFactory;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -17,11 +20,24 @@ import java.util.Map;
 
 public class TcpCliOrders implements Orders_API {
     static final int SERVER_PORT = 9999;
+    static final String certificate = "base.server.orders/src/main/resources/certificates/orders_server/client1_orders_J.jks";
     static InetAddress serverIP;
-    static Socket socket;
+    static SSLSocket socket;
     private DataHandler dataHandler;
 
     public TcpCliOrders() {
+
+
+
+        // Trust these certificates provided by authorized clients
+        System.setProperty("javax.net.ssl.trustStore", certificate);
+        System.setProperty("javax.net.ssl.trustStorePassword", "forgotten");
+
+        // Use this certificate and private key as server certificate
+        System.setProperty("javax.net.ssl.keyStore", certificate);
+        System.setProperty("javax.net.ssl.keyStorePassword", "forgotten");
+        SSLSocketFactory sslF = (SSLSocketFactory) SSLSocketFactory.getDefault();
+
         try {
             serverIP = InetAddress.getByName("vs688.dei.isep.ipp.pt");
         } catch (UnknownHostException ex) {
@@ -30,10 +46,11 @@ public class TcpCliOrders implements Orders_API {
         }
 
         try {
-            socket = new Socket(serverIP, SERVER_PORT);
+            socket = (SSLSocket) sslF.createSocket(serverIP, SERVER_PORT);
             dataHandler = new DataHandler(socket);
         }
         catch(IOException ex) {
+            System.out.println(ex.getMessage());
             System.out.println("Failed to establish TCP connection");
             System.exit(1); }
     }
@@ -103,27 +120,6 @@ public class TcpCliOrders implements Orders_API {
     }
 
     @Override
-    public ProductsData getProducts() {
-        ProductsData productsData = new ProductsData();
-        TCPData message;
-        try {
-            dataHandler.sendData(new byte[0], MessageCodes.GETPRODUCTS);
-
-            message = dataHandler.readData();
-
-            byte[] receivedData = message.messageData();
-            ByteArrayInputStream bIn = new ByteArrayInputStream(receivedData);
-            ObjectInputStream sIn2 = new ObjectInputStream(bIn);
-            productsData.products = (List<Product>) sIn2.readObject();
-
-
-        } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
-        }
-        return productsData;
-    }
-
-    @Override
     public List<CustomerOrder> getCustomerOpenOrders(EmailAddress emailAddress) {
         TCPData message;
         List<CustomerOrder> ordersList= new ArrayList<>();
@@ -158,6 +154,27 @@ public class TcpCliOrders implements Orders_API {
             e.printStackTrace();
         }
         return ordersList;
+    }
+
+    @Override
+    public ProductsData getProducts() {
+        ProductsData productsData = new ProductsData();
+        TCPData message;
+        try {
+            dataHandler.sendData(new byte[0], MessageCodes.GETPRODUCTS);
+
+            message = dataHandler.readData();
+
+            byte[] receivedData = message.messageData();
+            ByteArrayInputStream bIn = new ByteArrayInputStream(receivedData);
+            ObjectInputStream sIn2 = new ObjectInputStream(bIn);
+            productsData.products = (List<Product>) sIn2.readObject();
+
+
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+        return productsData;
     }
 
 }

@@ -1,26 +1,44 @@
 package eapli.base.server.orders;
 
 import eapli.base.CommunicationProtocol.utils.*;
-import eapli.base.productmanagement.domain.Product;
+import eapli.base.ordermanagement.domain.CustomerOrder;
 import eapli.base.server.orders.application.OrdersController;
+import eapli.framework.general.domain.model.EmailAddress;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.net.ssl.SSLServerSocket;
+import javax.net.ssl.SSLServerSocketFactory;
 import java.io.*;
 import java.net.*;
-import java.sql.SQLOutput;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 class TcpSrvOrders {
-    static ServerSocket sock;
+    static final String TRUSTED_STORE = "orders_server_J.jks";
+    static final String KEYSTORE_PASS = "forgotten";
+    static SSLServerSocket sock;
+
 
     public static void main(String args[]) throws Exception {
+        // Trust these certificates provided by authorized clients
+        System.setProperty("javax.net.ssl.trustStore", TRUSTED_STORE);
+        System.setProperty("javax.net.ssl.trustStorePassword", KEYSTORE_PASS);
+
+        // Use this certificate and private key as server certificate
+        System.setProperty("javax.net.ssl.keyStore", TRUSTED_STORE);
+        System.setProperty("javax.net.ssl.keyStorePassword", KEYSTORE_PASS);
+
+        SSLServerSocketFactory sslF = (SSLServerSocketFactory) SSLServerSocketFactory.getDefault();
         Socket cliSock;
+
         System.out.println("Server ON \n");
         try {
-            sock = new ServerSocket(9999);
+            sock = (SSLServerSocket) sslF.createServerSocket(9999);
+            sock.setNeedClientAuth(true);
         }
         catch(IOException ex) {
             System.out.println("Failed to open server socket\n");
+            System.out.println(ex.getCause());
+            System.out.println(ex.getMessage());
             System.exit(1);
         }
 
@@ -47,6 +65,7 @@ class TcpSrvOrdersThread implements Runnable {
         dataHandler = new DataHandler(cli_s);
         ordersController = new OrdersController();
     }
+
 
     public void run() {
         InetAddress clientIP;
