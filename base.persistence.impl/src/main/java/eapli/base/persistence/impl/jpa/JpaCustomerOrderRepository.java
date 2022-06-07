@@ -2,7 +2,6 @@ package eapli.base.persistence.impl.jpa;
 
 import eapli.base.Application;
 import eapli.base.customermanagement.domain.Customer;
-import eapli.base.customermanagement.repositories.CustomerRepository;
 import eapli.base.ordermanagement.domain.CustomerOrder;
 import eapli.base.ordermanagement.domain.OrderStatus;
 import eapli.base.ordermanagement.repositories.CustomerOrderRepository;
@@ -36,5 +35,12 @@ public class JpaCustomerOrderRepository extends JpaAutoTxRepository<CustomerOrde
         final Map<String, Object> params = new HashMap<>();
         params.put("status", status);
         return match("e.status=:status", params);
+    }
+
+    @Override
+    public CustomerOrder findByOrderID(Integer id) {
+        final Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        return matchOne("e.idOrder=:id", params).get();
     }
 }

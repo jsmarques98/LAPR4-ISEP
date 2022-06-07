@@ -84,8 +84,8 @@ public class RegisterOrderForClientUI extends AbstractUI {
     public boolean createOrderForCustomer() {
         String customerVATID = Console.readLine("Insert customer VAT ID:");
 
-
-        controller.createOrderForCustomer(customerVATID);
+        getProducts();
+        controller.createOrderForCustomer(customerVATID,productsUIC);
 
         getProducts();
 
@@ -97,7 +97,6 @@ public class RegisterOrderForClientUI extends AbstractUI {
 
             showOrderOptions();
         }
-        controller.createOrderItem(productsUIC);
         return true;
     }
 

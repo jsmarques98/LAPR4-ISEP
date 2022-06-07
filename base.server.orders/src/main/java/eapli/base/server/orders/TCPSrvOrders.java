@@ -121,6 +121,18 @@ class TcpSrvOrdersThread implements Runnable {
                         System.out.println("Saving shopping cart.\n");
                         dataHandler.sendData(new byte[0], MessageCodes.SUCCESS);
                         break;
+
+                    case 15:
+
+                        System.out.println("Client asking to get Customer Open Orders (15)");
+
+                        CheckOpenOrdersRequest checkOpenOrdersRequest = new CheckOpenOrdersRequest(data.messageData(),dataHandler,ordersController);
+
+                        checkOpenOrdersRequest.execute();
+
+                        System.out.println("Sending list of orders to client.\n");
+
+                        break;
                 }
 
             } catch (IOException ex) {

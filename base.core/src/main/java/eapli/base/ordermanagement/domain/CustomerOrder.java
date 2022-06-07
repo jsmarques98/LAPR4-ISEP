@@ -29,15 +29,23 @@ public class CustomerOrder implements AggregateRoot<Integer> {
     @Column
     private LocalDateTime orderDate;
 
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.EAGER
+    )
+    private List<OrderItem> orderItems;
+
     @ManyToOne
     private Customer customer;
 
     public CustomerOrder() {}
 
-    public CustomerOrder(Customer customerId) {
+    public CustomerOrder(Customer customerId, List<OrderItem> orderItems) {
         this.customer = customerId;
         this.status = OrderStatus.paymentSucceeded;
         this.orderDate=LocalDateTime.now();
+        this.orderItems=orderItems;
     }
 
     @Override
@@ -84,5 +92,13 @@ public class CustomerOrder implements AggregateRoot<Integer> {
 
     public LocalDateTime orderDate() {
         return orderDate;
+    }
+
+    public OrderStatus status() {
+        return status;
+    }
+
+    public List<OrderItem> orderItems() {
+        return orderItems;
     }
 }

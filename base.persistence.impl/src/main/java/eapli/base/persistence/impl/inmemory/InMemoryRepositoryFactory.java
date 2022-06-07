@@ -28,7 +28,6 @@ import eapli.base.customermanagement.repositories.CustomerRepository;
 import eapli.base.infrastructure.bootstrapers.BaseBootstrapper;
 import eapli.base.infrastructure.persistence.RepositoryFactory;
 import eapli.base.ordermanagement.repositories.CustomerOrderRepository;
-import eapli.base.ordermanagement.repositories.OrderItemRepository;
 import eapli.base.productmanagement.repositories.ProductRepository;
 import eapli.base.questionnairemanagement.repositories.QuestionnaireRepository;
 import eapli.base.shoppingCartmanagement.repositories.ShoppingCartRepository;
@@ -120,15 +119,6 @@ public class InMemoryRepositoryFactory implements RepositoryFactory {
         return new InMemoryAGVDockRepository();
     }
 
-    @Override
-    public OrderItemRepository orderItem(TransactionalContext autoTx) {
-        return new InMemoryOrderItemRepository();
-    }
-
-    @Override
-    public OrderItemRepository orderItem() {
-        return orderItem(null);
-    }
 
     @Override
     public CustomerOrderRepository customerOrder() {

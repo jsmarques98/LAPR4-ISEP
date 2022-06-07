@@ -47,26 +47,26 @@ public class OrderBootstrapper implements Action {
 
         OrderItem orderItem;
 
-        order = controller.createOrderForCustomer("123459");
-        controller.createOrderItem(list);
+        order = controller.createOrderForCustomer("123459",list);
 
-        order1 = controller.createOrderForCustomer("123456");
-        controller.createOrderItem(list);
 
-        order2 = controller.createOrderForCustomer("123457");
-        controller.createOrderItem(list);
+        order1 = controller.createOrderForCustomer("123456",list);
 
-        order3 = controller.createOrderForCustomer("123458");
-        controller.createOrderItem(list);
 
-        order4 = controller.createOrderForCustomer("123450");
-        controller.createOrderItem(list);
+        order2 = controller.createOrderForCustomer("123457",list);
 
-        order5 = controller.createOrderForCustomer("123459");
-        controller.createOrderItem(list);
 
-        order6 = controller.createOrderForCustomer("123456");
-        controller.createOrderItem(list);
+        order3 = controller.createOrderForCustomer("123458",list);
+
+
+        order4 = controller.createOrderForCustomer("123450",list);
+
+
+        order5 = controller.createOrderForCustomer("123459",list);
+
+
+        order6 = controller.createOrderForCustomer("123456",list);
+
 
 
 

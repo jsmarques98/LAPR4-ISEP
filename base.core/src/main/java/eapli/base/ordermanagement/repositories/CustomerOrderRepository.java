@@ -1,10 +1,8 @@
 package eapli.base.ordermanagement.repositories;
 
-import eapli.base.categorymanagement.domain.Category;
 import eapli.base.customermanagement.domain.Customer;
 import eapli.base.ordermanagement.domain.CustomerOrder;
 import eapli.base.ordermanagement.domain.OrderStatus;
-import eapli.base.productmanagement.domain.Product;
 import eapli.framework.domain.repositories.DomainRepository;
 
 import java.util.List;
@@ -15,6 +13,8 @@ public interface CustomerOrderRepository extends DomainRepository<Integer, Custo
     List<CustomerOrder> findByCustomer(Customer customer);
 
     List<CustomerOrder> findByOrderStatus(OrderStatus status);
+
+    CustomerOrder findByOrderID(Integer id);
 
     default Optional<CustomerOrder> findById(Integer id) {
         return ofIdentity(id);

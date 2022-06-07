@@ -27,6 +27,7 @@ package eapli.base.app.customer.console.presentation;
 import eapli.base.app.common.console.presentation.authz.MyUserMenu;
 import eapli.base.Application;
 import eapli.base.app.customer.console.AddProductShoppingCartUI;
+import eapli.base.app.customer.console.CheckStatusOpenOrdersUI;
 import eapli.base.usermanagement.domain.BaseRoles;
 import eapli.framework.actions.Actions;
 import eapli.framework.actions.menu.Menu;
@@ -108,6 +109,10 @@ public class MainMenu extends AbstractUI {
             final Menu addProductsShoppingCartMenu = buildAddProductsShoppingCartMenu();
 
             mainMenu.addSubMenu(ADD_PRODUCTS_SHOPPING_CART_OPTION, addProductsShoppingCartMenu);
+
+            final Menu checkStatusOpenOrdersMenu = buildcheckStatusOpenOrdersMenu();
+
+            mainMenu.addSubMenu(3,checkStatusOpenOrdersMenu);
         }
 
         if (!Application.settings().isMenuLayoutHorizontal()) {
@@ -126,11 +131,17 @@ public class MainMenu extends AbstractUI {
 
         menu.addItem(0, RETURN_LABEL, Actions.SUCCESS);
 
-        AddProductShoppingCartUI addProductShoppingCartUI = new AddProductShoppingCartUI();
+        menu.addItem(ADD_PRODUCTS_SHOPPING_CART_OPTION, "ADD PRODUCT SHOPPING CART", new AddProductShoppingCartUI()::show);
 
+        return menu;
+    }
 
+    private Menu buildcheckStatusOpenOrdersMenu() {
 
-        menu.addItem(ADD_PRODUCTS_SHOPPING_CART_OPTION, "ADD PRODUCT SHOPPING CART", addProductShoppingCartUI::show);
+        final Menu menu = new Menu("Check Status Open Orders>");
+
+        menu.addItem(0, RETURN_LABEL, Actions.SUCCESS);
+        menu.addItem(1, "Check Status Open Orders", new CheckStatusOpenOrdersUI()::show);
 
         return menu;
     }

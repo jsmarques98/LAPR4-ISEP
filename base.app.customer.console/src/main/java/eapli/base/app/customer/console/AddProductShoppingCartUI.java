@@ -30,10 +30,12 @@ public class AddProductShoppingCartUI extends AbstractUI {
     private boolean flag =true;
 
     public AddProductShoppingCartUI(){
-        addProductShoppingCartController = new AddProductShoppingCartController();
+
     }
+
     @Override
     protected boolean doShow() {
+        addProductShoppingCartController = new AddProductShoppingCartController();
         if(addProductShoppingCartController.testServerConnection()){
             productsList = addProductShoppingCartController.getProducts();
             while(flag) {

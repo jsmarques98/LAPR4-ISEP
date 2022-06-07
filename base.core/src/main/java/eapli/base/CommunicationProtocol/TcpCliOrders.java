@@ -2,6 +2,7 @@ package eapli.base.CommunicationProtocol;
 
 import eapli.base.CommunicationProtocol.utils.*;
 import eapli.base.customermanagement.domain.Customer;
+import eapli.base.ordermanagement.domain.CustomerOrder;
 import eapli.base.productmanagement.domain.Product;
 import eapli.framework.general.domain.model.EmailAddress;
 import org.springframework.security.core.parameters.P;
@@ -10,6 +11,7 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -119,6 +121,43 @@ public class TcpCliOrders implements Orders_API {
             e.printStackTrace();
         }
         return productsData;
+    }
+
+    @Override
+    public List<CustomerOrder> getCustomerOpenOrders(EmailAddress emailAddress) {
+        TCPData message;
+        List<CustomerOrder> ordersList= new ArrayList<>();
+        try {
+
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            ObjectOutputStream os = new ObjectOutputStream(out);
+
+            os.writeObject(emailAddress);
+
+            byte[] emailBytes = out.toByteArray();
+
+            dataHandler.sendData(emailBytes, MessageCodes.GETCUSTOMEROPENORDERS);
+
+            message = dataHandler.readData();
+
+            byte[] receivedData = message.messageData();
+
+            ByteArrayInputStream bIn = new ByteArrayInputStream(receivedData);
+            ObjectInputStream sIn2 = new ObjectInputStream(bIn);
+            ordersList= (List<CustomerOrder>) sIn2.readObject();
+
+            if(message.messageCode()==3)
+                System.out.println("Open orders requested successfully");
+            else{
+                System.out.println("Open orders requested unsuccessfully");
+                return null;
+            }
+
+
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+        return ordersList;
     }
 
 }

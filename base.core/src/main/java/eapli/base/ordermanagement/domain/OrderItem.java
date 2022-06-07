@@ -5,11 +5,12 @@ import eapli.framework.domain.model.AggregateRoot;
 import eapli.framework.domain.model.DomainEntities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 
 @Entity
-public class OrderItem  implements AggregateRoot<Integer> {
+public class OrderItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
@@ -19,13 +20,9 @@ public class OrderItem  implements AggregateRoot<Integer> {
     private Long version;
 
     @ManyToOne
-    private  CustomerOrder customerOrder;
-
-    @ManyToOne
     private Product product;
 
-    public OrderItem(CustomerOrder customerOrder, Product product) {
-        this.customerOrder = customerOrder;
+    public OrderItem(Product product) {
         this.product = product;
     }
 
@@ -33,21 +30,11 @@ public class OrderItem  implements AggregateRoot<Integer> {
     }
 
     @Override
-    public boolean sameAs(Object other) {
-        return DomainEntities.areEqual(this, other);
-    }
-
-    @Override
-    public Integer identity() {
-        return id;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderItem orderItem = (OrderItem) o;
-        return Objects.equals(customerOrder, orderItem.customerOrder) && Objects.equals(product, orderItem.product);
+        return  Objects.equals(product, orderItem.product);
     }
 
     @Override
@@ -61,4 +48,7 @@ public class OrderItem  implements AggregateRoot<Integer> {
                 "Product=" + product;
     }
 
+    public Product product() {
+        return product;
+    }
 }
