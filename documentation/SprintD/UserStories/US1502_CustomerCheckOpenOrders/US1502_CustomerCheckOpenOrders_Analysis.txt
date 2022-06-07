@@ -1,0 +1,18 @@
+	___________
+
+	ANALYSIS
+	____________
+
+
+	Customer inquiry forum
+
+	* At the moment there are no doubts on the client forum !
+
+	______________________
+
+	BUSINESS RULES
+	_____________________
+
+
+	* It is mandatory using the "OrdersServer" component (cf. US1901).
+	* Only open orders should appear. All orders that are not with "Received by client" status.
