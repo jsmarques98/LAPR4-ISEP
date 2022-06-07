@@ -10,20 +10,33 @@ import eapli.base.ordermanagement.domain.CustomerOrder;
 import eapli.base.server.AGVManager.application.AGVManagerController;
 
 
-
+import javax.net.ssl.SSLServerSocket;
+import javax.net.ssl.SSLServerSocketFactory;
 import java.io.*;
 import java.net.*;
 import java.util.List;
 
 
 class TcpSrvAGVManager {
-    static ServerSocket sock;
+    static final String TRUSTED_STORE = "agvmanager_server_J.jks";
+    static final String KEYSTORE_PASS = "forgotten";
+    static SSLServerSocket sock;
 
     public static void main(String args[]) throws Exception {
+        // Trust these certificates provided by authorized clients
+        System.setProperty("javax.net.ssl.trustStore", TRUSTED_STORE);
+        System.setProperty("javax.net.ssl.trustStorePassword", KEYSTORE_PASS);
+
+        // Use this certificate and private key as server certificate
+        System.setProperty("javax.net.ssl.keyStore", TRUSTED_STORE);
+        System.setProperty("javax.net.ssl.keyStorePassword", KEYSTORE_PASS);
+
+        SSLServerSocketFactory sslF = (SSLServerSocketFactory) SSLServerSocketFactory.getDefault();
         Socket cliSock;
         System.out.println("AGV Server ON \n");
         try {
-            sock = new ServerSocket(9999);
+            sock = (SSLServerSocket) sslF.createServerSocket(9999);
+            sock.setNeedClientAuth(true);
         }
         catch(IOException ex) {
             System.out.println("Failed to open server socket\n");
