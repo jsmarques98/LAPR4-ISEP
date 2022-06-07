@@ -1,4 +1,4 @@
-// Generated from C:/Users/joser/OneDrive/Ambiente de Trabalho/Projeto1/lei21_22_s4_2di_02/base.core/src/main/java/eapli/base/questionnairemanagement/validation\LabeledExpr.g4 by ANTLR 4.10.1
+// Generated from C:/Users/joser/OneDrive/Ambiente de Trabalho/Projeto1/lei21_22_s4_2di_02/base.core/src/main/java/eapli/base/questionnairemanagement/validation\QuestionnaireGrammar.g4 by ANTLR 4.10.1
 package eapli.base.questionnairemanagement.validation;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
@@ -112,7 +112,7 @@ public class LabeledExprLexer extends Lexer {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "LabeledExpr.g4"; }
+	public String getGrammarFileName() { return "QuestionnaireGrammar.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }

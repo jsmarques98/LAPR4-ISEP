@@ -1,4 +1,4 @@
-grammar LabeledExpr;  //grammars name
+grammar QuestionnaireGrammar;  //grammars name
 
 // Initial rule, the parsing starts here
 prog: start|start1 ;
@@ -91,7 +91,7 @@ NUMERIC: ('Numeric' | 'NUMERIC') ;
 SINGLECHOICE: ('Single-choice' | 'SingleChoice' | 'Singlechoice') ;
 SINGLECHOICE_WITH_INPUT: ('Single-choice with input' |  'SingleChoice with input' |  'Singlechoice with input') ;
 MULTIPLECHOICE: ('Multiple-choice' | 'MultipleChoice' | 'Multiplechoice') ;
-MULTIPLECHOICE_WITH_INPUT: ('Multiple-choice with input' | 'MulipleChoice with input' | 'Multiplechoice with input') ;
+MULTIPLECHOICE_WITH_INPUT: ('Multiple-choice with input' | 'MultipleChoice with input' | 'Multiplechoice with input') ;
 SORTING_OPTIONS: ('Sorting options' | 'SortingOptions' | 'Sortingoptions') ;
 SCALING_OPTIONS: ('Scaling options' | 'ScalingOptions' | 'Scalingoptions') ;
 
@@ -104,7 +104,7 @@ DESCRIPTION: [a-zA-Z]+  ; // only letters
 SIGNALS: [!] | [?] | [,] | [.]+ ; // only accepts signals
 
 LOWERCASE: [a-z]+ ; // only accepts lowercase letters
-CAPSCASE: [A-Z]+ ; // only accepts capslock letters
+UPPERCASE: [A-Z]+ ; // only accepts capslock letters
 NUMBERS: [0-9]+ ; // only accepts numbers
 
 NEWLINE:'\r'? '\n' ;  // returns the end of the line to end the expression
