@@ -47,6 +47,7 @@ public class AppSettings {
     private static final String ORDERS_API = "ORDERS_API";
     private static final String REQUESTS_API = "REQUESTS_API";
     private static final String STATUS_API = "STATUS_API";
+    private static final String KEYSTORE_PASS = "KEYSTORE_PASS";
 
     private final Properties applicationProperties = new Properties();
 
@@ -115,5 +116,9 @@ public class AppSettings {
 
     public String getStatusAPI(){
         return this.applicationProperties.getProperty(STATUS_API);
+    }
+
+    public String getTrustedStorePassword(){
+        return this.applicationProperties.getProperty(KEYSTORE_PASS);
     }
 }

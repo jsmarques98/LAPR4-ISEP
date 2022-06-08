@@ -1,5 +1,6 @@
 package eapli.base.server.orders;
 
+import eapli.base.Application;
 import eapli.base.CommunicationProtocol.utils.*;
 import eapli.base.ordermanagement.domain.CustomerOrder;
 import eapli.base.server.orders.application.OrdersController;
@@ -14,7 +15,7 @@ import java.util.List;
 
 class TcpSrvOrders {
     static final String TRUSTED_STORE = "orders_server_J.jks";
-    static final String KEYSTORE_PASS = "forgotten";
+    static final String KEYSTORE_PASS = Application.settings().getTrustedStorePassword();
     static SSLServerSocket sock;
 
 
