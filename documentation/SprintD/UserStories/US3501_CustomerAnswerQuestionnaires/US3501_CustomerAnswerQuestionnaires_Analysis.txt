@@ -1,0 +1,21 @@
+	___________
+
+	ANALYSIS
+	____________
+
+
+	Customer inquiry forum
+
+	* At the moment there are no doubts on the client forum !
+
+	______________________
+
+	BUSINESS RULES
+	_____________________
+
+
+	
+	* The kind of answer must be the correspond to the kind of questions.
+
+
+
