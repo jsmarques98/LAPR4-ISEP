@@ -1,0 +1,14 @@
+	_________
+
+	DESIGN
+	_________
+
+	
+
+	UI class: CreateAnswerQuestionnaireUI
+	
+	Controller Class: CreateAnswerQuestionnaire
+
+	Repository: AnswerQuestionnaireRepository, CustomerRepository, QuestionnaireRepository
+
+	Domain classes: AnswerQuestionnaire, Questionnaire, Customer
