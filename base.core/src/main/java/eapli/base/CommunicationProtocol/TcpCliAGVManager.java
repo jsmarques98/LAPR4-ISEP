@@ -1,5 +1,6 @@
 package eapli.base.CommunicationProtocol;
 
+import eapli.base.Application;
 import eapli.base.CommunicationProtocol.utils.DataHandler;
 import eapli.base.CommunicationProtocol.utils.MessageCodes;
 import eapli.base.CommunicationProtocol.utils.TCPData;
@@ -7,6 +8,8 @@ import eapli.base.agvmanagement.domain.AGV;
 import eapli.base.productmanagement.domain.Product;
 
 
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -19,10 +22,21 @@ import java.util.List;
 public class TcpCliAGVManager implements Requests_API {
     static final int SERVER_PORT = 9999;
     static InetAddress serverIP;
-    static Socket socket;
+    static SSLSocket socket;
+    static final String certificate = "base.server.AGVManager/src/main/resources/certificates/agvmanager_server/client1_agvmanager_J.jks";
+    static final String keystorePassword = Application.settings().getTrustedStorePassword();
     private DataHandler dataHandler;
 
     public TcpCliAGVManager() {
+
+        // Trust these certificates provided by authorized clients
+        System.setProperty("javax.net.ssl.trustStore", certificate);
+        System.setProperty("javax.net.ssl.trustStorePassword", keystorePassword);
+
+        // Use this certificate and private key as server certificate
+        System.setProperty("javax.net.ssl.keyStore", certificate);
+        System.setProperty("javax.net.ssl.keyStorePassword", keystorePassword);
+        SSLSocketFactory sslF = (SSLSocketFactory) SSLSocketFactory.getDefault();
 
         try {
             serverIP = InetAddress.getByName("vs113.dei.isep.ipp.pt");
@@ -33,7 +47,7 @@ public class TcpCliAGVManager implements Requests_API {
 
         try {
 
-            socket = new Socket(serverIP, SERVER_PORT);
+            socket = (SSLSocket) sslF.createSocket(serverIP, SERVER_PORT);
 
             dataHandler = new DataHandler(socket);
 
