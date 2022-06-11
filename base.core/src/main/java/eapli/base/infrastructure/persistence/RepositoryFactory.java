@@ -21,6 +21,7 @@
 package eapli.base.infrastructure.persistence;
 
 import eapli.base.agvmanagement.repository.AGVRepository;
+import eapli.base.answerQuestionnairemanagement.repositories.AnswerQuestionaireRepository;
 import eapli.base.categorymanagement.repositories.CategoryRepository;
 import eapli.base.clientusermanagement.repositories.ClientUserRepository;
 import eapli.base.clientusermanagement.repositories.SignupRequestRepository;
@@ -133,6 +134,10 @@ public interface RepositoryFactory {
     CustomerOrderRepository customerOrder(TransactionalContext autoTx);
 
     ShoppingCartRepository shoppingCart();
+
+    AnswerQuestionaireRepository answerQuestionaire();
+
+    AnswerQuestionaireRepository answerQuestionaire(TransactionalContext autoTx);
 
     ShoppingCartRepository shoppingCart(TransactionalContext autoTx);
 }

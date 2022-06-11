@@ -42,10 +42,8 @@ public class CreateSurveyUI extends AbstractUI {
         String id = Console.readLine("Alphanumerical Code: ");
         String description = Console.readLine("Description: ");
         String title = Console.readLine("Title: ");
-
         String welcomeM = Console.readLine("Welcome Message: ");
         List<String> answer;
-
         List<String> section = new ArrayList<>();
         List<String> questionList;
         Map<String, List<String>> question = new HashMap<>();
@@ -68,17 +66,11 @@ public class CreateSurveyUI extends AbstractUI {
                 answer = new ArrayList<>();
                 showAnswer(answer, "Do you want to add another question?");
             } while (answer.get(0).equals("YES"));
-
-            System.out.println("------------------------");
-            System.out.println(questionList.size());
-            System.out.println("------------------------");
             question.put(sectionId, questionList);
             answer = new ArrayList<>();
             showAnswer(answer, "Do you want to add another section?");
         } while (answer.get(0).equals("YES"));
-
         String finalM = Console.readLine("Final Message:: ");
-
         findCustomers();
         return controller.createQuestionnaire(id, description,title,section,question,welcomeM,finalM);
     }

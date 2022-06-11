@@ -28,6 +28,7 @@ import eapli.base.app.common.console.presentation.authz.MyUserMenu;
 import eapli.base.Application;
 import eapli.base.app.customer.console.AddProductShoppingCartUI;
 import eapli.base.app.customer.console.CheckStatusOpenOrdersUI;
+import eapli.base.app.customer.console.CreateAnswerQuestionnaireUI;
 import eapli.base.usermanagement.domain.BaseRoles;
 import eapli.framework.actions.Actions;
 import eapli.framework.actions.menu.Menu;
@@ -113,6 +114,10 @@ public class MainMenu extends AbstractUI {
             final Menu checkStatusOpenOrdersMenu = buildcheckStatusOpenOrdersMenu();
 
             mainMenu.addSubMenu(3,checkStatusOpenOrdersMenu);
+
+            final Menu answerQuestionnaireMenu = buildAnswerQuestionnaireMenu();
+
+            mainMenu.addSubMenu(4,answerQuestionnaireMenu);
         }
 
         if (!Application.settings().isMenuLayoutHorizontal()) {
@@ -142,6 +147,16 @@ public class MainMenu extends AbstractUI {
 
         menu.addItem(0, RETURN_LABEL, Actions.SUCCESS);
         menu.addItem(1, "Check Status Open Orders", new CheckStatusOpenOrdersUI()::show);
+
+        return menu;
+    }
+
+    private Menu buildAnswerQuestionnaireMenu() {
+
+        final Menu menu = new Menu("Answer Questionnaires>");
+
+        menu.addItem(0, RETURN_LABEL, Actions.SUCCESS);
+        menu.addItem(1, "Choose Questionnaire", new CreateAnswerQuestionnaireUI()::show);
 
         return menu;
     }

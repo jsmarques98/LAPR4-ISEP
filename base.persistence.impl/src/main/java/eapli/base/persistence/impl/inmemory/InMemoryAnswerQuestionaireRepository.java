@@ -1,0 +1,8 @@
+package eapli.base.persistence.impl.inmemory;
+
+import eapli.base.answerQuestionnairemanagement.domain.AnswerQuestionaire;
+import eapli.base.answerQuestionnairemanagement.repositories.AnswerQuestionaireRepository;
+import eapli.framework.infrastructure.repositories.impl.inmemory.InMemoryDomainRepository;
+
+public class InMemoryAnswerQuestionaireRepository extends InMemoryDomainRepository<AnswerQuestionaire,Integer> implements AnswerQuestionaireRepository {
+}

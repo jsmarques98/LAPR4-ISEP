@@ -1,6 +1,6 @@
 package eapli.base.questionnairemanagement.application;
 
-import com.google.gson.stream.JsonToken;
+import eapli.base.answerQuestionnairemanagement.repositories.AnswerQuestionaireRepository;
 import eapli.base.categorymanagement.domain.Category;
 import eapli.base.categorymanagement.domain.CategoryID;
 import eapli.base.categorymanagement.repositories.CategoryRepository;
@@ -19,7 +19,6 @@ import eapli.base.questionnairemanagement.domain.Questionnaire;
 import eapli.base.questionnairemanagement.repositories.QuestionnaireRepository;
 import eapli.base.questionnairemanagement.validation.LabeledExprLexer;
 import eapli.base.questionnairemanagement.validation.LabeledExprParser;
-import eapli.base.questionnairemanagement.validation.MyVisitor;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
@@ -37,16 +36,18 @@ import java.time.LocalDate;
 import java.util.*;
 
 import static org.antlr.v4.runtime.CharStreams.fromFileName;
+
 public class QuestionnaireController {
 
     private final RepositoryFactory repositoryFactory;
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
     private final CustomerRepository customerRepository;
+    private final AnswerQuestionaireRepository answerQuestionaireRepository;
     private final QuestionnaireRepository questionnaireRepository;
     private final EntityManagerFactory entityManagerFactory;
     private final EntityManager entityManager;
-    private List<Customer> customers;
+    private Set<Customer> customers;
 
     public QuestionnaireController() {
         repositoryFactory = PersistenceContext.repositories();
@@ -54,17 +55,30 @@ public class QuestionnaireController {
         categoryRepository = repositoryFactory.category();
         customerRepository = repositoryFactory.customers();
         questionnaireRepository = repositoryFactory.questionnaire();
+        answerQuestionaireRepository = repositoryFactory.answerQuestionaire();
         entityManagerFactory = Persistence.createEntityManagerFactory("eapli.base");
         entityManager = entityManagerFactory.createEntityManager();
-        customers = new ArrayList<>();
+        customers = new HashSet<>();
     }
 
-    public boolean createQuestionnaire(String id, String description, String title, List<String> section, Map<String, List<String>> question, String welcomeM, String finalM) throws IOException {
-       if (customers.size() != 0) {
-          createTXTFile(id, title, section, question, welcomeM, finalM);
+    public boolean createQuestionnaire(String id, String description, String title, List<String> section,Map<String, List<String>>  question, String welcomeM, String finalM) throws IOException {
+        if (customers.size() != 0) {
+            createTXTFile(id, title, section, question, welcomeM, finalM);
             if (validateQuestionnaire(title)) {
-                String aux=createStringToTXTFile(title);
-               questionnaireRepository.save(new Questionnaire(AlphanumericalCode.valueOf(id), Description.valueOf(description), customers,aux));
+
+                String aux = createStringToTXTFile("test");
+                Questionnaire questionnaire = new Questionnaire(AlphanumericalCode.valueOf(id), Description.valueOf(description), aux);
+                for (Customer c : customers) {
+                    questionnaire.addCustomer(c);
+                }
+                questionnaireRepository.save(questionnaire);
+
+
+                System.out.println(questionnaireRepository.findByAlphanumericalCode(AlphanumericalCode.valueOf("1")).get().customers().size());
+
+
+                System.out.println(customerRepository.findByIdCustomer(20).get().questionnaires().size());
+
                 return true;
             } else {
                 return false;
@@ -74,13 +88,13 @@ public class QuestionnaireController {
     }
 
     private String createStringToTXTFile(String title) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("base.core/src/main/java/eapli/base/questionnairemanagement/flieTXT/" + title + ".txt" ));
-        String         line = null;
-        StringBuilder  stringBuilder = new StringBuilder();
-        String         ls = System.getProperty("line.separator");
+        BufferedReader reader = new BufferedReader(new FileReader("base.core/src/main/java/eapli/base/questionnairemanagement/flieTXT/" + title + ".txt"));
+        String line = null;
+        StringBuilder stringBuilder = new StringBuilder();
+        String ls = System.getProperty("line.separator");
 
         try {
-            while((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 stringBuilder.append(line);
                 stringBuilder.append(ls);
             }
@@ -92,8 +106,7 @@ public class QuestionnaireController {
     }
 
 
-    public void createTXTFile(String id, String
-            title, List<String> section, Map<String, List<String>> question, String welcomeM, String finalM) throws
+    public void createTXTFile(String id, String title, List<String> section, Map<String, List<String>> question, String welcomeM, String finalM) throws
             IOException {
 
         //eliminar o ficheiro se ja existir
@@ -139,9 +152,10 @@ public class QuestionnaireController {
 
                 writer.println("Type: " + questionList.get(j + 3));
                 writer.println("Question Obligatoriness: " + questionList.get(j + 4));
-                writer.println("Extra Info: " + questionList.get(j + 5)+"\n");
+                writer.println("Extra Info: " + questionList.get(j + 5) + "\n");
             }
         }
+
         if (finalM != null) {
             writer.println("\nFinal Message: " + finalM);
         }
@@ -171,7 +185,7 @@ public class QuestionnaireController {
             Product product1 = productRepository.findByUniqueInternalCode(eapli.base.productmanagement.domain.UniqueInternalCode.valueOf(product)).get();
             Query query = entityManager.createQuery("SELECT  customer  from CustomerOrder where idOrder in (select customerOrder from OrderItem where product = ?1 )");
             query.setParameter(1, product1);
-            customers = query.getResultList();
+            customers = new HashSet<Customer>(query.getResultList());
         } catch (NullPointerException e) {
             System.out.println("There are no customers who bought the indicated product");
         } catch (NoSuchElementException aux) {
@@ -186,7 +200,7 @@ public class QuestionnaireController {
             Query query = entityManager.createQuery("SELECT  customer  from CustomerOrder where idOrder in " +
                     "(select customerOrder from  OrderItem where  product in (SELECT uniqueInternalCode from Product where brand=?1))");
             query.setParameter(1, brandAux);
-            customers = query.getResultList();
+            customers = new HashSet<Customer>(query.getResultList());
 
         } catch (NullPointerException e) {
             System.out.println("There are no customers who have purchased products from the indicated brand");
@@ -200,7 +214,8 @@ public class QuestionnaireController {
             Query query = entityManager.createQuery("SELECT  customer  from CustomerOrder where idOrder in " +
                     "(select customerOrder from  OrderItem where  product in (SELECT uniqueInternalCode from Product where category=?1))");
             query.setParameter(1, categoryAux);
-            customers = query.getResultList();
+            customers = new HashSet<Customer>(query.getResultList());
+
 
         } catch (NullPointerException e) {
             System.out.println("There are no customers who have purchased products from the indicated category");
@@ -209,8 +224,7 @@ public class QuestionnaireController {
     }
 
     public void getCostumersByGender(String gender) {
-        customers = customerRepository.findByGender(gender);
-
+        customers = new HashSet<Customer>(customerRepository.findByGender(gender));
     }
 
     public void getCostumersByAge(Integer idade1, Integer idade2) {

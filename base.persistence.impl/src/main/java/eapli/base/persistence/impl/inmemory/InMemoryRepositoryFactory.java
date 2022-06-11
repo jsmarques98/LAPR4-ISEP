@@ -21,6 +21,7 @@
 package eapli.base.persistence.impl.inmemory;
 
 import eapli.base.agvmanagement.repository.AGVRepository;
+import eapli.base.answerQuestionnairemanagement.repositories.AnswerQuestionaireRepository;
 import eapli.base.categorymanagement.repositories.CategoryRepository;
 import eapli.base.clientusermanagement.repositories.ClientUserRepository;
 import eapli.base.clientusermanagement.repositories.SignupRequestRepository;
@@ -133,6 +134,16 @@ public class InMemoryRepositoryFactory implements RepositoryFactory {
     @Override
     public ShoppingCartRepository shoppingCart() {
         return shoppingCart(null);
+    }
+
+    @Override
+    public AnswerQuestionaireRepository answerQuestionaire() {
+        return answerQuestionaire(null);
+    }
+
+    @Override
+    public AnswerQuestionaireRepository answerQuestionaire(TransactionalContext autoTx) {
+        return new InMemoryAnswerQuestionaireRepository();
     }
 
     @Override

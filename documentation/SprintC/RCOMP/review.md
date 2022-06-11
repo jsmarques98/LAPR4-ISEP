@@ -1,5 +1,4 @@
-RCOMP 2021-2022 Project - Sprint 4 review
-=========================================
+RCOMP 2021-2022 Project - Sprint 4 review=========================================
 ### Sprint master: 1201008 (Luis Ferreira) ###
 
 # 1. Sprint's backlog #

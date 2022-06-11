@@ -1,6 +1,7 @@
 package eapli.base.customermanagement.domain;
 
 
+import eapli.base.answerQuestionnairemanagement.domain.AnswerQuestionaire;
 import eapli.base.customermanagement.dto.CustomerDTO;
 import eapli.base.questionnairemanagement.domain.Questionnaire;
 import eapli.framework.domain.model.AggregateRoot;
@@ -9,6 +10,7 @@ import eapli.framework.general.domain.model.EmailAddress;
 import eapli.framework.representations.dto.DTOable;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -18,6 +20,10 @@ public class Customer implements AggregateRoot<Integer>, DTOable<CustomerDTO> {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
 
     @Version
     private Long version;
@@ -44,8 +50,13 @@ public class Customer implements AggregateRoot<Integer>, DTOable<CustomerDTO> {
     @CollectionTable(name = "customer_adress", joinColumns = @JoinColumn(name = "customer_id"))
     private List<AdressCostumer> address = new ArrayList<>();
 
+
+    @ManyToMany(mappedBy = "customers", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private Set<Questionnaire> questionnaires = new HashSet<>();
+
     public Customer() {
     }
+
 
 
     public Customer(EmailAddress email, Name name, PhoneNumber phoneNumber, VatId vatId, LocalDate birthDate, List<AdressCostumer> addresss, String gender) {
@@ -106,6 +117,10 @@ public class Customer implements AggregateRoot<Integer>, DTOable<CustomerDTO> {
 
     public List<AdressCostumer> getAddress() {
         return address;
+    }
+
+    public Set<Questionnaire> questionnaires() {
+        return questionnaires;
     }
 
     public PhoneNumber getPhoneNumber() {

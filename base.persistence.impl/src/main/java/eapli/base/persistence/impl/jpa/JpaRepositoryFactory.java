@@ -22,6 +22,7 @@ package eapli.base.persistence.impl.jpa;
 
 import eapli.base.Application;
 import eapli.base.agvmanagement.repository.AGVRepository;
+import eapli.base.answerQuestionnairemanagement.repositories.AnswerQuestionaireRepository;
 import eapli.base.categorymanagement.repositories.CategoryRepository;
 import eapli.base.clientusermanagement.repositories.SignupRequestRepository;
 import eapli.base.customermanagement.repositories.CustomerRepository;
@@ -178,6 +179,16 @@ public class JpaRepositoryFactory implements RepositoryFactory {
     @Override
     public ShoppingCartRepository shoppingCart() {
         return new JpaShoppingCartRepository(Application.settings().getPersistenceUnitName());
+    }
+
+    @Override
+    public AnswerQuestionaireRepository answerQuestionaire() {
+        return new JpaAnswerQuestionaireRepository(Application.settings().getPersistenceUnitName());
+    }
+
+    @Override
+    public AnswerQuestionaireRepository answerQuestionaire(TransactionalContext autoTx) {
+        return new JpaAnswerQuestionaireRepository(autoTx);
     }
 
     @Override

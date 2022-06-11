@@ -1,14 +1,15 @@
 package eapli.base.persistence.impl.jpa;
 
 import eapli.base.Application;
-import eapli.base.productmanagement.domain.Product;
-import eapli.base.productmanagement.domain.UniqueInternalCode;
-import eapli.base.productmanagement.repositories.ProductRepository;
 import eapli.base.questionnairemanagement.domain.AlphanumericalCode;
 import eapli.base.questionnairemanagement.domain.Questionnaire;
 import eapli.base.questionnairemanagement.repositories.QuestionnaireRepository;
 import eapli.framework.domain.repositories.TransactionalContext;
 import eapli.framework.infrastructure.repositories.impl.jpa.JpaAutoTxRepository;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 public class JpaQuestionnaireRepository extends JpaAutoTxRepository<Questionnaire, AlphanumericalCode, AlphanumericalCode>
         implements QuestionnaireRepository {
@@ -22,4 +23,10 @@ public class JpaQuestionnaireRepository extends JpaAutoTxRepository<Questionnair
         super(tx, "id");
     }
 
+    @Override
+    public Optional<Questionnaire> findByAlphanumericalCode(AlphanumericalCode alphanumericalCode) {
+        final Map<String, Object> alphanumCode = new HashMap<>();
+        alphanumCode.put("anc", alphanumericalCode);
+        return matchOne("e.alphanumericalCode=:anc", alphanumCode);
+    }
 }

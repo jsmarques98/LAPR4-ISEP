@@ -7,6 +7,9 @@ import eapli.framework.domain.model.DomainEntities;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -20,27 +23,47 @@ public class Questionnaire implements AggregateRoot<AlphanumericalCode> {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id_db;
 
+    public Integer getId_db() {
+        return id_db;
+    }
+
     @Column
     private AlphanumericalCode alphanumericalCode;
 
     @Column
-    private  Description description;
-
+    private Description description;
 
     @Column
     @Lob
-    private  String questionnaire;
+    private String questionnaire;
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "Questionnaire_Customer",
+            joinColumns = {@JoinColumn(name = "questionnaire_id")},
+            inverseJoinColumns = {@JoinColumn(name = "customer_id")}
+    )
+    private Set<Customer> customers=new HashSet<>();
 
-    @ManyToMany
-    List<Customer> customers;
-
-
-    public Questionnaire(AlphanumericalCode id, Description description, List<Customer> customers,String questionnaire ) {
+    public Questionnaire(AlphanumericalCode id, Description description, String questionnaire) {
+        super();
         this.alphanumericalCode = id;
-        this.description=description;
-        this.customers = customers;
-        this.questionnaire=questionnaire;
+        this.description = description;
+        this.questionnaire = questionnaire;
+
+    }
+
+    public void addCustomer(Customer customer) {
+        customers.add(customer);
+        customer.questionnaires().add(this);
+    }
+
+    public Set<Customer> customers() {
+        return customers;
+    }
+
+    public Description description() {
+        return description;
     }
 
     public Questionnaire() {
@@ -64,5 +87,9 @@ public class Questionnaire implements AggregateRoot<AlphanumericalCode> {
     @Override
     public AlphanumericalCode identity() {
         return this.alphanumericalCode;
+    }
+
+    public String questionnaire() {
+        return questionnaire;
     }
 }

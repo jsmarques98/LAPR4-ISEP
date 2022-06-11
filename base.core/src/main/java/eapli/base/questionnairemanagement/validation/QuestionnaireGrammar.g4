@@ -9,10 +9,10 @@ prog: start|start1 ;
 //d = Sections(mandatory)
 //e = Final Message
 
-start: a=id NEWLINE b=title NEWLINE c=welcomeMessage NEWLINE d=section NEWLINE e=finalMessage NEWLINE # questionnarie1 //accepts with all the fields
+start: a=id NEWLINE b=title NEWLINE c=welcomeMessage NEWLINE d=section NEWLINE NEWLINE e=finalMessage NEWLINE # questionnarie1 //accepts with all the fields
     ;
 
-start1: a=id NEWLINE b=title NEWLINE d=section NEWLINE e=finalMessage NEWLINE # questionnarie2 //without welcome message
+start1: a=id NEWLINE b=title NEWLINE d=section NEWLINE NEWLINE e=finalMessage NEWLINE # questionnarie2 //without welcome message
 ;
 
 id: 'ID: '(ALPHANUMERIC)+ ; // accepts letters and numbers and it's mandatory
