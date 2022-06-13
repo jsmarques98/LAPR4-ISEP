@@ -35,23 +35,31 @@ public class AGV implements AggregateRoot<IDAGV> {
     @OneToOne
     private AGVDock agvDock;
 
-    public AGV(IDAGV id, Autonomy autonomy, MaxWeight maxWeight, Model model, ShortDescription shortDescription,AGVDock agvDock) {
-        Preconditions.noneNull(id,autonomy,maxWeight,model,shortDescription,agvDock);
+    @Column
+    private Position position;
+
+    public AGV(IDAGV id, Autonomy autonomy, MaxWeight maxWeight, Model model, ShortDescription shortDescription, AGVDock agvDock, Position position) {
+        Preconditions.noneNull(id, autonomy, maxWeight, model, shortDescription, agvDock);
         this.id = id;
         this.autonomy = autonomy;
         this.maxWeight = maxWeight;
         this.model = model;
         this.shortDescription = shortDescription;
         this.currentTask = CurrentTask.FREE;
-        this.agvDock=agvDock;
+        this.agvDock = agvDock;
+        this.position = position;
     }
 
-    public AGV(){
+    public AGV() {
         //empty constructor
     }
 
     public IDAGV id() {
         return id;
+    }
+
+    public Position position() {
+        return position;
     }
 
     public AGVDock agvDock() {
@@ -86,22 +94,22 @@ public class AGV implements AggregateRoot<IDAGV> {
 
     @Override
     public boolean equals(Object o) {
-        return DomainEntities.areEqual(this,o);
+        return DomainEntities.areEqual(this, o);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(version, id, autonomy, maxWeight, model, shortDescription,agvDock);
+        return Objects.hash(version, id, autonomy, maxWeight, model, shortDescription, agvDock);
     }
 
     @Override
     public String toString() {
         return "AGV:\n" +
-                "ID:=" + id + "\n"+
-                "Autonomy=" + autonomy +"\n"+
-                "Max Weight=" + maxWeight +"\n"+
-                "Model=" + model +"\n"+
-                "Short Description=" + shortDescription +"\n"+
+                "ID:=" + id + "\n" +
+                "Autonomy=" + autonomy + "\n" +
+                "Max Weight=" + maxWeight + "\n" +
+                "Model=" + model + "\n" +
+                "Short Description=" + shortDescription + "\n" +
                 "AGV Dock Location=" + agvDock;
     }
 

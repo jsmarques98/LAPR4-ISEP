@@ -28,7 +28,7 @@ public class AddAGVController {
 
     public AGV createAGV(String idAgv,Integer autonomy,Double weight,String model,String description){
 
-        return agvRep.save(new AGV(IDAGV.valueOf(idAgv),Autonomy.valueOf(autonomy), MaxWeight.valueOf(weight),Model.valueOf(model),ShortDescription.valueOf(description),agvDock));
+        return agvRep.save(new AGV(IDAGV.valueOf(idAgv),Autonomy.valueOf(autonomy), MaxWeight.valueOf(weight),Model.valueOf(model),ShortDescription.valueOf(description),agvDock,Position.valueOf(agvDock.begin().blsquare(),agvDock.begin().bwsquare())));
     }
 
     private AGVDock getAGVDock(String location){
