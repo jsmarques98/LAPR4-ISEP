@@ -8,6 +8,10 @@ import eapli.base.infrastructure.persistence.PersistenceContext;
 import eapli.base.ordermanagement.domain.CustomerOrder;
 import eapli.base.ordermanagement.domain.OrderStatus;
 import eapli.base.ordermanagement.repositories.CustomerOrderRepository;
+import eapli.base.warehousemanagement.domain.AGVDock;
+import eapli.base.warehousemanagement.domain.Aisle;
+import eapli.base.warehousemanagement.repository.AGVDockRepository;
+import eapli.base.warehousemanagement.repository.AisleRepository;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -20,11 +24,15 @@ public class AGVManagerController {
 
     private CustomerOrderRepository customerOrderRepository;
     private AGVRepository agvRepository;
+    private AGVDockRepository agvDockRepository;
+    private AisleRepository aisleRepository;
     private AGV agv;
 
     public AGVManagerController(){
         customerOrderRepository = PersistenceContext.repositories().customerOrder();
         agvRepository = PersistenceContext.repositories().agvs();
+        agvDockRepository  =PersistenceContext.repositories().aGVDock();
+        aisleRepository= PersistenceContext.repositories().aisle();
     }
 
     public List<CustomerOrder> getOrdersByStatusAndDate() {
@@ -84,7 +92,17 @@ public class AGVManagerController {
     }
 
     public List<AGV> getAGVs(){
+        agvRepository = PersistenceContext.repositories().agvs();
         return (List<AGV>) agvRepository.findAll();
     }
 
+    public List<AGVDock> getAGVDocks(){
+        agvDockRepository = PersistenceContext.repositories().aGVDock();
+        return (List<AGVDock>) agvDockRepository.findAll();
+    }
+
+    public List<Aisle> getAisles() {
+        aisleRepository= PersistenceContext.repositories().aisle();
+        return (List<Aisle>) aisleRepository.findAll();
+    }
 }

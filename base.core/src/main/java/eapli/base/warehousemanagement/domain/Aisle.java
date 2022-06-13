@@ -4,11 +4,13 @@ import eapli.framework.domain.model.AggregateRoot;
 import eapli.framework.domain.model.DomainEntities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Aisle implements AggregateRoot<Integer> {
+public class Aisle implements AggregateRoot<Integer> , Serializable {
+
 
     @Version
     private Long version;
@@ -45,6 +47,22 @@ public class Aisle implements AggregateRoot<Integer> {
 
     public Integer getId() {
         return id;
+    }
+
+    public Begin begin() {
+        return begin;
+    }
+
+    public End end() {
+        return end;
+    }
+
+    public Depth depth() {
+        return depth;
+    }
+
+    public String accessibilityR() {
+        return accessibilityR;
     }
 
     @Override

@@ -3,6 +3,8 @@ package eapli.base.dashboardmanagement.application;
 import eapli.base.Application;
 import eapli.base.CommunicationProtocol.Requests_API;
 import eapli.base.agvmanagement.domain.AGV;
+import eapli.base.warehousemanagement.domain.AGVDock;
+import eapli.base.warehousemanagement.domain.Aisle;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -33,6 +35,15 @@ public class ShowDashboardController {
     public List<AGV> getAgv(){
         return api.getAGVs();
     }
+
+    public List<AGVDock> getAgvDocks(){
+        return api.getAGVDocks();
+    }
+
+    public List<Aisle> getAisles(){
+        return api.getAisles();
+    }
+
 
     public boolean testAGVManagerReceivesClientBackOffice(){return api.testAGVManagerReceivesClientBackOffice();}
 

@@ -25,16 +25,17 @@ class AGVTest {
         ShortDescription shortDescription = new ShortDescription("Agv model 1");
         ShortDescription shortDescription2 = new ShortDescription("Agv model 2");
         AGVDock agvDock = new AGVDock("1",new Begin(1,2),new End(1,2),new Depth(1,2),"a",new Warehouse("Warehouse",10,12,1,"cm"));
-        agv = new AGV(idagv,autonomy,maxWeight,model,shortDescription,agvDock);
-        agv2 = new AGV(idagv2,autonomy2,maxWeight2,model2,shortDescription2,agvDock);
-        agv3 = new AGV(idagv,autonomy2,maxWeight2,model2,shortDescription2,agvDock);
+        Position position=new Position(agvDock.begin().blsquare(),agvDock.begin().bwsquare());
+        agv = new AGV(idagv,autonomy,maxWeight,model,shortDescription,agvDock,position);
+        agv2 = new AGV(idagv2,autonomy2,maxWeight2,model2,shortDescription2,agvDock,position);
+        agv3 = new AGV(idagv,autonomy2,maxWeight2,model2,shortDescription2,agvDock,position);
     }
 
     @Test
     void testAGVMustHaveLocation(){
         Throwable exception = assertThrows(
                 IllegalArgumentException.class, () -> {
-                    AGV agv = new AGV(new IDAGV("1"),new Autonomy(200), new MaxWeight(1000.0),new Model("AGV1") ,new ShortDescription("Agv model 1"),null);
+                    AGV agv = new AGV(new IDAGV("1"),new Autonomy(200), new MaxWeight(1000.0),new Model("AGV1") ,new ShortDescription("Agv model 1"),null,null);
                 }
         );
         assertEquals("At least one of the required method parameters is null", exception.getMessage());

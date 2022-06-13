@@ -3,6 +3,8 @@ package eapli.base.dashboardmanagement;
 
 import eapli.base.agvmanagement.domain.AGV;
 import eapli.base.dashboardmanagement.application.ShowDashboardController;
+import eapli.base.warehousemanagement.domain.AGVDock;
+import eapli.base.warehousemanagement.domain.Aisle;
 
 import javax.net.ssl.SSLServerSocket;
 import javax.net.ssl.SSLServerSocketFactory;
@@ -26,16 +28,14 @@ public class HttpServerAjaxVoting extends Thread {
     static private SSLServerSocket sock;
     static private int port=55034;
 
-    private ShowDashboardController showDashboardController;
+    private static ShowDashboardController showDashboardController;
     private static List<AGV> agvList;
 
     public HttpServerAjaxVoting(){
         showDashboardController = new ShowDashboardController();
         showDashboardController.testServerConnection();
         showDashboardController.testAGVManagerReceivesClientBackOffice();
-        agvList = showDashboardController.getAgv();
-        System.out.println(" sssssssssssssssssssssssssssssssssssssssssssssssssssss");
-        System.out.println(agvList.size());
+
     }
     @Override
     public void run() {
@@ -83,15 +83,90 @@ public class HttpServerAjaxVoting extends Thread {
 
     public static synchronized String showInfoAGVInHTML(  ) {
         StringBuilder s = new StringBuilder();
-        for (AGV agv: agvList) {
-            s.append("<tr class=\"active-row\">" +
+        for (AGV agv:  showDashboardController.getAgv()) {
+            s.append("<hr><tr class=\"active-row\">" +
                     "<td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspId:" + agv.id() + "<p></p></td>" +
                     "<td>Current Task: " + agv.currentTask() + "<p></p></td>" +
-                    "<td>Begin: " + agv.agvDock().begin() + "<p></p></td>" +
-                    "<td>End: " + agv.agvDock().end() + "<p></p></td>" +
                     "<td><p></p></td>"+
-                    "</tr>");
+                    "</tr><hr>");
         }
+        return s.toString();
+    }
+
+    private static synchronized List<Integer> getAislesPositionsInGrid (List<Aisle> aisles){
+        List<Integer> aislesPositions = new ArrayList<>();
+        for(Aisle aisle : aisles){
+
+            int beginX = aisle.begin().blsquare();
+            int beginY = aisle.begin().bwsquare();
+            int endX = aisle.end().elsquare();
+
+
+            int depth =  Math.abs(aisle.depth().dwsquare()- beginY);
+
+
+            String a = aisle.accessibilityR();
+
+
+            for(int i = beginX; i<endX; i++){
+                int aux = (beginY-1)*20 + i;
+                aislesPositions.add(aux);
+                for(int j = 0;j<depth;j++){
+
+                    if(a.equals("w-")) {
+                        aux = aux + 20;
+                        aislesPositions.add(aux);
+                    }else if(a.equals("w+")){
+                        aux = aux - 20;
+                        aislesPositions.add(aux);
+                    }
+                }
+            }
+        }
+        return aislesPositions;
+    }
+
+    private static synchronized List<Integer> getAGVDocksPositionsInGrid (List<AGVDock> agvDocks){
+        List<Integer> agvDockPosition = new ArrayList<>();
+        for(AGVDock agvDock : agvDocks){
+            agvDockPosition.add((agvDock.begin().blsquare()-1)  +( 20*(agvDock.begin().bwsquare()-1)));
+        }
+        return agvDockPosition;
+    }
+
+    private static synchronized List<Integer> getAGVPositionsInGrid (List<AGV> agvs){
+        List<Integer> agvDockPosition = new ArrayList<>();
+        for(AGV agv : agvs){
+            agvDockPosition.add((agv.position().lsquare()-1)  +( 20*(agv.position().wsquare()-1)));
+        }
+        return agvDockPosition;
+    }
+
+    public static synchronized String showWarehousePlantInHTML(  ) {
+        StringBuilder s = new StringBuilder();
+
+        List<Aisle> aisles = showDashboardController.getAisles();
+        List<AGVDock> agvDocks = showDashboardController.getAgvDocks();
+        List<AGV> agvs = showDashboardController.getAgv();
+
+
+        List<Integer> aislesPositions = getAislesPositionsInGrid(aisles);
+        List<Integer> agvDockPosition = getAGVDocksPositionsInGrid(agvDocks);
+        List<Integer> agvPosition = getAGVPositionsInGrid(agvs);
+
+        int x = 360;
+        for(int i = 0 ;i<x ;i++){
+            if( agvDockPosition.contains(i)) {
+                s.append("<div class=\"griditemAGVDock\"></div>\n");
+            }else if(aislesPositions.contains(i)){
+                s.append("<div class=\"griditemAisle\"></div>\n");
+            }else if(agvPosition.contains(i)){
+                s.append("<div class=\"griditemAGV\"></div>\n");
+            }else {
+                s.append("<div class=\"griditemfree\"></div>\n");
+            }
+        }
+
         return s.toString();
     }
 

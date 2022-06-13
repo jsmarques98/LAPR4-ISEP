@@ -1,0 +1,53 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(18, 1fr);
+    grid-gap: 2px 2px;
+    padding-right: 1000px;
+    padding-left: 500px;
+}
+
+.griditemfree {
+    border: 1px solid black;
+    min-width: 25px;
+    min-height: 25px;
+    max-width: 25px;
+    max-height: 25px;
+}
+
+.griditemAGVDock {
+    border: 1px solid black;
+    min-width: 25px;
+    min-height: 25px;
+    max-width: 25px;
+    max-height: 25px;
+    background-color : yellow;
+}
+
+.griditemAisle {
+    border: 1px solid black;
+    min-width: 25px;
+    min-height: 25px;
+    max-width: 25px;
+    max-height: 25px;
+    background-color : dimgray;
+}
+
+.griditemAGV {
+    border: 1px solid black;
+    min-width: 25px;
+    min-height: 25px;
+    max-width: 25px;
+    max-height: 25px;
+    background-color : red;
+}
+
+body{
+    background-color: #D2D2D2;
+    aspect-ratio: 1;
+}
+
+h4 {
+    padding-right: 15px;
+    padding-left: 15px;
+}

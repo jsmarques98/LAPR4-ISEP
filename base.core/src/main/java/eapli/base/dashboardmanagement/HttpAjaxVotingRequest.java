@@ -31,10 +31,17 @@ public class HttpAjaxVotingRequest extends Thread {
             // System.out.println(request.getURI());
 
             if(request.getMethod().equals("GET")) {
-                if(request.getURI().equals("/agvinfo")) {
+                if(request.getURI().equals("/agvstatus")) {
                     response.setContentFromString(
                             HttpServerAjaxVoting.showInfoAGVInHTML(), "text/html");
                     response.setResponseStatus("200 Ok");
+
+                }else if(request.getURI().equals("/warehouseplant")) {
+
+                    response.setContentFromString(
+                            HttpServerAjaxVoting.showWarehousePlantInHTML(), "text/html");
+                    response.setResponseStatus("200 Ok");
+
                 }
                 else {
                     String fullname=baseFolder + "/";
@@ -42,27 +49,33 @@ public class HttpAjaxVotingRequest extends Thread {
                     else fullname=fullname+request.getURI();
                     if(response.setContentFromFile(fullname)) {
                         response.setResponseStatus("200 Ok");
+
                     }
                     else {
                         response.setContentFromString(
                                 "<html><body><h1>404 File not found</h1></body></html>",
                                 "text/html");
                         response.setResponseStatus("404 Not Found");
+
                     }
                 }
                 response.send(outS);
+                sock.close();
             }
             else { // NOT GET
-                if(request.getMethod().equals("PUT")
-                        && request.getURI().startsWith("/agvinfo/")) {
-                    HttpServerAjaxVoting.castVote(request.getURI().substring(7));
-                    response.setResponseStatus("200 Ok");
-                }
-                else {
-                    response.setContentFromString(
-                            "<html><body><h1>ERROR: 405 Method Not Allowed</h1></body></html>",
-                            "text/html");
-                    response.setResponseStatus("405 Method Not Allowed");
+                if(request.getMethod().equals("PUT")) {
+                    if (request.getURI().startsWith("/agvinfo/")) {
+                        HttpServerAjaxVoting.castVote(request.getURI().substring(7));
+                        response.setResponseStatus("200 Ok");
+                    } else if (request.getURI().startsWith("/warehouseplant/")) {
+                        HttpServerAjaxVoting.castVote(request.getURI().substring(16));
+                        response.setResponseStatus("200 Ok");
+                    } else {
+                        response.setContentFromString(
+                                "<html><body><h1>ERROR: 405 Method Not Allowed</h1></body></html>",
+                                "text/html");
+                        response.setResponseStatus("405 Method Not Allowed");
+                    }
                 }
                 response.send(outS);
             }

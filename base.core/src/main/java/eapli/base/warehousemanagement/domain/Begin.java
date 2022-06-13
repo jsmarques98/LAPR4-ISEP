@@ -49,4 +49,12 @@ public class Begin implements ValueObject {
         return "x=" + blsquare + "\n" + "y=" + bwsquare + "\n";
 
     }
+
+    public Integer blsquare() {
+        return blsquare;
+    }
+
+    public Integer bwsquare() {
+        return bwsquare;
+    }
 }

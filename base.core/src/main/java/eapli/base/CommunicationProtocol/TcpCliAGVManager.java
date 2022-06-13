@@ -6,6 +6,8 @@ import eapli.base.CommunicationProtocol.utils.MessageCodes;
 import eapli.base.CommunicationProtocol.utils.TCPData;
 import eapli.base.agvmanagement.domain.AGV;
 import eapli.base.productmanagement.domain.Product;
+import eapli.base.warehousemanagement.domain.AGVDock;
+import eapli.base.warehousemanagement.domain.Aisle;
 
 
 import javax.net.ssl.SSLSocket;
@@ -24,7 +26,7 @@ public class TcpCliAGVManager implements Requests_API {
     static InetAddress serverIP;
     static SSLSocket socket;
     static final String certificate = "base.server.AGVManager/src/main/resources/certificates/agvmanager_server/client1_agvmanager_J.jks";
-    static final String keystorePassword = Application.settings().getTrustedStorePassword();
+    static final String keystorePassword = "forgotten";
     private DataHandler dataHandler;
 
     public TcpCliAGVManager() {
@@ -187,6 +189,71 @@ public class TcpCliAGVManager implements Requests_API {
             List<AGV> agvList = (List<AGV>) sIn2.readObject();
 
             return agvList;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            try {
+                socket.close();
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+            return null;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<AGVDock> getAGVDocks() {
+        TCPData message;
+        try {
+
+            dataHandler.sendData(new byte[0], MessageCodes.GETAGVDOCKS);
+
+            message = dataHandler.readData();
+
+
+
+            byte[] receivedData = message.messageData();
+            ByteArrayInputStream bIn = new ByteArrayInputStream(receivedData);
+            ObjectInputStream sIn2 = new ObjectInputStream(bIn);
+            List<AGVDock> agvDocks = (List<AGVDock>) sIn2.readObject();
+
+            return agvDocks;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            try {
+                socket.close();
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+            return null;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Aisle> getAisles() {
+        TCPData message;
+        try {
+
+            dataHandler.sendData(new byte[0], MessageCodes.GETAISLES);
+
+            message = dataHandler.readData();
+
+
+
+            byte[] receivedData = message.messageData();
+            ByteArrayInputStream bIn = new ByteArrayInputStream(receivedData);
+            ObjectInputStream sIn2 = new ObjectInputStream(bIn);
+            List<Aisle> aisles = (List<Aisle>) sIn2.readObject();
+
+
+            return aisles;
 
         } catch (IOException e) {
             e.printStackTrace();

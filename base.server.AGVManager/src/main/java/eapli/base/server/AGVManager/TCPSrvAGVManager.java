@@ -8,6 +8,8 @@ import eapli.base.agvmanagement.domain.AGV;
 import eapli.base.agvmanagement.domain.IDAGV;
 import eapli.base.ordermanagement.domain.CustomerOrder;
 import eapli.base.server.AGVManager.application.AGVManagerController;
+import eapli.base.warehousemanagement.domain.AGVDock;
+import eapli.base.warehousemanagement.domain.Aisle;
 
 
 import javax.net.ssl.SSLServerSocket;
@@ -162,6 +164,44 @@ class TcpSrvAGVManagerThreadBackOffice implements Runnable {
                         byte[] agvsBytes = out.toByteArray();
                         System.out.println("Sending list of agvs to client.\n");
                         dataHandler.sendData(agvsBytes, MessageCodes.SUCCESS);
+                        break;
+
+                    case 16:
+                        System.out.println("Client Web Page asking to get AGV Docks list");
+                        List<AGVDock> agvDocks = agvManagerController.getAGVDocks();
+
+                        ByteArrayOutputStream out2 = new ByteArrayOutputStream();
+
+
+                        try {
+                            ObjectOutputStream os = new ObjectOutputStream(out2);
+                            os.writeObject(agvDocks);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        byte[] agvsDocksBytes = out2.toByteArray();
+                        System.out.println("Sending list of agv docks to client.\n");
+                        dataHandler.sendData(agvsDocksBytes, MessageCodes.SUCCESS);
+                        break;
+
+                    case 17:
+                        System.out.println("Client Web Page asking to get AGV Docks list");
+                        List<Aisle> aisles = agvManagerController.getAisles();
+
+                        ByteArrayOutputStream out3 = new ByteArrayOutputStream();
+
+
+                        try {
+                            ObjectOutputStream os = new ObjectOutputStream(out3);
+                            os.writeObject(aisles);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        byte[] aislesBytes = out3.toByteArray();
+                        System.out.println("Sending list of agv docks to client.\n");
+                        dataHandler.sendData(aislesBytes, MessageCodes.SUCCESS);
                         break;
                 }
 

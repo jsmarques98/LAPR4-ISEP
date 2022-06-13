@@ -45,4 +45,7 @@ public class Depth implements ValueObject {
     }
 
 
+    public Integer dwsquare() {
+        return dwsquare;
+    }
 }
