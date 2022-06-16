@@ -48,6 +48,18 @@ public class Warehouse implements AggregateRoot<Long> {
         this.unit = unit;
     }
 
+    public Integer length() {
+        return length;
+    }
+
+    public Integer square() {
+        return Square;
+    }
+
+    public Integer width() {
+        return width;
+    }
+
     @Override
     public boolean sameAs(Object other) {
         return DomainEntities.areEqual(this, other);

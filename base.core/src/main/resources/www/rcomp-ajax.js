@@ -9,11 +9,11 @@ function refreshAgvStatus() {
         request.onload = function() {
             vBoard.innerHTML = this.responseText;
             vBoard.style.color="black";
-            setTimeout(refreshAgvStatus, 10000);
+            setTimeout(refreshAgvStatus, 500);
             };
 
   	request.open("GET", "/agvstatus", true);
-	request.timeout = 10000;
+	request.timeout = 500;
   	request.send();
 }
 
@@ -24,11 +24,11 @@ function refreshWarehousePlant() {
     request.onload = function() {
         vBoard.innerHTML = this.responseText;
         vBoard.style.color="black";
-        setTimeout(refreshWarehousePlant, 10000);
+        setTimeout(refreshWarehousePlant, 500);
 
     };
     request.open("GET", "/warehouseplant", true);
-    request.timeout = 10000;
+    request.timeout = 500;
     request.send();
 }
 

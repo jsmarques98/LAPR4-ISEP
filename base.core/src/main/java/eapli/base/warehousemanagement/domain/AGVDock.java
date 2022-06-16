@@ -16,7 +16,7 @@ public class AGVDock implements AggregateRoot<String> {
 
     @Id
     private String id;
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     private Warehouse warehouse;
     @Column
     private Begin begin;

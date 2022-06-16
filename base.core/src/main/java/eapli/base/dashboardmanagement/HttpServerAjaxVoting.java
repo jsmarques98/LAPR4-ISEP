@@ -108,7 +108,7 @@ public class HttpServerAjaxVoting extends Thread {
             String a = aisle.accessibilityR();
 
 
-            for(int i = beginX; i<endX; i++){
+            for(int i = beginX-1; i<endX; i++){
                 int aux = (beginY-1)*20 + i;
                 aislesPositions.add(aux);
                 for(int j = 0;j<depth;j++){

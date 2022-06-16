@@ -31,7 +31,9 @@ public class End implements ValueObject {
         return elsquare;
     }
 
-
+    public Integer ewsquare() {
+        return ewsquare;
+    }
 
     private static boolean isValid(Integer a, Integer b){
         return a >= 0 && b >= 0;
