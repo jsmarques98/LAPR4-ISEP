@@ -27,6 +27,14 @@ public class Position implements ValueObject {
         return wsquare;
     }
 
+    public void setLsquare(Integer lsquare) {
+        this.lsquare = lsquare;
+    }
+
+    public void setWsquare(Integer wsquare) {
+        this.wsquare = wsquare;
+    }
+
     public static Position valueOf(Integer lsquare, Integer wsquare) {
         if (isValid(lsquare, wsquare)) {
             return new Position(lsquare, wsquare);
@@ -54,7 +62,7 @@ public class Position implements ValueObject {
 
     @Override
     public String toString() {
-        return "x=" + lsquare + "\n" + "y=" + wsquare + "\n";
+        return "x=" + lsquare  + "y=" + wsquare + "\n";
 
     }
 }

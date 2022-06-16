@@ -32,7 +32,7 @@ public class AGV implements AggregateRoot<IDAGV> {
     @Enumerated
     private CurrentTask currentTask;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private AGVDock agvDock;
 
     @Column
@@ -86,6 +86,9 @@ public class AGV implements AggregateRoot<IDAGV> {
         return version == agv.version && Objects.equals(id, agv.id) && Objects.equals(autonomy, agv.autonomy) && Objects.equals(maxWeight, agv.maxWeight) && Objects.equals(model, agv.model) && Objects.equals(shortDescription, agv.shortDescription) && currentTask == agv.currentTask && Objects.equals(agvDock, agv.agvDock);
     }
 
+    public void setPosition(Position position) {
+        this.position = position;
+    }
 
     @Override
     public IDAGV identity() {
