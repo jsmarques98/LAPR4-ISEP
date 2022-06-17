@@ -3,6 +3,7 @@ package eapli.base.warehousemanagement.application;
 import eapli.base.agvmanagement.domain.AGV;
 import eapli.base.agvmanagement.domain.Position;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,14 +17,23 @@ public class AGVMemory {
     private int[][] warehousePlant;
 
     private boolean flag;
+    private boolean flag1;
 
-    private List<Position> agvPath;
+    private List<Position> agvPath=new ArrayList<>();
 
     private AGV agv;
 
     private Double speed;
 
     private  int direction;
+
+    List<Sensor> sensors =new ArrayList<>();
+
+
+
+    public List<Sensor> getSensors() {
+        return sensors;
+    }
 
     public synchronized int getDirection() {
         return direction;
@@ -35,6 +45,8 @@ public class AGVMemory {
 
     public AGVMemory(AGV agv){
         this.agv= agv;
+        for (int i=0;i<4;i++)
+            sensors.add(new Sensor(i,this));
     }
 
     public synchronized void setActualPosition(Position actualPosition) {
@@ -96,9 +108,15 @@ public class AGVMemory {
     public synchronized boolean isFlag() {
         return flag;
     }
+    public synchronized boolean isFlag1() {
+        return flag1;
+    }
 
     public void setFlag(boolean flag) {
         this.flag = flag;
+    }
+    public void setFlag1(boolean flag) {
+        this.flag1 = flag;
     }
 
     @Override

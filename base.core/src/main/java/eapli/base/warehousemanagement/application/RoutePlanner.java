@@ -20,33 +20,33 @@ public class RoutePlanner {
 
         LinkedList<Position> positions = new LinkedList<>();
 
-        Algorithms.shortestPath(createMatrixGraph(), AGVMemory.getActualPosition(), AGVMemory.getProductPosition(),Integer::compare,Integer::sum,0,positions);
+        Algorithms.shortestPath(createMatrixGraph(), AGVMemory.getActualPosition(), AGVMemory.getProductPosition(), Integer::compare, Integer::sum, 0, positions);
 
-
-        AGVMemory.setAgvPath(positions);
+        if (!positions.isEmpty()) {
+            AGVMemory.setAgvPath(positions);
+        }
         return positions;
     }
 
 
-
     public synchronized MatrixGraph<Position, Integer> createMatrixGraph() {
-         warehousePlant = new MatrixGraph<>(true);
+        warehousePlant = new MatrixGraph<>(true);
         int[][] matrix = AGVMemory.getWarehousePlant();
 
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                if(matrix[i][j]==0) {
-                    if(i-1>=0) {
-                        warehousePlant.addEdge(new Position(j+1,i+1),new Position(j+1,i),1);
+                if (matrix[i][j] == 0) {
+                    if (i - 1 >= 0) {
+                        warehousePlant.addEdge(new Position(j + 1, i + 1), new Position(j + 1, i), 1);
                     }
-                    if(j-1>=0){
-                        warehousePlant.addEdge(new Position(j+1,i+1),new Position(j,i+1),1);
+                    if (j - 1 >= 0) {
+                        warehousePlant.addEdge(new Position(j + 1, i + 1), new Position(j, i + 1), 1);
                     }
-                    if( i+1< matrix.length){
-                        warehousePlant.addEdge(new Position(j+1,i+1),new Position(j+1,i+2),1);
+                    if (i + 1 < matrix.length) {
+                        warehousePlant.addEdge(new Position(j + 1, i + 1), new Position(j + 1, i + 2), 1);
                     }
-                    if(j+1>=0){
-                        warehousePlant.addEdge(new Position(j+1,i+1),new Position(j+2,i+1),1);
+                    if (j + 1 >= 0) {
+                        warehousePlant.addEdge(new Position(j + 1, i + 1), new Position(j + 2, i + 1), 1);
                     }
                 }
             }

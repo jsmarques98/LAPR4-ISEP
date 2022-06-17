@@ -21,9 +21,8 @@ public class SimulationEngine extends Thread {
     private final AisleRepository aisleRepository;
     private final AGVDockRepository agvDockRepository;
     private final AGVRepository agvRepository;
-    private final AGVMemory AGVMemory;
+    private final AGVMemory agvMemory;
     private int[][] array;
-    private List<Sensor> sensors = new ArrayList<>();
 
 
     public SimulationEngine(AGVMemory AGVMemory) {
@@ -32,13 +31,8 @@ public class SimulationEngine extends Thread {
         aisleRepository = repositoryFactory.aisle();
         agvDockRepository = repositoryFactory.aGVDock();
         agvRepository = repositoryFactory.agvs();
-        this.AGVMemory = AGVMemory;
+        this.agvMemory = AGVMemory;
 
-        for(int i =0;i<4;i++) {
-            Sensor sensor = new Sensor(i, AGVMemory);
-            sensors.add(sensor);
-            sensor.start();
-        }
     }
 
     public void run() {
@@ -48,7 +42,7 @@ public class SimulationEngine extends Thread {
             @Override
             public void run() {
                 mappingWorld();
-                RoutePlanner routePlanner = new RoutePlanner(AGVMemory);
+                RoutePlanner routePlanner = new RoutePlanner(agvMemory);
                 routePlanner.createRoutePlanner();
             }
         }, 0, 100);
@@ -60,13 +54,8 @@ public class SimulationEngine extends Thread {
         aisle();
         agvDock();
         agv();
-//        try {
-//            Thread.sleep(100);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         sendInfoPlantToSensors();
-        AGVMemory.setWarehousePlant(array);
+        agvMemory.setWarehousePlant(array);
     }
 
     public synchronized void createArray() {
@@ -75,13 +64,9 @@ public class SimulationEngine extends Thread {
     }
 
     public synchronized void sendInfoPlantToSensors() {
-        for(int i =0;i<4;i++)
+        List<Sensor> sensors = agvMemory.getSensors();
+        for (int i = 0; i < 4; i++)
             sensors.get(i).setWharehousePlant(array);
-        for(int i =0;i<4;i++)
-            sensors.get(i).doNotify();
-
-
-
     }
 
     public synchronized void aisle() {
@@ -113,7 +98,7 @@ public class SimulationEngine extends Thread {
 
     public synchronized void agv() {
         List<AGV> agvList = (List<AGV>) PersistenceContext.repositories().agvs().findAll();
-        agvList.remove(AGVMemory.getAgv());
+        agvList.remove(agvMemory.getAgv());
         for (AGV agv : agvList) {
             Position position = agv.position();
             array[position.wsquare() - 1][position.lsquare() - 1] = 1;
