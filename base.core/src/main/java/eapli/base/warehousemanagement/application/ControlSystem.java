@@ -26,6 +26,7 @@ public class ControlSystem extends Thread {
     private boolean isAux;
     private List<Position> orderProductsPositions;
     private CustomerOrder customerOrder;
+    private BSM bsm;
 
     public ControlSystem(AGVMemory AGVMemory, List<Position> orderProductsPositions, CustomerOrder order) {
         this.orderProductsPositions = orderProductsPositions;
@@ -38,6 +39,7 @@ public class ControlSystem extends Thread {
         isAux = true;
         agvMemory.setDestination(orderProductsPositions.get(0));
         customerOrderRepository=PersistenceContext.repositories().customerOrder();
+        this.bsm=new BSM(agvMemory);
     }
 
     public void controlSystem() {
@@ -45,6 +47,7 @@ public class ControlSystem extends Thread {
         if (agvMemory.getDestination().equals(new Position(agvMemory.getAgv().agvDock().begin().blsquare(), agvMemory.getAgv().agvDock().begin().bwsquare())) && agvMemory.getActualPosition().equals(
                 new Position(agvMemory.getAgv().agvDock().begin().blsquare(), agvMemory.getAgv().agvDock().begin().bwsquare()))) {
             agvMemory.setOrderPrepared(true);
+            bsm.reloadAGV();
         }
         if (positionList.size() > 1) {
             calculateNextDirection(positionList.get(1));
@@ -75,11 +78,12 @@ public class ControlSystem extends Thread {
 
     public void calculateNewPosition(List<Position> positionList) {
         Position position1 = positioning.calculateNewPosition();
-        if (!position1.equals(agvMemory.getActualPosition())) {
+        if (!position1.equals(agvMemory.getActualPosition()) && agvMemory.getAgv().autonomy().squares()>0) {
             positionList.remove(positionList.get(0));
             agvMemory.setActualPosition(position1);
             AGV agv = agvMemory.getAgv();
             agv.setPosition(position1);
+            bsm.reduceAutonomy();
             agvRepository.save(agv);
             if (!aux) {
                 agvMemory.setSpeed(agvMemory.getSpeed() * 2);

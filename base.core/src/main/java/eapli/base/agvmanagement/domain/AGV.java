@@ -74,6 +74,14 @@ public class AGV implements AggregateRoot<IDAGV> {
         return maxWeight;
     }
 
+    public Autonomy autonomy() {
+        return autonomy;
+    }
+
+    public void setAutonomy(Autonomy autonomy) {
+        this.autonomy = autonomy;
+    }
+
     public void changeCurrentTask(CurrentTask currentTask) {
         this.currentTask = currentTask;
     }
