@@ -52,6 +52,9 @@ public class RowAisle implements AggregateRoot<RowAisleID>, Serializable {
     }
 
 
+    public Begin begin() {
+        return begin;
+    }
 
     @Override
     public int hashCode() {

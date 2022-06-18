@@ -18,18 +18,18 @@ public class Test extends AbstractUI {
     @Override
     protected boolean doShow() {
 
-        AGV agv = agvRepository.findByID(IDAGV.valueOf("1234")).get();
-
-        AGVMemory AGVMemory = new AGVMemory(agv);
-        AGVMemory.setSpeed(1.0);
-        AGVMemory.setProductPosition(new Position(10, 8));
-        AGVMemory.setActualPosition(new Position(2, 3));
-
-        simulationEngine = new SimulationEngine(AGVMemory);
-        simulationEngine.start();
-
-        ControlSystem controlSystem = new ControlSystem(AGVMemory);
-        controlSystem.start();
+//        AGV agv = agvRepository.findByID(IDAGV.valueOf("1234")).get();
+//
+//        AGVMemory AGVMemory = new AGVMemory(agv);
+//        AGVMemory.setSpeed(1.0);
+//        //AGVMemory.setProductPosition(new Position(10, 8));
+//        AGVMemory.setActualPosition(new Position(10, 3));
+//
+//        simulationEngine = new SimulationEngine(AGVMemory);
+//        simulationEngine.start();
+//
+//       // ControlSystem controlSystem = new ControlSystem(AGVMemory);
+//        //controlSystem.start();
 
 
         return true;

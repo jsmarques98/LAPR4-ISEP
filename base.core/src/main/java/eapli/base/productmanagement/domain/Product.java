@@ -130,6 +130,9 @@ public class Product implements AggregateRoot<UniqueInternalCode>, DTOable<Produ
 
     }
 
+    public RowAisle rowAisle() {
+        return rowAisle;
+    }
 
     @Override
     public String toString() {

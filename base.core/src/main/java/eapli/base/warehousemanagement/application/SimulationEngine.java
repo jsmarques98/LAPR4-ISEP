@@ -1,5 +1,6 @@
 package eapli.base.warehousemanagement.application;
 
+import com.google.gson.JsonObject;
 import eapli.base.agvmanagement.domain.AGV;
 import eapli.base.agvmanagement.domain.Position;
 import eapli.base.agvmanagement.repository.AGVRepository;
@@ -35,19 +36,7 @@ public class SimulationEngine extends Thread {
 
     }
 
-    public void run() {
 
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                mappingWorld();
-                RoutePlanner routePlanner = new RoutePlanner(agvMemory);
-                routePlanner.createRoutePlanner();
-            }
-        }, 0, 100);
-
-    }
 
     public synchronized void mappingWorld() {
         createArray();
@@ -106,8 +95,8 @@ public class SimulationEngine extends Thread {
     }
 
     public synchronized void agvDock() {
-
         List<AGVDock> agvDockList = (List<AGVDock>) agvDockRepository.findAll();
+        agvDockList.remove(agvMemory.getAgv().agvDock());
         for (AGVDock agvDock : agvDockList) {
             Begin begin = agvDock.begin();
             End end = agvDock.end();
@@ -117,5 +106,22 @@ public class SimulationEngine extends Thread {
                 }
             }
         }
+    }
+
+    public void run() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (!agvMemory.isOrderPrepared()) {
+                    mappingWorld();
+                    RoutePlanner routePlanner = new RoutePlanner(agvMemory);
+                    routePlanner.createRoutePlanner();
+                }else {
+                    timer.cancel();
+                }
+            }
+        }, 0, 100);
+
     }
 }

@@ -17,10 +17,9 @@ public class RoutePlanner {
     }
 
     public synchronized List<Position> createRoutePlanner() {
-
         LinkedList<Position> positions = new LinkedList<>();
 
-        Algorithms.shortestPath(createMatrixGraph(), AGVMemory.getActualPosition(), AGVMemory.getProductPosition(), Integer::compare, Integer::sum, 0, positions);
+        Algorithms.shortestPath(createMatrixGraph(), AGVMemory.getActualPosition(), AGVMemory.getDestination(), Integer::compare, Integer::sum, 0, positions);
 
         if (!positions.isEmpty()) {
             AGVMemory.setAgvPath(positions);

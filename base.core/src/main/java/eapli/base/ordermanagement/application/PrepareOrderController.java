@@ -3,15 +3,20 @@ package eapli.base.ordermanagement.application;
 import eapli.base.agvmanagement.domain.AGV;
 import eapli.base.agvmanagement.domain.CurrentTask;
 import eapli.base.agvmanagement.domain.IDAGV;
+import eapli.base.agvmanagement.domain.Position;
 import eapli.base.agvmanagement.repository.AGVRepository;
 import eapli.base.customermanagement.domain.Customer;
 import eapli.base.infrastructure.persistence.PersistenceContext;
 import eapli.base.infrastructure.persistence.RepositoryFactory;
 import eapli.base.ordermanagement.domain.CustomerOrder;
+import eapli.base.ordermanagement.domain.OrderItem;
 import eapli.base.ordermanagement.domain.OrderStatus;
 import eapli.base.ordermanagement.repositories.CustomerOrderRepository;
 import eapli.base.productmanagement.domain.Product;
 import eapli.base.productmanagement.repositories.ProductRepository;
+import eapli.base.warehousemanagement.application.AGVMemory;
+import eapli.base.warehousemanagement.application.ControlSystem;
+import eapli.base.warehousemanagement.application.SimulationEngine;
 import eapli.base.warehousemanagement.repository.AisleRepository;
 
 import javax.persistence.EntityManager;
@@ -23,7 +28,7 @@ import java.util.*;
 import static java.lang.Thread.sleep;
 
 public class PrepareOrderController {
-
+    private SimulationEngine simulationEngine;
     private final RepositoryFactory repositoryFactory;
     private final AGVRepository agvRepository;
     private final CustomerOrderRepository customerOrderRepository;
@@ -34,7 +39,7 @@ public class PrepareOrderController {
     List<AGV> agvList;
     List<IDAGV> agvIdList;
 
-    public PrepareOrderController(){
+    public PrepareOrderController() {
         repositoryFactory = PersistenceContext.repositories();
         agvRepository = repositoryFactory.agvs();
         customerOrderRepository = repositoryFactory.customerOrder();
@@ -66,11 +71,33 @@ public class PrepareOrderController {
         agvRepository.save(agv);
         order.changeStatus(OrderStatus.beingPrepared);
         customerOrderRepository.save(order);
-        sleep(30000);
-        order.changeStatus(OrderStatus.prepared);
-        customerOrderRepository.save(order);
-        agv.changeCurrentTask(CurrentTask.FREE);
-        agvRepository.save(agv);
+
+        List<Position> productsPositions = new ArrayList<>();
+
+        for (OrderItem o : order.orderItems()) {
+
+            Position position = new Position(o.product().rowAisle().begin().blsquare(), o.product().rowAisle().begin().bwsquare());
+
+            if (!productsPositions.contains(position)) {
+                System.out.println(position);
+                productsPositions.add(position);
+            }
+        }
+
+
+        AGVMemory agvMemory = new AGVMemory(agv);
+        agvMemory.setSpeed(1.0);
+
+        simulationEngine = new SimulationEngine(agvMemory);
+        simulationEngine.start();
+
+        ControlSystem controlSystem = new ControlSystem(agvMemory, productsPositions,order);
+        controlSystem.start();
+
+        controlSystem.join();
+
+
+
         return true;
     }
 

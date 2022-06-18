@@ -2,6 +2,7 @@ package eapli.base.warehousemanagement.application;
 
 import eapli.base.agvmanagement.domain.AGV;
 import eapli.base.agvmanagement.domain.Position;
+import eapli.base.ordermanagement.domain.CustomerOrder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,25 +11,30 @@ import java.util.List;
 public class AGVMemory {
     private Position actualPosition;
 
-    private Position productPosition;
+    private List<Position> productsPositions;
+    private int indexProductsPosition;
 
     private Position agvDockPosition;
+
+    private Position destination;
+
 
     private int[][] warehousePlant;
 
     private boolean flag;
-    private boolean flag1;
+    private boolean orderPrepared;
 
-    private List<Position> agvPath=new ArrayList<>();
+    private List<Position> agvPath = new ArrayList<>();
 
     private AGV agv;
 
     private Double speed;
 
-    private  int direction;
+    private boolean stop;
 
-    List<Sensor> sensors =new ArrayList<>();
+    private int direction;
 
+    List<Sensor> sensors = new ArrayList<>();
 
 
     public List<Sensor> getSensors() {
@@ -43,10 +49,30 @@ public class AGVMemory {
         this.direction = direction;
     }
 
-    public AGVMemory(AGV agv){
-        this.agv= agv;
-        for (int i=0;i<4;i++)
-            sensors.add(new Sensor(i,this));
+    public AGVMemory(AGV agv) {
+        this.agv = agv;
+        actualPosition = agv.position();
+        this.indexProductsPosition = 0;
+        for (int i = 0; i < 4; i++)
+            sensors.add(new Sensor(i, this));
+        stop = false;
+        orderPrepared = false;
+    }
+
+    public Position getDestination() {
+        return destination;
+    }
+
+    public void setDestination(Position destination) {
+        this.destination = destination;
+    }
+
+    public void setStop(boolean stop) {
+        this.stop = stop;
+    }
+
+    public boolean isStop() {
+        return stop;
     }
 
     public synchronized void setActualPosition(Position actualPosition) {
@@ -57,12 +83,12 @@ public class AGVMemory {
         this.agvDockPosition = agvDockPosition;
     }
 
-    public synchronized  void setAgvPath(List<Position> agvPath) {
+    public synchronized void setAgvPath(List<Position> agvPath) {
         this.agvPath = agvPath;
     }
 
-    public synchronized void setProductPosition(Position productPosition) {
-        this.productPosition = productPosition;
+    public synchronized void setProductsPositions(List<Position> productPosition) {
+        this.productsPositions = productPosition;
     }
 
     public synchronized void setWarehousePlant(int[][] warehousePlant) {
@@ -73,11 +99,11 @@ public class AGVMemory {
         return actualPosition;
     }
 
-    public synchronized Position getProductPosition() {
-        return productPosition;
+    public synchronized List<Position> getProductPosition() {
+        return productsPositions;
     }
 
-    public synchronized  Position getAgvDockPosition() {
+    public synchronized Position getAgvDockPosition() {
         return agvDockPosition;
     }
 
@@ -108,15 +134,26 @@ public class AGVMemory {
     public synchronized boolean isFlag() {
         return flag;
     }
-    public synchronized boolean isFlag1() {
-        return flag1;
+
+    public synchronized boolean isOrderPrepared() {
+        return orderPrepared;
     }
 
     public void setFlag(boolean flag) {
         this.flag = flag;
     }
-    public void setFlag1(boolean flag) {
-        this.flag1 = flag;
+
+    public void setOrderPrepared(boolean orderPrepared) {
+        this.orderPrepared = orderPrepared;
+    }
+
+    public Position getNextProductPosition() {
+        Position position = null;
+        if (productsPositions.size()>1) {
+            productsPositions.remove(productsPositions.get(0));
+            position = productsPositions.get(0);
+        }
+        return position;
     }
 
     @Override
