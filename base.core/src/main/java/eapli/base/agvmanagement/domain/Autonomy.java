@@ -7,16 +7,16 @@ import java.util.Objects;
 
 @Embeddable
 public class Autonomy implements ValueObject {
-    private static final Integer MIN_SQUARES = 0;
-    private static final Integer MAX_SQUARES = 300;
-    private Integer squares;
+    private static final Integer MIN_MINUTES = 0;
+    private static final Integer MAX_MINUTES = 300;
+    private Integer minutes;
 
-    public Autonomy(Integer squares){
-        if(squares ==null)
+    public Autonomy(Integer minutes){
+        if(minutes ==null)
             throw new IllegalArgumentException("Autonomy can not be null");
 
-        if (isValid(squares)) {
-            this.squares = squares;
+        if (isValid(minutes)) {
+            this.minutes = minutes;
         }else{
             throw new IllegalArgumentException("Invalid Autonomy");
         }
@@ -33,7 +33,7 @@ public class Autonomy implements ValueObject {
 
     @Override
     public String toString() {
-        return squares + "squares";
+        return minutes + "squares";
     }
 
     @Override
@@ -41,23 +41,23 @@ public class Autonomy implements ValueObject {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Autonomy autonomy = (Autonomy) o;
-        return Objects.equals(squares, autonomy.squares);
+        return Objects.equals(minutes, autonomy.minutes);
     }
 
-    public Integer maxSquares() {
-        return MAX_SQUARES;
+    public Integer maxMinutes() {
+        return MAX_MINUTES;
     }
 
-    public Integer squares() {
-        return squares;
+    public Integer minutes() {
+        return minutes;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(squares);
+        return Objects.hash(minutes);
     }
 
     private boolean isValid(Integer minutes){
-        return minutes> MIN_SQUARES && minutes< MAX_SQUARES;
+        return minutes> MIN_MINUTES && minutes< MAX_MINUTES;
     }
 }

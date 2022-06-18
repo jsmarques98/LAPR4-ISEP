@@ -9,9 +9,7 @@ import eapli.base.ordermanagement.domain.CustomerOrder;
 import eapli.base.ordermanagement.domain.OrderStatus;
 import eapli.base.ordermanagement.repositories.CustomerOrderRepository;
 import eapli.base.warehousemanagement.application.graph.matrix.MatrixGraph;
-import org.springframework.security.core.parameters.P;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -78,7 +76,7 @@ public class ControlSystem extends Thread {
 
     public void calculateNewPosition(List<Position> positionList) {
         Position position1 = positioning.calculateNewPosition();
-        if (!position1.equals(agvMemory.getActualPosition()) && agvMemory.getAgv().autonomy().squares()>0) {
+        if (!position1.equals(agvMemory.getActualPosition()) && agvMemory.getAgv().autonomy().minutes()>0) {
             positionList.remove(positionList.get(0));
             agvMemory.setActualPosition(position1);
             AGV agv = agvMemory.getAgv();
