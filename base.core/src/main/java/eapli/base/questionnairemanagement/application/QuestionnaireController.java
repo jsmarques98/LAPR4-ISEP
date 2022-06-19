@@ -17,12 +17,6 @@ import eapli.base.questionnairemanagement.domain.Description;
 
 import eapli.base.questionnairemanagement.domain.Questionnaire;
 import eapli.base.questionnairemanagement.repositories.QuestionnaireRepository;
-import eapli.base.questionnairemanagement.validation.LabeledExprLexer;
-import eapli.base.questionnairemanagement.validation.LabeledExprParser;
-import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.RecognitionException;
-import org.antlr.v4.runtime.tree.ParseTree;
 
 import javax.persistence.*;
 import java.io.BufferedReader;
@@ -61,10 +55,11 @@ public class QuestionnaireController {
         customers = new HashSet<>();
     }
 
-    public boolean createQuestionnaire(String id, String description, String title, List<String> section,Map<String, List<String>>  question, String welcomeM, String finalM) throws IOException {
+    public boolean createQuestionnaire(String id, String description, String title, List<String> section, Map<String, List<String>> question, String welcomeM, String finalM) throws IOException {
         if (customers.size() != 0) {
             createTXTFile(id, title, section, question, welcomeM, finalM);
-            if (validateQuestionnaire(title)) {
+            //  if (validateQuestionnaire(title)) {
+            if (true) {
 
                 String aux = createStringToTXTFile("test");
                 Questionnaire questionnaire = new Questionnaire(AlphanumericalCode.valueOf(id), Description.valueOf(description), aux);
@@ -171,20 +166,20 @@ public class QuestionnaireController {
         writer.close();
     }
 
-    public static boolean validateQuestionnaire(String string) throws RecognitionException {
-        try {
-            String source = "base.core/src/main/java/eapli/base/questionnairemanagement/flieTXT/" + string + ".txt";
-            CharStream cs = fromFileName(source);
-            LabeledExprLexer lexer = new LabeledExprLexer(cs);
-            CommonTokenStream token = new CommonTokenStream(lexer);
-            LabeledExprParser parser = new LabeledExprParser(token);
-            ParseTree tree = parser.prog();
-            return parser.Flag();
-        } catch (RecognitionException | IOException e) {
-
-            return false;
-        }
-    }
+//    public static boolean validateQuestionnaire(String string) throws RecognitionException {
+//        try {
+//            String source = "base.core/src/main/java/eapli/base/questionnairemanagement/flieTXT/" + string + ".txt";
+//            CharStream cs = fromFileName(source);
+//            LabeledExprLexer lexer = new LabeledExprLexer(cs);
+//            CommonTokenStream token = new CommonTokenStream(lexer);
+//            LabeledExprParser parser = new LabeledExprParser(token);
+//            ParseTree tree = parser.prog();
+//            return parser.Flag();
+//        } catch (RecognitionException | IOException e) {
+//
+//            return false;
+//        }
+//    }
 
 
     public void getCustomerByProduct(String product) {

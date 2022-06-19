@@ -33,7 +33,7 @@ import eapli.base.app.backoffice.console.presentation.order.PrepareOrderAutoUI;
 import eapli.base.app.backoffice.console.presentation.order.PrepareOrderUI;
 import eapli.base.app.backoffice.console.presentation.order.RegisterOrderForClientUI;
 import eapli.base.app.backoffice.console.presentation.product.AddProductUI;
-//import eapli.base.app.backoffice.console.presentation.product.ListProductsUI;
+import eapli.base.app.backoffice.console.presentation.statisticalReport.StatisticalReportUI;
 import eapli.base.app.backoffice.console.presentation.warehouse.UpdateWarehouseUI;
 import eapli.base.app.common.console.presentation.authz.MyUserMenu;
 import eapli.base.Application;
@@ -56,6 +56,8 @@ import eapli.framework.presentation.console.menu.HorizontalMenuRenderer;
 import eapli.framework.presentation.console.menu.MenuItemRenderer;
 import eapli.framework.presentation.console.menu.MenuRenderer;
 import eapli.framework.presentation.console.menu.VerticalMenuRenderer;
+
+import java.io.IOException;
 
 /**
  * TODO split this class in more specialized classes for each menu
@@ -199,9 +201,10 @@ public class MainMenu extends AbstractUI {
         if (authz.isAuthenticatedUserAuthorizedTo(BaseRoles.POWER_USER, BaseRoles.ADMIN, BaseRoles.SALES_MANAGER)) {
             final Menu surveyMenu = buildSurveyMenu();
             mainMenu.addSubMenu(SURVEY_OPTION, surveyMenu);
-
             final Menu TESTE = buildtestMenu();
             mainMenu.addSubMenu(3, TESTE);
+            final Menu STATICALREPORT = buildStaticalMenu();
+            mainMenu.addSubMenu(4, STATICALREPORT);
         }
 
         if (!Application.settings().isMenuLayoutHorizontal()) {
@@ -209,6 +212,8 @@ public class MainMenu extends AbstractUI {
         }
 
         mainMenu.addItem(EXIT_OPTION, "Exit", new ExitWithMessageAction("Bye, Bye"));
+
+
 
         return mainMenu;
     }
@@ -245,6 +250,18 @@ public class MainMenu extends AbstractUI {
     private Menu buildtestMenu() {
         final Menu menu = new Menu("test >");
         menu.addItem(CREATE_SURVEY_OPTION, "test", new Test()::show);
+
+        return menu;
+    }
+
+
+    private Menu buildStaticalMenu() {
+        final Menu menu = new Menu("STATICAL REPORT >");
+        try {
+            menu.addItem(CREATE_SURVEY_OPTION, "STATICAL REPORT", new StatisticalReportUI()::show);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return menu;
     }

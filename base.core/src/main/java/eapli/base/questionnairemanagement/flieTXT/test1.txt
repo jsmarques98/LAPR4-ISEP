@@ -1,19 +1,115 @@
-ID: SP2205
-Title: SmartPhone Questionnaire
-
-Section ID: 123
-Section Title: Specifications about the smartphone
-Section Description: Smartphone
-Section Obligatoriness: Condition Dependent: Test
-Section Repeatability: 0
-
-Question ID: 12345
-Question Text: What do you consider as the best spec on the smartphone that you bought?
-Instruction: Try to answer with short answer
-Type: Freetext
-Question Obligatoriness: Condition Dependent: Test
-Extra Info: What was the colour of the smartphone?
-
-
-
-Final Message: You have successfully completed the questionnaire. Thank you for your help.
+ID:COSM22-03
+TITLE:"Terceiro questionario"
+WELCOME MENSAGE:"ola terceiro como esta?
+por favor respondas as qustões deste qustionário?"
+    SECTION ID:1
+    TITLE:"Priemira secção"
+    DESCRIPTION:"dados pessoais"
+    OBLIGATORINESS: MANDATORY
+        QUESTION ID:1
+        QUESTION:"Como se chama?"
+        OBLIGATORINESS: MANDATORY
+        TYPE: FREETEXT LIMITCHAR:100
+        QUESTION ID:2
+        QUESTION:"Qual a sua idade?"
+        OBLIGATORINESS:MANDATORY
+        TYPE: SINGLECHOICE
+        EXTRAINFO:"escolha uma opção:"
+            OPTION:A
+            DESCRIPTION:"de 10 a 20 anos"
+            OPTION:B
+            DESCRIPTION:"de 21 a 30 anos"
+            OPTION:C
+            DESCRIPTION:"de 31 a 40 anos"
+            OPTION:D
+            DESCRIPTION:"mais de 40"
+        QUESTION ID:3
+        QUESTION:"Estado civil?"
+        OBLIGATORINESS:MANDATORY
+        TYPE: SINGLECHOICE
+        EXTRAINFO:"escolha uma opção:"
+            OPTION:A
+            DESCRIPTION:"casado"
+            OPTION:B
+            DESCRIPTION:"solteito"
+            OPTION:C
+            DESCRIPTION:"outro diga qual:"
+            INPUTOPTION:C
+    SECTION ID:2
+    TITLE:"Segunda secção"
+    DESCRIPTION:"a segunda secção
+    para apreciação"
+    OBLIGATORINESS:MANDATORY
+        QUESTION ID:4
+        QUESTION:"Quais os seus hobies?"
+        OBLIGATORINESS:MANDATORY
+        TYPE:MULTIPLECHOICE
+        EXTRAINFO: "escolha mais que uma opção (opções separadas por ;)"
+            OPTION:A
+            DESCRIPTION:"futebol"
+            OPTION:B
+            DESCRIPTION:"televisão"
+            OPTION:C
+            DESCRIPTION:"passeio"
+            OPTION:D
+            DESCRIPTION:"piscina"
+        QUESTION ID:5
+        QUESTION:"Comidas favoritas?"
+        OBLIGATORINESS:MANDATORY
+        TYPE:SORTING
+        EXTRAINFO: "ordene de acordo com o seu gosto (a mais favorita primeiro - opções separadas por ;)"
+            OPTION:A
+            DESCRIPTION:"arroz"
+            OPTION:B
+            DESCRIPTION:"carne"
+            OPTION:C
+            DESCRIPTION:"peixe"
+            OPTION:D
+            DESCRIPTION:"batata"
+        QUESTION ID:6
+        QUESTION:"quer responder a mais apreciaçoes da secção seguinte?"
+        OBLIGATORINESS:MANDATORY
+        TYPE: SINGLECHOICE
+        EXTRAINFO:"escolha uma opção:"
+            OPTION:A
+            DESCRIPTION:"Sim"
+            OPTION:B
+            DESCRIPTION:"não"
+    SECTION ID:3
+    TITLE:"Terceira secção"
+    DESCRIPTION:"a terceira secção
+    para apreciação"
+    OBLIGATORINESS:CONDITIONAL CONDITION: QUESTION ID: 6 VALUE: A
+        QUESTION ID:7
+        QUESTION:"Se respondeu sim na quatao 6 da secção 2 quer mesmo reponder a estas perguntas?"
+        OBLIGATORINESS:CONDITIONAL CONDITION: QUESTION ID: 6 VALUE: A
+        TYPE:SINGLECHOICE
+        EXTRAINFO: "escolha uma opção:"
+            OPTION:A
+            DESCRIPTION:"sim"
+            OPTION:B
+            DESCRIPTION:"não"
+        QUESTION ID:8
+        QUESTION:"tempo favorito?"
+        OBLIGATORINESS:CONDITIONAL CONDITION: QUESTION ID: 7 VALUE: A
+        TYPE:MULTIPLECHOICE
+        EXTRAINFO: "escolha as opçoes (opções separadas por ;)"
+            OPTION:A
+            DESCRIPTION:"sol"
+            OPTION:B
+            DESCRIPTION:"chuva"
+            OPTION:C
+            DESCRIPTION:"nuvens"
+            OPTION:D
+            DESCRIPTION:"neve"
+        QUESTION ID:9
+        QUESTION:"diga numa escala?"
+        OBLIGATORINESS:CONDITIONAL CONDITION: QUESTION ID: 7 VALUE: A
+        TYPE: SCALING
+        SCALE: 0-5
+        EXTRAINFO:"reponda para cada uma das opções um valor de 0(gosta menos) e 5(gosta mais) "
+            OPTION:A
+            DESCRIPTION:"sol"
+            OPTION:B
+            DESCRIPTION:"chuva"
+END MENSAGE:"Obrigado por ter participado."
