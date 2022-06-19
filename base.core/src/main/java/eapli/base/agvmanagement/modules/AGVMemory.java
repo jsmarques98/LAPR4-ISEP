@@ -1,11 +1,9 @@
-package eapli.base.warehousemanagement.application;
+package eapli.base.agvmanagement.modules;
 
 import eapli.base.agvmanagement.domain.AGV;
 import eapli.base.agvmanagement.domain.Position;
-import eapli.base.ordermanagement.domain.CustomerOrder;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class AGVMemory {

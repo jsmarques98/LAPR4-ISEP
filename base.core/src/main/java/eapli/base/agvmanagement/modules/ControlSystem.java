@@ -1,4 +1,4 @@
-package eapli.base.warehousemanagement.application;
+package eapli.base.agvmanagement.modules;
 
 import eapli.base.agvmanagement.domain.AGV;
 import eapli.base.agvmanagement.domain.CurrentTask;
@@ -8,7 +8,7 @@ import eapli.base.infrastructure.persistence.PersistenceContext;
 import eapli.base.ordermanagement.domain.CustomerOrder;
 import eapli.base.ordermanagement.domain.OrderStatus;
 import eapli.base.ordermanagement.repositories.CustomerOrderRepository;
-import eapli.base.warehousemanagement.application.graph.matrix.MatrixGraph;
+import eapli.base.agvmanagement.modules.graph.matrix.MatrixGraph;
 
 import java.util.List;
 import java.util.Timer;
@@ -24,7 +24,7 @@ public class ControlSystem extends Thread {
     private boolean isAux;
     private List<Position> orderProductsPositions;
     private CustomerOrder customerOrder;
-    private BSM bsm;
+
 
     public ControlSystem(AGVMemory AGVMemory, List<Position> orderProductsPositions, CustomerOrder order) {
         this.orderProductsPositions = orderProductsPositions;
@@ -37,7 +37,7 @@ public class ControlSystem extends Thread {
         isAux = true;
         agvMemory.setDestination(orderProductsPositions.get(0));
         customerOrderRepository=PersistenceContext.repositories().customerOrder();
-        this.bsm=new BSM(agvMemory);
+
     }
 
     public void controlSystem() {
@@ -80,7 +80,6 @@ public class ControlSystem extends Thread {
             agvMemory.setActualPosition(position1);
             AGV agv = agvMemory.getAgv();
             agv.setPosition(position1);
-            bsm.reduceAutonomy();
             agvRepository.save(agv);
             if (!aux) {
                 agvMemory.setSpeed(agvMemory.getSpeed() * 2);

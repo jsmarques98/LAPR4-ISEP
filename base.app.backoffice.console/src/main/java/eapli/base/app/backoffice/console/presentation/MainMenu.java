@@ -44,7 +44,6 @@ import eapli.base.app.backoffice.console.presentation.clientuser.AcceptRefuseSig
 import eapli.base.dashboardmanagement.HttpServerAjaxVoting;
 import eapli.base.ordermanagement.domain.OrderStatus;
 import eapli.base.usermanagement.domain.BaseRoles;
-import eapli.base.warehousemanagement.application.Test;
 import eapli.framework.actions.Actions;
 import eapli.framework.actions.menu.Menu;
 import eapli.framework.actions.menu.MenuItem;
@@ -201,8 +200,6 @@ public class MainMenu extends AbstractUI {
         if (authz.isAuthenticatedUserAuthorizedTo(BaseRoles.POWER_USER, BaseRoles.ADMIN, BaseRoles.SALES_MANAGER)) {
             final Menu surveyMenu = buildSurveyMenu();
             mainMenu.addSubMenu(SURVEY_OPTION, surveyMenu);
-            final Menu TESTE = buildtestMenu();
-            mainMenu.addSubMenu(3, TESTE);
             final Menu STATICALREPORT = buildStaticalMenu();
             mainMenu.addSubMenu(4, STATICALREPORT);
         }
@@ -247,12 +244,6 @@ public class MainMenu extends AbstractUI {
         return menu;
     }
 
-    private Menu buildtestMenu() {
-        final Menu menu = new Menu("test >");
-        menu.addItem(CREATE_SURVEY_OPTION, "test", new Test()::show);
-
-        return menu;
-    }
 
 
     private Menu buildStaticalMenu() {

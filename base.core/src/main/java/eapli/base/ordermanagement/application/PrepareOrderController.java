@@ -4,6 +4,7 @@ import eapli.base.agvmanagement.domain.AGV;
 import eapli.base.agvmanagement.domain.CurrentTask;
 import eapli.base.agvmanagement.domain.IDAGV;
 import eapli.base.agvmanagement.domain.Position;
+import eapli.base.agvmanagement.modules.BSM;
 import eapli.base.agvmanagement.repository.AGVRepository;
 import eapli.base.customermanagement.domain.Customer;
 import eapli.base.infrastructure.persistence.PersistenceContext;
@@ -12,17 +13,13 @@ import eapli.base.ordermanagement.domain.CustomerOrder;
 import eapli.base.ordermanagement.domain.OrderItem;
 import eapli.base.ordermanagement.domain.OrderStatus;
 import eapli.base.ordermanagement.repositories.CustomerOrderRepository;
-import eapli.base.productmanagement.domain.Product;
-import eapli.base.productmanagement.repositories.ProductRepository;
-import eapli.base.warehousemanagement.application.AGVMemory;
-import eapli.base.warehousemanagement.application.ControlSystem;
-import eapli.base.warehousemanagement.application.SimulationEngine;
-import eapli.base.warehousemanagement.repository.AisleRepository;
+import eapli.base.agvmanagement.modules.AGVMemory;
+import eapli.base.agvmanagement.modules.ControlSystem;
+import eapli.base.agvmanagement.modules.SimulationEngine;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 import java.util.*;
 
 import static java.lang.Thread.sleep;
@@ -90,11 +87,12 @@ public class PrepareOrderController {
 
         simulationEngine = new SimulationEngine(agvMemory);
         simulationEngine.start();
-
         ControlSystem controlSystem = new ControlSystem(agvMemory, productsPositions,order);
         controlSystem.start();
+        BSM bsm =new BSM(agvMemory);
+        bsm.start();
 
-        controlSystem.join();
+
 
 
 

@@ -1,4 +1,4 @@
-package eapli.base.warehousemanagement.application;
+package eapli.base.agvmanagement.modules;
 
 import eapli.base.agvmanagement.domain.Autonomy;
 
@@ -33,10 +33,10 @@ public class BSM extends Thread {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if (agvMemory.getAgv().autonomy().minutes() != agvMemory.getAgv().autonomy().maxMinutes() && !agvMemory.isOrderPrepared()) {
-                    reduceAutonomy();
-                }else {
+                if (agvMemory.getAgv().autonomy().minutes() == agvMemory.getAgv().autonomy().maxMinutes() && agvMemory.isOrderPrepared()) {
                     timer.cancel();
+                }else {
+                    reduceAutonomy();
                 }
             }
         }, 0, 1000);

@@ -1,4 +1,4 @@
-package eapli.base.warehousemanagement.application.graph;
+package eapli.base.agvmanagement.modules.graph;
 
 import java.util.ArrayList;
 import java.util.Collection;

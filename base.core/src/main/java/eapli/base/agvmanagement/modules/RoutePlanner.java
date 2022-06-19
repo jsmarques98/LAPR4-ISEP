@@ -1,8 +1,8 @@
-package eapli.base.warehousemanagement.application;
+package eapli.base.agvmanagement.modules;
 
 import eapli.base.agvmanagement.domain.Position;
-import eapli.base.warehousemanagement.application.graph.Algorithms;
-import eapli.base.warehousemanagement.application.graph.matrix.MatrixGraph;
+import eapli.base.agvmanagement.modules.graph.Algorithms;
+import eapli.base.agvmanagement.modules.graph.matrix.MatrixGraph;
 
 
 import java.util.LinkedList;

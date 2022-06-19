@@ -1,6 +1,5 @@
-package eapli.base.warehousemanagement.application;
+package eapli.base.agvmanagement.modules;
 
-import com.google.gson.JsonObject;
 import eapli.base.agvmanagement.domain.AGV;
 import eapli.base.agvmanagement.domain.Position;
 import eapli.base.agvmanagement.repository.AGVRepository;
@@ -11,7 +10,6 @@ import eapli.base.warehousemanagement.repository.AGVDockRepository;
 import eapli.base.warehousemanagement.repository.AisleRepository;
 import eapli.base.warehousemanagement.repository.WarehouseRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
