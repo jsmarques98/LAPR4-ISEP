@@ -1,0 +1,14 @@
+	_________
+
+	DESIGN
+	_________
+
+	
+
+	UI class: StatisticalReportUI
+	
+	Controller Class: StatisticalReport
+
+	Repository: AnswerQuestionnaireRepository
+
+	Domain classes: AnswerQuestionnaire

@@ -1,0 +1,22 @@
+	___________
+
+	ANALYSIS
+	____________
+
+
+	Customer inquiry forum
+
+	* The important is to show the statistical report.
+
+	Saving the report is not seen as relevant since, at any time, the user might request to see 	the report again.
+
+	Notice that the information on which the report is computed is already persisted on the system.
+
+	______________________
+
+	BUSINESS RULES
+	_____________________
+
+
+	
+	* The kind of answer must be the correspond to the kind of questions.
