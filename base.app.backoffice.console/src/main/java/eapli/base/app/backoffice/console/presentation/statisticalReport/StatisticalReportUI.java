@@ -10,11 +10,9 @@ import eapli.framework.presentation.console.menu.MenuItemRenderer;
 import eapli.framework.presentation.console.menu.MenuRenderer;
 import eapli.framework.presentation.console.menu.VerticalMenuRenderer;
 
-import javax.naming.NamingEnumeration;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class StatisticalReportUI extends AbstractUI {
 
@@ -42,7 +40,7 @@ public class StatisticalReportUI extends AbstractUI {
         System.out.println();
         if (!showQuestionnaires(questionnaires))
             return false;
-        statisticalreport.aa(questionnaires.get(0));
+        statisticalreport.createStatisticalReport(questionnaires.get(0));
 
         return true;
 

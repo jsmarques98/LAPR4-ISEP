@@ -42,7 +42,7 @@ public class StatisticalReport {
         return PersistenceContext.repositories().questionnaire().findAll();
     }
 
-    public void aa(Questionnaire questionnaire) throws IOException {
+    public void createStatisticalReport(Questionnaire questionnaire) throws IOException {
 
         questionnaire("questionnaire", questionnaire.questionnaire());
 
