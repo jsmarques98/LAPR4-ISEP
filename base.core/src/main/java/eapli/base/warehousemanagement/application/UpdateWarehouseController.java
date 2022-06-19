@@ -61,8 +61,8 @@ public class UpdateWarehouseController {
                     Depth.valueOf(Integer.parseInt(aisle.get(5)),Integer.parseInt(aisle.get(6))),
                     aisle.get(7),warehouse);
             manager.persist(aisleTemp);
-            if(rowMap.containsKey(String.valueOf(0+1))){
-                List<List<String>> rowList = rowMap.get(String.valueOf(0+1));
+            if(rowMap.containsKey(String.valueOf(i+1))){
+                List<List<String>> rowList = rowMap.get(String.valueOf(i+1));
               addRow(rowList,aisleTemp);
             }
         }

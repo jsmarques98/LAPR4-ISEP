@@ -70,7 +70,7 @@ public class ProductBootstrapper implements Action {
         p = controller.createProduct(dto);
         PersistenceContext.repositories().products().save(p);
 
-        dto = new ProductDTO( new Category(CategoryID.valueOf("12348"), Description.valueOf("smartphones")), "abcd.12334", "1234567890011", 899.99, "Apple", "iphone 11", "aaaa.11104", "1234567884", 50.0, 230.0, "~/LAPR4",3,3,"Iphone 11 black","2 cameras");
+        dto = new ProductDTO( new Category(CategoryID.valueOf("12348"), Description.valueOf("smartphones")), "abcd.12334", "1234567890011", 899.99, "Apple", "iphone 11", "aaaa.11104", "1234567884", 50.0, 230.0, "~/LAPR4",3,4,"Iphone 11 black","2 cameras");
         p = controller.createProduct(dto);
         PersistenceContext.repositories().products().save(p);
 
