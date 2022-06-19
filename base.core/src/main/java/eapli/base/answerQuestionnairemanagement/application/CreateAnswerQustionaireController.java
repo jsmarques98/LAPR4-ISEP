@@ -2,6 +2,11 @@ package eapli.base.answerQuestionnairemanagement.application;
 
 import eapli.base.answerQuestionnairemanagement.domain.AnswerQuestionaire;
 import eapli.base.answerQuestionnairemanagement.repositories.AnswerQuestionaireRepository;
+import eapli.base.answerQuestionnairemanagement.validation.QuestionnaireAnswerGrammarLexer;
+import eapli.base.answerQuestionnairemanagement.validation.QuestionnaireAnswerGrammarParser;
+import eapli.base.answerQuestionnairemanagement.validation.a.DescriptiveErrorListener;
+import eapli.base.answerQuestionnairemanagement.validation.a.ResponseEntity;
+import eapli.base.answerQuestionnairemanagement.validation.a.ResponseVisitor;
 import eapli.base.categorymanagement.domain.Category;
 import eapli.base.customermanagement.domain.Customer;
 import eapli.base.customermanagement.repositories.CustomerRepository;
@@ -19,11 +24,18 @@ import eapli.framework.infrastructure.authz.domain.model.SystemUser;
 import eapli.framework.presentation.console.menu.MenuItemRenderer;
 import eapli.framework.presentation.console.menu.MenuRenderer;
 import eapli.framework.presentation.console.menu.VerticalMenuRenderer;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.misc.ParseCancellationException;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 import javax.persistence.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 
 public class CreateAnswerQustionaireController {
@@ -36,6 +48,8 @@ public class CreateAnswerQustionaireController {
     private final EntityManagerFactory entityManagerFactory;
     private final EntityManager entityManager;
     private Customer customer;
+    private static List<ResponseEntity> responseEntities = new ArrayList<>();
+
 
     public CreateAnswerQustionaireController() {
         repositoryFactory = PersistenceContext.repositories();
@@ -47,7 +61,8 @@ public class CreateAnswerQustionaireController {
 
     }
 
-    public AnswerQuestionaire createAnswerQustionaire(Questionnaire q, String answerQuestionaire) {
+    public AnswerQuestionaire createAnswerQustionaire(Questionnaire q, String answerQuestionaire) throws IOException {
+        respondSurvey(answerQuestionaire);
         return answerQuestionaireRepository.save(new AnswerQuestionaire(customer, q));
     }
 
@@ -87,6 +102,30 @@ public class CreateAnswerQustionaireController {
         }
 
         return aux;
+    }
+
+    public static void respondSurvey(String answer) throws IOException {
+        //eliminar o ficheiro se ja existir
+        Path of = Path.of("base.core/src/main/java/eapli/base/questionnairemanagement/flieTXT/aux.txt");
+        if (Files.exists(of)) {
+            Files.delete(of);
+        }
+        PrintWriter writer = new PrintWriter("base.core/src/main/java/eapli/base/questionnairemanagement/flieTXT/aux.txt");
+        writer.write(answer);
+        QuestionnaireAnswerGrammarLexer lexer = new QuestionnaireAnswerGrammarLexer(CharStreams.fromFileName("base.core/src/main/java/eapli/base/questionnairemanagement/flieTXT/aux.txt"));
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        QuestionnaireAnswerGrammarParser parser = new QuestionnaireAnswerGrammarParser(tokens);
+        parser.addErrorListener(DescriptiveErrorListener.INSTANCE);
+        try {
+            ParseTree tree = parser.prog();
+            ResponseVisitor responseVisitor = new ResponseVisitor();
+            responseVisitor.visit(tree);
+            ResponseEntity response = responseVisitor.getResponseEntity();
+            responseEntities.add(response);
+        } catch (ParseCancellationException e) {
+            System.out.println(e.getMessage());
+            throw e;
+        }
     }
 
 
