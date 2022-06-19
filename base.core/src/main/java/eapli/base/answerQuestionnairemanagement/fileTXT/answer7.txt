@@ -1,17 +1,18 @@
-ID:COSM22-03
-TITLE:"Terceiro questionario"
-WELCOME MENSAGE:"Bem vindo?
-Agradeciamos que respondesse a este questionário para melhorar os nossos serviços?"
+ID:SPOMS22-03
+TITLE:"Quinto questionario"
+WELCOME MENSAGE:"ola quinto como esta?
+por favor respondas as qustões deste qustionário?"
     SECTION ID:1
-    TITLE:"Priemira secção"
+    TITLE:"Primeira secção"
     DESCRIPTION:"Dados pessoais"
     OBLIGATORINESS: MANDATORY
         QUESTION ID:1
-        QUESTION:"Nome completo?"
+        QUESTION:"Como se chama?"
         OBLIGATORINESS: MANDATORY
         TYPE: FREETEXT LIMITCHAR:100
+        RESPONSE:"Luis"
         QUESTION ID:2
-        QUESTION:"Intervalo de idade?"
+        QUESTION:"Qual a sua idade?"
         OBLIGATORINESS:MANDATORY
         TYPE: SINGLECHOICE
         EXTRAINFO:"escolha uma opção:"
@@ -23,6 +24,7 @@ Agradeciamos que respondesse a este questionário para melhorar os nossos servi�
             DESCRIPTION:"de 31 a 40 anos"
             OPTION:D
             DESCRIPTION:"mais de 40"
+            RESPONSE:A
         QUESTION ID:3
         QUESTION:"Estado civil?"
         OBLIGATORINESS:MANDATORY
@@ -31,50 +33,54 @@ Agradeciamos que respondesse a este questionário para melhorar os nossos servi�
             OPTION:A
             DESCRIPTION:"casado"
             OPTION:B
-            DESCRIPTION:"solteito"
+            DESCRIPTION:"solteiro"
             OPTION:C
-            DESCRIPTION:"Outro (digite qual é):"
+            DESCRIPTION:"outro diga qual:"
             INPUTOPTION:C
+            RESPONSE:C
+            RESPONSEINPUT:"união de facto"
     SECTION ID:2
     TITLE:"Segunda secção"
-    DESCRIPTION:"Opinião de funcionamento
-    da aplicação"
+    DESCRIPTION:"Compras na aplicação"
     OBLIGATORINESS:MANDATORY
         QUESTION ID:4
-        QUESTION:"O que mais gosta na nossa aplicação?"
+        QUESTION:"A que categoria pertence o produto que comprou?"
         OBLIGATORINESS:MANDATORY
         TYPE:MULTIPLECHOICE
-        EXTRAINFO: "Pode escolher mais que uma opção (opções separadas por ;)"
+        EXTRAINFO: "escolha mais que uma opção (opções separadas por ;)"
             OPTION:A
-            DESCRIPTION:"Encomendar produtos"
+            DESCRIPTION:"tecnologia"
             OPTION:B
-            DESCRIPTION:"Facilidade de navegar pelo catálogo"
+            DESCRIPTION:"smartphones"
             OPTION:C
-            DESCRIPTION:"Acompanhar diferentes estados de encomendas"
+            DESCRIPTION:"TVs"
             OPTION:D
-            DESCRIPTION:"Interface de funcionamento"
+            DESCRIPTION:"cosmetics"
+            RESPONSE:C;D
         QUESTION ID:5
-        QUESTION:"Funiconalidades favoritas por ordem decrescente?"
+        QUESTION:"O que mais apreciou na nossa aplicação?"
         OBLIGATORINESS:MANDATORY
         TYPE:SORTING
-        EXTRAINFO: "Ordene a seu gosto (opções separadas por ;)"
+        EXTRAINFO: "ordene de acordo com o seu gosto (a mais favorita primeiro - opções separadas por ;)"
             OPTION:A
-            DESCRIPTION:"Adicionar produtos ao carrinho"
+            DESCRIPTION:"interação com o cliente"
             OPTION:B
-            DESCRIPTION:"Verificar estado de encomendas"
+            DESCRIPTION:"facilidade de compra"
             OPTION:C
-            DESCRIPTION:"Responder a questionários"
+            DESCRIPTION:"design gráfico da aplicação"
             OPTION:D
-            DESCRIPTION:"Encomendar produtos"
+            DESCRIPTION:"rapidez da aplicação"
+            RESPONSE:B;C;D;A
         QUESTION ID:6
-        QUESTION:"Deseja responder a mais uma secção de perguntas?"
+        QUESTION:"quer responder a mais apreciaçoes da secção seguinte?"
         OBLIGATORINESS:MANDATORY
         TYPE: SINGLECHOICE
-        EXTRAINFO:"Opções:"
+        EXTRAINFO:"escolha uma opção:"
             OPTION:A
             DESCRIPTION:"Sim"
             OPTION:B
-            DESCRIPTION:"Não"
+            DESCRIPTION:"não"
+            RESPONSE:A
     SECTION ID:3
     TITLE:"Terceira secção"
     DESCRIPTION:"a terceira secção
@@ -84,32 +90,35 @@ Agradeciamos que respondesse a este questionário para melhorar os nossos servi�
         QUESTION:"Se respondeu sim na questao 6 da secção 2 quer mesmo reponder a estas perguntas?"
         OBLIGATORINESS:CONDITIONAL CONDITION: QUESTION ID: 6 VALUE: A
         TYPE:SINGLECHOICE
-        EXTRAINFO: "Opções:"
+        EXTRAINFO: "escolha uma opção:"
             OPTION:A
             DESCRIPTION:"sim"
             OPTION:B
             DESCRIPTION:"não"
+            RESPONSE:A
         QUESTION ID:8
-        QUESTION:"Clima favorito?"
+        QUESTION:"marca de smartphone que utiliza?"
         OBLIGATORINESS:CONDITIONAL CONDITION: QUESTION ID: 7 VALUE: A
         TYPE:MULTIPLECHOICE
         EXTRAINFO: "escolha as opçoes (opções separadas por ;)"
             OPTION:A
-            DESCRIPTION:"Sol"
+            DESCRIPTION:"apple"
             OPTION:B
-            DESCRIPTION:"Chuva"
+            DESCRIPTION:"samsung"
             OPTION:C
-            DESCRIPTION:"Nuvens"
+            DESCRIPTION:"xiaomi"
             OPTION:D
-            DESCRIPTION:"Neve"
+            DESCRIPTION:"Huawei"
+            RESPONSE:A;B;C
         QUESTION ID:9
-        QUESTION:"Diga numa escala?"
+        QUESTION:"diga numa escala?"
         OBLIGATORINESS:CONDITIONAL CONDITION: QUESTION ID: 7 VALUE: A
         TYPE: SCALING
         SCALE: 0-5
-        EXTRAINFO:"Responda para cada uma das opções um valor de 0(gosta menos) e 5(gosta mais) "
+        EXTRAINFO:"reponda para cada uma das opções um valor de 0(gosta menos) e 5(gosta mais) "
             OPTION:A
-            DESCRIPTION:"Sol"
+            DESCRIPTION:"apple"
             OPTION:B
-            DESCRIPTION:"Chuva"
-END MENSAGE:"Obrigado pela sua participação."
+            DESCRIPTION:"samsung"
+            RESPONSE:A-1;B-4
+END MENSAGE:"Obrigado por ter participado."

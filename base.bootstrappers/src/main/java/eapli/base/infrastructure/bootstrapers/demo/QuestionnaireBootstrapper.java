@@ -25,7 +25,8 @@ public class QuestionnaireBootstrapper implements Action {
     public boolean execute() {
         List<Customer> customerList = (List<Customer>) PersistenceContext.repositories().customers().findAll();
         try {
-            controller.createQuestionnaireByTxtFile("base.core/src/main/java/eapli/base/questionnairemanagement/flieTXT/test.txt", AlphanumericalCode.valueOf("12343521"), Description.valueOf("kadadjahdkajda"),customerList);
+            controller.createQuestionnaireByTxtFile("base.core/src/main/java/eapli/base/questionnairemanagement/flieTXT/test.txt", AlphanumericalCode.valueOf("123456"), Description.valueOf("Primeiro questionario"),customerList);
+            controller.createQuestionnaireByTxtFile("base.core/src/main/java/eapli/base/questionnairemanagement/flieTXT/test0.txt", AlphanumericalCode.valueOf("1234567"), Description.valueOf("Segundo questionario"),customerList);
         } catch (IOException e) {
             e.printStackTrace();
         }

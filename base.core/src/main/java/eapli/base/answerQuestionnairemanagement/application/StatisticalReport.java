@@ -43,9 +43,13 @@ public class StatisticalReport {
     }
 
     public void aa(Questionnaire questionnaire) throws IOException {
+
         questionnaire("questionnaire", questionnaire.questionnaire());
+
         parseSurvey("questionnaire");
+
         answerQuestionaireList = answerQuestionaireRepository.findByQuestionnaire(questionnaire);
+
         verifyResponses();
         for (int i = 0; i < answerQuestionaireList.size(); i++) {
             deleteAuxFile(String.valueOf(i));
@@ -100,18 +104,24 @@ public class StatisticalReport {
 
     public void verifyResponses() throws IOException, ParseCancellationException {
         for (int i = 0; i < answerQuestionaireList.size(); i++) {
+
             questionnaire(String.valueOf(i), answerQuestionaireList.get(i).answerQuestionaire());
+
             QuestionnaireAnswerGrammarLexer lexer = new QuestionnaireAnswerGrammarLexer(CharStreams.fromFileName("base.core/src/main/resources/" + String.valueOf(i) + ".txt"));
+
             CommonTokenStream tokens = new CommonTokenStream(lexer);
+
             QuestionnaireAnswerGrammarParser parser = new QuestionnaireAnswerGrammarParser(tokens);
+
             parser.addErrorListener(DescriptiveErrorListener.INSTANCE);
+
             try {
                 ParseTree tree = parser.prog();// parse -> the method prog is the same where the grammar starts
                 ResponseVisitor responseVisitor = new ResponseVisitor();
                 responseVisitor.visit(tree);
                 ResponseEntity response = responseVisitor.getResponseEntity();
                 responseEntities.add(response);
-            } catch (ParseCancellationException e) {
+            } catch (ParseCancellationException | NullPointerException e) {
                 System.out.println(e.getMessage());
                 throw e;
             }

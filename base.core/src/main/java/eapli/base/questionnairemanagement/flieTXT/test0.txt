@@ -1,16 +1,15 @@
-ID:COSM22-03
-TITLE:"Terceiro questionario"
-WELCOME MENSAGE:"ola terceiro como esta?
+ID:SPOMS22-03
+TITLE:"Quinto questionario"
+WELCOME MENSAGE:"ola quinto como esta?
 por favor respondas as qustões deste qustionário?"
     SECTION ID:1
-    TITLE:"Priemira secção"
-    DESCRIPTION:"dados pessoais"
+    TITLE:"Primeira secção"
+    DESCRIPTION:"Dados pessoais"
     OBLIGATORINESS: MANDATORY
         QUESTION ID:1
         QUESTION:"Como se chama?"
         OBLIGATORINESS: MANDATORY
         TYPE: FREETEXT LIMITCHAR:100
-        RESPONSE:"Luis"
         QUESTION ID:2
         QUESTION:"Qual a sua idade?"
         OBLIGATORINESS:MANDATORY
@@ -24,7 +23,6 @@ por favor respondas as qustões deste qustionário?"
             DESCRIPTION:"de 31 a 40 anos"
             OPTION:D
             DESCRIPTION:"mais de 40"
-            RESPONSE:D
         QUESTION ID:3
         QUESTION:"Estado civil?"
         OBLIGATORINESS:MANDATORY
@@ -37,41 +35,36 @@ por favor respondas as qustões deste qustionário?"
             OPTION:C
             DESCRIPTION:"outro diga qual:"
             INPUTOPTION:C
-            RESPONSE:C
-            RESPONSEINPUT:"união de facto"
     SECTION ID:2
     TITLE:"Segunda secção"
-    DESCRIPTION:"a segunda secção
-    para apreciação"
+    DESCRIPTION:"Compras na aplicação"
     OBLIGATORINESS:MANDATORY
         QUESTION ID:4
-        QUESTION:"Quais os seus hobies?"
+        QUESTION:"A que categoria pertence o produto que comprou?"
         OBLIGATORINESS:MANDATORY
         TYPE:MULTIPLECHOICE
         EXTRAINFO: "escolha mais que uma opção (opções separadas por ;)"
             OPTION:A
-            DESCRIPTION:"futebol"
+            DESCRIPTION:"tecnologia"
             OPTION:B
-            DESCRIPTION:"televisão"
+            DESCRIPTION:"smartphones"
             OPTION:C
-            DESCRIPTION:"passeio"
+            DESCRIPTION:"TVs"
             OPTION:D
-            DESCRIPTION:"piscina"
-            RESPONSE:A;D
+            DESCRIPTION:"cosmetics"
         QUESTION ID:5
-        QUESTION:"Comidas favoritas?"
+        QUESTION:"O que mais apreciou na nossa aplicação?"
         OBLIGATORINESS:MANDATORY
         TYPE:SORTING
         EXTRAINFO: "ordene de acordo com o seu gosto (a mais favorita primeiro - opções separadas por ;)"
             OPTION:A
-            DESCRIPTION:"arroz"
+            DESCRIPTION:"interação com o cliente"
             OPTION:B
-            DESCRIPTION:"carne"
+            DESCRIPTION:"facilidade de compra"
             OPTION:C
-            DESCRIPTION:"peixe"
+            DESCRIPTION:"design gráfico da aplicação"
             OPTION:D
-            DESCRIPTION:"batata"
-            RESPONSE:A;D;C;B
+            DESCRIPTION:"rapidez da aplicação"
         QUESTION ID:6
         QUESTION:"quer responder a mais apreciaçoes da secção seguinte?"
         OBLIGATORINESS:MANDATORY
@@ -81,7 +74,6 @@ por favor respondas as qustões deste qustionário?"
             DESCRIPTION:"Sim"
             OPTION:B
             DESCRIPTION:"não"
-            RESPONSE:A
     SECTION ID:3
     TITLE:"Terceira secção"
     DESCRIPTION:"a terceira secção
@@ -96,21 +88,19 @@ por favor respondas as qustões deste qustionário?"
             DESCRIPTION:"sim"
             OPTION:B
             DESCRIPTION:"não"
-            RESPONSE:A
         QUESTION ID:8
-        QUESTION:"tempo favorito?"
+        QUESTION:"marca de smartphone que utiliza?"
         OBLIGATORINESS:CONDITIONAL CONDITION: QUESTION ID: 7 VALUE: A
         TYPE:MULTIPLECHOICE
         EXTRAINFO: "escolha as opçoes (opções separadas por ;)"
             OPTION:A
-            DESCRIPTION:"sol"
+            DESCRIPTION:"apple"
             OPTION:B
-            DESCRIPTION:"chuva"
+            DESCRIPTION:"samsung"
             OPTION:C
-            DESCRIPTION:"nuvens"
+            DESCRIPTION:"xiaomi"
             OPTION:D
-            DESCRIPTION:"neve"
-            RESPONSE:B;C
+            DESCRIPTION:"Huawei"
         QUESTION ID:9
         QUESTION:"diga numa escala?"
         OBLIGATORINESS:CONDITIONAL CONDITION: QUESTION ID: 7 VALUE: A
@@ -118,8 +108,7 @@ por favor respondas as qustões deste qustionário?"
         SCALE: 0-5
         EXTRAINFO:"reponda para cada uma das opções um valor de 0(gosta menos) e 5(gosta mais) "
             OPTION:A
-            DESCRIPTION:"sol"
+            DESCRIPTION:"apple"
             OPTION:B
-            DESCRIPTION:"chuva"
-            RESPONSE:A-1;B-4
+            DESCRIPTION:"samsung"
 END MENSAGE:"Obrigado por ter participado."

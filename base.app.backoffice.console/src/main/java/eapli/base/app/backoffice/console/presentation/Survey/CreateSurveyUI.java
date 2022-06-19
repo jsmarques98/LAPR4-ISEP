@@ -53,12 +53,10 @@ public class CreateSurveyUI extends AbstractUI {
             section.add(Console.readLine("  Section Title: "));
             section.add(Console.readLine("  Section Description: "));
             section.add(Console.readLine("  Section Obligatoriness: "));
-            section.add(Console.readLine("  Section Repeatability: "));
             questionList = new ArrayList<>();
             do {
                 questionList.add(Console.readLine("Question ID: "));
                 questionList.add(Console.readLine("Question Text: "));
-                questionList.add(Console.readLine("Instruction: "));
                 questionList.add(Console.readLine("Type: "));
                 questionList.add(Console.readLine(" Question Obligatoriness: "));
                 questionList.add(Console.readLine("Extra Info: "));
