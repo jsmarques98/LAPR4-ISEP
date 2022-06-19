@@ -202,6 +202,8 @@ public class MainMenu extends AbstractUI {
             mainMenu.addSubMenu(SURVEY_OPTION, surveyMenu);
             final Menu STATICALREPORT = buildStaticalMenu();
             mainMenu.addSubMenu(4, STATICALREPORT);
+            final Menu prepareOrderMenu = buildPrepareOrderMenu();
+            mainMenu.addSubMenu(3, prepareOrderMenu);
         }
 
         if (!Application.settings().isMenuLayoutHorizontal()) {

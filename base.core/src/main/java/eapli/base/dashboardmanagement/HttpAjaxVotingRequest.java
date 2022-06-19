@@ -80,7 +80,7 @@ public class HttpAjaxVotingRequest extends Thread {
                 response.send(outS);
             }
         }
-        catch(IOException ex) { System.out.println("Thread error when reading request"); }
+        catch(IOException ex) {}
         try { sock.close();}
         catch(IOException ex) { System.out.println("CLOSE IOException"); }
     }

@@ -3,9 +3,15 @@ package eapli.base.server.AGVManager.application;
 import eapli.base.agvmanagement.domain.AGV;
 import eapli.base.agvmanagement.domain.CurrentTask;
 import eapli.base.agvmanagement.domain.IDAGV;
+import eapli.base.agvmanagement.domain.Position;
+import eapli.base.agvmanagement.modules.AGVMemory;
+import eapli.base.agvmanagement.modules.BSM;
+import eapli.base.agvmanagement.modules.ControlSystem;
+import eapli.base.agvmanagement.modules.SimulationEngine;
 import eapli.base.agvmanagement.repository.AGVRepository;
 import eapli.base.infrastructure.persistence.PersistenceContext;
 import eapli.base.ordermanagement.domain.CustomerOrder;
+import eapli.base.ordermanagement.domain.OrderItem;
 import eapli.base.ordermanagement.domain.OrderStatus;
 import eapli.base.ordermanagement.repositories.CustomerOrderRepository;
 import eapli.base.warehousemanagement.domain.AGVDock;
@@ -13,10 +19,7 @@ import eapli.base.warehousemanagement.domain.Aisle;
 import eapli.base.warehousemanagement.repository.AGVDockRepository;
 import eapli.base.warehousemanagement.repository.AisleRepository;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 import static java.lang.Thread.sleep;
 
@@ -62,11 +65,29 @@ public class AGVManagerController {
         agvRepository.save(agv);
         order.changeStatus(OrderStatus.beingPrepared);
         customerOrderRepository.save(order);
-        sleep(5000);
-        order.changeStatus(OrderStatus.prepared);
-        customerOrderRepository.save(order);
-        agv.changeCurrentTask(CurrentTask.FREE);
-        agvRepository.save(agv);
+
+        List<Position> productsPositions = new ArrayList<>();
+
+        for (OrderItem o : order.orderItems()) {
+
+            Position position = new Position(o.product().rowAisle().begin().blsquare(), o.product().rowAisle().begin().bwsquare());
+
+            if (!productsPositions.contains(position)) {
+                System.out.println(position);
+                productsPositions.add(position);
+            }
+        }
+
+
+        AGVMemory agvMemory = new AGVMemory(agv);
+        agvMemory.setSpeed(1.0);
+
+       SimulationEngine simulationEngine = new SimulationEngine(agvMemory);
+        simulationEngine.start();
+        ControlSystem controlSystem = new ControlSystem(agvMemory, productsPositions,order);
+        controlSystem.start();
+        BSM bsm =new BSM(agvMemory);
+        bsm.start();
         return true;
     }
 
