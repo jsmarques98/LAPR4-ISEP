@@ -45,7 +45,6 @@ public class ControlSystem extends Thread {
         if (agvMemory.getDestination().equals(new Position(agvMemory.getAgv().agvDock().begin().blsquare(), agvMemory.getAgv().agvDock().begin().bwsquare())) && agvMemory.getActualPosition().equals(
                 new Position(agvMemory.getAgv().agvDock().begin().blsquare(), agvMemory.getAgv().agvDock().begin().bwsquare()))) {
             agvMemory.setOrderPrepared(true);
-            bsm.reloadAGV();
         }
         if (positionList.size() > 1) {
             calculateNextDirection(positionList.get(1));

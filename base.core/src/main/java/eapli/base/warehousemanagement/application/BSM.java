@@ -2,37 +2,44 @@ package eapli.base.warehousemanagement.application;
 
 import eapli.base.agvmanagement.domain.Autonomy;
 
-public class BSM extends Thread{
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class BSM extends Thread {
 
     private AGVMemory agvMemory;
-    private boolean aux=false;
+    private int aux;
 
-    public BSM(AGVMemory agvMemory){
-        this.agvMemory=agvMemory;
+    public BSM(AGVMemory agvMemory) {
+        this.agvMemory = agvMemory;
+        aux = 0;
     }
 
-    public void reloadAGV(){
-        if(agvMemory.getActualPosition()==agvMemory.getAgvDockPosition()) {
-            while (agvMemory.getAgv().autonomy().minutes() <= agvMemory.getAgv().autonomy().maxMinutes()) {
+
+    public void reduceAutonomy() {
+        if (agvMemory.getActualPosition().equals(agvMemory.getAgvDockPosition())) {
+            if (agvMemory.getAgv().autonomy().minutes() <= agvMemory.getAgv().autonomy().maxMinutes())
                 agvMemory.getAgv().setAutonomy(new Autonomy(agvMemory.getAgv().autonomy().minutes() + 1));
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+        } else if (agvMemory.getSpeed() != 0.0) {
+            aux++;
+            if (aux == 60) {
+                agvMemory.getAgv().setAutonomy(new Autonomy(agvMemory.getAgv().autonomy().minutes() - 1));
             }
         }
     }
 
-    public void reduceAutonomy(){
-        if(agvMemory.getSpeed()==1)
-            agvMemory.getAgv().setAutonomy(new Autonomy(agvMemory.getAgv().autonomy().minutes()-1));
-        else if(agvMemory.getSpeed()==0.5){
-            if(aux) {
-                agvMemory.getAgv().setAutonomy(new Autonomy(agvMemory.getAgv().autonomy().minutes() - 1));
-                aux=false;
-            }else
-                aux=true;
-        }
+    public void run() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (agvMemory.getAgv().autonomy().minutes() != agvMemory.getAgv().autonomy().maxMinutes() && !agvMemory.isOrderPrepared()) {
+                    reduceAutonomy();
+                }else {
+                    timer.cancel();
+                }
+            }
+        }, 0, 1000);
+
     }
 }
