@@ -74,11 +74,6 @@ public class QuestionnaireController {
                 questionnaireRepository.save(questionnaire);
 
 
-                System.out.println(questionnaireRepository.findByAlphanumericalCode(AlphanumericalCode.valueOf("1")).get().customers().size());
-
-
-                System.out.println(customerRepository.findByIdCustomer(20).get().questionnaires().size());
-
                 return true;
             } else {
                 return false;
@@ -103,6 +98,19 @@ public class QuestionnaireController {
         } finally {
             reader.close();
         }
+    }
+
+    public void createQuestionnaireByTxtFile(String filename, AlphanumericalCode alphanumericalCode, Description description, List<Customer> customers) throws IOException {
+        Path fileName = Path.of(filename);
+
+        String str = Files.readString(fileName);
+
+        Questionnaire questionnaire = new Questionnaire(alphanumericalCode, description, str);
+        for (Customer c : customers) {
+            questionnaire.addCustomer(c);
+        }
+        questionnaireRepository.save(questionnaire);
+
     }
 
 

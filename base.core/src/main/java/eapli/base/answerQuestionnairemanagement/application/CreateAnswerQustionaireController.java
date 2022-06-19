@@ -13,6 +13,7 @@ import eapli.base.customermanagement.repositories.CustomerRepository;
 import eapli.base.infrastructure.persistence.PersistenceContext;
 import eapli.base.infrastructure.persistence.RepositoryFactory;
 import eapli.base.questionnairemanagement.domain.AlphanumericalCode;
+import eapli.base.questionnairemanagement.domain.Description;
 import eapli.base.questionnairemanagement.domain.Questionnaire;
 import eapli.base.questionnairemanagement.repositories.QuestionnaireRepository;
 import eapli.framework.actions.menu.Menu;
@@ -63,7 +64,7 @@ public class CreateAnswerQustionaireController {
 
     public AnswerQuestionaire createAnswerQustionaire(Questionnaire q, String answerQuestionaire) throws IOException {
         respondSurvey(answerQuestionaire);
-        return answerQuestionaireRepository.save(new AnswerQuestionaire(customer, q));
+        return answerQuestionaireRepository.save(new AnswerQuestionaire(customer, q,answerQuestionaire));
     }
 
     public boolean questionnaire(Questionnaire q) {
@@ -128,5 +129,14 @@ public class CreateAnswerQustionaireController {
         }
     }
 
+
+    public void createAnswerQuestionnaireByTxtFile(String filename,Questionnaire q,Customer customer) throws IOException {
+        Path fileName = Path.of(filename);
+
+        String str = Files.readString(fileName);
+
+        //respondSurvey(str);
+        answerQuestionaireRepository.save(new AnswerQuestionaire(customer, q,str));
+    }
 
 }

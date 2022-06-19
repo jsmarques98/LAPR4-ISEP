@@ -32,9 +32,10 @@ public class AnswerQuestionaire implements AggregateRoot<Integer> {
     @Lob
     private String answerQuestionaire;
 
-    public AnswerQuestionaire(Customer customer,Questionnaire questionnaire) {
+    public AnswerQuestionaire(Customer customer,Questionnaire questionnaire,String answerQuestionaire) {
         this.customer = customer;
         this.questionnaire=questionnaire;
+        this.answerQuestionaire=answerQuestionaire;
     }
 
 
